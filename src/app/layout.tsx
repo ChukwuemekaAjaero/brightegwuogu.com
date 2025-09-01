@@ -1,19 +1,23 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import NavigationHeader from '@/components/lib/NavigationHeader';
 
 export const metadata: Metadata = {
-    title: 'Hello World App',
-    description: 'A simple Hello World application',
+    title: 'Bright Egwuogu',
+    description: 'Musician, pastor, husband, and father.'
 };
 
 export default function RootLayout({
-    children,
+    children
 }: Readonly<{
     children: React.ReactNode;
 }>) {
     return (
         <html lang="en">
-            <body>{children}</body>
+            <body>
+                <NavigationHeader />
+                {children}
+            </body>
         </html>
     );
 }
