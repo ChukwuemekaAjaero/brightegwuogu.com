@@ -3,6 +3,7 @@
 import * as React from 'react';
 import Link from 'next/link';
 import styles from './NavigationHeader.module.css';
+import { Instagram, Youtube } from 'lucide-react';
 
 //TODO: Use Contentful to store these links
 const youTubeLink = 'https://www.youtube.com/channel/UCH-O0drzAagoobTUuIT4vDg';
@@ -33,12 +34,15 @@ export default function NavigationHeader() {
                             Music
                         </Link>
                     </div>
+                </div>
+
+                <div className={styles.desktopNav}>
                     <div className={styles.socialLinks}>
                         <Link href={instagramLink} className={styles.navLink}>
-                            Instagram
+                            <Instagram />
                         </Link>
                         <Link href={youTubeLink} className={styles.navLink}>
-                            YouTube
+                            <YouTube />
                         </Link>
                     </div>
                 </div>
