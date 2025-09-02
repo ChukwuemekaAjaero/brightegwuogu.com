@@ -61,6 +61,16 @@
     background-color: #f3f4f6;
 }
 
+.navLinkIcon {
+    width: 30px;
+    height: 30px;
+}
+
+.navLinkIcon:hover {
+    color: #3b82f6;
+    background-color: #f3f4f6;
+}
+
 /* Mobile Navigation */
 .mobileMenuButton {
     display: none;

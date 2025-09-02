@@ -3,7 +3,8 @@
 import * as React from 'react';
 import Link from 'next/link';
 import styles from './NavigationHeader.module.css';
-import { Instagram, Youtube } from 'lucide-react';
+import { FaYoutube } from 'react-icons/fa';
+import { AiFillInstagram } from 'react-icons/ai';
 
 //TODO: Use Contentful to store these links
 const youTubeLink = 'https://www.youtube.com/channel/UCH-O0drzAagoobTUuIT4vDg';
@@ -39,10 +40,10 @@ export default function NavigationHeader() {
                 <div className={styles.desktopNav}>
                     <div className={styles.socialLinks}>
                         <Link href={instagramLink} className={styles.navLink}>
-                            <Instagram />
+                            <AiFillInstagram className={styles.navLinkIcon} />
                         </Link>
                         <Link href={youTubeLink} className={styles.navLink}>
-                            <YouTube />
+                            <FaYoutube className={styles.navLinkIcon} />
                         </Link>
                     </div>
                 </div>
