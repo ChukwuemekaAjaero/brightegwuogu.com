@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import NavigationHeader from '@/components/lib/NavigationHeader';
+import { ubisoftSansFont } from '@/lib/utils';
 
 export const metadata: Metadata = {
     title: 'Bright Egwuogu',
@@ -14,7 +15,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body>
+            <body className={ubisoftSansFont.className}>
                 <NavigationHeader />
                 {children}
             </body>

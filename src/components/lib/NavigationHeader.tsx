@@ -4,6 +4,7 @@ import * as React from 'react';
 import Link from 'next/link';
 import { FaYoutube } from 'react-icons/fa';
 import { AiFillInstagram } from 'react-icons/ai';
+import { modernizFont } from '@/lib/utils';
 
 //TODO: Use Contentful to store these links
 const youTubeLink = 'https://www.youtube.com/channel/UCH-O0drzAagoobTUuIT4vDg';
@@ -17,15 +18,20 @@ export default function NavigationHeader() {
     };
 
     return (
-        <nav className="max-w-7xl mx-auto px-4 sm:px-8 bg-white border-b border-gray-200 relative">
-            <div className="flex items-center justify-between w-full">
-                {/* Logo */}
-                <Link href="/" className="text-2xl font-bold text-gray-800 no-underline flex-shrink-0 hover:text-blue-600 transition-colors">
-                    Bright Egwuogu
-                </Link>
+        <nav className="max-w-[1600px] mx-auto px-4 sm:px-8 bg-white border-b border-gray-200 relative">
+            <div className="flex items-center w-full h-16">
+                {/* Container 1: Logo */}
+                <div className="flex-1 flex justify-start">
+                    <Link
+                        href="/"
+                        className={`${modernizFont.className} text-2xl font-bold text-gray-800 no-underline hover:text-blue-600 transition-colors`}
+                    >
+                        Bright Egwuogu
+                    </Link>
+                </div>
 
-                {/* Desktop Navigation */}
-                <div className="hidden md:flex items-center gap-8">
+                {/* Container 2: Navigation Links - Hidden on mobile */}
+                <div className="flex-1 hidden md:flex justify-center">
                     <div className="flex items-center gap-6">
                         <Link
                             href="/sermons"
@@ -40,6 +46,10 @@ export default function NavigationHeader() {
                             Music
                         </Link>
                     </div>
+                </div>
+
+                {/* Container 3: Social Links - Hidden on mobile */}
+                <div className="flex-1 hidden md:flex justify-end">
                     <div className="flex items-center gap-4">
                         <Link
                             href={instagramLink}
@@ -56,7 +66,7 @@ export default function NavigationHeader() {
                     </div>
                 </div>
 
-                {/* Mobile Menu Button */}
+                {/* Mobile Menu Button - Only visible on mobile */}
                 <button
                     className={`md:hidden bg-none border-none cursor-pointer p-2 flex flex-col gap-1 ${isMobileMenuOpen ? 'active' : ''}`}
                     onClick={toggleMobileMenu}
