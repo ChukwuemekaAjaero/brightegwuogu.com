@@ -18,7 +18,7 @@ export default function NavigationHeader() {
     };
 
     return (
-        <nav className="absolute top-0 right-0 left-0 z-30 mx-auto max-w-[1600px] bg-transparent px-4 sm:px-8">
+        <nav className="sticky top-0 z-30 mx-auto -mb-16 max-w-[1600px] bg-transparent px-4 sm:px-8">
             <div className="flex h-16 w-full items-center">
                 {/* Container 1: Logo */}
                 <div className="flex flex-1 justify-start">

@@ -1,13 +1,66 @@
+'use client';
+
 import Image from 'next/image';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
 
 export default function HomePage() {
-    return (
-        <div className="relative flex min-h-screen items-center justify-center">
-            {/* Background Image */}
-            <Image src="/images/OMV_8305.jpg" alt="Home Page Image" fill className="z-0 object-cover" priority />
+    const targetRef = useRef(null);
+    const { scrollYProgress } = useScroll({ target: targetRef });
+    const x = useTransform(scrollYProgress, [0, 1], ['0%', '-100%']);
 
-            {/* Text content */}
-            <h1 className="relative z-20 text-4xl font-bold text-white">Home</h1>
+    return (
+        <div>
+            <section className="relative flex min-h-screen items-center justify-center bg-black">
+                {/* Background Image */}
+                <Image src="/images/OMV_8305.jpg" alt="Home Page Image" fill className="z-0 mask-b-from-50% object-cover object-[75%_50%]" priority />
+
+                {/* Text content */}
+                <h1 className="relative z-20 text-4xl font-bold text-white">Home</h1>
+            </section>
+            <section className="flex min-h-screen items-center justify-center bg-black">
+                <div className="max-w-[1600px] px-4 sm:px-8">
+                    <p className="text-white">
+                        Bright Egwuogu serves as a pastor at Celebration Church International, a global apostolic ministry under the leadership of
+                        Apostle Emmanuel Iren, committed to the vision of guiding all individuals to celebrate eternal life in Christ Jesus. He
+                        currently fulfills the role of resident pastor at the Toronto campus, where he is dedicated to fostering spiritual growth
+                        among believers. ​
+                        <br />
+                        <br />
+                        Affectionately known as P.B., he is also an accomplished musician with a collection of contemporary Christian songs that have
+                        positively impacted thousands worldwide. ​
+                        <br />
+                        <br />
+                        Residing in Toronto, Canada, P.B. balances his pastoral and musical callings with a career as a cybersecurity professional
+                        serving the financial, retail, and insurance sectors. He is married to his supportive wife, Ibiye, and together they are
+                        blessed with a son.
+                    </p>
+                </div>
+            </section>
+            <section ref={targetRef} className="relative h-[200vh] min-h-screen bg-black">
+                <motion.div style={{ x }} className="sticky top-0 flex w-max">
+                    {Array.from({ length: 4 }, (_, i) => `${i + 1}`).map((_, index) => (
+                        <div key={index} className="relative h-[100vh] w-[80vh] flex-shrink-0">
+                            <Image
+                                src={`/images/homeGallery/heroImage${index + 1}.jpg`}
+                                alt={`Gallery Image ${index + 1}`}
+                                fill
+                                className="object-contain"
+                            />
+                        </div>
+                    ))}
+                </motion.div>
+                <section className="flex min-h-screen items-center justify-center bg-black">
+                    <div className="max-w-[1600px] px-4 sm:px-8">
+                        <h1 className="text-4xl font-bold text-white">Music Preview Section</h1>
+                    </div>
+                </section>
+            </section>
+            <section className="flex min-h-screen items-center justify-center bg-black">
+                <div className="max-w-[1600px] px-4 sm:px-8">
+                    <h1 className="text-4xl font-bold text-white">Music Preview Section</h1>
+                </div>
+            </section>
         </div>
     );
 }
