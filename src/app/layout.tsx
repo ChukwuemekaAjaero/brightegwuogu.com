@@ -16,8 +16,10 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={ubisoftSansFont.className}>
-                <NavigationHeader />
-                {children}
+                <div className="relative">
+                    <NavigationHeader />
+                    {children}
+                </div>
             </body>
         </html>
     );
