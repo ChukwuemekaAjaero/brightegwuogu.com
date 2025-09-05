@@ -50,16 +50,11 @@ export default function HomePage() {
                         </div>
                     ))}
                 </motion.div>
-                <section className="flex min-h-screen items-center justify-center bg-black">
+                <section className="flex min-h-screen justify-center bg-black">
                     <div className="max-w-[1600px] px-4 sm:px-8">
                         <h1 className="text-4xl font-bold text-white">Music Preview Section</h1>
                     </div>
                 </section>
-            </section>
-            <section className="flex min-h-screen items-center justify-center bg-black">
-                <div className="max-w-[1600px] px-4 sm:px-8">
-                    <h1 className="text-4xl font-bold text-white">Music Preview Section</h1>
-                </div>
             </section>
         </div>
     );

@@ -28,7 +28,7 @@ const getClient = () => {
 };
 
 // Fetch sermons
-export async function getSermons(limit: number = 10): Promise<Sermon[]> {
+export async function getSermons(): Promise<Sermon[]> {
     try {
         const client = getClient();
         const response = await client.getEntries({
@@ -37,10 +37,10 @@ export async function getSermons(limit: number = 10): Promise<Sermon[]> {
         });
 
         return response.items.map((item: Entry<any>) => ({
-            name: item.fields.name,
-            sermonDate: item.fields.sermonDate,
-            youTubeLink: item.fields.youTubeLink,
-            thumbnailImage: item.fields.thumbnailImage
+            name: item.fields.name as string,
+            sermonDate: item.fields.sermonDate as string,
+            youTubeLink: item.fields.youTubeLink as string,
+            thumbnailImage: item.fields.thumbnailImage as Asset
         }));
     } catch (error) {
         console.error('Error fetching sermons:', error);
