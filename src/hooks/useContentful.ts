@@ -12,7 +12,7 @@ export function useSermons(limit: number = 10) {
             try {
                 setLoading(true);
                 setError(null);
-                const sermonsData = await getSermons(limit);
+                const sermonsData = await getSermons();
                 setSermons(sermonsData);
             } catch (err) {
                 setError(err instanceof Error ? err.message : 'Failed to fetch sermons');
