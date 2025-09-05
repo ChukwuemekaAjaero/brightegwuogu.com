@@ -18,30 +18,30 @@ export default function NavigationHeader() {
     };
 
     return (
-        <nav className="absolute top-0 left-0 right-0 max-w-[1600px] mx-auto px-4 sm:px-8 bg-transparent z-30">
-            <div className="flex items-center w-full h-16">
+        <nav className="absolute top-0 right-0 left-0 z-30 mx-auto max-w-[1600px] bg-transparent px-4 sm:px-8">
+            <div className="flex h-16 w-full items-center">
                 {/* Container 1: Logo */}
-                <div className="flex-1 flex justify-start">
+                <div className="flex flex-1 justify-start">
                     <Link
                         href="/"
-                        className={`${modernizFont.className} text-2xl font-bold text-white no-underline hover:text-blue-300 transition-colors`}
+                        className={`${modernizFont.className} text-2xl font-bold text-white no-underline transition-colors hover:text-blue-300`}
                     >
                         Bright Egwuogu
                     </Link>
                 </div>
 
                 {/* Container 2: Navigation Links - Hidden on mobile */}
-                <div className="flex-1 hidden md:flex justify-center">
+                <div className="hidden flex-1 justify-center md:flex">
                     <div className="flex items-center gap-6">
                         <Link
                             href="/music"
-                            className="text-white no-underline font-medium px-4 py-2 rounded-md transition-all duration-200 hover:text-blue-300 hover:bg-white/20"
+                            className="rounded-md px-4 py-2 font-medium text-white no-underline transition-all duration-200 hover:bg-white/20 hover:text-blue-300"
                         >
                             Music
                         </Link>
                         <Link
                             href="/sermons"
-                            className="text-white no-underline font-medium px-4 py-2 rounded-md transition-all duration-200 hover:text-blue-300 hover:bg-white/20"
+                            className="rounded-md px-4 py-2 font-medium text-white no-underline transition-all duration-200 hover:bg-white/20 hover:text-blue-300"
                         >
                             Sermons
                         </Link>
@@ -49,68 +49,76 @@ export default function NavigationHeader() {
                 </div>
 
                 {/* Container 3: Social Links - Hidden on mobile */}
-                <div className="flex-1 hidden md:flex justify-end">
+                <div className="hidden flex-1 justify-end md:flex">
                     <div className="flex items-center gap-4">
                         <Link
                             href={instagramLink}
-                            className="text-white no-underline font-medium px-4 py-2 rounded-md transition-all duration-200 hover:text-blue-300 hover:bg-white/20"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="rounded-md px-4 py-2 font-medium text-white no-underline transition-all duration-200 hover:bg-white/20 hover:text-blue-300"
                         >
-                            <AiFillInstagram className="w-8 h-8" />
+                            <AiFillInstagram className="h-8 w-8" />
                         </Link>
                         <Link
                             href={youTubeLink}
-                            className="text-white no-underline font-medium px-4 py-2 rounded-md transition-all duration-200 hover:text-blue-300 hover:bg-white/20"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="rounded-md px-4 py-2 font-medium text-white no-underline transition-all duration-200 hover:bg-white/20 hover:text-blue-300"
                         >
-                            <FaYoutube className="w-8 h-8" />
+                            <FaYoutube className="h-8 w-8" />
                         </Link>
                     </div>
                 </div>
 
                 {/* Mobile Menu Button - Only visible on mobile */}
                 <button
-                    className={`md:hidden bg-none border-none cursor-pointer p-2 flex flex-col gap-1 ${isMobileMenuOpen ? 'active' : ''}`}
+                    className={`flex cursor-pointer flex-col gap-1 border-none bg-none p-2 md:hidden ${isMobileMenuOpen ? 'active' : ''}`}
                     onClick={toggleMobileMenu}
                     aria-label="Toggle mobile menu"
                 >
-                    <span className={`w-6 h-0.5 bg-white transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`}></span>
-                    <span className={`w-6 h-0.5 bg-white transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`}></span>
+                    <span className={`h-0.5 w-6 bg-white transition-all duration-300 ${isMobileMenuOpen ? 'translate-y-1.5 rotate-45' : ''}`}></span>
+                    <span className={`h-0.5 w-6 bg-white transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`}></span>
                     <span
-                        className={`w-6 h-0.5 bg-white transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}
+                        className={`h-0.5 w-6 bg-white transition-all duration-300 ${isMobileMenuOpen ? '-translate-y-1.5 -rotate-45' : ''}`}
                     ></span>
                 </button>
             </div>
 
             {/* Mobile Menu */}
             <div
-                className={`md:hidden absolute top-full left-0 right-0 bg-black/80 backdrop-blur-sm border-b border-white/20 shadow-lg z-50 ${
+                className={`absolute top-full right-0 left-0 z-50 border-b border-white/20 bg-black/80 shadow-lg backdrop-blur-sm md:hidden ${
                     isMobileMenuOpen ? 'block' : 'hidden'
                 }`}
             >
-                <div className="flex flex-col p-4 sm:p-8 gap-2">
+                <div className="flex flex-col gap-2 p-4 sm:p-8">
                     <Link
                         href="/sermons"
-                        className="text-white no-underline font-medium px-4 py-3 rounded-md transition-all duration-200 hover:text-blue-300 hover:bg-white/20"
+                        className="rounded-md px-4 py-3 font-medium text-white no-underline transition-all duration-200 hover:bg-white/20 hover:text-blue-300"
                         onClick={toggleMobileMenu}
                     >
                         Sermons
                     </Link>
                     <Link
                         href="/music"
-                        className="text-white no-underline font-medium px-4 py-3 rounded-md transition-all duration-200 hover:text-blue-300 hover:bg-white/20"
+                        className="rounded-md px-4 py-3 font-medium text-white no-underline transition-all duration-200 hover:bg-white/20 hover:text-blue-300"
                         onClick={toggleMobileMenu}
                     >
                         Music
                     </Link>
                     <Link
                         href={instagramLink}
-                        className="text-white no-underline font-medium px-4 py-3 rounded-md transition-all duration-200 hover:text-blue-300 hover:bg-white/20"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="rounded-md px-4 py-3 font-medium text-white no-underline transition-all duration-200 hover:bg-white/20 hover:text-blue-300"
                         onClick={toggleMobileMenu}
                     >
                         Instagram
                     </Link>
                     <Link
                         href={youTubeLink}
-                        className="text-white no-underline font-medium px-4 py-3 rounded-md transition-all duration-200 hover:text-blue-300 hover:bg-white/20"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="rounded-md px-4 py-3 font-medium text-white no-underline transition-all duration-200 hover:bg-white/20 hover:text-blue-300"
                         onClick={toggleMobileMenu}
                     >
                         YouTube
