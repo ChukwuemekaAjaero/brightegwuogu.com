@@ -15,7 +15,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={ubisoftSansFont.className}>
+            <body className={`${ubisoftSansFont.className}`}>
                 <div className="relative">
                     <NavigationHeader />
                     {children}
