@@ -36,7 +36,7 @@ export async function getSermons(): Promise<Sermon[]> {
             include: 1
         });
 
-        return response.items.map((item: Entry<any>) => ({
+        return response.items.map((item: Entry) => ({
             name: item.fields.name as string,
             sermonDate: item.fields.sermonDate as string,
             youTubeLink: item.fields.youTubeLink as string,
