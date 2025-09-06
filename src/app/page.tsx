@@ -8,8 +8,8 @@ import { modernizFont } from '@/lib/utils';
 export default function HomePage() {
     const targetRef = useRef(null);
     const { scrollYProgress } = useScroll({ target: targetRef });
-    const x = useTransform(scrollYProgress, [0, 1], ['0%', '-100%']);
-    const imageCount = 5;
+    const x = useTransform(scrollYProgress, [0, 1], ['0%', '-50%']);
+    const imageCount = 7;
 
     return (
         <div>
@@ -75,7 +75,7 @@ export default function HomePage() {
                                 src="/images/aboutMeImage.jpg"
                                 alt="About Me Image"
                                 fill
-                                className="mask-t-from-70% mask-r-from-90% object-cover object-[75%_50%] opacity-80 transition-all duration-300 hover:scale-105 hover:opacity-100"
+                                className="mask-t-from-70% mask-r-from-90% object-cover object-[75%_50%] grayscale-30 transition-all duration-300 hover:scale-105 hover:grayscale-0"
                             />
                         </div>
                     </div>
@@ -89,26 +89,39 @@ export default function HomePage() {
                         {Array.from({ length: imageCount }, (_, i) => `${i + 1}`).map((_, index) => (
                             <div
                                 key={index}
-                                className={`relative h-[100vh] w-[80vh] flex-shrink-0 ${index === imageCount - 1 ? 'mask-r-from-50%' : ''}`}
+                                className={`group relative h-[100vh] w-[80vh] flex-shrink-0 overflow-hidden ${index === imageCount - 1 ? 'mask-r-from-90%' : ''}`}
                             >
                                 <Image
                                     src={`/images/homeGallery/heroImage${index + 1}.jpg`}
                                     alt={`Gallery Image ${index + 1}`}
                                     fill
-                                    className="object-contain"
+                                    className="scale-102 object-contain transition-all group-hover:scale-105"
                                 />
+                                <div className="pointer-events-none absolute inset-0 bg-black/20 transition-all duration-300 group-hover:bg-black/0" />
                             </div>
                         ))}
                     </motion.div>
                 </div>
+            </section>
 
-                {/* MUSIC PREVIEW SECTION */}
+            {/* MUSIC PREVIEW SECTION */}
+            <section className="bg-black">
                 <div className="mx-auto max-w-[1600px] sm:px-8">
-                    <section className="flex min-h-screen bg-black pt-20">
-                        <div>
+                    <div className="min-h-screen bg-black pt-20">
+                        <div className="mb-12">
                             <h1 className={`text-6xl font-bold text-white ${modernizFont.className}`}>Music</h1>
                         </div>
-                    </section>
+                        <div className="grid grid-cols-3 grid-rows-2 gap-6">
+                            {Array.from({ length: 6 }, (_, index) => (
+                                <div
+                                    key={index}
+                                    className="aspect-square max-h-[500px] max-w-[500px] rounded-lg bg-gray-800 transition-colors duration-300 hover:bg-blue-500"
+                                >
+                                    {/* Music item content will go here */}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>

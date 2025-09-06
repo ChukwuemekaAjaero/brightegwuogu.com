@@ -57,7 +57,7 @@ export default function NavigationHeader() {
                             rel="noopener noreferrer"
                             className="rounded-md px-4 py-2 font-medium text-white no-underline transition-all duration-200 hover:bg-white/20 hover:text-blue-300"
                         >
-                            <AiFillInstagram className="h-8 w-8" />
+                            <AiFillInstagram className="3xl:text-white h-8 w-8 text-black" />
                         </Link>
                         <Link
                             href={youTubeLink}
@@ -65,7 +65,7 @@ export default function NavigationHeader() {
                             rel="noopener noreferrer"
                             className="rounded-md px-4 py-2 font-medium text-white no-underline transition-all duration-200 hover:bg-white/20 hover:text-blue-300"
                         >
-                            <FaYoutube className="h-8 w-8" />
+                            <FaYoutube className="3xl:text-white h-8 w-8 text-black" />
                         </Link>
                     </div>
                 </div>
@@ -76,10 +76,10 @@ export default function NavigationHeader() {
                     onClick={toggleMobileMenu}
                     aria-label="Toggle mobile menu"
                 >
-                    <span className={`h-0.5 w-6 bg-white transition-all duration-300 ${isMobileMenuOpen ? 'translate-y-1.5 rotate-45' : ''}`}></span>
-                    <span className={`h-0.5 w-6 bg-white transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`}></span>
+                    <span className={`h-0.5 w-6 bg-black transition-all duration-300 ${isMobileMenuOpen ? 'translate-y-1.5 rotate-45' : ''}`}></span>
+                    <span className={`h-0.5 w-6 bg-black transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`}></span>
                     <span
-                        className={`h-0.5 w-6 bg-white transition-all duration-300 ${isMobileMenuOpen ? '-translate-y-1.5 -rotate-45' : ''}`}
+                        className={`h-0.5 w-6 bg-black transition-all duration-300 ${isMobileMenuOpen ? '-translate-y-1.5 -rotate-45' : ''}`}
                     ></span>
                 </button>
             </div>
