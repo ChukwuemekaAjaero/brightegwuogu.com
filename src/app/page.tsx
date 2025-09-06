@@ -9,32 +9,39 @@ export default function HomePage() {
     const targetRef = useRef(null);
     const { scrollYProgress } = useScroll({ target: targetRef });
     const x = useTransform(scrollYProgress, [0, 1], ['0%', '-100%']);
+    const imageCount = 5;
 
     return (
         <div>
             {/* HERO SECTION */}
-            <section className="relative flex min-h-screen items-center justify-center bg-black">
+            <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-black">
                 {/* Background Image */}
-                <Image
-                    src="/images/heroImage.jpg"
-                    alt="Home Page Image"
-                    fill
-                    className="z-0 mask-b-from-50% object-cover object-[75%_50%]"
-                    priority
-                />
+                <div className="absolute inset-0 mask-b-from-50%">
+                    <Image
+                        src="/images/heroImage.jpg"
+                        alt="Home Page Image"
+                        fill
+                        className="z-0 animate-[zoom_20s_ease-in-out_infinite] object-cover object-[75%_50%]"
+                        priority
+                    />
+                </div>
 
                 {/* Text content */}
-                <h1 className="relative z-20 text-4xl font-bold text-white">Home</h1>
+                <div className="flex h-full w-full max-w-[1600px] items-end justify-start px-4 sm:px-8">
+                    <h1 className={`relative z-20 max-w-[500px] text-4xl font-bold text-white`}>
+                        On a mission to know Christ deeply, make Him known, use my gifts to advance His kingdom.
+                    </h1>
+                </div>
             </section>
 
             {/* ABOUT ME SECTION */}
-            <section className="flex min-h-screen items-center justify-center bg-black">
+            <section id="about-me-section" className="flex min-h-screen justify-center bg-black transition-colors duration-300">
                 <div className="h-max max-w-[1600px] px-4 sm:px-8">
-                    <div className="flex flex-col items-center gap-8 md:flex-row">
+                    <div className="flex h-max flex-col items-center gap-8 md:flex-row">
                         {/* Text Content */}
 
-                        <div className="flex-1">
-                            <h1 className={`text-4xl font-bold text-white ${modernizFont.className} mb-8`}>About Me</h1>
+                        <div className="w-full md:w-[40%]">
+                            <h1 className={`text-6xl font-bold text-white ${modernizFont.className} mb-8`}>About Me</h1>
                             <p className="text-white">
                                 Bright Egwuogu serves as a pastor at Celebration Church International, a global apostolic ministry under the
                                 leadership of Apostle Emmanuel Iren, committed to the vision of guiding all individuals to celebrate eternal life in
@@ -53,8 +60,23 @@ export default function HomePage() {
                         </div>
 
                         {/* Image Content */}
-                        <div className="relative h-[400px] flex-1 md:h-[500px]">
-                            <Image src="/images/aboutMeImage.jpg" alt="About Me Image" fill className="object-cover" />
+                        <div
+                            className="relative min-h-[100vh] w-full overflow-hidden md:w-[60%]"
+                            onMouseEnter={() => {
+                                const section = document.getElementById('about-me-section');
+                                if (section) section.style.backgroundColor = '#271b1b';
+                            }}
+                            onMouseLeave={() => {
+                                const section = document.getElementById('about-me-section');
+                                if (section) section.style.backgroundColor = 'rgb(0, 0, 0)';
+                            }}
+                        >
+                            <Image
+                                src="/images/aboutMeImage.jpg"
+                                alt="About Me Image"
+                                fill
+                                className="mask-t-from-70% mask-r-from-90% object-cover object-[75%_50%] opacity-80 transition-all duration-300 hover:scale-105 hover:opacity-100"
+                            />
                         </div>
                     </div>
                 </div>
@@ -64,8 +86,11 @@ export default function HomePage() {
             <section ref={targetRef} className="relative h-[200vh] min-h-screen bg-black">
                 <div className="sticky top-0 z-10 overflow-hidden">
                     <motion.div style={{ x }} className="flex w-max">
-                        {Array.from({ length: 4 }, (_, i) => `${i + 1}`).map((_, index) => (
-                            <div key={index} className="relative h-[100vh] w-[80vh] flex-shrink-0">
+                        {Array.from({ length: imageCount }, (_, i) => `${i + 1}`).map((_, index) => (
+                            <div
+                                key={index}
+                                className={`relative h-[100vh] w-[80vh] flex-shrink-0 ${index === imageCount - 1 ? 'mask-r-from-50%' : ''}`}
+                            >
                                 <Image
                                     src={`/images/homeGallery/heroImage${index + 1}.jpg`}
                                     alt={`Gallery Image ${index + 1}`}
@@ -78,11 +103,13 @@ export default function HomePage() {
                 </div>
 
                 {/* MUSIC PREVIEW SECTION */}
-                <section className="flex min-h-screen justify-center bg-black">
-                    <div className="max-w-[1600px] px-4 sm:px-8">
-                        <h1 className="text-4xl font-bold text-white">Music Preview Section</h1>
-                    </div>
-                </section>
+                <div className="mx-auto max-w-[1600px] sm:px-8">
+                    <section className="flex min-h-screen bg-black pt-20">
+                        <div>
+                            <h1 className={`text-6xl font-bold text-white ${modernizFont.className}`}>Music</h1>
+                        </div>
+                    </section>
+                </div>
             </section>
         </div>
     );
