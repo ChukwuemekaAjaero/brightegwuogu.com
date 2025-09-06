@@ -205,7 +205,7 @@ export default function HomePage() {
                                     src={`/images/homeGallery/heroImage${index + 1}.jpg`}
                                     alt={`Gallery Image ${index + 1}`}
                                     fill
-                                    className="scale-102 object-contain transition-all group-hover:scale-105"
+                                    className="scale-102 mask-b-from-90% object-contain transition-all group-hover:scale-105"
                                 />
                                 <div className="pointer-events-none absolute inset-0 bg-black/20 transition-all duration-300 group-hover:bg-black/0" />
                             </div>
@@ -217,9 +217,9 @@ export default function HomePage() {
             {/* MUSIC PREVIEW SECTION */}
             <section id="music" className="bg-white px-4 sm:px-8">
                 <div className="mx-auto max-w-[1600px] sm:px-8">
-                    <div className="h-max bg-white pt-20">
-                        <div className="mb-12">
-                            <h1 className={`text-6xl font-bold text-black ${modernizFont.className}`}>Music</h1>
+                    <div className="h-max py-20">
+                        <div className="mb-12 text-center">
+                            <h1 className={`text-8xl font-bold text-black ${modernizFont.className}`}>Music</h1>
                             <br />
                             <p className="text-black">Discover the latest songs of hope, faith, and inspiration.</p>
                         </div>
@@ -242,6 +242,27 @@ export default function HomePage() {
                                     <div
                                         key={song.name}
                                         className="group relative aspect-square overflow-hidden bg-gray-800 transition-colors duration-300 hover:bg-blue-500"
+                                        onMouseEnter={(e) => {
+                                            const section = e.currentTarget.closest('section');
+                                            if (section) {
+                                                // Change text colors to secondary color
+                                                const textElements = section.querySelectorAll('h1, h2, h3, p, a');
+                                                textElements.forEach((element) => {
+                                                    (element as HTMLElement).style.color = song.secondaryColor || '#000000';
+                                                    (element as HTMLElement).style.transition = 'color 0.3s ease';
+                                                });
+                                            }
+                                        }}
+                                        onMouseLeave={(e) => {
+                                            const section = e.currentTarget.closest('section');
+                                            if (section) {
+                                                // Reset text colors
+                                                const textElements = section.querySelectorAll('h1, h2, h3, p, a');
+                                                textElements.forEach((element) => {
+                                                    (element as HTMLElement).style.color = '';
+                                                });
+                                            }
+                                        }}
                                     >
                                         {song.musicThumbnail?.fields?.file?.url && (
                                             <Image
@@ -283,11 +304,11 @@ export default function HomePage() {
             </section>
 
             {/* SERMONS PREVIEW SECTION */}
-            <section id="sermons" className="bg-white px-4 sm:px-8">
+            <section id="sermons" className="bg-blue-100 px-4 sm:px-8">
                 <div className="mx-auto max-w-[1600px] sm:px-8">
-                    <div className="h-max bg-white py-20">
-                        <div className="mb-12">
-                            <h1 className={`text-5xl font-bold text-black md:text-6xl ${modernizFont.className}`}>Sermons</h1>
+                    <div className="h-max py-20">
+                        <div className="mb-12 text-center">
+                            <h1 className={`text-5xl font-bold text-black md:text-8xl ${modernizFont.className}`}>Sermons</h1>
                             <br />
                             <p className="text-black">Discover the latest messages of hope, faith, and inspiration.</p>
                         </div>
@@ -309,27 +330,29 @@ export default function HomePage() {
                                 sermons.slice(0, 3).map((sermon, index) => (
                                     <div
                                         key={sermon.name}
-                                        className="group relative aspect-square cursor-pointer overflow-hidden bg-gray-800 transition-colors duration-300 hover:bg-blue-500"
+                                        className="group cursor-pointer overflow-hidden transition-colors duration-300"
                                         onClick={() => window.open(sermon.youTubeLink, '_blank')}
                                     >
-                                        {sermon.thumbnailImage?.fields?.file?.url && (
-                                            <Image
-                                                src={`https:${sermon.thumbnailImage.fields.file.url}`}
-                                                alt={sermon.name}
-                                                fill
-                                                className="object-cover object-[50%_10%] transition-transform duration-300 group-hover:scale-105"
-                                            />
-                                        )}
-                                        <div className="absolute inset-0 flex items-center justify-center bg-black/90 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
-                                            <div className="p-4 text-center text-white">
-                                                <div className="mb-3 flex justify-center">
-                                                    <svg className="h-12 w-12 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                        <div className="relative aspect-square overflow-hidden">
+                                            {sermon.thumbnailImage?.fields?.file?.url && (
+                                                <Image
+                                                    src={`https:${sermon.thumbnailImage.fields.file.url}`}
+                                                    alt={sermon.name}
+                                                    fill
+                                                    className="object-cover object-[50%_10%] transition-transform duration-300 group-hover:scale-105"
+                                                />
+                                            )}
+                                            <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                                                <div className="flex justify-center">
+                                                    <svg className="h-30 w-30 text-white" fill="currentColor" viewBox="0 0 24 24">
                                                         <path d="M8 5v14l11-7z" />
                                                     </svg>
                                                 </div>
-                                                <h3 className="mb-2 text-xl font-semibold">{sermon.name}</h3>
-                                                <p className="text-sm opacity-75">{formatDate(sermon.sermonDate)}</p>
                                             </div>
+                                        </div>
+                                        <div className="p-4">
+                                            <h3 className="mb-2 text-xl font-semibold">{sermon.name}</h3>
+                                            <p className="text-sm opacity-75">{formatDate(sermon.sermonDate)}</p>
                                         </div>
                                     </div>
                                 ))

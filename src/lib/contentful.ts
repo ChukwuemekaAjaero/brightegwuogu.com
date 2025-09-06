@@ -45,7 +45,8 @@ export async function getSermons(): Promise<Sermon[]> {
         const client = getClient();
         const response = await client.getEntries({
             content_type: 'sermons',
-            include: 1
+            include: 1,
+            order: ['-fields.sermonDate'] // Order by release date, newest first
         });
 
         return response.items.map((item: Entry) => ({
