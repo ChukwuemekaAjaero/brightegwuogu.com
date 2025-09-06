@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import NavigationHeader from '@/components/lib/NavigationHeader';
+import NavigationFooter from '@/components/lib/NavigationFooter';
 import { ubisoftSansFont } from '@/lib/utils';
 
 export const metadata: Metadata = {
@@ -19,6 +20,7 @@ export default function RootLayout({
                 <div className="relative">
                     <NavigationHeader />
                     {children}
+                    <NavigationFooter />
                 </div>
             </body>
         </html>

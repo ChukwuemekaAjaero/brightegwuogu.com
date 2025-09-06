@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { getSermons, Sermon } from '@/lib/contentful';
+import { getSermons, getMusic, Sermon, Music } from '@/lib/contentful';
 
 // Hook for fetching sermons
 export function useSermons(limit: number = 10) {
@@ -23,7 +23,34 @@ export function useSermons(limit: number = 10) {
         };
 
         fetchSermons();
-    }, [limit]);
+    }, []);
 
     return { sermons, loading, error };
+}
+
+// Hook for fetching music
+export function useMusic(limit: number = 10) {
+    const [music, setMusic] = useState<Music[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        const fetchMusic = async () => {
+            try {
+                setLoading(true);
+                setError(null);
+                const musicData = await getMusic();
+                setMusic(musicData);
+            } catch (err) {
+                setError(err instanceof Error ? err.message : 'Failed to fetch music');
+                console.error('Error fetching music:', err);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchMusic();
+    }, []);
+
+    return { music, loading, error };
 }

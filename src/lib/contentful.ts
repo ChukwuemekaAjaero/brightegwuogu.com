@@ -23,6 +23,18 @@ export interface Sermon {
     thumbnailImage: Asset;
 }
 
+export interface Music {
+    name: string;
+    youTubeLink: string;
+    musicThumbnail: Asset;
+    releaseDate: string;
+    hasMusicVideo: boolean;
+    secondaryMusicThumbnail: Asset;
+    artists: string[];
+    primaryColor: string;
+    secondaryColor: string;
+}
+
 const getClient = () => {
     return client;
 };
@@ -44,6 +56,35 @@ export async function getSermons(): Promise<Sermon[]> {
         }));
     } catch (error) {
         console.error('Error fetching sermons:', error);
+        return [];
+    }
+}
+
+// Fetch music
+
+// TODO: Add the link for the music link tree in the entries.
+export async function getMusic(): Promise<Music[]> {
+    try {
+        const client = getClient();
+        const response = await client.getEntries({
+            content_type: 'music',
+            include: 1,
+            order: ['-fields.releaseDate'] // Order by release date, newest first
+        });
+
+        return response.items.map((item: Entry) => ({
+            name: item.fields.name as string,
+            youTubeLink: item.fields.youTubeLink as string,
+            musicThumbnail: item.fields.musicThumbnail as Asset,
+            secondaryMusicThumbnail: item.fields?.secondaryMusicThumbnail as Asset,
+            releaseDate: item.fields.releaseDate as string,
+            hasMusicVideo: item.fields.hasMusicVideo as boolean,
+            artists: item.fields.artists as string[],
+            primaryColor: item.fields.primaryColor as string,
+            secondaryColor: item.fields.secondaryColor as string
+        }));
+    } catch (error) {
+        console.error('Error fetching music:', error);
         return [];
     }
 }

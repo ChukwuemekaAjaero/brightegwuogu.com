@@ -5,7 +5,7 @@ const config: Config = {
     theme: {
         extend: {
             screens: {
-                '3xl': '120rem' // 1920px
+                '3xl': '1800px' // 1920px
             },
             fontFamily: {
                 sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
