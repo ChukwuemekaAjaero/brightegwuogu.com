@@ -3,6 +3,7 @@
 import { modernizFont, formatDuration } from '@/lib/utils';
 import { useMusic } from '@/hooks/useContentful';
 import Image from 'next/image';
+import { useState, useEffect } from 'react';
 
 // Format date to "Day, Month Year" format
 const formatDate = (dateString: string) => {
@@ -18,10 +19,62 @@ const formatDate = (dateString: string) => {
 
 export default function Music() {
     const { music, loading: musicLoading, error: musicError } = useMusic();
+    const [activeSection, setActiveSection] = useState('hero');
+
+    useEffect(() => {
+        const sections = ['hero', ...music.map((song, index) => `song-${index}`)];
+
+        const handleScroll = () => {
+            const scrollPosition = window.scrollY;
+            const viewportHeight = window.innerHeight;
+
+            for (const section of sections) {
+                const element = document.getElementById(section);
+                if (element) {
+                    const { offsetTop, offsetHeight } = element;
+                    const sectionBottom = offsetTop + offsetHeight;
+
+                    // Highlight section when its bottom is fully in the viewport
+                    if (scrollPosition + viewportHeight >= sectionBottom) {
+                        setActiveSection(section);
+                    }
+                }
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, [music]);
 
     return (
-        <div>
-            <section className="relative bg-black">
+        <div className="relative scroll-smooth">
+            {/* TABLE OF CONTENTS */}
+            <div className="fixed top-1/2 left-8 z-50 hidden -translate-y-1/2 transform 2xl:block">
+                <div className="bg-transparent p-4">
+                    <nav className="space-y-2">
+                        <a
+                            href="#hero"
+                            className={`block px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-blue-600 hover:text-white ${
+                                activeSection === 'hero' ? 'bg-blue-600 text-white' : 'text-white'
+                            }`}
+                        >
+                            Hero
+                        </a>
+                        {music.map((song, index) => (
+                            <a
+                                key={song.name}
+                                href={`#song-${index}`}
+                                className={`block px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-blue-600 hover:text-white ${
+                                    activeSection === `song-${index}` ? 'bg-blue-600 text-white' : 'text-white'
+                                }`}
+                            >
+                                {song.name}
+                            </a>
+                        ))}
+                    </nav>
+                </div>
+            </div>
+            <section id="hero" className="relative bg-black">
                 {/* Hero Section */}
                 <div className="relative min-h-screen overflow-hidden mask-b-from-50%">
                     {/* Video Background */}
@@ -102,20 +155,21 @@ export default function Music() {
                             {music.map((song, index) => (
                                 <section
                                     key={song.name}
-                                    className="min-h-[50vh] w-screen space-y-6 py-8"
+                                    id={`song-${index}`}
+                                    className="w-screen space-y-6 py-16"
                                     style={{ backgroundColor: song.primaryColor }}
                                 >
                                     <div className="mx-auto max-w-[1600px]">
                                         {/* Main Content Container */}
                                         <div className="flex flex-col gap-6 p-6 transition-all duration-3000 md:flex-row">
                                             {/* Music Thumbnail */}
-                                            <div className="relative aspect-square min-h-[300px] w-full min-w-[300px] overflow-hidden md:w-1/2 lg:w-1/4">
+                                            <div className="group relative aspect-square min-h-[500px] w-full min-w-[500px] overflow-hidden md:w-1/2 lg:w-1/4">
                                                 {song.musicThumbnail?.fields?.file?.url && (
                                                     <Image
                                                         src={`https:${song.musicThumbnail.fields.file.url}`}
                                                         alt={song.name}
                                                         fill
-                                                        className="object-cover"
+                                                        className="object-cover transition-transform duration-300 group-hover:scale-105"
                                                     />
                                                 )}
                                             </div>
@@ -125,7 +179,9 @@ export default function Music() {
                                                 {song.recordType && (
                                                     <p className="mb-2 text-sm font-medium tracking-wider text-gray-400">{song.recordType}</p>
                                                 )}
-                                                <h3 className={`mb-2 text-3xl font-bold text-white md:text-6xl ${modernizFont.className}`}>
+                                                <h3
+                                                    className={`mb-2 text-3xl font-bold break-words text-white md:text-6xl ${modernizFont.className}`}
+                                                >
                                                     {song.name}
                                                 </h3>
                                                 <p className="text-md text-gray-300">
