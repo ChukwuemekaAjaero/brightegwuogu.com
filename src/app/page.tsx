@@ -86,7 +86,7 @@ export default function HomePage() {
                                 activeSection === 'hero' ? 'bg-blue-600 text-white' : isOverWhiteSection ? 'text-black' : 'text-white'
                             }`}
                         >
-                            Hero
+                            Home
                         </a>
                         <a
                             href="#about-me"

@@ -17,3 +17,30 @@ export const ubisoftSansFont = localFont({
     variable: '--font-ubisoft-sans',
     display: 'swap'
 });
+
+// Format seconds to readable time format
+export const formatDuration = (seconds: number): string => {
+    if (seconds < 60) {
+        return `${seconds} sec`;
+    }
+
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const remainingSeconds = seconds % 60;
+
+    let result = '';
+
+    if (hours > 0) {
+        result += `${hours} hrs `;
+    }
+
+    if (minutes > 0) {
+        result += `${minutes} min `;
+    }
+
+    if (remainingSeconds > 0) {
+        result += `${remainingSeconds} sec`;
+    }
+
+    return result.trim();
+};

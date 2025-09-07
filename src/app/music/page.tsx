@@ -1,13 +1,29 @@
 'use client';
 
-import { modernizFont } from '@/lib/utils';
+import { modernizFont, formatDuration } from '@/lib/utils';
+import { useMusic } from '@/hooks/useContentful';
+import Image from 'next/image';
+
+// Format date to "Day, Month Year" format
+const formatDate = (dateString: string) => {
+    // Handle date string parsing to avoid timezone issues
+    const date = new Date(dateString + 'T00:00:00');
+    return date.toLocaleDateString('en-US', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+};
 
 export default function Music() {
+    const { music, loading: musicLoading, error: musicError } = useMusic();
+
     return (
         <div>
             <section className="relative bg-black">
                 {/* Hero Section */}
-                <div className="relative min-h-screen overflow-hidden">
+                <div className="relative min-h-screen overflow-hidden mask-b-from-50%">
                     {/* Video Background */}
                     <iframe
                         className="absolute top-0 left-1/2 h-full w-[177.78vh] -translate-x-1/2"
@@ -54,8 +70,130 @@ export default function Music() {
                 </div>
             </section>
 
+            {/* Music List Section */}
             <section className="relative min-h-screen overflow-hidden bg-black">
-                <div className="container mx-auto px-4 sm:px-8"></div>
+                <div className="py-20">
+                    <div className="mb-12 text-center">
+                        <h2 className={`text-5xl font-bold text-white md:text-6xl ${modernizFont.className}`}>All Songs</h2>
+                        <p className="mt-4 text-xl text-gray-300">Complete discography and latest releases</p>
+                    </div>
+
+                    {musicLoading ? (
+                        // Loading state
+                        <div className="space-y-8">
+                            {Array.from({ length: 3 }, (_, index) => (
+                                <div key={index} className="flex animate-pulse gap-6 bg-gray-800 p-6">
+                                    <div className="h-32 w-32 flex-shrink-0 bg-gray-700"></div>
+                                    <div className="flex-1 space-y-3">
+                                        <div className="h-6 w-3/4 rounded bg-gray-700"></div>
+                                        <div className="h-4 w-1/2 rounded bg-gray-700"></div>
+                                        <div className="h-4 w-1/3 rounded bg-gray-700"></div>
+                                        <div className="h-4 w-1/4 rounded bg-gray-700"></div>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    ) : musicError ? (
+                        // Error state
+                        <div className="text-center text-red-500">Error loading music: {musicError}</div>
+                    ) : (
+                        // Music list
+                        <div className="space-y-0">
+                            {music.map((song, index) => (
+                                <section
+                                    key={song.name}
+                                    className="min-h-[50vh] w-screen space-y-6 py-8"
+                                    style={{ backgroundColor: song.primaryColor }}
+                                >
+                                    <div className="mx-auto max-w-[1600px]">
+                                        {/* Main Content Container */}
+                                        <div className="flex flex-col gap-6 p-6 transition-all duration-3000 md:flex-row">
+                                            {/* Music Thumbnail */}
+                                            <div className="relative aspect-square min-h-[300px] w-full min-w-[300px] overflow-hidden md:w-1/2 lg:w-1/4">
+                                                {song.musicThumbnail?.fields?.file?.url && (
+                                                    <Image
+                                                        src={`https:${song.musicThumbnail.fields.file.url}`}
+                                                        alt={song.name}
+                                                        fill
+                                                        className="object-cover"
+                                                    />
+                                                )}
+                                            </div>
+
+                                            {/* Song Information */}
+                                            <div className="flex flex-1 flex-col justify-end">
+                                                {song.recordType && (
+                                                    <p className="mb-2 text-sm font-medium tracking-wider text-gray-400">{song.recordType}</p>
+                                                )}
+                                                <h3 className={`mb-2 text-3xl font-bold text-white md:text-6xl ${modernizFont.className}`}>
+                                                    {song.name}
+                                                </h3>
+                                                <p className="text-md text-gray-300">
+                                                    <span className="font-bold">{song.artists?.join(', ')}</span>
+                                                    <span className="mx-2">•</span>
+                                                    <span>{new Date(song.releaseDate + 'T00:00:00').getFullYear()}</span>
+                                                    {song.songLength && (
+                                                        <>
+                                                            <span className="mx-2">•</span>
+                                                            <span>{formatDuration(song.songLength)}</span>
+                                                        </>
+                                                    )}
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        {/* Buttons Container */}
+                                        <div className="flex flex-wrap gap-3 p-6">
+                                            {/* Streaming Platform Links */}
+                                            <a
+                                                href="#"
+                                                className="inline-flex items-center bg-green-600 px-4 py-2 text-sm font-semibold text-white transition-colors duration-200 hover:bg-green-700"
+                                            >
+                                                <svg className="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                                                    <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.42 1.56-.299.421-1.02.599-1.559.3z" />
+                                                </svg>
+                                                Spotify
+                                            </a>
+                                            <a
+                                                href="#"
+                                                className="inline-flex items-center bg-red-600 px-4 py-2 text-sm font-semibold text-white transition-colors duration-200 hover:bg-red-700"
+                                            >
+                                                <svg className="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                                                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                                                </svg>
+                                                YouTube Music
+                                            </a>
+                                            <a
+                                                href="#"
+                                                className="inline-flex items-center bg-black px-4 py-2 text-sm font-semibold text-white transition-colors duration-200 hover:bg-gray-800"
+                                            >
+                                                <svg className="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
+                                                    <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm0 19c-3.9 0-7-3.1-7-7s3.1-7 7-7 7 3.1 7 7-3.1 7-7 7zm1-11h-2v6h2V8zm0 8h-2v2h2v-2z" />
+                                                </svg>
+                                                Apple Music
+                                            </a>
+
+                                            {/* YouTube Video Link (if available) */}
+                                            {song.hasMusicVideo && song.youTubeLink && (
+                                                <a
+                                                    href={song.youTubeLink}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="inline-flex items-center bg-red-600 px-6 py-3 font-semibold text-white transition-all duration-300 hover:scale-105 hover:bg-red-700"
+                                                >
+                                                    <svg className="mr-2 h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                                                    </svg>
+                                                    Watch Music Video
+                                                </a>
+                                            )}
+                                        </div>
+                                    </div>
+                                </section>
+                            ))}
+                        </div>
+                    )}
+                </div>
             </section>
         </div>
     );

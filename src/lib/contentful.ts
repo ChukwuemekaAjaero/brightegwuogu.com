@@ -33,6 +33,9 @@ export interface Music {
     artists: string[];
     primaryColor: string;
     secondaryColor: string;
+    songLength?: number;
+    albumName?: string;
+    recordType?: string; // EP, Single, Album, etc.
 }
 
 const getClient = () => {
@@ -82,7 +85,10 @@ export async function getMusic(): Promise<Music[]> {
             hasMusicVideo: item.fields.hasMusicVideo as boolean,
             artists: item.fields.artists as string[],
             primaryColor: item.fields.primaryColor as string,
-            secondaryColor: item.fields.secondaryColor as string
+            secondaryColor: item.fields.secondaryColor as string,
+            songLength: item.fields?.songLength as number,
+            albumName: item.fields?.albumName as string,
+            recordType: item.fields?.recordType as string
         }));
     } catch (error) {
         console.error('Error fetching music:', error);
