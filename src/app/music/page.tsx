@@ -26,18 +26,33 @@ export default function Music() {
 
         const handleScroll = () => {
             const scrollPosition = window.scrollY;
-            const viewportHeight = window.innerHeight;
-            const viewportMiddle = scrollPosition + viewportHeight / 2;
 
-            for (const section of sections) {
+            // Process sections in reverse order to prioritize higher indexes
+            for (let i = sections.length - 1; i >= 0; i--) {
+                const section = sections[i];
                 const element = document.getElementById(section);
                 if (element) {
-                    const { offsetTop, offsetHeight } = element;
-                    const sectionMiddle = offsetTop + offsetHeight / 2;
+                    const { offsetTop } = element;
 
-                    // Highlight section when its middle crosses the viewport middle
-                    if (viewportMiddle >= sectionMiddle) {
-                        setActiveSection(section);
+                    // Highlight section when the anchor's href point (section top) is hit
+                    if (scrollPosition >= offsetTop) {
+                        // For song sections, prioritize the one 2 indexes above
+                        if (section.startsWith('song-')) {
+                            const currentIndex = parseInt(section.split('-')[1]);
+                            const targetIndex = Math.max(0, currentIndex - 2);
+                            const targetSection = `song-${targetIndex}`;
+
+                            // Only highlight if the target section exists and we're past its top
+                            const targetElement = document.getElementById(targetSection);
+                            if (targetElement && scrollPosition >= targetElement.offsetTop) {
+                                setActiveSection(targetSection);
+                            } else {
+                                setActiveSection(section);
+                            }
+                        } else {
+                            setActiveSection(section);
+                        }
+                        break;
                     }
                 }
             }
