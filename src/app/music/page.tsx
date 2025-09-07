@@ -27,15 +27,16 @@ export default function Music() {
         const handleScroll = () => {
             const scrollPosition = window.scrollY;
             const viewportHeight = window.innerHeight;
+            const viewportMiddle = scrollPosition + viewportHeight / 2;
 
             for (const section of sections) {
                 const element = document.getElementById(section);
                 if (element) {
                     const { offsetTop, offsetHeight } = element;
-                    const sectionBottom = offsetTop + offsetHeight;
+                    const sectionMiddle = offsetTop + offsetHeight / 2;
 
-                    // Highlight section when its bottom is fully in the viewport
-                    if (scrollPosition + viewportHeight >= sectionBottom) {
+                    // Highlight section when its middle crosses the viewport middle
+                    if (viewportMiddle >= sectionMiddle) {
                         setActiveSection(section);
                     }
                 }
@@ -164,13 +165,58 @@ export default function Music() {
                                         <div className="flex flex-col gap-6 p-6 transition-all duration-3000 md:flex-row">
                                             {/* Music Thumbnail */}
                                             <div className="group relative aspect-square min-h-[500px] w-full min-w-[500px] overflow-hidden md:w-1/2 lg:w-1/4">
+                                                {/* YouTube Video iframe - hidden by default, shown on hover */}
+                                                {song.youTubeLink && (
+                                                    <div className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                                                        <iframe
+                                                            src={`${song.youTubeLink.replace('watch?v=', 'embed/')}?autoplay=1&mute=1&loop=1&playlist=${song.youTubeLink.split('v=')[1]}&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&fs=0&disablekb=1&start=0&end=30`}
+                                                            className="absolute inset-0 h-full min-h-full w-full"
+                                                            style={{
+                                                                minHeight: '100%',
+                                                                minWidth: '100%',
+                                                                width: '177.78vh',
+                                                                height: '100%',
+                                                                left: '50%',
+                                                                transform: 'translateX(-50%)',
+                                                                objectFit: 'cover'
+                                                            }}
+                                                            frameBorder="0"
+                                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                            allowFullScreen
+                                                            loading="lazy"
+                                                        />
+                                                        {/* Black overlay with 60% opacity */}
+                                                        <div className="absolute inset-0 bg-black/60"></div>
+                                                    </div>
+                                                )}
+
+                                                {/* Image - visible by default, hidden on hover */}
                                                 {song.musicThumbnail?.fields?.file?.url && (
-                                                    <Image
-                                                        src={`https:${song.musicThumbnail.fields.file.url}`}
-                                                        alt={song.name}
-                                                        fill
-                                                        className="object-cover transition-transform duration-300 group-hover:scale-105"
-                                                    />
+                                                    <a
+                                                        href={song.youTubeLink}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="group/image relative block h-full w-full"
+                                                    >
+                                                        <Image
+                                                            src={`https:${song.musicThumbnail.fields.file.url}`}
+                                                            alt={song.name}
+                                                            fill
+                                                            className="object-cover transition-all duration-300 group-hover:scale-105 group-hover:opacity-0"
+                                                        />
+                                                        {/* Play Icon Overlay */}
+                                                        <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover/image:opacity-100">
+                                                            <div className="rounded-full border-4 border-white p-4">
+                                                                <svg
+                                                                    className="h-20 w-20 text-white drop-shadow-lg"
+                                                                    fill="currentColor"
+                                                                    viewBox="0 0 24 24"
+                                                                >
+                                                                    <path d="M8 5v14l11-7z" />
+                                                                </svg>
+                                                            </div>
+                                                        </div>
+                                                    </a>
                                                 )}
                                             </div>
 
