@@ -125,7 +125,7 @@ export default function SermonsPage() {
                             {Array.from({ length: 3 }, (_, index) => (
                                 <div key={index} className="mx-auto max-w-[1600px]">
                                     <div className="flex flex-col gap-6 p-6 md:flex-row">
-                                        <div className="aspect-square min-h-[500px] w-full min-w-[500px] animate-pulse bg-gray-700 md:w-1/2 lg:w-1/4"></div>
+                                        <div className="aspect-square min-h-[300px] w-full min-w-[300px] animate-pulse bg-gray-700 md:w-1/2 lg:w-1/4"></div>
                                         <div className="flex flex-1 flex-col justify-end">
                                             <div className="mb-2 h-8 w-3/4 animate-pulse bg-gray-700"></div>
                                             <div className="mb-1 h-6 w-1/2 animate-pulse bg-gray-600"></div>
@@ -152,7 +152,7 @@ export default function SermonsPage() {
                                         {/* Main Content Container */}
                                         <div className="flex flex-col gap-6 p-6 transition-all duration-3000 md:flex-row">
                                             {/* Sermon Thumbnail */}
-                                            <div className="group relative aspect-square min-h-[500px] w-full min-w-[500px] overflow-hidden md:w-1/2 lg:w-1/4">
+                                            <div className="group relative aspect-square min-h-[300px] w-full min-w-[300px] overflow-hidden md:w-1/2 lg:w-1/4">
                                                 {/* YouTube Video iframe - hidden by default, shown on hover */}
                                                 {sermon.youTubeLink && (
                                                     <div className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
@@ -211,7 +211,7 @@ export default function SermonsPage() {
                                             {/* Sermon Information */}
                                             <div className="flex flex-1 flex-col justify-end">
                                                 <h3
-                                                    className={`mb-2 text-3xl font-bold break-words text-white md:text-6xl ${modernizFont.className}`}
+                                                    className={`mb-2 text-xl font-bold break-words text-white sm:text-2xl md:text-3xl lg:text-4xl xl:text-6xl ${modernizFont.className}`}
                                                 >
                                                     {sermon.name}
                                                 </h3>
