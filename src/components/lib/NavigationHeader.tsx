@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { FaYoutube } from 'react-icons/fa';
 import { AiFillInstagram } from 'react-icons/ai';
 import { modernizFont } from '@/lib/utils';
@@ -12,6 +13,7 @@ const instagramLink = 'https://www.instagram.com/britegwu/';
 
 export default function NavigationHeader() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+    const pathname = usePathname();
 
     const toggleMobileMenu = () => {
         setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -35,13 +37,17 @@ export default function NavigationHeader() {
                     <div className="flex items-center gap-6">
                         <Link
                             href="/music"
-                            className="rounded-md px-4 py-2 font-medium text-white no-underline transition-all duration-200 hover:bg-white/20 hover:text-blue-300"
+                            className={`rounded-md px-4 py-2 font-medium no-underline transition-all duration-200 hover:bg-white/20 hover:text-blue-300 ${
+                                pathname === '/music' ? 'bg-white/20 text-blue-300' : 'text-white'
+                            }`}
                         >
                             Music
                         </Link>
                         <Link
                             href="/sermons"
-                            className="rounded-md px-4 py-2 font-medium text-white no-underline transition-all duration-200 hover:bg-white/20 hover:text-blue-300"
+                            className={`rounded-md px-4 py-2 font-medium no-underline transition-all duration-200 hover:bg-white/20 hover:text-blue-300 ${
+                                pathname === '/sermons' ? 'bg-white/20 text-blue-300' : 'text-white'
+                            }`}
                         >
                             Sermons
                         </Link>
@@ -76,10 +82,10 @@ export default function NavigationHeader() {
                     onClick={toggleMobileMenu}
                     aria-label="Toggle mobile menu"
                 >
-                    <span className={`h-0.5 w-6 bg-black transition-all duration-300 ${isMobileMenuOpen ? 'translate-y-1.5 rotate-45' : ''}`}></span>
-                    <span className={`h-0.5 w-6 bg-black transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`}></span>
+                    <span className={`h-0.5 w-6 bg-white transition-all duration-300 ${isMobileMenuOpen ? 'translate-y-1.5 rotate-45' : ''}`}></span>
+                    <span className={`h-0.5 w-6 bg-white transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`}></span>
                     <span
-                        className={`h-0.5 w-6 bg-black transition-all duration-300 ${isMobileMenuOpen ? '-translate-y-1.5 -rotate-45' : ''}`}
+                        className={`h-0.5 w-6 bg-white transition-all duration-300 ${isMobileMenuOpen ? '-translate-y-1.5 -rotate-45' : ''}`}
                     ></span>
                 </button>
             </div>
@@ -93,14 +99,18 @@ export default function NavigationHeader() {
                 <div className="flex flex-col gap-2 p-4 sm:p-8">
                     <Link
                         href="/sermons"
-                        className="rounded-md px-4 py-3 font-medium text-white no-underline transition-all duration-200 hover:bg-white/20 hover:text-blue-300"
+                        className={`rounded-md px-4 py-3 font-medium no-underline transition-all duration-200 hover:bg-white/20 hover:text-blue-300 ${
+                            pathname === '/sermons' ? 'bg-white/20 text-blue-300' : 'text-white'
+                        }`}
                         onClick={toggleMobileMenu}
                     >
                         Sermons
                     </Link>
                     <Link
                         href="/music"
-                        className="rounded-md px-4 py-3 font-medium text-white no-underline transition-all duration-200 hover:bg-white/20 hover:text-blue-300"
+                        className={`rounded-md px-4 py-3 font-medium no-underline transition-all duration-200 hover:bg-white/20 hover:text-blue-300 ${
+                            pathname === '/music' ? 'bg-white/20 text-blue-300' : 'text-white'
+                        }`}
                         onClick={toggleMobileMenu}
                     >
                         Music

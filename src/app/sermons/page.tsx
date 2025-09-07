@@ -79,8 +79,8 @@ export default function SermonsPage() {
 
                     {/* Content */}
                     <div className="relative z-10 flex min-h-screen items-center justify-center">
-                        <div className="text-center text-white">
-                            <h1 className={`mb-6 text-6xl font-bold ${modernizFont.className}`}>Sermons</h1>
+                        <div className="mx-auto max-w-[1600px] px-4 text-center text-white sm:px-8">
+                            <h1 className={`mb-6 text-5xl font-bold ${modernizFont.className}`}>Sermons</h1>
                             <p className="mb-8 text-xl">Inspiring messages of hope, faith, and transformation</p>
 
                             {/* Buttons */}
