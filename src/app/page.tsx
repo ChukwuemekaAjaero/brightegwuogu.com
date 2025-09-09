@@ -219,7 +219,7 @@ export default function HomePage() {
                 <div className="mx-auto max-w-[1600px] sm:px-8">
                     <div className="h-max py-20">
                         <div className="mb-12 text-center">
-                            <h1 className={`text-8xl font-bold text-black ${modernizFont.className}`}>Music</h1>
+                            <h1 className={`text-6xl font-bold text-black ${modernizFont.className}`}>Music</h1>
                             <br />
                             <p className="text-black">Discover the latest songs of hope, faith, and inspiration.</p>
                         </div>
@@ -308,7 +308,7 @@ export default function HomePage() {
                 <div className="mx-auto max-w-[1600px] sm:px-8">
                     <div className="h-max py-20">
                         <div className="mb-12 text-center">
-                            <h1 className={`text-5xl font-bold text-black md:text-8xl ${modernizFont.className}`}>Sermons</h1>
+                            <h1 className={`text-5xl font-bold text-black md:text-6xl ${modernizFont.className}`}>Sermons</h1>
                             <br />
                             <p className="text-black">Discover the latest messages of hope, faith, and inspiration.</p>
                         </div>
