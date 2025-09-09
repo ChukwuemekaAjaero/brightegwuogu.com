@@ -143,8 +143,8 @@ export default function Music() {
             <section className="relative min-h-screen overflow-hidden bg-black">
                 <div className="py-20">
                     <div className="mb-12 text-center">
-                        <h2 className={`text-5xl font-bold text-white md:text-6xl ${modernizFont.className}`}>All Songs</h2>
-                        <p className="mt-4 text-xl text-gray-300">Complete discography and latest releases</p>
+                        <h2 className={`text-4xl font-bold text-white md:text-6xl ${modernizFont.className}`}>All Songs</h2>
+                        <p className="mt-4 text-lg text-gray-300">Complete discography and latest releases</p>
                     </div>
 
                     {musicLoading ? (
@@ -179,7 +179,7 @@ export default function Music() {
                                         {/* Main Content Container */}
                                         <div className="flex flex-col gap-6 p-6 transition-all duration-3000 md:flex-row">
                                             {/* Music Thumbnail */}
-                                            <div className="group relative aspect-square min-h-[500px] w-full min-w-[500px] overflow-hidden md:w-1/2 lg:w-1/4">
+                                            <div className="group relative aspect-square min-h-[300px] w-full min-w-[300px] overflow-hidden md:w-1/2 lg:w-1/4">
                                                 {/* YouTube Video iframe - hidden by default, shown on hover */}
                                                 {song.youTubeLink && (
                                                     <div className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
