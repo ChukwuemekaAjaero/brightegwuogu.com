@@ -269,10 +269,10 @@ export default function HomePage() {
                                                 src={`https:${song.musicThumbnail.fields.file.url}`}
                                                 alt={song.name}
                                                 fill
-                                                className="object-cover transition-transform duration-300 group-hover:scale-105"
+                                                className="object-cover transition-transform duration-300 group-hover:scale-105 group-hover:blur-sm"
                                             />
                                         )}
-                                        <div className="absolute inset-0 flex items-center justify-center bg-black/90 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
+                                        <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
                                             <div className="p-4 text-center text-white">
                                                 <h3 className="mb-2 text-xl font-semibold">{song.name}</h3>
                                                 <p className="mb-1 text-base opacity-90">{song.artists?.join(', ')}</p>
@@ -333,7 +333,7 @@ export default function HomePage() {
                                         className="group cursor-pointer overflow-hidden transition-colors duration-300"
                                         onClick={() => window.open(sermon.youTubeLink, '_blank')}
                                     >
-                                        <div className="relative aspect-square overflow-hidden">
+                                        <div className="relative aspect-[4/5] overflow-hidden">
                                             {sermon.thumbnailImage?.fields?.file?.url && (
                                                 <Image
                                                     src={`https:${sermon.thumbnailImage.fields.file.url}`}

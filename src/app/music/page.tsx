@@ -185,7 +185,7 @@ export default function Music() {
                                                     <div className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                                                         <iframe
                                                             src={`${song.youTubeLink.replace('watch?v=', 'embed/')}?autoplay=1&mute=1&loop=1&playlist=${song.youTubeLink.split('v=')[1]}&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&fs=0&disablekb=1&start=0&end=30`}
-                                                            className="absolute inset-0 h-full min-h-full w-full"
+                                                            className="absolute inset-0 h-full min-h-full w-full transition-all duration-300 group-hover:blur-sm"
                                                             style={{
                                                                 minHeight: '100%',
                                                                 minWidth: '100%',

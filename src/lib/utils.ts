@@ -44,3 +44,47 @@ export const formatDuration = (seconds: number): string => {
 
     return result.trim();
 };
+
+// Convert YouTube URL to iframe embed source
+export function youtubeToIframeSrc(url: string | null | undefined): string | null {
+    // Handle falsey values
+    if (!url) return null;
+
+    // Extract video ID from various YouTube URL formats
+    const match = url.match(/(?:youtube\.com\/(?:watch\?v=|live\/)|youtu\.be\/)([a-zA-Z0-9_-]+)/);
+    if (!match) return null;
+    const videoId = match[1];
+
+    // Extract "t" start time (in seconds or format like 1m30s)
+    const tMatch = url.match(/[?&]t=([\dhms]+)/);
+    let start = 0;
+    if (tMatch) {
+        const tStr = tMatch[1];
+        // Convert tStr to seconds (supports #t=Xs, #t=YmXs)
+        const regex = /(?:(\d+)h)?(?:(\d+)m)?(?:(\d+)s)?/;
+        const [, h, m, s] = tStr.match(regex) || [];
+        start = parseInt(h || '0') * 3600 + parseInt(m || '0') * 60 + (parseInt(s || tStr) || 0);
+    }
+
+    // Compose the embed URL with all required parameters
+    const params = new URLSearchParams({
+        autoplay: '1',
+        mute: '1',
+        loop: '1',
+        playlist: videoId,
+        controls: '0',
+        showinfo: '0',
+        rel: '0',
+        modestbranding: '1',
+        iv_load_policy: '3',
+        fs: '0',
+        disablekb: '1'
+    });
+
+    if (start > 0) {
+        params.set('start', start.toString());
+        params.set('end', (start + 15).toString()); // 15 seconds duration
+    }
+
+    return `https://www.youtube.com/embed/${videoId}?${params.toString()}`;
+}

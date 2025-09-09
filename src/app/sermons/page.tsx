@@ -3,72 +3,87 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useSermons } from '@/hooks/useContentful';
-import { modernizFont } from '@/lib/utils';
+import { modernizFont, youtubeToIframeSrc } from '@/lib/utils';
 
 export default function SermonsPage() {
     const { sermons, loading: sermonsLoading, error: sermonsError } = useSermons();
-    const [activeSection, setActiveSection] = useState('hero');
+    const [visibleSermons, setVisibleSermons] = useState(10);
+    const [searchQuery, setSearchQuery] = useState('');
+    const [fromDate, setFromDate] = useState('');
+    const [toDate, setToDate] = useState('');
+    const [isLoading, setIsLoading] = useState(true);
 
+    // Handle loading logic
     useEffect(() => {
-        const sections = ['hero', ...sermons.map((sermon, index) => `sermon-${index}`)];
+        if (!sermonsLoading) {
+            setIsLoading(false);
+        }
+    }, [sermonsLoading]);
 
-        const handleScroll = () => {
-            const scrollPosition = window.scrollY;
+    const loadMoreSermons = () => {
+        setVisibleSermons((prev) => prev + 5);
+    };
 
-            for (const section of sections) {
-                const element = document.getElementById(section);
-                if (element) {
-                    const { offsetTop } = element;
+    // Filter sermons based on search query and date range
+    const filteredSermons = sermons.filter((sermon) => {
+        const sermonDate = new Date(sermon.sermonDate + 'T00:00:00');
 
-                    // Highlight section when the anchor's href point (section top) is hit
-                    if (scrollPosition >= offsetTop) {
-                        setActiveSection(section);
-                    }
-                }
+        // Text search filter
+        let matchesText = true;
+        if (searchQuery) {
+            const query = searchQuery.toLowerCase();
+            const sermonName = sermon.name.toLowerCase();
+            const formattedDate = sermonDate
+                .toLocaleDateString('en-US', {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                })
+                .toLowerCase();
+
+            matchesText = sermonName.includes(query) || formattedDate.includes(query);
+        }
+
+        // Date range filter
+        let matchesDateRange = true;
+        if (fromDate || toDate) {
+            if (fromDate) {
+                const from = new Date(fromDate + 'T00:00:00');
+                matchesDateRange = matchesDateRange && sermonDate >= from;
             }
-        };
+            if (toDate) {
+                const to = new Date(toDate + 'T23:59:59');
+                matchesDateRange = matchesDateRange && sermonDate <= to;
+            }
+        }
 
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, [sermons]);
+        return matchesText && matchesDateRange;
+    });
 
+    // Update visible sermons when search changes
+    const displaySermons = filteredSermons.slice(0, visibleSermons);
+    const heroYouTubeLink = 'https://www.youtube.com/live/M_SwqE5VACg?si=8W3LijANmfIFpUWE&t=4211';
     return (
         <div className="relative scroll-smooth">
-            {/* TABLE OF CONTENTS */}
-            <div className="fixed top-1/2 left-8 z-50 hidden -translate-y-1/2 transform 2xl:block">
-                <div className="bg-transparent p-4">
-                    <nav className="space-y-2">
-                        <a
-                            href="#hero"
-                            className={`block px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-blue-600 hover:text-white ${
-                                activeSection === 'hero' ? 'bg-blue-600 text-white' : 'text-white'
-                            }`}
-                        >
-                            Hero
-                        </a>
-                        {sermons.map((sermon, index) => (
-                            <a
-                                key={sermon.name}
-                                href={`#sermon-${index}`}
-                                className={`block px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-blue-600 hover:text-white ${
-                                    activeSection === `sermon-${index}` ? 'bg-blue-600 text-white' : 'text-white'
-                                }`}
-                            >
-                                {sermon.name}
-                            </a>
-                        ))}
-                    </nav>
-                </div>
-            </div>
-
             {/* HERO SECTION */}
             <section id="hero" className="relative bg-black">
                 <div className="relative min-h-screen overflow-hidden mask-b-from-50%">
+                    {/* Loading Screen */}
+                    {isLoading && (
+                        <div className="absolute inset-0 z-20 flex items-center justify-center bg-black">
+                            <div className="text-center text-white">
+                                <div className="mb-4 h-16 w-16 animate-spin rounded-full border-4 border-white border-t-transparent"></div>
+                                <p className="text-xl">Loading sermons...</p>
+                            </div>
+                        </div>
+                    )}
+
                     {/* Video Background */}
                     <iframe
                         className="absolute top-0 left-1/2 h-full w-[177.78vh] -translate-x-1/2"
                         style={{ minWidth: '100vw' }}
-                        src="https://www.youtube.com/embed/xO4-ydr5Ttc?autoplay=1&mute=1&loop=1&playlist=xO4-ydr5Ttc&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&fs=0&disablekb=1&start=3594&end=3694"
+                        src={youtubeToIframeSrc(heroYouTubeLink) || undefined}
                         frameBorder="0"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                         allowFullScreen
@@ -86,7 +101,7 @@ export default function SermonsPage() {
                             {/* Buttons */}
                             <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
                                 <a
-                                    href="https://www.youtube.com/live/xO4-ydr5Ttc?t=3594s"
+                                    href={sermons[0]?.youTubeLink}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="group inline-flex w-full max-w-[300px] items-center justify-center bg-red-600 px-8 py-4 font-semibold text-white transition-all duration-300 hover:scale-105 hover:bg-red-700"
@@ -119,137 +134,209 @@ export default function SermonsPage() {
                         <p className="mt-4 text-xl text-gray-300">Complete collection of inspiring messages</p>
                     </div>
 
+                    {/* SEARCH COMPONENT */}
+                    <div className="mx-auto mb-12 max-w-4xl px-4 sm:px-8">
+                        <div className="space-y-6">
+                            {/* Text Search */}
+                            <div className="relative">
+                                <div className="absolute inset-y-0 left-0 flex items-center pl-3">
+                                    <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth={2}
+                                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                                        />
+                                    </svg>
+                                </div>
+                                <input
+                                    type="text"
+                                    placeholder="Search sermons by name..."
+                                    value={searchQuery}
+                                    onChange={(e) => setSearchQuery(e.target.value)}
+                                    className="w-full border border-gray-600 bg-gray-800 py-3 pr-4 pl-10 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                />
+                            </div>
+
+                            {/* Date Range Picker */}
+                            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                                <div>
+                                    <label htmlFor="fromDate" className="mb-2 block text-sm font-medium text-gray-300">
+                                        From Date
+                                    </label>
+                                    <input
+                                        id="fromDate"
+                                        type="date"
+                                        value={fromDate}
+                                        onChange={(e) => setFromDate(e.target.value)}
+                                        className="w-full border border-gray-600 bg-gray-800 px-4 py-3 text-white focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none [&::-webkit-calendar-picker-indicator]:invert"
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="toDate" className="mb-2 block text-sm font-medium text-gray-300">
+                                        To Date
+                                    </label>
+                                    <input
+                                        id="toDate"
+                                        type="date"
+                                        value={toDate}
+                                        onChange={(e) => setToDate(e.target.value)}
+                                        className="w-full border border-gray-600 bg-gray-800 px-4 py-3 text-white focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none [&::-webkit-calendar-picker-indicator]:invert"
+                                    />
+                                </div>
+                            </div>
+
+                            {/* Clear Filters Button */}
+                            {(searchQuery || fromDate || toDate) && (
+                                <div className="text-center">
+                                    <button
+                                        onClick={() => {
+                                            setSearchQuery('');
+                                            setFromDate('');
+                                            setToDate('');
+                                        }}
+                                        className="text-sm text-blue-400 underline hover:text-blue-300"
+                                    >
+                                        Clear all filters
+                                    </button>
+                                </div>
+                            )}
+
+                            {/* Results Count */}
+                            {(searchQuery || fromDate || toDate) && (
+                                <p className="text-center text-sm text-gray-400">
+                                    {filteredSermons.length} sermon{filteredSermons.length !== 1 ? 's' : ''} found
+                                </p>
+                            )}
+                        </div>
+                    </div>
+
                     {sermonsLoading ? (
                         // Loading state
-                        <div className="space-y-8">
-                            {Array.from({ length: 3 }, (_, index) => (
-                                <div key={index} className="mx-auto max-w-[1600px]">
-                                    <div className="flex flex-col gap-6 p-6 md:flex-row">
-                                        <div className="aspect-square min-h-[300px] w-full min-w-[300px] animate-pulse bg-gray-700 md:w-1/2 lg:w-1/4"></div>
-                                        <div className="flex flex-1 flex-col justify-end">
-                                            <div className="mb-2 h-8 w-3/4 animate-pulse bg-gray-700"></div>
-                                            <div className="mb-1 h-6 w-1/2 animate-pulse bg-gray-600"></div>
-                                            <div className="mb-4 h-4 w-1/4 animate-pulse bg-gray-600"></div>
-                                        </div>
+                        <div className="mx-auto max-w-[1600px] px-4 sm:px-8">
+                            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+                                {Array.from({ length: 10 }, (_, index) => (
+                                    <div key={index} className="group relative aspect-[4/5] overflow-hidden bg-gray-700">
+                                        <div className="absolute inset-0 animate-pulse bg-gray-600"></div>
                                     </div>
-                                </div>
-                            ))}
+                                ))}
+                            </div>
                         </div>
                     ) : sermonsError ? (
                         // Error state
                         <div className="text-center text-red-500">Error loading sermons: {sermonsError}</div>
+                    ) : filteredSermons.length === 0 ? (
+                        // No results found
+                        <div className="mx-auto max-w-[1600px] px-4 sm:px-8">
+                            <div className="py-12 text-center">
+                                <div className="mx-auto max-w-md bg-gray-800 p-8">
+                                    <div className="mb-4 text-gray-400">
+                                        <svg className="mx-auto h-16 w-16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path
+                                                strokeLinecap="round"
+                                                strokeLinejoin="round"
+                                                strokeWidth={1}
+                                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                                            />
+                                        </svg>
+                                    </div>
+                                    <h3 className="mb-2 text-lg font-semibold text-white">No Sermons Found</h3>
+                                    <p className="text-gray-400">Try adjusting your search terms or browse all sermons.</p>
+                                </div>
+                            </div>
+                        </div>
                     ) : (
-                        // Sermons list
-                        <div className="space-y-0">
-                            {sermons.map((sermon, index) => (
-                                <section
-                                    key={sermon.name}
-                                    id={`sermon-${index}`}
-                                    className="w-screen space-y-6 py-16"
-                                    style={{ backgroundColor: '#1a1a1a' }}
-                                >
-                                    <div className="mx-auto max-w-[1600px]">
-                                        {/* Main Content Container */}
-                                        <div className="flex flex-col gap-6 p-6 transition-all duration-3000 md:flex-row">
-                                            {/* Sermon Thumbnail */}
-                                            <div className="group relative aspect-square min-h-[300px] w-full min-w-[300px] overflow-hidden md:w-1/2 lg:w-1/4">
-                                                {/* YouTube Video iframe - hidden by default, shown on hover */}
-                                                {sermon.youTubeLink && (
-                                                    <div className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                                                        <iframe
-                                                            src={`${sermon.youTubeLink.replace('watch?v=', 'embed/')}?autoplay=1&mute=1&loop=1&playlist=${sermon.youTubeLink.split('v=')[1]}&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&fs=0&disablekb=1&start=0&end=30`}
-                                                            className="absolute inset-0 h-full min-h-full w-full"
-                                                            style={{
-                                                                minHeight: '100%',
-                                                                minWidth: '100%',
-                                                                width: '177.78vh',
-                                                                height: '100%',
-                                                                left: '50%',
-                                                                transform: 'translateX(-50%)',
-                                                                objectFit: 'cover'
-                                                            }}
-                                                            frameBorder="0"
-                                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                                            allowFullScreen
-                                                            loading="lazy"
-                                                        />
-                                                        {/* Black overlay with 60% opacity */}
-                                                        <div className="absolute inset-0 bg-black/60"></div>
-                                                    </div>
-                                                )}
+                        // Sermons grid
+                        <div className="mx-auto max-w-[1600px] px-4 sm:px-8">
+                            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+                                {displaySermons.map((sermon, index) => (
+                                    <div key={sermon.name} className="group overflow-hidden">
+                                        <div className="relative aspect-[4/5] overflow-hidden">
+                                            {/* YouTube Video iframe - hidden by default, shown on hover */}
+                                            {sermon.youTubeLink && youtubeToIframeSrc(sermon.youTubeLink) && (
+                                                <div className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                                                    <iframe
+                                                        src={youtubeToIframeSrc(sermon.youTubeLink) || undefined}
+                                                        className="absolute top-0 left-1/2 h-full w-[100vh] -translate-x-1/2 transition-all duration-300 group-hover:blur-[1px]"
+                                                        frameBorder="0"
+                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                                        allowFullScreen
+                                                        title={`${sermon.name} - YouTube Video`}
+                                                        style={{
+                                                            objectFit: 'cover',
+                                                            transform: 'scale(1.1)',
+                                                            transformOrigin: 'center center'
+                                                        }}
+                                                    />
+                                                    {/* Blur overlay */}
+                                                    <div className="absolute inset-0 bg-black/20 opacity-0 backdrop-blur-[1px] transition-opacity duration-300 group-hover:opacity-100"></div>
+                                                </div>
+                                            )}
 
-                                                {/* Image - visible by default, hidden on hover */}
-                                                {sermon.thumbnailImage?.fields?.file?.url && (
-                                                    <a
-                                                        href={sermon.youTubeLink}
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        className="group/image relative block h-full w-full"
-                                                    >
-                                                        <Image
-                                                            src={`https:${sermon.thumbnailImage.fields.file.url}`}
-                                                            alt={sermon.name}
-                                                            fill
-                                                            className="object-cover transition-all duration-300 group-hover:scale-105 group-hover:opacity-0"
-                                                        />
-                                                        {/* Play Icon Overlay */}
-                                                        <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover/image:opacity-100">
-                                                            <div className="rounded-full border-4 border-white p-4">
-                                                                <svg
-                                                                    className="h-20 w-20 text-white drop-shadow-lg"
-                                                                    fill="currentColor"
-                                                                    viewBox="0 0 24 24"
-                                                                >
-                                                                    <path d="M8 5v14l11-7z" />
-                                                                </svg>
-                                                            </div>
-                                                        </div>
-                                                    </a>
-                                                )}
-                                            </div>
-
-                                            {/* Sermon Information */}
-                                            <div className="flex flex-1 flex-col justify-end">
-                                                <h3
-                                                    className={`mb-2 text-xl font-bold break-words text-white sm:text-2xl md:text-3xl lg:text-4xl xl:text-6xl ${modernizFont.className}`}
-                                                >
-                                                    {sermon.name}
-                                                </h3>
-                                                <p className="text-md text-gray-300">
-                                                    <span className="font-bold">Sermon</span>
-                                                    <span className="mx-2">•</span>
-                                                    <span>
-                                                        {new Date(sermon.sermonDate + 'T00:00:00').toLocaleDateString('en-US', {
-                                                            weekday: 'long',
-                                                            year: 'numeric',
-                                                            month: 'long',
-                                                            day: 'numeric'
-                                                        })}
-                                                    </span>
-                                                </p>
-                                            </div>
-                                        </div>
-
-                                        {/* Buttons Container */}
-                                        <div className="flex flex-wrap gap-3 p-6">
-                                            {/* YouTube Video Link */}
-                                            {sermon.youTubeLink && (
+                                            {/* Image - visible by default, hidden on hover */}
+                                            {sermon.thumbnailImage?.fields?.file?.url && (
                                                 <a
                                                     href={sermon.youTubeLink}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="inline-flex items-center bg-red-600 px-6 py-3 font-semibold text-white transition-all duration-300 hover:scale-105 hover:bg-red-700"
+                                                    className="group/image relative block h-full w-full"
                                                 >
-                                                    <svg className="mr-2 h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
-                                                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122-2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-                                                    </svg>
-                                                    Watch Sermon
+                                                    <Image
+                                                        src={`https:${sermon.thumbnailImage.fields.file.url}`}
+                                                        alt={sermon.name}
+                                                        fill
+                                                        className="object-cover transition-all duration-300 group-hover:scale-105 group-hover:opacity-0"
+                                                    />
+                                                    {/* Play Icon Overlay */}
+                                                    <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover/image:opacity-100">
+                                                        <div className="rounded-full border-4 border-white p-4">
+                                                            <svg
+                                                                className="h-20 w-20 text-white drop-shadow-lg"
+                                                                fill="currentColor"
+                                                                viewBox="0 0 24 24"
+                                                            >
+                                                                <path d="M8 5v14l11-7z" />
+                                                            </svg>
+                                                        </div>
+                                                    </div>
                                                 </a>
                                             )}
                                         </div>
+
+                                        {/* Sermon Info Below Thumbnail */}
+                                        <div className="py-4">
+                                            <h3 className="mb-2 line-clamp-2 text-lg font-bold text-white">{sermon.name}</h3>
+                                            <p className="text-sm text-gray-300">
+                                                {new Date(sermon.sermonDate + 'T00:00:00').toLocaleDateString('en-US', {
+                                                    month: 'short',
+                                                    day: 'numeric',
+                                                    year: 'numeric'
+                                                })}
+                                            </p>
+                                        </div>
                                     </div>
-                                </section>
-                            ))}
+                                ))}
+                            </div>
+
+                            {/* More Button */}
+                            {filteredSermons.length > visibleSermons && (
+                                <div className="mt-12 text-center">
+                                    <button
+                                        onClick={loadMoreSermons}
+                                        className="group inline-flex items-center bg-white px-8 py-4 font-semibold text-black transition-all duration-300 hover:scale-105 hover:bg-gray-100"
+                                    >
+                                        More
+                                        <svg
+                                            className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            )}
                         </div>
                     )}
                 </div>
