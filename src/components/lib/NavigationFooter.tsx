@@ -9,7 +9,8 @@ export default function NavigationFooter() {
                     <div className="lg:col-span-1">
                         <h2 className={`text-3xl font-bold ${modernizFont.className} mb-4`}>Bright Egwuogu</h2>
                         <p className="text-sm leading-relaxed text-gray-300">
-                            Pastor, musician, and cybersecurity professional dedicated to advancing God's kingdom through faith, music, and service.
+                            Pastor, musician, and cybersecurity professional dedicated to advancing God&apos;s kingdom through faith, music, and
+                            service.
                         </p>
                     </div>
 

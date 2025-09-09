@@ -83,7 +83,7 @@ export function youtubeToIframeSrc(url: string | null | undefined): string | nul
 
     if (start > 0) {
         params.set('start', start.toString());
-        params.set('end', (start + 15).toString()); // 15 seconds duration
+        params.set('end', (start + 30).toString()); // 30 seconds duration
     }
 
     return `https://www.youtube.com/embed/${videoId}?${params.toString()}`;
