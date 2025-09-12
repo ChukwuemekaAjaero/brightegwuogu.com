@@ -7,15 +7,12 @@ import { useRef, useState, useEffect } from 'react';
 import { modernizFont } from '@/lib/utils';
 import { useMusic, useSermons } from '@/hooks/useContentful';
 
-// Format date to "Day, Month Year" format
+// Format date to "Year" format
 const formatDate = (dateString: string) => {
     // Handle date string parsing to avoid timezone issues
     const date = new Date(dateString + 'T00:00:00');
     return date.toLocaleDateString('en-US', {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
+        year: 'numeric'
     });
 };
 
@@ -263,24 +260,49 @@ export default function HomePage() {
                             ) : (
                                 // Music items
                                 music.slice(0, 3).map((song, index) => (
-                                    <div
-                                        key={song.name}
-                                        className="group relative aspect-square overflow-hidden bg-gray-800 transition-colors duration-300 hover:bg-red-700"
-                                    >
-                                        {song.musicThumbnail?.fields?.file?.url && (
-                                            <Image
-                                                src={`https:${song.musicThumbnail.fields.file.url}`}
-                                                alt={song.name}
-                                                fill
-                                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                                                className="object-cover transition-transform duration-300 group-hover:scale-105 group-hover:blur-sm"
-                                            />
-                                        )}
-                                        <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
-                                            <div className="p-4 text-center text-white">
-                                                <h3 className="mb-2 text-xl font-semibold">{song.name}</h3>
-                                                <p className="mb-1 text-base opacity-90">{song.artists?.join(', ')}</p>
-                                                <p className="text-sm opacity-75">{formatDate(song.releaseDate)}</p>
+                                    <div key={song.name} className="group">
+                                        {/* Music Thumbnail */}
+                                        <a
+                                            href={song.youTubeLink}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="group block overflow-hidden transition-all duration-300 hover:scale-105"
+                                        >
+                                            <div className="relative aspect-square overflow-hidden bg-gray-800">
+                                                {song.musicThumbnail?.fields?.file?.url && (
+                                                    <Image
+                                                        src={`https:${song.musicThumbnail.fields.file.url}`}
+                                                        alt={song.name}
+                                                        fill
+                                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                                                        className="object-cover transition-transform duration-300 group-hover:scale-105 group-hover:blur-sm"
+                                                    />
+                                                )}
+                                                {/* Play Icon Overlay */}
+                                                <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                                                    <div className="rounded-full border-4 border-white p-4">
+                                                        <svg className="h-20 w-20 text-white drop-shadow-lg" fill="currentColor" viewBox="0 0 24 24">
+                                                            <path d="M8 5v14l11-7z" />
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+
+                                        {/* Song Information - Below thumbnail */}
+                                        <div className="mt-4 text-center text-white">
+                                            {/* Song Name */}
+                                            <h3 className="mb-2 text-xl font-semibold">{song.name}</h3>
+
+                                            {/* Artist and Release Date */}
+                                            <div className="text-sm font-medium text-white/90">
+                                                <span className="font-bold">{song.artists?.join(', ')}</span>
+                                                {song.releaseDate && (
+                                                    <>
+                                                        {' • '}
+                                                        <span>{formatDate(song.releaseDate)}</span>
+                                                    </>
+                                                )}
                                             </div>
                                         </div>
                                     </div>

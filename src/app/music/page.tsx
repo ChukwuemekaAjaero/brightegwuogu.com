@@ -5,15 +5,12 @@ import { useMusic } from '@/hooks/useContentful';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 
-// Format date to "Day, Month Year" format
+// Format date to "Year" format
 const formatDate = (dateString: string) => {
     // Handle date string parsing to avoid timezone issues
     const date = new Date(dateString + 'T00:00:00');
     return date.toLocaleDateString('en-US', {
-        weekday: 'long',
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric'
+        year: 'numeric'
     });
 };
 
@@ -176,14 +173,14 @@ export default function Music() {
                                 {music.map((song, index) => (
                                     <div key={song.name} className="group">
                                         {/* Music Thumbnail */}
-                                        <div className="relative aspect-square h-[300px] overflow-hidden sm:h-[500px]">
-                                            {song.musicThumbnail?.fields?.file?.url && (
-                                                <a
-                                                    href={song.youTubeLink}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className="relative block h-full w-full"
-                                                >
+                                        <a
+                                            href={song.youTubeLink}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="group block overflow-hidden transition-all duration-300 hover:scale-105"
+                                        >
+                                            <div className="relative aspect-square h-[300px] overflow-hidden sm:h-[500px]">
+                                                {song.musicThumbnail?.fields?.file?.url && (
                                                     <Image
                                                         src={`https:${song.musicThumbnail.fields.file.url}`}
                                                         alt={song.name}
@@ -191,33 +188,20 @@ export default function Music() {
                                                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                                                         className="object-cover transition-all duration-300 group-hover:scale-110 group-hover:blur-sm"
                                                     />
-
-                                                    {/* Hover Overlay with Song Info - Hidden on mobile */}
-                                                    <div className="absolute inset-0 hidden flex-col items-center justify-center bg-black/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100 xl:flex">
-                                                        <div className="text-center text-white">
-                                                            {/* Song Name */}
-                                                            <h3 className="mb-3 text-xl leading-tight font-bold sm:text-2xl md:text-3xl">
-                                                                {song.name}
-                                                            </h3>
-
-                                                            {/* Artist and Release Date */}
-                                                            <div className="text-sm font-medium text-white/90 sm:text-base">
-                                                                <span className="font-bold">{song.artists?.join(', ')}</span>
-                                                                {song.releaseDate && (
-                                                                    <>
-                                                                        {' • '}
-                                                                        <span>{new Date(song.releaseDate + 'T00:00:00').getFullYear()}</span>
-                                                                    </>
-                                                                )}
-                                                            </div>
-                                                        </div>
+                                                )}
+                                                {/* Play Icon Overlay */}
+                                                <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                                                    <div className="rounded-full border-4 border-white p-4">
+                                                        <svg className="h-20 w-20 text-white drop-shadow-lg" fill="currentColor" viewBox="0 0 24 24">
+                                                            <path d="M8 5v14l11-7z" />
+                                                        </svg>
                                                     </div>
-                                                </a>
-                                            )}
-                                        </div>
+                                                </div>
+                                            </div>
+                                        </a>
 
-                                        {/* Song Information - Visible on mobile, hidden on desktop */}
-                                        <div className="mt-4 text-center text-white xl:hidden">
+                                        {/* Song Information - Always visible below thumbnail */}
+                                        <div className="mt-4 text-center text-white">
                                             {/* Song Name */}
                                             <h3 className="mb-2 text-xl leading-tight font-bold">{song.name}</h3>
 
