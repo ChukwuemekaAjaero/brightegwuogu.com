@@ -94,13 +94,17 @@ export default function Music() {
                 {/* Hero Section */}
                 <div className="relative min-h-screen overflow-hidden mask-b-from-50%">
                     {/* Video Background */}
-                    <iframe
-                        className="absolute top-0 left-1/2 h-full w-[177.78vh] -translate-x-1/2"
+                    <video
+                        className="absolute top-0 left-1/2 h-full w-[177.78vh] -translate-x-1/2 object-cover"
                         style={{ minWidth: '100vw' }}
-                        src="https://www.youtube.com/embed/_uUzAETf9TE?autoplay=1&mute=1&loop=1&playlist=_uUzAETf9TE&start=52&end=82&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&fs=0&disablekb=1"
-                        frameBorder="0"
-                        allowFullScreen
-                    ></iframe>
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                    >
+                        <source src="/videos/NoOtherGodHeroVideo.mp4" type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
                     {/* Overlay for better text readability */}
                     <div className="absolute inset-0 bg-black/30"></div>
 
