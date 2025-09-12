@@ -103,7 +103,7 @@ export default function HomePage() {
             </div>
 
             {/* HORIZONTAL TABLE OF CONTENTS - Mobile/Tablet */}
-            <div className="fixed bottom-4 left-1/2 z-50 -translate-x-1/2 transform md:hidden">
+            <div className="fixed bottom-4 left-1/2 z-50 -translate-x-1/2 transform 2xl:hidden">
                 <div className="rounded-lg bg-black/60 p-2 backdrop-blur-md">
                     <nav className="flex space-x-1">
                         <a
@@ -177,12 +177,23 @@ export default function HomePage() {
             {/* ABOUT ME SECTION */}
             <section id="about-me" className="flex min-h-screen justify-center bg-black transition-colors duration-300">
                 <div className="container h-max px-4 sm:px-8">
-                    <div className="flex h-max flex-col items-center gap-8 md:flex-row">
-                        {/* Text Content */}
+                    <div className="flex h-max flex-col items-center gap-8 lg:flex-row">
+                        {/* Image Content - First on mobile, second on desktop */}
+                        <div className="group relative min-h-[50vh] w-full overflow-hidden lg:order-2 lg:min-h-[100vh] lg:w-[60%]">
+                            <Image
+                                src="/images/aboutMeImage.jpg"
+                                alt="About Me Image"
+                                fill
+                                className="mask-t-from-70% mask-r-from-95% mask-l-from-95% object-cover object-[65%_50%] transition-all duration-300 group-hover:scale-105 lg:mask-l-from-100%"
+                            />
+                            {/* Black overlay */}
+                            <div className="absolute inset-0 bg-black opacity-0 transition-opacity duration-300 group-hover:opacity-30"></div>
+                        </div>
 
-                        <div className="w-full md:w-[40%]">
+                        {/* Text Content - Second on mobile, first on desktop */}
+                        <div className="w-full lg:order-1 lg:w-[40%]">
                             <h1 className={`text-6xl font-bold text-white ${modernizFont.className} mb-8`}>About Me</h1>
-                            <p className="text-white">
+                            <p className="xs:py-0 py-4 text-white md:text-lg">
                                 Bright Egwuogu serves as a pastor at Celebration Church International, a global apostolic ministry under the
                                 leadership of Apostle Emmanuel Iren, committed to the vision of guiding all individuals to celebrate eternal life in
                                 Christ Jesus. He currently fulfills the role of resident pastor at the Toronto campus, where he is dedicated to
@@ -197,28 +208,6 @@ export default function HomePage() {
                                 professional serving the financial, retail, and insurance sectors. He is married to his supportive wife, Ibiye, and
                                 together they are blessed with a son.
                             </p>
-                        </div>
-
-                        {/* Image Content */}
-                        <div
-                            className="group relative min-h-[100vh] w-full overflow-hidden md:w-[60%]"
-                            onMouseEnter={() => {
-                                const section = document.getElementById('about-me-section');
-                                if (section) section.style.backgroundColor = '#271b1b';
-                            }}
-                            onMouseLeave={() => {
-                                const section = document.getElementById('about-me-section');
-                                if (section) section.style.backgroundColor = 'rgb(0, 0, 0)';
-                            }}
-                        >
-                            <Image
-                                src="/images/aboutMeImage.jpg"
-                                alt="About Me Image"
-                                fill
-                                className="mask-t-from-70% mask-r-from-90% object-cover object-[75%_50%] transition-all duration-300 group-hover:scale-105"
-                            />
-                            {/* Black overlay */}
-                            <div className="absolute inset-0 bg-black opacity-0 transition-opacity duration-300 group-hover:opacity-30"></div>
                         </div>
                     </div>
                 </div>
@@ -319,7 +308,7 @@ export default function HomePage() {
                 <div className="container mx-auto sm:px-8">
                     <div className="h-max py-20">
                         <div className="mb-12 text-center">
-                            <h1 className={`text-5xl font-bold text-white md:text-6xl ${modernizFont.className}`}>Sermons</h1>
+                            <h1 className={`text-4xl font-bold text-white sm:text-5xl md:text-6xl ${modernizFont.className}`}>Sermons</h1>
                             <br />
                             <p className="text-white">Discover the latest messages of hope, faith, and inspiration.</p>
                         </div>
