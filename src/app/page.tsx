@@ -225,7 +225,7 @@ export default function HomePage() {
             </section>
 
             {/* GALLERY SECTION */}
-            <section id="gallery" ref={targetRef} className="relative h-[200vh] min-h-screen bg-black">
+            <section id="gallery" ref={targetRef} className="relative h-[300vh] min-h-screen bg-black">
                 <div className="sticky top-0 z-10 overflow-hidden">
                     <motion.div style={{ x }} className="flex w-max">
                         {Array.from({ length: imageCount }, (_, i) => `${i + 1}`).map((_, index) => (

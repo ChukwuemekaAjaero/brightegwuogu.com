@@ -16,11 +16,12 @@ export default function NavigationHeader() {
     const pathname = usePathname();
 
     const toggleMobileMenu = () => {
+        console.log('Toggle clicked, current state:', isMobileMenuOpen);
         setIsMobileMenuOpen(!isMobileMenuOpen);
     };
 
     return (
-        <nav className="sticky top-0 z-30 -mb-20 w-full mask-b-from-50% backdrop-blur-md">
+        <nav className="sticky top-0 z-30 -mb-20 w-full overflow-visible mask-b-from-50% backdrop-blur-md">
             <div className="container mx-auto flex h-20 w-full items-center justify-between px-4 sm:px-8">
                 {/* Logo */}
                 <Link
@@ -63,9 +64,10 @@ export default function NavigationHeader() {
 
                 {/* Mobile Menu Button - Only visible on mobile */}
                 <button
-                    className={`flex cursor-pointer flex-col gap-1 border-none bg-none p-2 md:hidden ${isMobileMenuOpen ? 'active' : ''}`}
+                    className={`flex cursor-pointer flex-col gap-1 border-none bg-transparent p-2 md:hidden ${isMobileMenuOpen ? 'active' : ''}`}
                     onClick={toggleMobileMenu}
                     aria-label="Toggle mobile menu"
+                    type="button"
                 >
                     <span className={`h-0.5 w-6 bg-white transition-all duration-300 ${isMobileMenuOpen ? 'translate-y-1.5 rotate-45' : ''}`}></span>
                     <span className={`h-0.5 w-6 bg-white transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`}></span>
@@ -77,9 +79,10 @@ export default function NavigationHeader() {
 
             {/* Mobile Menu */}
             <div
-                className={`absolute top-full right-0 left-0 z-50 border-b border-white/20 bg-black/80 shadow-lg backdrop-blur-sm md:hidden ${
+                className={`absolute top-full right-0 left-0 z-[100] border-b border-white/20 bg-black/95 shadow-lg backdrop-blur-md md:hidden ${
                     isMobileMenuOpen ? 'block' : 'hidden'
                 }`}
+                style={{ display: isMobileMenuOpen ? 'block' : 'none' }}
             >
                 <div className="flex flex-col gap-2 p-4 sm:p-8">
                     <Link
