@@ -146,8 +146,19 @@ export default function SermonsPage() {
                                     placeholder="Search sermons by name..."
                                     value={searchQuery}
                                     onChange={(e) => setSearchQuery(e.target.value)}
-                                    className="w-full border border-gray-600 bg-gray-800 py-3 pr-4 pl-10 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                    className="w-full border border-gray-600 bg-gray-800 py-3 pr-10 pl-10 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                                 />
+                                {searchQuery && (
+                                    <button
+                                        type="button"
+                                        onClick={() => setSearchQuery('')}
+                                        className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 transition-colors duration-200 hover:text-white"
+                                    >
+                                        <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+                                    </button>
+                                )}
                             </div>
 
                             {/* Date Range Picker */}
@@ -161,7 +172,8 @@ export default function SermonsPage() {
                                         type="date"
                                         value={fromDate}
                                         onChange={(e) => setFromDate(e.target.value)}
-                                        className="w-full border border-gray-600 bg-gray-800 px-4 py-3 text-white focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none [&::-webkit-calendar-picker-indicator]:invert"
+                                        onClick={(e) => e.currentTarget.showPicker()}
+                                        className="w-full cursor-pointer border border-gray-600 bg-gray-800 px-4 py-3 text-white focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none [&::-webkit-calendar-picker-indicator]:invert"
                                     />
                                 </div>
                                 <div>
@@ -173,7 +185,8 @@ export default function SermonsPage() {
                                         type="date"
                                         value={toDate}
                                         onChange={(e) => setToDate(e.target.value)}
-                                        className="w-full border border-gray-600 bg-gray-800 px-4 py-3 text-white focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none [&::-webkit-calendar-picker-indicator]:invert"
+                                        onClick={(e) => e.currentTarget.showPicker()}
+                                        className="w-full cursor-pointer border border-gray-600 bg-gray-800 px-4 py-3 text-white focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none [&::-webkit-calendar-picker-indicator]:invert"
                                     />
                                 </div>
                             </div>
