@@ -1,18 +1,9 @@
 'use client';
 
-import { modernizFont, formatDuration } from '@/lib/utils';
+import { modernizFont } from '@/lib/utils';
 import { useMusic } from '@/hooks/useContentful';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
-
-// Format date to "Year" format
-const formatDate = (dateString: string) => {
-    // Handle date string parsing to avoid timezone issues
-    const date = new Date(dateString + 'T00:00:00');
-    return date.toLocaleDateString('en-US', {
-        year: 'numeric'
-    });
-};
 
 export default function Music() {
     const { music, loading: musicLoading, error: musicError } = useMusic();
@@ -170,7 +161,7 @@ export default function Music() {
                         // Music Grid
                         <div className="container mx-auto px-4 sm:px-8">
                             <div className="mx-auto grid max-w-[1000px] grid-cols-1 justify-items-center gap-8 xl:grid-cols-2">
-                                {music.map((song, index) => (
+                                {music.map((song) => (
                                     <div key={song.name} className="group">
                                         {/* Music Thumbnail */}
                                         <a

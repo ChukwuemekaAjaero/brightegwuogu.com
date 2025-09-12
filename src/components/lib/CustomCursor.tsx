@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useRef, useEffect } from 'react';
-import { motion, Variants } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 interface MousePosition {
     x: number;
@@ -15,12 +15,6 @@ interface CursorVelocity {
 }
 
 type CursorVariant = 'default' | 'project' | 'contact';
-
-interface CursorVariants {
-    default: any;
-    project: any;
-    contact: any;
-}
 
 // Extend the Window interface to include our custom cursor function
 declare global {
@@ -66,47 +60,52 @@ const CustomCursor: React.FC = () => {
         };
     }, []);
 
-    const variants: Variants = {
-        default: {
-            opacity: 0.3,
-            height: 25,
-            width: 25,
-            fontSize: '16px',
-            backgroundColor: '#ffffff',
-            x: mousePosition.x - 12.5,
-            y: mousePosition.y - 12.5,
+    const getVariantProps = (variant: CursorVariant) => {
+        const baseProps = {
             transition: {
-                type: 'spring',
+                type: 'spring' as const,
                 mass: 0.6
             }
-        },
-        project: {
-            opacity: 1,
-            backgroundColor: '#fff',
-            color: '#000',
-            height: 80,
-            width: 80,
-            fontSize: '18px',
-            x: mousePosition.x - 40,
-            y: mousePosition.y - 40,
-            transition: {
-                type: 'spring',
-                mass: 0.6
-            }
-        },
-        contact: {
-            opacity: 1,
-            backgroundColor: '#FFBCBC',
-            color: '#000',
-            height: 64,
-            width: 64,
-            fontSize: '32px',
-            x: mousePosition.x - 32,
-            y: mousePosition.y - 32,
-            transition: {
-                type: 'spring',
-                mass: 0.6
-            }
+        };
+
+        switch (variant) {
+            case 'default':
+                return {
+                    ...baseProps,
+                    opacity: 0.3,
+                    height: cursorSize,
+                    width: cursorSize,
+                    fontSize: '16px',
+                    backgroundColor: '#ffffff',
+                    x: mousePosition.x - cursorSize / 2,
+                    y: mousePosition.y - cursorSize / 2
+                };
+            case 'project':
+                return {
+                    ...baseProps,
+                    opacity: 1,
+                    backgroundColor: '#fff',
+                    color: '#000',
+                    height: 80,
+                    width: 80,
+                    fontSize: '18px',
+                    x: mousePosition.x - 40,
+                    y: mousePosition.y - 40
+                };
+            case 'contact':
+                return {
+                    ...baseProps,
+                    opacity: 1,
+                    backgroundColor: '#FFBCBC',
+                    color: '#000',
+                    height: 64,
+                    width: 64,
+                    fontSize: '32px',
+                    x: mousePosition.x - 32,
+                    y: mousePosition.y - 32
+                };
+            default:
+                return baseProps;
         }
     };
 
@@ -173,15 +172,8 @@ const CustomCursor: React.FC = () => {
             {/* Main Cursor */}
             <motion.div
                 ref={cursorRef}
-                variants={variants}
                 className="custom-cursor"
-                animate={{
-                    ...variants[cursorVariant],
-                    height: cursorSize,
-                    width: cursorSize,
-                    x: mousePosition.x - cursorSize / 2,
-                    y: mousePosition.y - cursorSize / 2
-                }}
+                animate={getVariantProps(cursorVariant)}
                 transition={spring}
                 style={{
                     position: 'fixed',

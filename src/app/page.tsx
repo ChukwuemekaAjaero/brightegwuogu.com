@@ -259,7 +259,7 @@ export default function HomePage() {
                                 <div className="col-span-full text-center text-red-700">Error loading music: {musicError}</div>
                             ) : (
                                 // Music items
-                                music.slice(0, 3).map((song, index) => (
+                                music.slice(0, 3).map((song) => (
                                     <div key={song.name} className="group">
                                         {/* Music Thumbnail */}
                                         <a
@@ -353,7 +353,7 @@ export default function HomePage() {
                                 <div className="col-span-full text-center text-red-700">Error loading sermons: {sermonsError}</div>
                             ) : (
                                 // Sermon items
-                                sermons.slice(0, 3).map((sermon, index) => (
+                                sermons.slice(0, 3).map((sermon) => (
                                     <a
                                         key={sermon.name}
                                         href={sermon.youTubeLink}

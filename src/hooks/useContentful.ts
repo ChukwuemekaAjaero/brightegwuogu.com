@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { getSermons, getMusic, Sermon, Music } from '@/lib/contentful';
 
 // Hook for fetching sermons
-export function useSermons(limit: number = 10) {
+export function useSermons() {
     const [sermons, setSermons] = useState<Sermon[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -29,7 +29,7 @@ export function useSermons(limit: number = 10) {
 }
 
 // Hook for fetching music
-export function useMusic(limit: number = 10) {
+export function useMusic() {
     const [music, setMusic] = useState<Music[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
