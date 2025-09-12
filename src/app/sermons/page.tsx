@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useSermons } from '@/hooks/useContentful';
 import { modernizFont } from '@/lib/utils';
+import { FaYoutube } from 'react-icons/fa';
 
 export default function SermonsPage() {
     const { sermons, loading: sermonsLoading, error: sermonsError } = useSermons();
@@ -108,19 +109,8 @@ export default function SermonsPage() {
                                     rel="noopener noreferrer"
                                     className="group inline-flex w-full max-w-[300px] items-center justify-center bg-red-600 px-8 py-4 font-semibold text-white transition-all duration-300 hover:scale-105 hover:bg-red-700"
                                 >
-                                    <svg className="mr-2 h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122-2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-                                    </svg>
+                                    <FaYoutube size={30} className="mr-4" />
                                     Watch on YouTube
-                                </a>
-                                <a
-                                    href="#sermon-0"
-                                    className="group inline-flex w-full max-w-[300px] items-center justify-center bg-white px-8 py-4 font-semibold text-black transition-all duration-300 hover:scale-105 hover:bg-gray-100"
-                                >
-                                    <svg className="mr-2 h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                    </svg>
-                                    Browse Sermons
                                 </a>
                             </div>
                         </div>
@@ -197,7 +187,7 @@ export default function SermonsPage() {
                                             setFromDate('');
                                             setToDate('');
                                         }}
-                                        className="text-sm text-blue-400 underline hover:text-blue-300"
+                                        className="text-sm text-red-500 underline hover:text-red-300"
                                     >
                                         Clear all filters
                                     </button>
@@ -281,7 +271,7 @@ export default function SermonsPage() {
 
                                         {/* Sermon Info Below Thumbnail */}
                                         <div className="py-4">
-                                            <h3 className="mb-2 line-clamp-2 text-lg font-bold text-white transition-colors duration-300 group-hover:text-blue-300">
+                                            <h3 className="mb-2 line-clamp-2 text-lg font-bold text-white transition-colors duration-300 group-hover:text-red-300">
                                                 {sermon.name}
                                             </h3>
                                             <p className="text-sm text-gray-300 transition-colors duration-300 group-hover:text-gray-200">

@@ -101,6 +101,55 @@ export default function HomePage() {
                     </nav>
                 </div>
             </div>
+
+            {/* HORIZONTAL TABLE OF CONTENTS - Mobile/Tablet */}
+            <div className="fixed bottom-4 left-1/2 z-50 -translate-x-1/2 transform md:hidden">
+                <div className="rounded-lg bg-black/80 p-2 backdrop-blur-md">
+                    <nav className="flex space-x-1">
+                        <a
+                            href="#hero"
+                            className={`rounded px-3 py-2 text-xs font-medium transition-colors duration-200 hover:bg-red-800 hover:text-white ${
+                                activeSection === 'hero' ? 'bg-red-700 text-white' : 'text-white'
+                            }`}
+                        >
+                            Home
+                        </a>
+                        <a
+                            href="#about-me"
+                            className={`rounded px-3 py-2 text-xs font-medium transition-colors duration-200 hover:bg-red-800 hover:text-white ${
+                                activeSection === 'about-me' ? 'bg-red-700 text-white' : 'text-white'
+                            }`}
+                        >
+                            About
+                        </a>
+                        <a
+                            href="#gallery"
+                            className={`rounded px-3 py-2 text-xs font-medium transition-colors duration-200 hover:bg-red-800 hover:text-white ${
+                                activeSection === 'gallery' ? 'bg-red-700 text-white' : 'text-white'
+                            }`}
+                        >
+                            Gallery
+                        </a>
+                        <a
+                            href="#music"
+                            className={`rounded px-3 py-2 text-xs font-medium transition-colors duration-200 hover:bg-red-800 hover:text-white ${
+                                activeSection === 'music' ? 'bg-red-700 text-white' : 'text-white'
+                            }`}
+                        >
+                            Music
+                        </a>
+                        <a
+                            href="#sermons"
+                            className={`rounded px-3 py-2 text-xs font-medium transition-colors duration-200 hover:bg-red-800 hover:text-white ${
+                                activeSection === 'sermons' ? 'bg-red-700 text-white' : 'text-white'
+                            }`}
+                        >
+                            Sermons
+                        </a>
+                    </nav>
+                </div>
+            </div>
+
             {/* HERO SECTION */}
             <section id="hero" className="relative flex min-h-screen items-center justify-center overflow-hidden bg-black">
                 {/* Background Image */}
