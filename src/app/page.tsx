@@ -163,6 +163,9 @@ export default function HomePage() {
                     />
                 </div>
 
+                {/* Dark Overlay */}
+                <div className="absolute inset-0 z-10 bg-black/30"></div>
+
                 {/* Text content */}
                 <div className="container flex h-full w-full items-end justify-start px-4 sm:px-8">
                     <h1 className={`relative z-20 max-w-[300px] text-xl font-bold text-white sm:max-w-[600px] sm:text-4xl ${modernizFont.className}`}>
