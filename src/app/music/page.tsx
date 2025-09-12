@@ -176,7 +176,7 @@ export default function Music() {
                                 {music.map((song, index) => (
                                     <div key={song.name} className="group">
                                         {/* Music Thumbnail */}
-                                        <div className="relative aspect-square h-[500px] overflow-hidden">
+                                        <div className="relative aspect-square h-[300px] overflow-hidden sm:h-[500px]">
                                             {song.musicThumbnail?.fields?.file?.url && (
                                                 <a
                                                     href={song.youTubeLink}

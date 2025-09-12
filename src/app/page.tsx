@@ -61,7 +61,7 @@ export default function HomePage() {
                         <a
                             href="#hero"
                             className={`block px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-red-800 hover:text-white ${
-                                activeSection === 'hero' ? 'bg-red-700 text-white' : 'text-white'
+                                activeSection === 'hero' ? 'text-whitr bg-red-700' : 'text-white'
                             }`}
                         >
                             Home
