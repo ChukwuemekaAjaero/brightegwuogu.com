@@ -21,8 +21,8 @@ export default function NavigationHeader() {
     };
 
     return (
-        <nav className="sticky top-0 z-30 -mb-20 w-full overflow-visible mask-b-from-50% backdrop-blur-md">
-            <div className="container mx-auto flex h-20 w-full items-center justify-between px-4 sm:px-8">
+        <nav className="sticky top-0 z-30 -mb-30 w-full overflow-visible mask-b-from-50% backdrop-blur-md">
+            <div className="container mx-auto flex h-30 w-full -translate-y-3 items-center justify-between px-4 sm:px-8">
                 {/* Logo */}
                 <Link
                     href="/"
