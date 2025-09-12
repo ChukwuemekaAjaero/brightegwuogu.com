@@ -27,7 +27,8 @@ export default function NavigationHeader() {
                     href="/"
                     className={`${modernizFont.className} text-2xl font-bold text-white no-underline transition-colors hover:text-red-500`}
                 >
-                    Bright Egwuogu
+                    <span className="lg:hidden">P.B.</span>
+                    <span className="hidden lg:inline">Bright Egwuogu</span>
                 </Link>
 
                 {/* Navigation Links - Centered in viewport - Hidden on mobile */}
