@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useSermons } from '@/hooks/useContentful';
-import { modernizFont, youtubeToIframeSrc } from '@/lib/utils';
+import { modernizFont } from '@/lib/utils';
 
 export default function SermonsPage() {
     const { sermons, loading: sermonsLoading, error: sermonsError } = useSermons();
@@ -63,7 +63,6 @@ export default function SermonsPage() {
 
     // Update visible sermons when search changes
     const displaySermons = filteredSermons.slice(0, visibleSermons);
-    const heroYouTubeLink = 'https://www.youtube.com/live/M_SwqE5VACg?si=8W3LijANmfIFpUWE&t=4211';
     return (
         <div className="relative scroll-smooth">
             {/* HERO SECTION */}
@@ -80,14 +79,17 @@ export default function SermonsPage() {
                     )}
 
                     {/* Video Background */}
-                    <iframe
-                        className="absolute top-0 left-1/2 h-full w-[177.78vh] -translate-x-1/2"
+                    <video
+                        className="absolute top-0 left-1/2 h-full w-[177.78vh] -translate-x-1/2 object-cover"
                         style={{ minWidth: '100vw' }}
-                        src={youtubeToIframeSrc(heroYouTubeLink) || undefined}
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                    />
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                    >
+                        <source src="/videos/SermonsHeroVideo.mp4" type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
 
                     {/* Dark Overlay */}
                     <div className="absolute inset-0 bg-black/30"></div>
@@ -250,63 +252,39 @@ export default function SermonsPage() {
                         <div className="mx-auto max-w-[1600px] px-4 sm:px-8">
                             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
                                 {displaySermons.map((sermon, index) => (
-                                    <div key={sermon.name} className="group overflow-hidden">
+                                    <a
+                                        key={sermon.name}
+                                        href={sermon.youTubeLink}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="group block overflow-hidden transition-all duration-300 hover:scale-105"
+                                    >
                                         <div className="relative aspect-[4/5] overflow-hidden">
-                                            {/* YouTube Video iframe - hidden by default, shown on hover */}
-                                            {sermon.youTubeLink && youtubeToIframeSrc(sermon.youTubeLink) && (
-                                                <div className="absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                                                    <iframe
-                                                        src={youtubeToIframeSrc(sermon.youTubeLink) || undefined}
-                                                        className="absolute top-0 left-1/2 h-full w-[100vh] -translate-x-1/2 transition-all duration-300 group-hover:blur-[1px]"
-                                                        frameBorder="0"
-                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                                        allowFullScreen
-                                                        title={`${sermon.name} - YouTube Video`}
-                                                        style={{
-                                                            objectFit: 'cover',
-                                                            transform: 'scale(1.1)',
-                                                            transformOrigin: 'center center'
-                                                        }}
-                                                    />
-                                                    {/* Blur overlay */}
-                                                    <div className="absolute inset-0 bg-black/20 opacity-0 backdrop-blur-[1px] transition-opacity duration-300 group-hover:opacity-100"></div>
-                                                </div>
-                                            )}
-
-                                            {/* Image - visible by default, hidden on hover */}
+                                            {/* Image with scale and blur effect */}
                                             {sermon.thumbnailImage?.fields?.file?.url && (
-                                                <a
-                                                    href={sermon.youTubeLink}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className="group/image relative block h-full w-full"
-                                                >
-                                                    <Image
-                                                        src={`https:${sermon.thumbnailImage.fields.file.url}`}
-                                                        alt={sermon.name}
-                                                        fill
-                                                        className="object-cover transition-all duration-300 group-hover:scale-105 group-hover:opacity-0"
-                                                    />
-                                                    {/* Play Icon Overlay */}
-                                                    <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover/image:opacity-100">
-                                                        <div className="rounded-full border-4 border-white p-4">
-                                                            <svg
-                                                                className="h-20 w-20 text-white drop-shadow-lg"
-                                                                fill="currentColor"
-                                                                viewBox="0 0 24 24"
-                                                            >
-                                                                <path d="M8 5v14l11-7z" />
-                                                            </svg>
-                                                        </div>
-                                                    </div>
-                                                </a>
+                                                <Image
+                                                    src={`https:${sermon.thumbnailImage.fields.file.url}`}
+                                                    alt={sermon.name}
+                                                    fill
+                                                    className="object-cover transition-all duration-300 group-hover:scale-110 group-hover:blur-sm"
+                                                />
                                             )}
+                                            {/* Play Icon Overlay */}
+                                            <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                                                <div className="rounded-full border-4 border-white p-4">
+                                                    <svg className="h-20 w-20 text-white drop-shadow-lg" fill="currentColor" viewBox="0 0 24 24">
+                                                        <path d="M8 5v14l11-7z" />
+                                                    </svg>
+                                                </div>
+                                            </div>
                                         </div>
 
                                         {/* Sermon Info Below Thumbnail */}
                                         <div className="py-4">
-                                            <h3 className="mb-2 line-clamp-2 text-lg font-bold text-white">{sermon.name}</h3>
-                                            <p className="text-sm text-gray-300">
+                                            <h3 className="mb-2 line-clamp-2 text-lg font-bold text-white transition-colors duration-300 group-hover:text-blue-300">
+                                                {sermon.name}
+                                            </h3>
+                                            <p className="text-sm text-gray-300 transition-colors duration-300 group-hover:text-gray-200">
                                                 {new Date(sermon.sermonDate + 'T00:00:00').toLocaleDateString('en-US', {
                                                     month: 'short',
                                                     day: 'numeric',
@@ -314,7 +292,7 @@ export default function SermonsPage() {
                                                 })}
                                             </p>
                                         </div>
-                                    </div>
+                                    </a>
                                 ))}
                             </div>
 
