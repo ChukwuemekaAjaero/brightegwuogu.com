@@ -104,7 +104,7 @@ export default function HomePage() {
 
             {/* HORIZONTAL TABLE OF CONTENTS - Mobile/Tablet */}
             <div className="fixed bottom-4 left-1/2 z-50 -translate-x-1/2 transform md:hidden">
-                <div className="rounded-lg bg-black/80 p-2 backdrop-blur-md">
+                <div className="rounded-lg bg-black/60 p-2 backdrop-blur-md">
                     <nav className="flex space-x-1">
                         <a
                             href="#hero"
