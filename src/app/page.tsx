@@ -25,7 +25,6 @@ export default function HomePage() {
     const x = useTransform(scrollYProgress, [0, 1], ['0%', '-50%']);
     const imageCount = 7;
     const [activeSection, setActiveSection] = useState('hero');
-    const [isOverWhiteSection, setIsOverWhiteSection] = useState(false);
     const { music, loading: musicLoading, error: musicError } = useMusic();
     const { sermons, loading: sermonsLoading, error: sermonsError } = useSermons();
 
@@ -45,27 +44,6 @@ export default function HomePage() {
                     }
                 }
             }
-
-            // Check if navbar is over white sections (music or sermons)
-            const musicElement = document.getElementById('music');
-            const sermonsElement = document.getElementById('sermons');
-            const navbarPosition = window.scrollY + window.innerHeight / 2; // Center of viewport
-
-            let isOverWhite = false;
-
-            if (musicElement) {
-                const musicTop = musicElement.offsetTop;
-                const musicBottom = musicTop + musicElement.offsetHeight;
-                isOverWhite = navbarPosition >= musicTop && navbarPosition <= musicBottom;
-            }
-
-            if (!isOverWhite && sermonsElement) {
-                const sermonsTop = sermonsElement.offsetTop;
-                const sermonsBottom = sermonsTop + sermonsElement.offsetHeight;
-                isOverWhite = navbarPosition >= sermonsTop && navbarPosition <= sermonsBottom;
-            }
-
-            setIsOverWhiteSection(isOverWhite);
         };
 
         window.addEventListener('scroll', handleScroll);
@@ -78,12 +56,12 @@ export default function HomePage() {
         <div className="relative scroll-smooth">
             {/* TABLE OF CONTENTS */}
             <div className="fixed top-1/2 left-8 z-50 hidden -translate-y-1/2 transform 2xl:block">
-                <div className="bg-transparent p-4">
+                <div className="p-4">
                     <nav className="space-y-2">
                         <a
                             href="#hero"
                             className={`block px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-blue-600 hover:text-white ${
-                                activeSection === 'hero' ? 'bg-blue-600 text-white' : isOverWhiteSection ? 'text-black' : 'text-white'
+                                activeSection === 'hero' ? 'bg-blue-600 text-white' : 'text-white'
                             }`}
                         >
                             Home
@@ -91,7 +69,7 @@ export default function HomePage() {
                         <a
                             href="#about-me"
                             className={`block px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-blue-600 hover:text-white ${
-                                activeSection === 'about-me' ? 'bg-blue-600 text-white' : isOverWhiteSection ? 'text-black' : 'text-white'
+                                activeSection === 'about-me' ? 'bg-blue-600 text-white' : 'text-white'
                             }`}
                         >
                             About Me
@@ -99,7 +77,7 @@ export default function HomePage() {
                         <a
                             href="#gallery"
                             className={`block px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-blue-600 hover:text-white ${
-                                activeSection === 'gallery' ? 'bg-blue-600 text-white' : isOverWhiteSection ? 'text-black' : 'text-white'
+                                activeSection === 'gallery' ? 'bg-blue-600 text-white' : 'text-white'
                             }`}
                         >
                             Gallery
@@ -107,7 +85,7 @@ export default function HomePage() {
                         <a
                             href="#music"
                             className={`block px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-blue-600 hover:text-white ${
-                                activeSection === 'music' ? 'bg-blue-600 text-white' : isOverWhiteSection ? 'text-black' : 'text-white'
+                                activeSection === 'music' ? 'bg-blue-600 text-white' : 'text-white'
                             }`}
                         >
                             Music
@@ -115,7 +93,7 @@ export default function HomePage() {
                         <a
                             href="#sermons"
                             className={`block px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-blue-600 hover:text-white ${
-                                activeSection === 'sermons' ? 'bg-blue-600 text-white' : isOverWhiteSection ? 'text-black' : 'text-white'
+                                activeSection === 'sermons' ? 'bg-blue-600 text-white' : 'text-white'
                             }`}
                         >
                             Sermons
@@ -171,7 +149,7 @@ export default function HomePage() {
 
                         {/* Image Content */}
                         <div
-                            className="relative min-h-[100vh] w-full overflow-hidden md:w-[60%]"
+                            className="group relative min-h-[100vh] w-full overflow-hidden md:w-[60%]"
                             onMouseEnter={() => {
                                 const section = document.getElementById('about-me-section');
                                 if (section) section.style.backgroundColor = '#271b1b';
@@ -185,8 +163,10 @@ export default function HomePage() {
                                 src="/images/aboutMeImage.jpg"
                                 alt="About Me Image"
                                 fill
-                                className="mask-t-from-70% mask-r-from-90% object-cover object-[75%_50%] grayscale-30 transition-all duration-300 hover:scale-105 hover:grayscale-0"
+                                className="mask-t-from-70% mask-r-from-90% object-cover object-[75%_50%] transition-all duration-300 group-hover:scale-105"
                             />
+                            {/* Black overlay */}
+                            <div className="absolute inset-0 bg-black opacity-0 transition-opacity duration-300 group-hover:opacity-30"></div>
                         </div>
                     </div>
                 </div>
@@ -207,7 +187,7 @@ export default function HomePage() {
                                     fill
                                     className="scale-102 mask-b-from-90% object-contain transition-all group-hover:scale-105"
                                 />
-                                <div className="pointer-events-none absolute inset-0 bg-black/20 transition-all duration-300 group-hover:bg-black/0" />
+                                <div className="pointer-events-none absolute inset-0 bg-black/0 transition-all duration-300 group-hover:bg-black/30" />
                             </div>
                         ))}
                     </motion.div>
@@ -215,13 +195,13 @@ export default function HomePage() {
             </section>
 
             {/* MUSIC PREVIEW SECTION */}
-            <section id="music" className="bg-white px-4 sm:px-8">
+            <section id="music" className="bg-black px-4 sm:px-8">
                 <div className="container mx-auto sm:px-8">
                     <div className="h-max py-20">
                         <div className="mb-12 text-center">
-                            <h1 className={`text-6xl font-bold text-black ${modernizFont.className}`}>Music</h1>
+                            <h1 className={`text-6xl font-bold text-white ${modernizFont.className}`}>Music</h1>
                             <br />
-                            <p className="text-black">Discover the latest songs of hope, faith, and inspiration.</p>
+                            <p className="text-white">Discover the latest songs of hope, faith, and inspiration.</p>
                         </div>
                         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                             {musicLoading ? (
@@ -286,7 +266,7 @@ export default function HomePage() {
                         <div className="mt-12 text-center">
                             <Link
                                 href="/music"
-                                className="group inline-flex items-center bg-black px-8 py-4 font-semibold text-white transition-all duration-300 hover:bg-blue-600 hover:text-white"
+                                className="group inline-flex items-center bg-white px-8 py-4 font-semibold text-black transition-all duration-300 hover:bg-blue-600 hover:text-white"
                             >
                                 More
                                 <svg
@@ -304,13 +284,13 @@ export default function HomePage() {
             </section>
 
             {/* SERMONS PREVIEW SECTION */}
-            <section id="sermons" className="bg-blue-100 px-4 sm:px-8">
+            <section id="sermons" className="bg-black px-4 sm:px-8">
                 <div className="container mx-auto sm:px-8">
                     <div className="h-max py-20">
                         <div className="mb-12 text-center">
-                            <h1 className={`text-5xl font-bold text-black md:text-6xl ${modernizFont.className}`}>Sermons</h1>
+                            <h1 className={`text-5xl font-bold text-white md:text-6xl ${modernizFont.className}`}>Sermons</h1>
                             <br />
-                            <p className="text-black">Discover the latest messages of hope, faith, and inspiration.</p>
+                            <p className="text-white">Discover the latest messages of hope, faith, and inspiration.</p>
                         </div>
                         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                             {sermonsLoading ? (
@@ -328,10 +308,12 @@ export default function HomePage() {
                             ) : (
                                 // Sermon items
                                 sermons.slice(0, 3).map((sermon, index) => (
-                                    <div
+                                    <a
                                         key={sermon.name}
-                                        className="group cursor-pointer overflow-hidden transition-colors duration-300"
-                                        onClick={() => window.open(sermon.youTubeLink, '_blank')}
+                                        href={sermon.youTubeLink}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="group block overflow-hidden transition-all duration-300"
                                     >
                                         <div className="relative aspect-[4/5] overflow-hidden">
                                             {sermon.thumbnailImage?.fields?.file?.url && (
@@ -339,29 +321,45 @@ export default function HomePage() {
                                                     src={`https:${sermon.thumbnailImage.fields.file.url}`}
                                                     alt={sermon.name}
                                                     fill
-                                                    className="object-cover object-[50%_10%] transition-transform duration-300 group-hover:scale-105"
+                                                    className="object-cover transition-all duration-300 group-hover:scale-110 group-hover:blur-sm"
                                                 />
                                             )}
-                                            <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition-opacity duration-200 group-hover:opacity-100">
-                                                <div className="flex justify-center">
-                                                    <svg className="h-30 w-30 text-white" fill="currentColor" viewBox="0 0 24 24">
-                                                        <path d="M8 5v14l11-7z" />
-                                                    </svg>
-                                                </div>
+                                            {/* Black Overlay */}
+                                            <div className="absolute inset-0 bg-black/80 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+
+                                            {/* Play Icon Overlay or Description */}
+                                            <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                                                {sermon.sermonDescription ? (
+                                                    <div className="p-4 text-center text-white">
+                                                        <p className="text-lg leading-relaxed whitespace-pre-line">{sermon.sermonDescription}</p>
+                                                    </div>
+                                                ) : (
+                                                    <div className="rounded-full border-4 border-white p-4">
+                                                        <svg className="h-20 w-20 text-white drop-shadow-lg" fill="currentColor" viewBox="0 0 24 24">
+                                                            <path d="M8 5v14l11-7z" />
+                                                        </svg>
+                                                    </div>
+                                                )}
                                             </div>
                                         </div>
-                                        <div className="p-4">
-                                            <h3 className="mb-2 text-xl font-semibold">{sermon.name}</h3>
-                                            <p className="text-sm opacity-75">{formatDate(sermon.sermonDate)}</p>
+
+                                        {/* Sermon Info Below Thumbnail */}
+                                        <div className="py-4">
+                                            <h3 className="mb-2 line-clamp-2 text-lg font-bold text-white transition-colors duration-300 group-hover:text-blue-300">
+                                                {sermon.name}
+                                            </h3>
+                                            <p className="text-sm text-gray-300 transition-colors duration-300 group-hover:text-gray-200">
+                                                {formatDate(sermon.sermonDate)}
+                                            </p>
                                         </div>
-                                    </div>
+                                    </a>
                                 ))
                             )}
                         </div>
                         <div className="mt-12 text-center">
                             <Link
                                 href="/sermons"
-                                className="group inline-flex items-center bg-black px-8 py-4 font-semibold text-white transition-all duration-300 hover:bg-blue-600 hover:text-white"
+                                className="group inline-flex items-center bg-white px-8 py-4 font-semibold text-black transition-all duration-300 hover:bg-blue-600 hover:text-white"
                             >
                                 More
                                 <svg

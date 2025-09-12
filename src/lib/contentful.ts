@@ -19,6 +19,7 @@ export interface SocialLink {
 export interface Sermon {
     name: string;
     sermonDate: string;
+    sermonDescription: string;
     youTubeLink: string;
     thumbnailImage: Asset;
 }
@@ -56,7 +57,8 @@ export async function getSermons(): Promise<Sermon[]> {
             name: item.fields.name as string,
             sermonDate: item.fields.sermonDate as string,
             youTubeLink: item.fields.youTubeLink as string,
-            thumbnailImage: item.fields.thumbnailImage as Asset
+            thumbnailImage: item.fields.thumbnailImage as Asset,
+            sermonDescription: item.fields.sermonDescription as string
         }));
     } catch (error) {
         console.error('Error fetching sermons:', error);
