@@ -173,6 +173,7 @@ export default function SermonsPage() {
                                         value={fromDate}
                                         onChange={(e) => setFromDate(e.target.value)}
                                         onClick={(e) => e.currentTarget.showPicker()}
+                                        placeholder=""
                                         className="w-full cursor-pointer border border-gray-600 bg-gray-800 px-4 py-3 text-white focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none [&::-webkit-calendar-picker-indicator]:invert"
                                     />
                                 </div>
@@ -186,6 +187,8 @@ export default function SermonsPage() {
                                         value={toDate}
                                         onChange={(e) => setToDate(e.target.value)}
                                         onClick={(e) => e.currentTarget.showPicker()}
+                                        placeholder=""
+                                        max={new Date().toISOString().split('T')[0]}
                                         className="w-full cursor-pointer border border-gray-600 bg-gray-800 px-4 py-3 text-white focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none [&::-webkit-calendar-picker-indicator]:invert"
                                     />
                                 </div>
@@ -269,6 +272,7 @@ export default function SermonsPage() {
                                                     src={`https:${sermon.thumbnailImage.fields.file.url}`}
                                                     alt={sermon.name}
                                                     fill
+                                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                                                     className="object-cover transition-all duration-300 group-hover:scale-110 group-hover:blur-sm"
                                                 />
                                             )}

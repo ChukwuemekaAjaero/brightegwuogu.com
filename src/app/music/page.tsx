@@ -188,6 +188,7 @@ export default function Music() {
                                                         src={`https:${song.musicThumbnail.fields.file.url}`}
                                                         alt={song.name}
                                                         fill
+                                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                                                         className="object-cover transition-all duration-300 group-hover:scale-110 group-hover:blur-sm"
                                                     />
 

@@ -158,6 +158,7 @@ export default function HomePage() {
                         src="/images/heroImage.jpg"
                         alt="Home Page Image"
                         fill
+                        sizes="100vw"
                         className="z-0 animate-[zoom_20s_ease-in-out_infinite] object-cover object-[75%_50%]"
                         priority
                     />
@@ -184,6 +185,7 @@ export default function HomePage() {
                                 src="/images/aboutMeImage.jpg"
                                 alt="About Me Image"
                                 fill
+                                sizes="(max-width: 1024px) 100vw, 60vw"
                                 className="mask-t-from-70% mask-r-from-95% mask-l-from-95% object-cover object-[65%_50%] transition-all duration-300 group-hover:scale-105 lg:mask-l-from-100%"
                             />
                             {/* Black overlay */}
@@ -226,6 +228,7 @@ export default function HomePage() {
                                     src={`/images/homeGallery/heroImage${index + 1}.jpg`}
                                     alt={`Gallery Image ${index + 1}`}
                                     fill
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                     className="scale-102 mask-b-from-90% object-contain transition-all group-hover:scale-105"
                                 />
                                 <div className="pointer-events-none absolute inset-0 bg-black/0 transition-all duration-300 group-hover:bg-black/30" />
@@ -269,6 +272,7 @@ export default function HomePage() {
                                                 src={`https:${song.musicThumbnail.fields.file.url}`}
                                                 alt={song.name}
                                                 fill
+                                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                                                 className="object-cover transition-transform duration-300 group-hover:scale-105 group-hover:blur-sm"
                                             />
                                         )}
@@ -341,6 +345,7 @@ export default function HomePage() {
                                                     src={`https:${sermon.thumbnailImage.fields.file.url}`}
                                                     alt={sermon.name}
                                                     fill
+                                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                                                     className="object-cover transition-all duration-300 group-hover:scale-110 group-hover:blur-sm"
                                                 />
                                             )}
