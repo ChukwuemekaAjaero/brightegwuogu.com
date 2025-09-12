@@ -175,7 +175,7 @@ export default function Music() {
                                     className="w-screen space-y-6 py-16"
                                     style={{ backgroundColor: song.primaryColor }}
                                 >
-                                    <div className="mx-auto max-w-[1600px]">
+                                    <div className="container mx-auto">
                                         {/* Main Content Container */}
                                         <div className="flex flex-col gap-6 p-6 transition-all duration-3000 md:flex-row">
                                             {/* Music Thumbnail */}

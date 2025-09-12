@@ -137,7 +137,7 @@ export default function HomePage() {
                 </div>
 
                 {/* Text content */}
-                <div className="flex h-full w-full max-w-[1600px] items-end justify-start px-4 sm:px-8">
+                <div className="container flex h-full w-full items-end justify-start px-4 sm:px-8">
                     <h1 className={`relative z-20 max-w-[500px] text-4xl font-bold text-white`}>
                         On a mission to know Christ deeply, make Him known, use my gifts to advance His kingdom.
                     </h1>
@@ -146,7 +146,7 @@ export default function HomePage() {
 
             {/* ABOUT ME SECTION */}
             <section id="about-me" className="flex min-h-screen justify-center bg-black transition-colors duration-300">
-                <div className="h-max max-w-[1600px] px-4 sm:px-8">
+                <div className="container h-max px-4 sm:px-8">
                     <div className="flex h-max flex-col items-center gap-8 md:flex-row">
                         {/* Text Content */}
 
@@ -216,7 +216,7 @@ export default function HomePage() {
 
             {/* MUSIC PREVIEW SECTION */}
             <section id="music" className="bg-white px-4 sm:px-8">
-                <div className="mx-auto max-w-[1600px] sm:px-8">
+                <div className="container mx-auto sm:px-8">
                     <div className="h-max py-20">
                         <div className="mb-12 text-center">
                             <h1 className={`text-6xl font-bold text-black ${modernizFont.className}`}>Music</h1>
@@ -305,7 +305,7 @@ export default function HomePage() {
 
             {/* SERMONS PREVIEW SECTION */}
             <section id="sermons" className="bg-blue-100 px-4 sm:px-8">
-                <div className="mx-auto max-w-[1600px] sm:px-8">
+                <div className="container mx-auto sm:px-8">
                     <div className="h-max py-20">
                         <div className="mb-12 text-center">
                             <h1 className={`text-5xl font-bold text-black md:text-6xl ${modernizFont.className}`}>Sermons</h1>

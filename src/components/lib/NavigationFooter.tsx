@@ -3,7 +3,7 @@ import { modernizFont } from '@/lib/utils';
 export default function NavigationFooter() {
     return (
         <footer className="bg-black py-16 text-white">
-            <div className="mx-auto max-w-[1600px] px-4 sm:px-8">
+            <div className="container mx-auto px-4 sm:px-8">
                 <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
                     {/* Brand Section */}
                     <div className="lg:col-span-1">

@@ -96,7 +96,7 @@ export default function SermonsPage() {
 
                     {/* Content */}
                     <div className="relative z-10 flex min-h-screen items-center justify-center">
-                        <div className="mx-auto max-w-[1600px] px-4 text-center text-white sm:px-8">
+                        <div className="container mx-auto px-4 text-center text-white sm:px-8">
                             <h1 className={`mb-6 text-5xl font-bold ${modernizFont.className}`}>Sermons</h1>
                             <p className="mb-8 text-xl">Inspiring messages of hope, faith, and transformation</p>
 
@@ -215,7 +215,7 @@ export default function SermonsPage() {
 
                     {sermonsLoading ? (
                         // Loading state
-                        <div className="mx-auto max-w-[1600px] px-4 sm:px-8">
+                        <div className="container mx-auto px-4 sm:px-8">
                             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
                                 {Array.from({ length: 10 }, (_, index) => (
                                     <div key={index} className="group relative aspect-[4/5] overflow-hidden bg-gray-700">
@@ -229,7 +229,7 @@ export default function SermonsPage() {
                         <div className="text-center text-red-500">Error loading sermons: {sermonsError}</div>
                     ) : filteredSermons.length === 0 ? (
                         // No results found
-                        <div className="mx-auto max-w-[1600px] px-4 sm:px-8">
+                        <div className="container mx-auto px-4 sm:px-8">
                             <div className="py-12 text-center">
                                 <div className="mx-auto max-w-md bg-gray-800 p-8">
                                     <div className="mb-4 text-gray-400">
@@ -249,7 +249,7 @@ export default function SermonsPage() {
                         </div>
                     ) : (
                         // Sermons grid
-                        <div className="mx-auto max-w-[1600px] px-4 sm:px-8">
+                        <div className="container mx-auto px-4 sm:px-8">
                             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
                                 {displaySermons.map((sermon, index) => (
                                     <a

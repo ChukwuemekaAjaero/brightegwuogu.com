@@ -20,60 +20,44 @@ export default function NavigationHeader() {
     };
 
     return (
-        <nav className="sticky top-0 z-30 mx-auto -mb-20 max-w-full mask-b-from-50% px-4 backdrop-blur-md sm:px-8">
-            <div className="flex h-20 w-full max-w-[1600px] items-center">
-                {/* Container 1: Logo */}
-                <div className="flex flex-1 justify-start">
+        <nav className="sticky top-0 z-30 -mb-20 w-full mask-b-from-50% backdrop-blur-md">
+            <div className="container mx-auto flex h-20 w-full items-center justify-between px-4 sm:px-8">
+                {/* Logo */}
+                <Link
+                    href="/"
+                    className={`${modernizFont.className} text-2xl font-bold text-white no-underline transition-colors hover:text-blue-300`}
+                >
+                    Bright Egwuogu
+                </Link>
+
+                {/* Navigation Links - Centered in viewport - Hidden on mobile */}
+                <div className="absolute top-1/2 left-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-6 md:flex">
                     <Link
-                        href="/"
-                        className={`${modernizFont.className} text-2xl font-bold text-white no-underline transition-colors hover:text-blue-300`}
+                        href="/music"
+                        className={`rounded-md px-4 py-2 font-medium no-underline transition-all duration-200 hover:bg-white/20 hover:text-blue-300 ${
+                            pathname === '/music' ? 'bg-white/20 text-blue-300' : 'text-white'
+                        }`}
                     >
-                        Bright Egwuogu
+                        Music
+                    </Link>
+                    <Link
+                        href="/sermons"
+                        className={`rounded-md px-4 py-2 font-medium no-underline transition-all duration-200 hover:bg-white/20 hover:text-blue-300 ${
+                            pathname === '/sermons' ? 'bg-white/20 text-blue-300' : 'text-white'
+                        }`}
+                    >
+                        Sermons
                     </Link>
                 </div>
 
-                {/* Container 2: Navigation Links - Hidden on mobile */}
-                <div className="hidden flex-1 justify-center md:flex">
-                    <div className="flex items-center gap-6">
-                        <Link
-                            href="/music"
-                            className={`rounded-md px-4 py-2 font-medium no-underline transition-all duration-200 hover:bg-white/20 hover:text-blue-300 ${
-                                pathname === '/music' ? 'bg-white/20 text-blue-300' : 'text-white'
-                            }`}
-                        >
-                            Music
-                        </Link>
-                        <Link
-                            href="/sermons"
-                            className={`rounded-md px-4 py-2 font-medium no-underline transition-all duration-200 hover:bg-white/20 hover:text-blue-300 ${
-                                pathname === '/sermons' ? 'bg-white/20 text-blue-300' : 'text-white'
-                            }`}
-                        >
-                            Sermons
-                        </Link>
-                    </div>
-                </div>
-
-                {/* Container 3: Social Links - Hidden on mobile */}
-                <div className="hidden flex-1 justify-end md:flex">
-                    <div className="flex items-center gap-4">
-                        <Link
-                            href={instagramLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="rounded-md px-4 py-2 font-medium text-white no-underline transition-all duration-200 hover:bg-white/20 hover:text-blue-300"
-                        >
-                            <AiFillInstagram className="3xl:text-white h-8 w-8 text-black" />
-                        </Link>
-                        <Link
-                            href={youTubeLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="rounded-md px-4 py-2 font-medium text-white no-underline transition-all duration-200 hover:bg-white/20 hover:text-blue-300"
-                        >
-                            <FaYoutube className="3xl:text-white h-8 w-8 text-black" />
-                        </Link>
-                    </div>
+                {/* Social Media Links - Hidden on mobile */}
+                <div className="hidden items-center gap-4 md:flex">
+                    <a href={instagramLink} target="_blank" rel="noopener noreferrer" className="text-white transition-colors hover:text-blue-300">
+                        <AiFillInstagram size={24} />
+                    </a>
+                    <a href={youTubeLink} target="_blank" rel="noopener noreferrer" className="text-white transition-colors hover:text-blue-300">
+                        <FaYoutube size={24} />
+                    </a>
                 </div>
 
                 {/* Mobile Menu Button - Only visible on mobile */}
