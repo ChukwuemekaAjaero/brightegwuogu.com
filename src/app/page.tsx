@@ -60,40 +60,40 @@ export default function HomePage() {
                     <nav className="space-y-2">
                         <a
                             href="#hero"
-                            className={`block px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-blue-600 hover:text-white ${
-                                activeSection === 'hero' ? 'bg-blue-600 text-white' : 'text-white'
+                            className={`block px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-red-800 hover:text-white ${
+                                activeSection === 'hero' ? 'bg-red-700 text-white' : 'text-white'
                             }`}
                         >
                             Home
                         </a>
                         <a
                             href="#about-me"
-                            className={`block px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-blue-600 hover:text-white ${
-                                activeSection === 'about-me' ? 'bg-blue-600 text-white' : 'text-white'
+                            className={`block px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-red-800 hover:text-white ${
+                                activeSection === 'about-me' ? 'bg-red-700 text-white' : 'text-white'
                             }`}
                         >
                             About Me
                         </a>
                         <a
                             href="#gallery"
-                            className={`block px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-blue-600 hover:text-white ${
-                                activeSection === 'gallery' ? 'bg-blue-600 text-white' : 'text-white'
+                            className={`block px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-red-800 hover:text-white ${
+                                activeSection === 'gallery' ? 'bg-red-700 text-white' : 'text-white'
                             }`}
                         >
                             Gallery
                         </a>
                         <a
                             href="#music"
-                            className={`block px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-blue-600 hover:text-white ${
-                                activeSection === 'music' ? 'bg-blue-600 text-white' : 'text-white'
+                            className={`block px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-red-800 hover:text-white ${
+                                activeSection === 'music' ? 'bg-red-700 text-white' : 'text-white'
                             }`}
                         >
                             Music
                         </a>
                         <a
                             href="#sermons"
-                            className={`block px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-blue-600 hover:text-white ${
-                                activeSection === 'sermons' ? 'bg-blue-600 text-white' : 'text-white'
+                            className={`block px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-red-800 hover:text-white ${
+                                activeSection === 'sermons' ? 'bg-red-700 text-white' : 'text-white'
                             }`}
                         >
                             Sermons
@@ -116,7 +116,7 @@ export default function HomePage() {
 
                 {/* Text content */}
                 <div className="container flex h-full w-full items-end justify-start px-4 sm:px-8">
-                    <h1 className={`relative z-20 max-w-[500px] text-4xl font-bold text-white`}>
+                    <h1 className={`relative z-20 max-w-[300px] text-xl font-bold text-white sm:max-w-[600px] sm:text-4xl ${modernizFont.className}`}>
                         On a mission to know Christ deeply, make Him known, use my gifts to advance His kingdom.
                     </h1>
                 </div>
@@ -215,34 +215,13 @@ export default function HomePage() {
                                 ))
                             ) : musicError ? (
                                 // Error state
-                                <div className="col-span-full text-center text-red-500">Error loading music: {musicError}</div>
+                                <div className="col-span-full text-center text-red-700">Error loading music: {musicError}</div>
                             ) : (
                                 // Music items
                                 music.slice(0, 3).map((song, index) => (
                                     <div
                                         key={song.name}
-                                        className="group relative aspect-square overflow-hidden bg-gray-800 transition-colors duration-300 hover:bg-blue-500"
-                                        onMouseEnter={(e) => {
-                                            const section = e.currentTarget.closest('section');
-                                            if (section) {
-                                                // Change text colors to secondary color
-                                                const textElements = section.querySelectorAll('h1, h2, h3, p, a');
-                                                textElements.forEach((element) => {
-                                                    (element as HTMLElement).style.color = song.secondaryColor || '#000000';
-                                                    (element as HTMLElement).style.transition = 'color 0.3s ease';
-                                                });
-                                            }
-                                        }}
-                                        onMouseLeave={(e) => {
-                                            const section = e.currentTarget.closest('section');
-                                            if (section) {
-                                                // Reset text colors
-                                                const textElements = section.querySelectorAll('h1, h2, h3, p, a');
-                                                textElements.forEach((element) => {
-                                                    (element as HTMLElement).style.color = '';
-                                                });
-                                            }
-                                        }}
+                                        className="group relative aspect-square overflow-hidden bg-gray-800 transition-colors duration-300 hover:bg-red-700"
                                     >
                                         {song.musicThumbnail?.fields?.file?.url && (
                                             <Image
@@ -266,7 +245,7 @@ export default function HomePage() {
                         <div className="mt-12 text-center">
                             <Link
                                 href="/music"
-                                className="group inline-flex items-center bg-white px-8 py-4 font-semibold text-black transition-all duration-300 hover:bg-blue-600 hover:text-white"
+                                className="group inline-flex items-center bg-red-700 px-8 py-4 font-semibold text-white transition-all duration-300 hover:bg-red-800 hover:text-white"
                             >
                                 More
                                 <svg
@@ -304,7 +283,7 @@ export default function HomePage() {
                                 ))
                             ) : sermonsError ? (
                                 // Error state
-                                <div className="col-span-full text-center text-red-500">Error loading sermons: {sermonsError}</div>
+                                <div className="col-span-full text-center text-red-700">Error loading sermons: {sermonsError}</div>
                             ) : (
                                 // Sermon items
                                 sermons.slice(0, 3).map((sermon, index) => (
@@ -331,6 +310,17 @@ export default function HomePage() {
                                             <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                                                 {sermon.sermonDescription ? (
                                                     <div className="p-4 text-center text-white">
+                                                        <div className="mb-4 flex justify-center">
+                                                            <div className="rounded-full border-2 border-white p-2">
+                                                                <svg
+                                                                    className="h-8 w-8 text-white drop-shadow-lg"
+                                                                    fill="currentColor"
+                                                                    viewBox="0 0 24 24"
+                                                                >
+                                                                    <path d="M8 5v14l11-7z" />
+                                                                </svg>
+                                                            </div>
+                                                        </div>
                                                         <p className="text-lg leading-relaxed whitespace-pre-line">{sermon.sermonDescription}</p>
                                                     </div>
                                                 ) : (
@@ -345,12 +335,10 @@ export default function HomePage() {
 
                                         {/* Sermon Info Below Thumbnail */}
                                         <div className="py-4">
-                                            <h3 className="mb-2 line-clamp-2 text-lg font-bold text-white transition-colors duration-300 group-hover:text-blue-300">
+                                            <h3 className="mb-2 line-clamp-2 text-lg font-bold text-white transition-colors duration-300">
                                                 {sermon.name}
                                             </h3>
-                                            <p className="text-sm text-gray-300 transition-colors duration-300 group-hover:text-gray-200">
-                                                {formatDate(sermon.sermonDate)}
-                                            </p>
+                                            <p className="text-sm text-gray-300 transition-colors duration-300">{formatDate(sermon.sermonDate)}</p>
                                         </div>
                                     </a>
                                 ))
@@ -359,7 +347,7 @@ export default function HomePage() {
                         <div className="mt-12 text-center">
                             <Link
                                 href="/sermons"
-                                className="group inline-flex items-center bg-white px-8 py-4 font-semibold text-black transition-all duration-300 hover:bg-blue-600 hover:text-white"
+                                className="group inline-flex items-center bg-red-700 px-8 py-4 font-semibold text-white transition-all duration-300 hover:bg-red-800 hover:text-white"
                             >
                                 More
                                 <svg

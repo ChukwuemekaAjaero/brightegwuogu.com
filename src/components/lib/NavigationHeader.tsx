@@ -25,7 +25,7 @@ export default function NavigationHeader() {
                 {/* Logo */}
                 <Link
                     href="/"
-                    className={`${modernizFont.className} text-2xl font-bold text-white no-underline transition-colors hover:text-blue-300`}
+                    className={`${modernizFont.className} text-2xl font-bold text-white no-underline transition-colors hover:text-red-500`}
                 >
                     Bright Egwuogu
                 </Link>
@@ -34,16 +34,16 @@ export default function NavigationHeader() {
                 <div className="absolute top-1/2 left-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-6 md:flex">
                     <Link
                         href="/music"
-                        className={`rounded-md px-4 py-2 font-medium no-underline transition-all duration-200 hover:bg-white/20 hover:text-blue-300 ${
-                            pathname === '/music' ? 'bg-white/20 text-blue-300' : 'text-white'
+                        className={`px-4 py-2 font-medium no-underline transition-all duration-200 hover:bg-white/20 hover:text-red-500 ${
+                            pathname === '/music' ? 'text-red-500' : 'text-white'
                         }`}
                     >
                         Music
                     </Link>
                     <Link
                         href="/sermons"
-                        className={`rounded-md px-4 py-2 font-medium no-underline transition-all duration-200 hover:bg-white/20 hover:text-blue-300 ${
-                            pathname === '/sermons' ? 'bg-white/20 text-blue-300' : 'text-white'
+                        className={`px-4 py-2 font-medium no-underline transition-all duration-200 hover:bg-white/20 hover:text-red-500 ${
+                            pathname === '/sermons' ? 'text-red-500' : 'text-white'
                         }`}
                     >
                         Sermons
@@ -52,10 +52,10 @@ export default function NavigationHeader() {
 
                 {/* Social Media Links - Hidden on mobile */}
                 <div className="hidden items-center gap-4 md:flex">
-                    <a href={instagramLink} target="_blank" rel="noopener noreferrer" className="text-white transition-colors hover:text-blue-300">
+                    <a href={instagramLink} target="_blank" rel="noopener noreferrer" className="text-white transition-colors hover:text-red-500">
                         <AiFillInstagram size={24} />
                     </a>
-                    <a href={youTubeLink} target="_blank" rel="noopener noreferrer" className="text-white transition-colors hover:text-blue-300">
+                    <a href={youTubeLink} target="_blank" rel="noopener noreferrer" className="text-white transition-colors hover:text-red-500">
                         <FaYoutube size={24} />
                     </a>
                 </div>
@@ -83,8 +83,8 @@ export default function NavigationHeader() {
                 <div className="flex flex-col gap-2 p-4 sm:p-8">
                     <Link
                         href="/sermons"
-                        className={`rounded-md px-4 py-3 font-medium no-underline transition-all duration-200 hover:bg-white/20 hover:text-blue-300 ${
-                            pathname === '/sermons' ? 'bg-white/20 text-blue-300' : 'text-white'
+                        className={`px-4 py-3 font-medium no-underline transition-all duration-200 hover:bg-white/20 hover:text-red-500 ${
+                            pathname === '/sermons' ? 'bg-white/20 text-red-500' : 'text-white'
                         }`}
                         onClick={toggleMobileMenu}
                     >
@@ -92,8 +92,8 @@ export default function NavigationHeader() {
                     </Link>
                     <Link
                         href="/music"
-                        className={`rounded-md px-4 py-3 font-medium no-underline transition-all duration-200 hover:bg-white/20 hover:text-blue-300 ${
-                            pathname === '/music' ? 'bg-white/20 text-blue-300' : 'text-white'
+                        className={`px-4 py-3 font-medium no-underline transition-all duration-200 hover:bg-white/20 hover:text-red-500 ${
+                            pathname === '/music' ? 'bg-white/20 text-red-500' : 'text-white'
                         }`}
                         onClick={toggleMobileMenu}
                     >
@@ -103,7 +103,7 @@ export default function NavigationHeader() {
                         href={instagramLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="rounded-md px-4 py-3 font-medium text-white no-underline transition-all duration-200 hover:bg-white/20 hover:text-blue-300"
+                        className="px-4 py-3 font-medium text-white no-underline transition-all duration-200 hover:bg-white/20 hover:text-red-500"
                         onClick={toggleMobileMenu}
                     >
                         Instagram
@@ -112,7 +112,7 @@ export default function NavigationHeader() {
                         href={youTubeLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="rounded-md px-4 py-3 font-medium text-white no-underline transition-all duration-200 hover:bg-white/20 hover:text-blue-300"
+                        className="px-4 py-3 font-medium text-white no-underline transition-all duration-200 hover:bg-white/20 hover:text-red-500"
                         onClick={toggleMobileMenu}
                     >
                         YouTube
