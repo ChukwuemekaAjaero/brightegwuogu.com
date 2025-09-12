@@ -66,22 +66,15 @@ const CustomCursor: React.FC = () => {
         };
     }, []);
 
-    // Calculate sizes based on cursor speed
-    const baseSize = 25;
-    const maxSize = 50;
-    const cursorSize = Math.min(baseSize + velocity.speed * 25, maxSize);
-    const outlineSize = Math.min(30 + velocity.speed * 75, 150); // Min 30px, max 150px
-    const outlineOpacity = Math.min(0.3 + velocity.speed * 0.1, 0.8); // Min 0.3, max 0.8
-
     const variants: Variants = {
         default: {
             opacity: 0.3,
-            height: cursorSize,
-            width: cursorSize,
+            height: 25,
+            width: 25,
             fontSize: '16px',
             backgroundColor: '#ffffff',
-            x: mousePosition.x - cursorSize / 2,
-            y: mousePosition.y - cursorSize / 2,
+            x: mousePosition.x - 12.5,
+            y: mousePosition.y - 12.5,
             transition: {
                 type: 'spring',
                 mass: 0.6
@@ -138,6 +131,13 @@ const CustomCursor: React.FC = () => {
         };
     }, []);
 
+    // Calculate sizes based on cursor speed
+    const baseSize = 25;
+    const maxSize = 50;
+    const cursorSize = Math.min(baseSize + velocity.speed * 25, maxSize);
+    const outlineSize = Math.min(30 + velocity.speed * 75, 150); // Min 30px, max 150px
+    const outlineOpacity = Math.min(0.3 + velocity.speed * 0.1, 0.8); // Min 0.3, max 0.8
+
     return (
         <>
             {/* Circle Outline */}
@@ -175,7 +175,13 @@ const CustomCursor: React.FC = () => {
                 ref={cursorRef}
                 variants={variants}
                 className="custom-cursor"
-                animate={cursorVariant}
+                animate={{
+                    ...variants[cursorVariant],
+                    height: cursorSize,
+                    width: cursorSize,
+                    x: mousePosition.x - cursorSize / 2,
+                    y: mousePosition.y - cursorSize / 2
+                }}
                 transition={spring}
                 style={{
                     position: 'fixed',
