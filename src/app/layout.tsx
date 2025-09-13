@@ -3,7 +3,7 @@ import './globals.css';
 import NavigationHeader from '@/components/lib/NavigationHeader';
 import NavigationFooter from '@/components/lib/NavigationFooter';
 import { ubisoftSansFont } from '@/lib/utils';
-import CustomCursor from '@/components/lib/CustomCursor';
+import ConditionalCursor from '@/components/lib/ConditionalCursor';
 
 export const metadata: Metadata = {
     title: 'Bright Egwuogu',
@@ -21,7 +21,7 @@ export default function RootLayout({
                 <div className="relative">
                     <NavigationHeader />
                     {children}
-                    <CustomCursor />
+                    <ConditionalCursor />
                     <NavigationFooter />
                 </div>
             </body>
