@@ -2,82 +2,15 @@
 
 import { modernizFont } from '@/lib/utils';
 import { useMusic } from '@/hooks/useContentful';
+import { FaApple, FaYoutube, FaSpotify, FaDeezer } from 'react-icons/fa';
+import { SiAmazonmusic } from 'react-icons/si';
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
 
 export default function Music() {
     const { music, loading: musicLoading, error: musicError } = useMusic();
-    const [activeSection, setActiveSection] = useState('hero');
-
-    useEffect(() => {
-        const sections = ['hero', ...music.map((song, index) => `song-${index}`)];
-
-        const handleScroll = () => {
-            const scrollPosition = window.scrollY;
-
-            // Process sections in reverse order to prioritize higher indexes
-            for (let i = sections.length - 1; i >= 0; i--) {
-                const section = sections[i];
-                const element = document.getElementById(section);
-                if (element) {
-                    const { offsetTop } = element;
-
-                    // Highlight section when the anchor's href point (section top) is hit
-                    if (scrollPosition >= offsetTop) {
-                        // For song sections, prioritize the one 2 indexes above
-                        if (section.startsWith('song-')) {
-                            const currentIndex = parseInt(section.split('-')[1]);
-                            const targetIndex = Math.max(0, currentIndex - 2);
-                            const targetSection = `song-${targetIndex}`;
-
-                            // Only highlight if the target section exists and we're past its top
-                            const targetElement = document.getElementById(targetSection);
-                            if (targetElement && scrollPosition >= targetElement.offsetTop) {
-                                setActiveSection(targetSection);
-                            } else {
-                                setActiveSection(section);
-                            }
-                        } else {
-                            setActiveSection(section);
-                        }
-                        break;
-                    }
-                }
-            }
-        };
-
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, [music]);
 
     return (
-        <div className="relative scroll-smooth">
-            {/* TABLE OF CONTENTS */}
-            <div className="fixed top-1/2 left-8 z-50 hidden -translate-y-1/2 transform 2xl:block">
-                <div className="bg-transparent p-4">
-                    <nav className="space-y-2">
-                        <a
-                            href="#hero"
-                            className={`block px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-red-700 hover:text-white ${
-                                activeSection === 'hero' ? 'bg-red-700 text-white' : 'text-white'
-                            }`}
-                        >
-                            Hero
-                        </a>
-                        {music.map((song, index) => (
-                            <a
-                                key={song.name}
-                                href={`#song-${index}`}
-                                className={`block px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-red-700 hover:text-white ${
-                                    activeSection === `song-${index}` ? 'bg-red-600 text-white' : 'text-white'
-                                }`}
-                            >
-                                {song.name}
-                            </a>
-                        ))}
-                    </nav>
-                </div>
-            </div>
+        <div className="relative">
             <section id="hero" className="relative bg-black">
                 {/* Hero Section */}
                 <div className="relative min-h-screen overflow-hidden mask-b-from-50%">
@@ -117,13 +50,13 @@ export default function Music() {
                                 </a>
 
                                 <a
-                                    href="#"
-                                    className="group inline-flex w-full max-w-[300px] items-center justify-center bg-white px-8 py-4 font-semibold text-black transition-all duration-300 hover:scale-105 hover:bg-gray-100"
+                                    href="https://open.spotify.com/track/6FCgNzCMwvYqEVwlyU3uYl"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="group inline-flex w-full max-w-[300px] items-center justify-center bg-green-500 px-8 py-4 font-semibold text-white transition-all duration-300 hover:scale-105 hover:bg-green-600"
                                 >
-                                    <svg className="mr-2 h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-                                    </svg>
-                                    Stream Now
+                                    <FaSpotify className="mr-2 h-6 w-6" />
+                                    Stream on Spotify
                                 </a>
                             </div>
                         </div>
@@ -134,11 +67,6 @@ export default function Music() {
             {/* Music List Section */}
             <section className="relative min-h-screen overflow-hidden bg-black">
                 <div className="py-20">
-                    <div className="mb-12 text-center">
-                        <h2 className={`text-4xl font-bold text-white md:text-6xl ${modernizFont.className}`}>All Songs</h2>
-                        <p className="mt-4 text-lg text-gray-300">Complete discography and latest releases</p>
-                    </div>
-
                     {musicLoading ? (
                         // Loading state
                         <div className="space-y-8">
@@ -160,6 +88,66 @@ export default function Music() {
                     ) : (
                         // Music Grid
                         <div className="container mx-auto px-4 sm:px-8">
+                            {/* Music Section Header */}
+                            <div className="mx-auto mb-16 max-w-4xl text-center">
+                                <h2 className={`mb-6 text-4xl font-bold text-white sm:text-5xl md:text-6xl lg:text-7xl ${modernizFont.className}`}>
+                                    Music
+                                </h2>
+                                <p className="mx-auto max-w-3xl text-lg leading-relaxed text-gray-300 sm:text-xl md:text-2xl">
+                                    Experience the power of worship through music that bridges heaven and earth, bringing faith to life through every
+                                    melody and every word.
+                                </p>
+                            </div>
+
+                            {/* Streaming Platform Buttons */}
+                            <div className="mx-auto mb-12 flex max-w-[1000px] flex-wrap justify-center gap-4">
+                                <a
+                                    href="https://open.spotify.com/artist/2YsaAFq1fn9w2aiBcvURmn"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center justify-center rounded-lg bg-white/10 px-6 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                >
+                                    <FaSpotify className="mr-2 h-6 w-6 text-green-400" />
+                                    <span className="font-medium text-white">Spotify</span>
+                                </a>
+                                <a
+                                    href="https://music.apple.com/us/artist/brite-egwuogu/1561427540"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center justify-center rounded-lg bg-white/10 px-6 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                >
+                                    <FaApple className="mr-2 h-6 w-6 text-white" />
+                                    <span className="font-medium text-white">Apple Music</span>
+                                </a>
+                                <a
+                                    href="https://www.youtube.com/channel/UCH-O0drzAagoobTUuIT4vDg"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center justify-center rounded-lg bg-white/10 px-6 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                >
+                                    <FaYoutube className="mr-2 h-6 w-6 text-red-500" />
+                                    <span className="font-medium text-white">YouTube</span>
+                                </a>
+                                <a
+                                    href="https://www.deezer.com/en/artist/159926162"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center justify-center rounded-lg bg-white/10 px-6 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                >
+                                    <FaDeezer className="mr-2 h-6 w-6 text-blue-400" />
+                                    <span className="font-medium text-white">Deezer</span>
+                                </a>
+                                <a
+                                    href="https://www.amazon.com/music/player/artists/B09RY3QB5K/brite-egwuogu"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center justify-center rounded-lg bg-white/10 px-6 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                >
+                                    <SiAmazonmusic className="mr-2 h-6 w-6 text-orange-400" />
+                                    <span className="font-medium text-white">Amazon Music</span>
+                                </a>
+                            </div>
+
                             <div className="mx-auto grid max-w-[1000px] grid-cols-1 justify-items-center gap-8 xl:grid-cols-2">
                                 {music.map((song) => (
                                     <div key={song.name} className="group">
