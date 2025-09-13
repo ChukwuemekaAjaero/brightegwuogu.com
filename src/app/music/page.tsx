@@ -2,7 +2,7 @@
 
 import { modernizFont } from '@/lib/utils';
 import { useMusic } from '@/hooks/useContentful';
-import { FaApple, FaYoutube, FaSpotify, FaDeezer } from 'react-icons/fa';
+import { FaApple, FaYoutube, FaSpotify, FaDeezer, FaPlay } from 'react-icons/fa';
 import { SiAmazonmusic } from 'react-icons/si';
 import Image from 'next/image';
 
@@ -50,15 +50,18 @@ export default function Music() {
                                     Watch on YouTube
                                 </a>
 
-                                <a
-                                    href="https://open.spotify.com/track/6FCgNzCMwvYqEVwlyU3uYl"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="group inline-flex w-full max-w-[300px] items-center justify-center bg-green-500 px-8 py-4 font-semibold text-white transition-all duration-300 hover:scale-105 hover:bg-green-600"
+                                <button
+                                    onClick={() => {
+                                        document.getElementById('music-section')?.scrollIntoView({
+                                            behavior: 'smooth',
+                                            block: 'start'
+                                        });
+                                    }}
+                                    className="group inline-flex w-full max-w-[300px] items-center justify-center bg-black/80 px-8 py-4 font-semibold text-white transition-all duration-300 hover:scale-105 hover:bg-black/100"
                                 >
-                                    <FaSpotify className="mr-2 h-6 w-6" />
-                                    Stream on Spotify
-                                </a>
+                                    <FaPlay className="mr-2 h-5 w-5" />
+                                    Stream on all platforms
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -66,7 +69,7 @@ export default function Music() {
             </section>
 
             {/* Music List Section */}
-            <section className="relative min-h-screen overflow-hidden bg-black">
+            <section id="music-section" className="relative min-h-screen overflow-hidden bg-black">
                 <div className="py-20">
                     {musicLoading ? (
                         // Loading state
@@ -121,13 +124,13 @@ export default function Music() {
                                     <span className="font-medium text-white">Apple Music</span>
                                 </a>
                                 <a
-                                    href="https://www.youtube.com/channel/UCH-O0drzAagoobTUuIT4vDg"
+                                    href="https://www.amazon.com/music/player/artists/B09RY3QB5K/brite-egwuogu"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="flex items-center justify-center rounded-lg bg-white/10 px-6 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
                                 >
-                                    <FaYoutube className="mr-2 h-6 w-6 text-red-500" />
-                                    <span className="font-medium text-white">YouTube</span>
+                                    <SiAmazonmusic className="mr-2 h-6 w-6 text-orange-400" />
+                                    <span className="font-medium text-white">Amazon Music</span>
                                 </a>
                                 <a
                                     href="https://www.deezer.com/en/artist/159926162"
@@ -139,17 +142,17 @@ export default function Music() {
                                     <span className="font-medium text-white">Deezer</span>
                                 </a>
                                 <a
-                                    href="https://www.amazon.com/music/player/artists/B09RY3QB5K/brite-egwuogu"
+                                    href="https://www.youtube.com/channel/UCH-O0drzAagoobTUuIT4vDg"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="flex items-center justify-center rounded-lg bg-white/10 px-6 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
                                 >
-                                    <SiAmazonmusic className="mr-2 h-6 w-6 text-orange-400" />
-                                    <span className="font-medium text-white">Amazon Music</span>
+                                    <FaYoutube className="mr-2 h-6 w-6 text-red-500" />
+                                    <span className="font-medium text-white">YouTube</span>
                                 </a>
                             </div>
 
-                            <div className="mx-auto grid max-w-[1000px] grid-cols-1 justify-items-center gap-8 xl:grid-cols-2">
+                            <div id="music-grid" className="mx-auto grid max-w-[1000px] grid-cols-1 justify-items-center gap-8 xl:grid-cols-2">
                                 {music.map((song) => (
                                     <div key={song.name} className="group">
                                         {/* Music Thumbnail */}
@@ -194,6 +197,55 @@ export default function Music() {
                                                         <span>{new Date(song.releaseDate + 'T00:00:00').getFullYear()}</span>
                                                     </>
                                                 )}
+                                            </div>
+
+                                            {/* Music Platform Buttons */}
+                                            <div className="mt-4 flex justify-center gap-3">
+                                                <a
+                                                    href={song.spotifyLink}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                                    title="Listen on Spotify"
+                                                >
+                                                    <FaSpotify className="h-8 w-8 text-green-400" />
+                                                </a>
+                                                <a
+                                                    href={song.appleMusicLink}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                                    title="Listen on Apple Music"
+                                                >
+                                                    <FaApple className="h-8 w-8 text-white" />
+                                                </a>
+                                                <a
+                                                    href={song.amazonMusicLink}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                                    title="Listen on Amazon Music"
+                                                >
+                                                    <SiAmazonmusic className="h-8 w-8 text-orange-400" />
+                                                </a>
+                                                <a
+                                                    href={song.deezerLink}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                                    title="Listen on Deezer"
+                                                >
+                                                    <FaDeezer className="h-8 w-8 text-blue-400" />
+                                                </a>
+                                                <a
+                                                    href={song.youTubeLink}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                                    title="Watch on YouTube"
+                                                >
+                                                    <FaYoutube className="h-8 w-8 text-red-500" />
+                                                </a>
                                             </div>
                                         </div>
                                     </div>

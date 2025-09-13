@@ -37,6 +37,10 @@ export interface Music {
     songLength?: number;
     albumName?: string;
     recordType?: string; // EP, Single, Album, etc.
+    spotifyLink: string;
+    appleMusicLink: string;
+    amazonMusicLink: string;
+    deezerLink: string;
 }
 
 const getClient = () => {
@@ -90,7 +94,11 @@ export async function getMusic(): Promise<Music[]> {
             secondaryColor: item.fields.secondaryColor as string,
             songLength: item.fields?.songLength as number,
             albumName: item.fields?.albumName as string,
-            recordType: item.fields?.recordType as string
+            recordType: item.fields?.recordType as string,
+            spotifyLink: item.fields.spotifyLink as string,
+            appleMusicLink: item.fields.appleMusicLink as string,
+            amazonMusicLink: item.fields.amazonMusicLink as string,
+            deezerLink: item.fields.deezerLink as string
         }));
     } catch (error) {
         console.error('Error fetching music:', error);
