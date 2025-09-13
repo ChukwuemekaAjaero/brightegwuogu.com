@@ -98,7 +98,7 @@ export default function SermonsPage() {
                     {/* Content */}
                     <div className="relative z-10 flex min-h-screen items-center justify-center">
                         <div className="container mx-auto px-4 text-center text-white sm:px-8">
-                            <h1 className={`mb-6 text-5xl font-bold ${modernizFont.className}`}>Sermons</h1>
+                            <h1 className={`mb-6 text-5xl font-bold md:text-8xl ${modernizFont.className}`}>Sermons</h1>
                             <p className="mb-8 text-xl">Inspiring messages of hope, faith, and transformation</p>
 
                             {/* Buttons */}
@@ -263,7 +263,7 @@ export default function SermonsPage() {
                                         href={sermon.youTubeLink}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="group block overflow-hidden transition-all duration-300 hover:scale-105"
+                                        className="group relative block overflow-hidden transition-all duration-300 hover:scale-105"
                                     >
                                         <div className="relative aspect-[4/5] overflow-hidden">
                                             {/* Image with scale and blur effect */}
@@ -276,12 +276,25 @@ export default function SermonsPage() {
                                                     className="object-cover transition-all duration-300 group-hover:scale-110 group-hover:blur-sm"
                                                 />
                                             )}
-                                            {/* Play Icon Overlay */}
-                                            <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                                                <div className="rounded-full border-4 border-white p-4">
-                                                    <svg className="h-20 w-20 text-white drop-shadow-lg" fill="currentColor" viewBox="0 0 24 24">
-                                                        <path d="M8 5v14l11-7z" />
-                                                    </svg>
+
+                                            {/* Description Overlay */}
+                                            <div className="absolute inset-0 bg-black/70 opacity-0 transition-all duration-300 group-hover:scale-110 group-hover:opacity-100">
+                                                <div className="flex h-full items-center justify-center p-4">
+                                                    {sermon.sermonDescription ? (
+                                                        <p className="text-center text-xs whitespace-pre-line text-white">
+                                                            {sermon.sermonDescription}
+                                                        </p>
+                                                    ) : (
+                                                        <div className="rounded-full border-4 border-white p-4">
+                                                            <svg
+                                                                className="h-20 w-20 text-white drop-shadow-lg"
+                                                                fill="currentColor"
+                                                                viewBox="0 0 24 24"
+                                                            >
+                                                                <path d="M8 5v14l11-7z" />
+                                                            </svg>
+                                                        </div>
+                                                    )}
                                                 </div>
                                             </div>
                                         </div>
@@ -308,7 +321,7 @@ export default function SermonsPage() {
                                 <div className="mt-12 text-center">
                                     <button
                                         onClick={loadMoreSermons}
-                                        className="group inline-flex items-center bg-white px-8 py-4 font-semibold text-black transition-all duration-300 hover:scale-105 hover:bg-gray-100"
+                                        className="group inline-flex items-center bg-red-700 px-8 py-4 font-semibold text-white transition-all duration-300 hover:bg-red-800 hover:text-white"
                                     >
                                         More
                                         <svg

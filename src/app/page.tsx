@@ -6,6 +6,8 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import { modernizFont } from '@/lib/utils';
 import { useMusic, useSermons } from '@/hooks/useContentful';
+import { FaApple, FaYoutube, FaSpotify, FaDeezer } from 'react-icons/fa';
+import { SiAmazonmusic } from 'react-icons/si';
 
 // Format date to "Year" format
 const formatDate = (dateString: string) => {
@@ -275,7 +277,7 @@ export default function HomePage() {
                                                         alt={song.name}
                                                         fill
                                                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                                                        className="object-cover transition-transform duration-300 group-hover:scale-105 group-hover:blur-sm"
+                                                        className="object-cover object-center transition-transform duration-300 group-hover:scale-105 group-hover:blur-sm"
                                                     />
                                                 )}
                                                 {/* Play Icon Overlay */}
@@ -303,6 +305,55 @@ export default function HomePage() {
                                                         <span>{formatDate(song.releaseDate)}</span>
                                                     </>
                                                 )}
+                                            </div>
+
+                                            {/* Streaming Service Buttons */}
+                                            <div className="mt-4 flex justify-center gap-3">
+                                                <a
+                                                    href={song.spotifyLink}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                                    title="Listen on Spotify"
+                                                >
+                                                    <FaSpotify className="h-6 w-6 text-green-400 md:h-8 md:w-8" />
+                                                </a>
+                                                <a
+                                                    href={song.appleMusicLink}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                                    title="Listen on Apple Music"
+                                                >
+                                                    <FaApple className="h-6 w-6 text-white md:h-8 md:w-8" />
+                                                </a>
+                                                <a
+                                                    href={song.amazonMusicLink}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                                    title="Listen on Amazon Music"
+                                                >
+                                                    <SiAmazonmusic className="h-6 w-6 text-orange-400 md:h-8 md:w-8" />
+                                                </a>
+                                                <a
+                                                    href={song.deezerLink}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                                    title="Listen on Deezer"
+                                                >
+                                                    <FaDeezer className="h-6 w-6 text-blue-400 md:h-8 md:w-8" />
+                                                </a>
+                                                <a
+                                                    href={song.youTubeLink}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                                    title="Watch on YouTube"
+                                                >
+                                                    <FaYoutube className="h-6 w-6 text-red-500 md:h-8 md:w-8" />
+                                                </a>
                                             </div>
                                         </div>
                                     </div>

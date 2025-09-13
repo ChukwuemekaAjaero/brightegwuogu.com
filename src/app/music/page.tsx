@@ -162,7 +162,7 @@ export default function Music() {
                                             rel="noopener noreferrer"
                                             className="group block overflow-hidden transition-all duration-300 hover:scale-105"
                                         >
-                                            <div className="relative aspect-square h-[300px] overflow-hidden sm:h-[500px]">
+                                            <div className="relative aspect-square h-[330px] overflow-hidden sm:h-[500px]">
                                                 {song.musicThumbnail?.fields?.file?.url && (
                                                     <Image
                                                         src={`https:${song.musicThumbnail.fields.file.url}`}
@@ -208,7 +208,7 @@ export default function Music() {
                                                     className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
                                                     title="Listen on Spotify"
                                                 >
-                                                    <FaSpotify className="h-8 w-8 text-green-400" />
+                                                    <FaSpotify className="h-6 w-6 text-green-400 md:h-8 md:w-8" />
                                                 </a>
                                                 <a
                                                     href={song.appleMusicLink}
@@ -217,7 +217,7 @@ export default function Music() {
                                                     className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
                                                     title="Listen on Apple Music"
                                                 >
-                                                    <FaApple className="h-8 w-8 text-white" />
+                                                    <FaApple className="h-6 w-6 text-white md:h-8 md:w-8" />
                                                 </a>
                                                 <a
                                                     href={song.amazonMusicLink}
@@ -226,7 +226,7 @@ export default function Music() {
                                                     className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
                                                     title="Listen on Amazon Music"
                                                 >
-                                                    <SiAmazonmusic className="h-8 w-8 text-orange-400" />
+                                                    <SiAmazonmusic className="h-6 w-6 text-orange-400 md:h-8 md:w-8" />
                                                 </a>
                                                 <a
                                                     href={song.deezerLink}
@@ -235,7 +235,7 @@ export default function Music() {
                                                     className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
                                                     title="Listen on Deezer"
                                                 >
-                                                    <FaDeezer className="h-8 w-8 text-blue-400" />
+                                                    <FaDeezer className="h-6 w-6 text-blue-400 md:h-8 md:w-8" />
                                                 </a>
                                                 <a
                                                     href={song.youTubeLink}
@@ -244,7 +244,7 @@ export default function Music() {
                                                     className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
                                                     title="Watch on YouTube"
                                                 >
-                                                    <FaYoutube className="h-8 w-8 text-red-500" />
+                                                    <FaYoutube className="h-6 w-6 text-red-500 md:h-8 md:w-8" />
                                                 </a>
                                             </div>
                                         </div>
