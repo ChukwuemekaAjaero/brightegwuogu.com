@@ -33,7 +33,8 @@ export default function Music() {
                     <div className="relative z-10 flex min-h-screen items-center justify-center">
                         <div className="text-center">
                             <h1 className={`text-6xl font-bold text-white md:text-8xl ${modernizFont.className}`}>No Other God</h1>
-                            <p className="mt-4 text-xl text-white">Out now on all platforms!</p>
+                            <p className="mt-4 text-2xl text-white">featuring Rhema Onuoha</p>
+                            <p className="mt-2 text-lg text-white/80">Out now on all platforms!</p>
 
                             {/* Buttons */}
                             <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
