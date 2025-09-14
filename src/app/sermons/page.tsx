@@ -183,8 +183,8 @@ export default function SermonsPage() {
                                     <button
                                         onClick={() => {
                                             setSearchQuery('');
-                                            setFromDate('');
-                                            setToDate('');
+                                            setFromDate(undefined);
+                                            setToDate(undefined);
                                         }}
                                         className="text-sm text-red-500 underline hover:text-red-300"
                                     >
