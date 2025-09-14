@@ -5,13 +5,14 @@ import Image from 'next/image';
 import { useSermons } from '@/hooks/useContentful';
 import { modernizFont } from '@/lib/utils';
 import { FaYoutube } from 'react-icons/fa';
+import { DatePicker } from '@/components/lib/DatePicker';
 
 export default function SermonsPage() {
     const { sermons, loading: sermonsLoading, error: sermonsError } = useSermons();
     const [visibleSermons, setVisibleSermons] = useState(10);
     const [searchQuery, setSearchQuery] = useState('');
-    const [fromDate, setFromDate] = useState('');
-    const [toDate, setToDate] = useState('');
+    const [fromDate, setFromDate] = useState<Date | undefined>(undefined);
+    const [toDate, setToDate] = useState<Date | undefined>(undefined);
     const [isLoading, setIsLoading] = useState(true);
 
     // Handle loading logic
@@ -50,11 +51,13 @@ export default function SermonsPage() {
         let matchesDateRange = true;
         if (fromDate || toDate) {
             if (fromDate) {
-                const from = new Date(fromDate + 'T00:00:00');
+                const from = new Date(fromDate);
+                from.setHours(0, 0, 0, 0);
                 matchesDateRange = matchesDateRange && sermonDate >= from;
             }
             if (toDate) {
-                const to = new Date(toDate + 'T23:59:59');
+                const to = new Date(toDate);
+                to.setHours(23, 59, 59, 999);
                 matchesDateRange = matchesDateRange && sermonDate <= to;
             }
         }
@@ -163,35 +166,15 @@ export default function SermonsPage() {
 
                             {/* Date Range Picker */}
                             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                                <div>
-                                    <label htmlFor="fromDate" className="mb-2 block text-sm font-medium text-gray-300">
-                                        From Date
-                                    </label>
-                                    <input
-                                        id="fromDate"
-                                        type="date"
-                                        value={fromDate}
-                                        onChange={(e) => setFromDate(e.target.value)}
-                                        onClick={(e) => e.currentTarget.showPicker()}
-                                        placeholder=""
-                                        className="w-full cursor-pointer border border-gray-600 bg-gray-800 px-4 py-3 text-white focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none [&::-webkit-calendar-picker-indicator]:invert"
-                                    />
-                                </div>
-                                <div>
-                                    <label htmlFor="toDate" className="mb-2 block text-sm font-medium text-gray-300">
-                                        To Date
-                                    </label>
-                                    <input
-                                        id="toDate"
-                                        type="date"
-                                        value={toDate}
-                                        onChange={(e) => setToDate(e.target.value)}
-                                        onClick={(e) => e.currentTarget.showPicker()}
-                                        placeholder=""
-                                        max={new Date().toISOString().split('T')[0]}
-                                        className="w-full cursor-pointer border border-gray-600 bg-gray-800 px-4 py-3 text-white focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none [&::-webkit-calendar-picker-indicator]:invert"
-                                    />
-                                </div>
+                                <DatePicker value={fromDate} onChange={setFromDate} placeholder="Select start date" label="From Date" id="fromDate" />
+                                <DatePicker
+                                    value={toDate}
+                                    onChange={setToDate}
+                                    placeholder="Select end date"
+                                    label="To Date"
+                                    id="toDate"
+                                    maxDate={new Date()}
+                                />
                             </div>
 
                             {/* Clear Filters Button */}
