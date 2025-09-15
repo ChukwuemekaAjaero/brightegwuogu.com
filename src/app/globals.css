@@ -123,6 +123,82 @@ html {
     body {
         @apply bg-background text-foreground;
     }
+
+    /* Force scrollbars to be visible on iOS */
+    html {
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+    }
+
+    /* Webkit scrollbar styling for iOS */
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: rgba(255, 255, 255, 0.5);
+    }
+
+    /* Force scrollbars to always be visible on iOS */
+    @media screen and (-webkit-min-device-pixel-ratio: 0) {
+        ::-webkit-scrollbar {
+            -webkit-appearance: none;
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            -webkit-appearance: none;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-track {
+            -webkit-appearance: none;
+            background: transparent;
+        }
+    }
+
+    /* Additional scrollbar styling for specific sections */
+    .scrollable-section {
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Ensure scrollbars are visible on mobile devices */
+    @media (max-width: 768px) {
+        html,
+        body {
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+
+        /* Force scrollbar visibility on mobile */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.1);
+        }
+    }
 }
 
 @keyframes zoom {
