@@ -7,7 +7,9 @@ import ConditionalCursor from '@/components/lib/ConditionalCursor';
 
 export const metadata: Metadata = {
     title: 'Bright Egwuogu',
-    description: 'Musician, pastor, husband, and father.'
+    description: 'Musician, pastor, husband, and father.',
+    themeColor: '#000000',
+    colorScheme: 'dark'
 };
 
 export default function RootLayout({
