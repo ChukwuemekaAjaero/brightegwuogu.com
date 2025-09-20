@@ -176,6 +176,15 @@ html {
         -webkit-overflow-scrolling: touch;
     }
 
+    /* Hide scrollbar utility */
+    .scrollbar-hide {
+        -ms-overflow-style: none; /* Internet Explorer 10+ */
+        scrollbar-width: none; /* Firefox */
+    }
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none; /* Safari and Chrome */
+    }
+
     /* Ensure scrollbars are visible on mobile devices */
     @media (max-width: 768px) {
         html,
