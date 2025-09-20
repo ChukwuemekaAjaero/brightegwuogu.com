@@ -222,29 +222,79 @@ export default function SermonsPage() {
                             {allTags.length > 0 && (
                                 <div className="space-y-3">
                                     <label className="block text-sm font-medium text-white">Filter by Tags</label>
-                                    <div className="flex flex-wrap gap-2">
-                                        {allTags.map((tag) => {
-                                            const isSelected = selectedTags.includes(tag);
-                                            return (
-                                                <button
-                                                    key={tag}
-                                                    onClick={() => {
-                                                        if (isSelected) {
-                                                            setSelectedTags(selectedTags.filter((t) => t !== tag));
-                                                        } else {
-                                                            setSelectedTags([...selectedTags, tag]);
-                                                        }
-                                                    }}
-                                                    className={`cursor-pointer rounded-full border px-3 py-1 text-sm transition-all duration-200 ${
-                                                        isSelected
-                                                            ? 'border-red-600 bg-red-600 text-white'
-                                                            : 'border-gray-600 bg-gray-800 text-gray-300 hover:border-red-500 hover:bg-red-600 hover:text-white'
-                                                    }`}
-                                                >
-                                                    {tag}
-                                                </button>
-                                            );
-                                        })}
+                                    <div className="flex items-center gap-2">
+                                        {/* Left Arrow Button */}
+                                        <button
+                                            onClick={() => {
+                                                const container = document.querySelector('.scrollbar-hide') as HTMLElement;
+                                                if (container) {
+                                                    container.scrollBy({ left: -200, behavior: 'smooth' });
+                                                }
+                                            }}
+                                            className="flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-full border border-gray-600 bg-gray-800 text-white transition-all duration-200 hover:border-red-500 hover:bg-red-600"
+                                        >
+                                            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                            </svg>
+                                        </button>
+
+                                        {/* Tags Container */}
+                                        <div
+                                            ref={(el) => {
+                                                if (el) {
+                                                    const scrollContainer = el;
+                                                    const scrollLeft = () => {
+                                                        scrollContainer.scrollBy({ left: -200, behavior: 'smooth' });
+                                                    };
+                                                    const scrollRight = () => {
+                                                        scrollContainer.scrollBy({ left: 200, behavior: 'smooth' });
+                                                    };
+
+                                                    // Store scroll functions on the element for button access
+                                                    (scrollContainer as any).scrollLeft = scrollLeft;
+                                                    (scrollContainer as any).scrollRight = scrollRight;
+                                                }
+                                            }}
+                                            className="scrollbar-hide flex flex-1 gap-2 overflow-x-auto mask-r-from-90% mask-l-from-90%"
+                                        >
+                                            {allTags.map((tag) => {
+                                                const isSelected = selectedTags.includes(tag);
+                                                return (
+                                                    <button
+                                                        key={tag}
+                                                        onClick={() => {
+                                                            if (isSelected) {
+                                                                setSelectedTags(selectedTags.filter((t) => t !== tag));
+                                                            } else {
+                                                                setSelectedTags([...selectedTags, tag]);
+                                                            }
+                                                        }}
+                                                        className={`cursor-pointer rounded-full border px-3 py-1 text-sm whitespace-nowrap transition-all duration-200 ${
+                                                            isSelected
+                                                                ? 'border-red-600 bg-red-600 text-white'
+                                                                : 'border-gray-600 bg-gray-800 text-gray-300 hover:border-red-500 hover:bg-red-600 hover:text-white'
+                                                        }`}
+                                                    >
+                                                        {tag}
+                                                    </button>
+                                                );
+                                            })}
+                                        </div>
+
+                                        {/* Right Arrow Button */}
+                                        <button
+                                            onClick={() => {
+                                                const container = document.querySelector('.scrollbar-hide') as HTMLElement;
+                                                if (container) {
+                                                    container.scrollBy({ left: 200, behavior: 'smooth' });
+                                                }
+                                            }}
+                                            className="flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-full border border-gray-600 bg-gray-800 text-white transition-all duration-200 hover:border-red-500 hover:bg-red-600"
+                                        >
+                                            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                            </svg>
+                                        </button>
                                     </div>
                                 </div>
                             )}
@@ -365,9 +415,22 @@ export default function SermonsPage() {
 
                                         {/* Sermon Info Below Thumbnail */}
                                         <div className="py-4">
-                                            <h3 className="mb-2 line-clamp-2 text-lg font-bold text-white transition-colors duration-300 group-hover:text-red-300">
+                                            <h3 className="mb-2 line-clamp-2 text-lg font-bold text-white transition-colors duration-300 group-hover:text-red-700">
                                                 {sermon.name}
                                             </h3>
+
+                                            {/* Sermon Tags */}
+                                            {sermon.sermonTags && sermon.sermonTags.length > 0 && (
+                                                <div className="mb-2 flex flex-wrap items-center gap-2 text-xs text-gray-300">
+                                                    {sermon.sermonTags.map((tag, index) => (
+                                                        <span key={index} className="flex items-center">
+                                                            {index > 0 && <span className="mr-2 text-gray-500">•</span>}
+                                                            {tag}
+                                                        </span>
+                                                    ))}
+                                                </div>
+                                            )}
+
                                             <p className="text-sm text-gray-300 transition-colors duration-300 group-hover:text-gray-200">
                                                 {new Date(sermon.sermonDate + 'T00:00:00').toLocaleDateString('en-US', {
                                                     month: 'short',
