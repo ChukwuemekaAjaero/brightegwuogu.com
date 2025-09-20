@@ -42,7 +42,7 @@ export function DatePicker({ value, onChange, placeholder = 'Select date', label
     return (
         <div className="flex flex-col gap-3">
             {label && (
-                <Label htmlFor={id} className="px-1">
+                <Label htmlFor={id} className="px-1 text-white">
                     {label}
                 </Label>
             )}

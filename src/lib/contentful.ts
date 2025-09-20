@@ -20,6 +20,7 @@ export interface Sermon {
     name: string;
     sermonDate: string;
     sermonDescription: string;
+    sermonTags: string[];
     youTubeLink: string;
     thumbnailImage: Asset;
 }
@@ -62,7 +63,8 @@ export async function getSermons(): Promise<Sermon[]> {
             sermonDate: item.fields.sermonDate as string,
             youTubeLink: item.fields.youTubeLink as string,
             thumbnailImage: item.fields.thumbnailImage as Asset,
-            sermonDescription: item.fields.sermonDescription as string
+            sermonDescription: item.fields.sermonDescription as string,
+            sermonTags: item.fields.sermonTags as string[]
         }));
     } catch (error) {
         console.error('Error fetching sermons:', error);

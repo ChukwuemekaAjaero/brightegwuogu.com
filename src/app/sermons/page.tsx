@@ -13,6 +13,7 @@ export default function SermonsPage() {
     const [searchQuery, setSearchQuery] = useState('');
     const [fromDate, setFromDate] = useState<Date | undefined>(undefined);
     const [toDate, setToDate] = useState<Date | undefined>(undefined);
+    const [selectedTags, setSelectedTags] = useState<string[]>([]);
     const [isLoading, setIsLoading] = useState(true);
 
     // Handle loading logic
@@ -26,7 +27,15 @@ export default function SermonsPage() {
         setVisibleSermons((prev) => prev + 5);
     };
 
-    // Filter sermons based on search query and date range
+    // Extract unique tags from all sermons
+    const getAllTags = () => {
+        const allTags = sermons.flatMap((sermon) => sermon.sermonTags || []);
+        return Array.from(new Set(allTags)).sort();
+    };
+
+    const allTags = getAllTags();
+
+    // Filter sermons based on search query, date range, and tags
     const filteredSermons = sermons.filter((sermon) => {
         const sermonDate = new Date(sermon.sermonDate + 'T00:00:00');
 
@@ -62,7 +71,14 @@ export default function SermonsPage() {
             }
         }
 
-        return matchesText && matchesDateRange;
+        // Tag filter
+        let matchesTags = true;
+        if (selectedTags.length > 0) {
+            const sermonTags = sermon.sermonTags || [];
+            matchesTags = selectedTags.some((tag) => sermonTags.includes(tag));
+        }
+
+        return matchesText && matchesDateRange && matchesTags;
     });
 
     // Update visible sermons when search changes
@@ -132,6 +148,31 @@ export default function SermonsPage() {
                     {/* SEARCH COMPONENT */}
                     <div className="mx-auto mb-12 max-w-4xl px-4 sm:px-8">
                         <div className="space-y-6">
+                            {/* Clear Filters Button - Mobile Only */}
+                            {(searchQuery || fromDate || toDate || selectedTags.length > 0) && (
+                                <div className="text-center sm:hidden">
+                                    <button
+                                        onClick={() => {
+                                            setSearchQuery('');
+                                            setFromDate(undefined);
+                                            setToDate(undefined);
+                                            setSelectedTags([]);
+                                        }}
+                                        className="group inline-flex items-center bg-red-700 px-8 py-4 font-semibold text-white transition-all duration-300 hover:bg-red-800 hover:text-white"
+                                    >
+                                        Clear filters
+                                        <svg
+                                            className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
+                                    </button>
+                                </div>
+                            )}
+
                             {/* Text Search */}
                             <div className="relative">
                                 <div className="absolute inset-y-0 left-0 flex items-center pl-3">
@@ -177,24 +218,64 @@ export default function SermonsPage() {
                                 />
                             </div>
 
-                            {/* Clear Filters Button */}
-                            {(searchQuery || fromDate || toDate) && (
-                                <div className="text-center">
+                            {/* Tags Filter */}
+                            {allTags.length > 0 && (
+                                <div className="space-y-3">
+                                    <label className="block text-sm font-medium text-white">Filter by Tags</label>
+                                    <div className="flex flex-wrap gap-2">
+                                        {allTags.map((tag) => {
+                                            const isSelected = selectedTags.includes(tag);
+                                            return (
+                                                <button
+                                                    key={tag}
+                                                    onClick={() => {
+                                                        if (isSelected) {
+                                                            setSelectedTags(selectedTags.filter((t) => t !== tag));
+                                                        } else {
+                                                            setSelectedTags([...selectedTags, tag]);
+                                                        }
+                                                    }}
+                                                    className={`cursor-pointer rounded-full border px-3 py-1 text-sm transition-all duration-200 ${
+                                                        isSelected
+                                                            ? 'border-red-600 bg-red-600 text-white'
+                                                            : 'border-gray-600 bg-gray-800 text-gray-300 hover:border-red-500 hover:bg-red-600 hover:text-white'
+                                                    }`}
+                                                >
+                                                    {tag}
+                                                </button>
+                                            );
+                                        })}
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Clear Filters Button - Desktop Only */}
+                            {(searchQuery || fromDate || toDate || selectedTags.length > 0) && (
+                                <div className="hidden text-center sm:block">
                                     <button
                                         onClick={() => {
                                             setSearchQuery('');
                                             setFromDate(undefined);
                                             setToDate(undefined);
+                                            setSelectedTags([]);
                                         }}
-                                        className="text-sm text-red-500 underline hover:text-red-300"
+                                        className="group inline-flex items-center bg-red-700 px-8 py-4 font-semibold text-white transition-all duration-300 hover:bg-red-800 hover:text-white"
                                     >
-                                        Clear all filters
+                                        Clear filters
+                                        <svg
+                                            className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                                        </svg>
                                     </button>
                                 </div>
                             )}
 
                             {/* Results Count */}
-                            {(searchQuery || fromDate || toDate) && (
+                            {(searchQuery || fromDate || toDate || selectedTags.length > 0) && (
                                 <p className="text-center text-sm text-gray-400">
                                     {filteredSermons.length} sermon{filteredSermons.length !== 1 ? 's' : ''} found
                                 </p>

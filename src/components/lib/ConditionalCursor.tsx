@@ -6,6 +6,7 @@ import CustomCursor from './CustomCursor';
 const ConditionalCursor: React.FC = () => {
     const [isTouchDevice, setIsTouchDevice] = useState<boolean>(false);
     const [isClient, setIsClient] = useState<boolean>(false);
+    const [shouldRender, setShouldRender] = useState<boolean>(false);
 
     useEffect(() => {
         // Set client-side flag
@@ -15,13 +16,17 @@ const ConditionalCursor: React.FC = () => {
         const checkTouchDevice = () => {
             const hasTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
             setIsTouchDevice(hasTouch);
+
+            // Only render cursor if we're on client and not a touch device
+            setShouldRender(!hasTouch);
         };
 
         checkTouchDevice();
     }, []);
 
-    // Don't render on server or touch devices
-    if (!isClient || isTouchDevice) {
+    // Always return null on server-side to prevent hydration mismatch
+    // Only render on client after useEffect runs
+    if (!isClient || !shouldRender) {
         return null;
     }
 
