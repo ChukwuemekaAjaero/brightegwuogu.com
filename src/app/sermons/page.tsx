@@ -242,7 +242,7 @@ export default function SermonsPage() {
                                         <div
                                             ref={(el) => {
                                                 if (el) {
-                                                    const scrollContainer = el;
+                                                    const scrollContainer = el as HTMLElement;
                                                     const scrollLeft = () => {
                                                         scrollContainer.scrollBy({ left: -200, behavior: 'smooth' });
                                                     };
@@ -251,8 +251,12 @@ export default function SermonsPage() {
                                                     };
 
                                                     // Store scroll functions on the element for button access
-                                                    (scrollContainer as any).scrollLeft = scrollLeft;
-                                                    (scrollContainer as any).scrollRight = scrollRight;
+                                                    (
+                                                        scrollContainer as HTMLElement & { scrollLeftFn: () => void; scrollRightFn: () => void }
+                                                    ).scrollLeftFn = scrollLeft;
+                                                    (
+                                                        scrollContainer as HTMLElement & { scrollLeftFn: () => void; scrollRightFn: () => void }
+                                                    ).scrollRightFn = scrollRight;
                                                 }
                                             }}
                                             className="scrollbar-hide flex flex-1 gap-2 overflow-x-auto mask-r-from-90% mask-l-from-90%"
