@@ -14,6 +14,8 @@ const formatDate = (dateString: string) => {
     // Handle date string parsing to avoid timezone issues
     const date = new Date(dateString + 'T00:00:00');
     return date.toLocaleDateString('en-US', {
+        month: 'short',
+        day: 'numeric',
         year: 'numeric'
     });
 };
@@ -26,6 +28,10 @@ export default function HomePage() {
     const [activeSection, setActiveSection] = useState('hero');
     const { music, loading: musicLoading, error: musicError } = useMusic();
     const { sermons, loading: sermonsLoading, error: sermonsError } = useSermons();
+
+    // Text carousel state
+    const carouselTexts = ['Bright Egwuogu', 'Pastor', 'Musician'];
+    const [currentTextIndex, setCurrentTextIndex] = useState(0);
 
     useEffect(() => {
         const sections = ['hero', 'about-me', 'gallery', 'music', 'sermons'];
@@ -50,6 +56,15 @@ export default function HomePage() {
 
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
+
+    // Text carousel effect
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setCurrentTextIndex((prevIndex) => (prevIndex + 1) % carouselTexts.length);
+        }, 5000); // Change text every 3 seconds
+
+        return () => clearInterval(interval);
+    }, [carouselTexts.length]);
 
     return (
         <div className="relative scroll-smooth">
@@ -167,10 +182,43 @@ export default function HomePage() {
                 <div className="absolute inset-0 z-10 bg-black/30"></div>
 
                 {/* Text content */}
-                <div className="container flex h-full w-full items-end justify-start px-4 sm:px-8">
-                    <h1 className={`relative z-20 max-w-[300px] text-xl font-bold text-white sm:max-w-[600px] sm:text-4xl ${modernizFont.className}`}>
-                        On a mission to know Christ deeply, make Him known, use my gifts to advance His kingdom.
-                    </h1>
+                <div className="relative z-10 flex min-h-screen items-center justify-center">
+                    <div className="container mx-auto px-4 text-center text-white sm:px-8">
+                        <motion.h1
+                            key={currentTextIndex}
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -20 }}
+                            transition={{ duration: 0.5, ease: 'easeInOut' }}
+                            className={`mb-6 text-5xl font-bold md:text-8xl ${modernizFont.className}`}
+                        >
+                            {carouselTexts[currentTextIndex]}
+                        </motion.h1>
+                        <p className="mb-8 text-xl">On a mission to know Christ deeply, make Him known, use my gifts to advance His kingdom.</p>
+
+                        {/* Scroll Down Animation */}
+                        <motion.div
+                            className="mt-12 flex flex-col items-center"
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 1, duration: 0.8 }}
+                        >
+                            <span className="mb-2 text-sm text-white/80">Scroll down</span>
+                            <motion.div
+                                animate={{ y: [0, 8, 0] }}
+                                transition={{
+                                    duration: 2,
+                                    repeat: Infinity,
+                                    ease: 'easeInOut'
+                                }}
+                                className="text-white/60"
+                            >
+                                <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                                </svg>
+                            </motion.div>
+                        </motion.div>
+                    </div>
                 </div>
             </section>
 
@@ -457,6 +505,22 @@ export default function HomePage() {
                                             <h3 className="mb-2 line-clamp-2 text-lg font-bold text-white transition-colors duration-300">
                                                 {sermon.name}
                                             </h3>
+
+                                            {/* Sermon Tags */}
+                                            {sermon.sermonTags && sermon.sermonTags.length > 0 && (
+                                                <div className="mb-2 flex flex-wrap items-center gap-1 text-xs text-gray-400">
+                                                    {sermon.sermonTags.slice(0, 3).map((tag, index) => (
+                                                        <span key={index} className="flex items-center">
+                                                            {index > 0 && <span className="mr-1 text-gray-500">•</span>}
+                                                            {tag}
+                                                        </span>
+                                                    ))}
+                                                    {sermon.sermonTags.length > 3 && (
+                                                        <span className="text-gray-500">+{sermon.sermonTags.length - 3} more</span>
+                                                    )}
+                                                </div>
+                                            )}
+
                                             <p className="text-sm text-gray-300 transition-colors duration-300">{formatDate(sermon.sermonDate)}</p>
                                         </div>
                                     </a>
