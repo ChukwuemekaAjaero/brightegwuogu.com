@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, useInView } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import { modernizFont } from '@/lib/utils';
 import { useMusic, useSermons } from '@/hooks/useContentful';
@@ -32,6 +32,16 @@ export default function HomePage() {
     // Text carousel state
     const carouselTexts = ['Bright Egwuogu', 'Pastor', 'Musician'];
     const [currentTextIndex, setCurrentTextIndex] = useState(0);
+
+    // Section refs for scroll-triggered animations
+    const aboutMeRef = useRef(null);
+    const aboutMeInView = useInView(aboutMeRef, { once: true, margin: '-100px' });
+
+    const musicRef = useRef(null);
+    const musicInView = useInView(musicRef, { once: true, margin: '-100px' });
+
+    const sermonsRef = useRef(null);
+    const sermonsInView = useInView(sermonsRef, { once: true, margin: '-100px' });
 
     useEffect(() => {
         const sections = ['hero', 'about-me', 'gallery', 'music', 'sermons'];
@@ -194,14 +204,21 @@ export default function HomePage() {
                         >
                             {carouselTexts[currentTextIndex]}
                         </motion.h1>
-                        <p className="mb-8 text-xl">On a mission to know Christ deeply, make Him known, use my gifts to advance His kingdom.</p>
+                        <motion.p
+                            className="mb-8 text-xl"
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.25, duration: 0.8 }}
+                        >
+                            On a mission to know Christ deeply, make Him known, use my gifts to advance His kingdom.
+                        </motion.p>
 
                         {/* Scroll Down Animation */}
                         <motion.div
                             className="mt-12 flex flex-col items-center"
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 1, duration: 0.8 }}
+                            transition={{ delay: 0.5, duration: 0.8 }}
                         >
                             <span className="mb-2 text-sm text-white/80">Scroll down</span>
                             <motion.div
@@ -223,7 +240,7 @@ export default function HomePage() {
             </section>
 
             {/* ABOUT ME SECTION */}
-            <section id="about-me" className="flex min-h-screen justify-center bg-black transition-colors duration-300">
+            <section id="about-me" ref={aboutMeRef} className="flex min-h-screen justify-center bg-black transition-colors duration-300">
                 <div className="container h-max px-4 sm:px-8">
                     <div className="flex h-max flex-col items-center gap-8 lg:flex-row">
                         {/* Image Content - First on mobile, second on desktop */}
@@ -233,7 +250,7 @@ export default function HomePage() {
                                 alt="About Me Image"
                                 fill
                                 sizes="(max-width: 1024px) 100vw, 60vw"
-                                className="mask-t-from-70% mask-r-from-95% mask-l-from-95% object-cover object-[65%_50%] transition-all duration-300 group-hover:scale-105 lg:mask-l-from-100%"
+                                className="object-cover object-[65%_50%] transition-all duration-300 group-hover:scale-105 lg:mask-l-from-100%"
                             />
                             {/* Black overlay */}
                             <div className="absolute inset-0 bg-black opacity-0 transition-opacity duration-300 group-hover:opacity-30"></div>
@@ -241,8 +258,20 @@ export default function HomePage() {
 
                         {/* Text Content - Second on mobile, first on desktop */}
                         <div className="w-full lg:order-1 lg:w-[40%]">
-                            <h1 className={`text-6xl font-bold text-white ${modernizFont.className} mb-8`}>About Me</h1>
-                            <p className="xs:py-0 py-4 text-white md:text-lg">
+                            <motion.h1
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={aboutMeInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
+                                transition={{ delay: 0.25, duration: 0.8, ease: 'easeOut' }}
+                                className={`text-6xl font-bold text-white ${modernizFont.className} mb-8`}
+                            >
+                                About Me
+                            </motion.h1>
+                            <motion.p
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={aboutMeInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
+                                transition={{ delay: 0.5, duration: 0.8, ease: 'easeOut' }}
+                                className="xs:py-0 py-4 text-white md:text-lg"
+                            >
                                 Bright Egwuogu serves as a pastor at Celebration Church International, a global apostolic ministry under the
                                 leadership of Apostle Emmanuel Iren, committed to the vision of guiding all individuals to celebrate eternal life in
                                 Christ Jesus. He currently fulfills the role of resident pastor at the Toronto campus, where he is dedicated to
@@ -256,7 +285,7 @@ export default function HomePage() {
                                 Residing in Toronto, Canada, P.B. balances his pastoral and musical callings with a career as a cybersecurity
                                 professional serving the financial, retail, and insurance sectors. He is married to his supportive wife, Ibiye, and
                                 together they are blessed with a son.
-                            </p>
+                            </motion.p>
                         </div>
                     </div>
                 </div>
@@ -286,13 +315,27 @@ export default function HomePage() {
             </section>
 
             {/* MUSIC PREVIEW SECTION */}
-            <section id="music" className="bg-black px-4 sm:px-8">
+            <section id="music" ref={musicRef} className="bg-black px-4 sm:px-8">
                 <div className="container mx-auto sm:px-8">
                     <div className="h-max py-20">
                         <div className="mb-12 text-center">
-                            <h1 className={`text-6xl font-bold text-white ${modernizFont.className}`}>Music</h1>
+                            <motion.h1
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={musicInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
+                                transition={{ delay: 0.25, duration: 0.8, ease: 'easeOut' }}
+                                className={`text-6xl font-bold text-white ${modernizFont.className}`}
+                            >
+                                Music
+                            </motion.h1>
                             <br />
-                            <p className="text-white">Discover the latest songs of hope, faith, and inspiration.</p>
+                            <motion.p
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={musicInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
+                                transition={{ delay: 0.5, duration: 0.8, ease: 'easeOut' }}
+                                className="text-white"
+                            >
+                                Discover the latest songs of hope, faith, and inspiration.
+                            </motion.p>
                         </div>
                         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                             {musicLoading ? (
@@ -429,13 +472,27 @@ export default function HomePage() {
             </section>
 
             {/* SERMONS PREVIEW SECTION */}
-            <section id="sermons" className="bg-black px-4 sm:px-8">
+            <section id="sermons" ref={sermonsRef} className="bg-black px-4 sm:px-8">
                 <div className="container mx-auto sm:px-8">
                     <div className="h-max py-20">
                         <div className="mb-12 text-center">
-                            <h1 className={`text-4xl font-bold text-white sm:text-5xl md:text-6xl ${modernizFont.className}`}>Sermons</h1>
+                            <motion.h1
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={sermonsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
+                                transition={{ delay: 0.25, duration: 0.8, ease: 'easeOut' }}
+                                className={`text-4xl font-bold text-white sm:text-5xl md:text-6xl ${modernizFont.className}`}
+                            >
+                                Sermons
+                            </motion.h1>
                             <br />
-                            <p className="text-white">Discover the latest messages of hope, faith, and inspiration.</p>
+                            <motion.p
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={sermonsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
+                                transition={{ delay: 0.5, duration: 0.8, ease: 'easeOut' }}
+                                className="text-white"
+                            >
+                                Discover the latest messages of hope, faith, and inspiration.
+                            </motion.p>
                         </div>
                         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
                             {sermonsLoading ? (
@@ -510,8 +567,8 @@ export default function HomePage() {
                                             {sermon.sermonTags && sermon.sermonTags.length > 0 && (
                                                 <div className="mb-2 flex flex-wrap items-center gap-1 text-xs text-gray-400">
                                                     {sermon.sermonTags.slice(0, 3).map((tag, index) => (
-                                                        <span key={index} className="flex items-center">
-                                                            {index > 0 && <span className="mr-1 text-gray-500">•</span>}
+                                                        <span key={index} className="flex items-center text-sm">
+                                                            {index > 0 && <span className="mr-1 text-sm text-gray-500">•</span>}
                                                             {tag}
                                                         </span>
                                                     ))}

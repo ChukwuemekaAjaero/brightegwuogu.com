@@ -397,7 +397,7 @@ export default function SermonsPage() {
 
                                             {/* Description Overlay */}
                                             <div className="absolute inset-0 bg-black/70 opacity-0 transition-all duration-300 group-hover:scale-110 group-hover:opacity-100">
-                                                <div className="flex h-full items-center justify-center p-4">
+                                                <div className="flex h-full items-center justify-center p-8">
                                                     {sermon.sermonDescription ? (
                                                         <p className="text-center text-xs whitespace-pre-line text-white">
                                                             {sermon.sermonDescription}
