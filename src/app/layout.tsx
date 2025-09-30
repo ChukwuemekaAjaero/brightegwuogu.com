@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={`${ubisoftSansFont.className}`}>
+            <body className={`${ubisoftSansFont.className}`} suppressHydrationWarning={true}>
                 <div className="relative">
                     <NavigationHeader />
                     {children}

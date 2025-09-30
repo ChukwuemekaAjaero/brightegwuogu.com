@@ -8,6 +8,7 @@ import { modernizFont } from '@/lib/utils';
 import { useMusic, useSermons } from '@/hooks/useContentful';
 import { FaApple, FaYoutube, FaSpotify, FaDeezer } from 'react-icons/fa';
 import { SiAmazonmusic } from 'react-icons/si';
+import { TypingEffectText } from '@/components/lib/TypingEffectText';
 
 // Format date to "Year" format
 const formatDate = (dateString: string) => {
@@ -71,7 +72,7 @@ export default function HomePage() {
     useEffect(() => {
         const interval = setInterval(() => {
             setCurrentTextIndex((prevIndex) => (prevIndex + 1) % carouselTexts.length);
-        }, 5000); // Change text every 3 seconds
+        }, 3000); // Change text every 3 seconds
 
         return () => clearInterval(interval);
     }, [carouselTexts.length]);
@@ -194,16 +195,16 @@ export default function HomePage() {
                 {/* Text content */}
                 <div className="relative z-10 flex min-h-screen items-center justify-center">
                     <div className="container mx-auto px-4 text-center text-white sm:px-8">
-                        <motion.h1
+                        <motion.div
                             key={currentTextIndex}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
                             exit={{ opacity: 0, y: -20 }}
                             transition={{ duration: 0.5, ease: 'easeInOut' }}
-                            className={`mb-6 text-5xl font-bold md:text-8xl ${modernizFont.className}`}
+                            className={`mb-6 ${modernizFont.className}`}
                         >
-                            {carouselTexts[currentTextIndex]}
-                        </motion.h1>
+                            <TypingEffectText text={carouselTexts[currentTextIndex]} />
+                        </motion.div>
                         <motion.p
                             className="mb-8 text-xl"
                             initial={{ opacity: 0, y: 10 }}
