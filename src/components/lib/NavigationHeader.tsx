@@ -27,7 +27,7 @@ export default function NavigationHeader() {
                 </Link>
 
                 {/* Navigation Links - Centered in viewport */}
-                <div className="absolute top-1/2 left-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center gap-6">
+                <div className="absolute top-1/2 left-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center gap-2 md:gap-8">
                     <Link
                         href="/about"
                         className={`px-4 py-2 font-medium no-underline transition-all duration-200 hover:bg-white/20 hover:text-red-500 ${
