@@ -1,16 +1,11 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Link from 'next/link';
-import { useState } from 'react';
-import { FaYoutube } from 'react-icons/fa';
-import { AiFillInstagram } from 'react-icons/ai';
-import { modernizFont } from '@/lib/utils';
 
 const DURATION = 0.25;
 const STAGGER = 0.025;
 
-const FlipLink = ({ children, href }) => {
+export const FlipLink = ({ children, href }: { children: string; href: string }) => {
     return (
         <motion.a
             initial="initial"
