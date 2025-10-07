@@ -249,16 +249,16 @@ export default function HomePage() {
                         </div>
                     </div>
                 </div>
-                <div className="relative mt-8 flex flex-wrap justify-center gap-4">
+                <div className="relative mx-auto mt-8">
                     <ParallaxImg
-                        className="z-1 h-64 w-64 object-cover"
+                        className="z-1 w-2/3 object-cover md:w-5/12"
                         src="/images/homeGallery/heroImage1.jpg"
                         alt="About Me Image 1"
                         start={30}
                         end={20}
                     />
                     <ParallaxImg
-                        className="h-64 w-64 object-cover"
+                        className="absolute right-0 z-3 w-1/3 object-cover md:right-24"
                         src="/images/homeGallery/heroImage2.jpg"
                         alt="About Me Image 2"
                         start={40}

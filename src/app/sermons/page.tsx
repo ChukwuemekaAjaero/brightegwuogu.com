@@ -374,7 +374,7 @@ export default function SermonsPage() {
                     ) : (
                         // Sermons grid
                         <div className="container mx-auto px-4 sm:px-8">
-                            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+                            <div className="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
                                 {displaySermons.map((sermon) => (
                                     <a
                                         key={sermon.name}
