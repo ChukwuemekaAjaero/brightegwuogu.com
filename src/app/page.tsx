@@ -7,8 +7,10 @@ import { useRef, useState, useEffect } from 'react';
 import { modernizFont } from '@/lib/utils';
 import { useMusic, useSermons } from '@/hooks/useContentful';
 import { FaApple, FaYoutube, FaSpotify, FaDeezer } from 'react-icons/fa';
+import { FiArrowRight, FiArrowDown } from 'react-icons/fi';
 import { SiAmazonmusic } from 'react-icons/si';
 import { TypingEffectText } from '@/components/lib/TypingEffectText';
+import { ParallaxImg } from '@/components/lib/ParallaxImg';
 
 // Format date to "Year" format
 const formatDate = (dateString: string) => {
@@ -22,10 +24,6 @@ const formatDate = (dateString: string) => {
 };
 
 export default function HomePage() {
-    const targetRef = useRef(null);
-    const { scrollYProgress } = useScroll({ target: targetRef });
-    const x = useTransform(scrollYProgress, [0, 1], ['0%', '-50%']);
-    const imageCount = 7;
     const [activeSection, setActiveSection] = useState('hero');
     const { music, loading: musicLoading, error: musicError } = useMusic();
     const { sermons, loading: sermonsLoading, error: sermonsError } = useSermons();
@@ -45,7 +43,7 @@ export default function HomePage() {
     const sermonsInView = useInView(sermonsRef, { once: true, margin: '-100px' });
 
     useEffect(() => {
-        const sections = ['hero', 'about-me', 'gallery', 'music', 'sermons'];
+        const sections = ['hero', 'about-me', 'music', 'sermons'];
 
         const handleScroll = () => {
             const scrollPosition = window.scrollY + 100; // Offset for better detection
@@ -100,14 +98,6 @@ export default function HomePage() {
                             About Me
                         </a>
                         <a
-                            href="#gallery"
-                            className={`block px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-red-800 hover:text-white ${
-                                activeSection === 'gallery' ? 'bg-red-700 text-white' : 'text-white'
-                            }`}
-                        >
-                            Gallery
-                        </a>
-                        <a
                             href="#music"
                             className={`block px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-red-800 hover:text-white ${
                                 activeSection === 'music' ? 'bg-red-700 text-white' : 'text-white'
@@ -146,14 +136,6 @@ export default function HomePage() {
                             }`}
                         >
                             About
-                        </a>
-                        <a
-                            href="#gallery"
-                            className={`rounded px-3 py-2 text-xs font-medium transition-colors duration-200 hover:bg-red-800 hover:text-white ${
-                                activeSection === 'gallery' ? 'bg-red-700 text-white' : 'text-white'
-                            }`}
-                        >
-                            Gallery
                         </a>
                         <a
                             href="#music"
@@ -231,9 +213,7 @@ export default function HomePage() {
                                 }}
                                 className="text-white/60"
                             >
-                                <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                                </svg>
+                                <FiArrowDown className="h-6 w-6" />
                             </motion.div>
                         </motion.div>
                     </div>
@@ -241,77 +221,25 @@ export default function HomePage() {
             </section>
 
             {/* ABOUT ME SECTION */}
-            <section id="about-me" ref={aboutMeRef} className="flex min-h-screen justify-center bg-black transition-colors duration-300">
-                <div className="container h-max px-4 sm:px-8">
-                    <div className="flex h-max flex-col items-center gap-8 lg:flex-row">
-                        {/* Image Content - First on mobile, second on desktop */}
-                        <div className="group relative min-h-[50vh] w-full overflow-hidden lg:order-2 lg:min-h-[100vh] lg:w-[60%]">
-                            <Image
-                                src="/images/aboutMeImage.jpg"
-                                alt="About Me Image"
-                                fill
-                                sizes="(max-width: 1024px) 100vw, 60vw"
-                                className="object-cover object-[65%_50%] transition-all duration-300 group-hover:scale-105 lg:mask-l-from-100%"
-                            />
-                            {/* Black overlay */}
-                            <div className="absolute inset-0 bg-black opacity-0 transition-opacity duration-300 group-hover:opacity-30"></div>
-                        </div>
-
-                        {/* Text Content - Second on mobile, first on desktop */}
-                        <div className="w-full lg:order-1 lg:w-[40%]">
-                            <motion.h1
-                                initial={{ opacity: 0, y: 30 }}
-                                animate={aboutMeInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
-                                transition={{ delay: 0.25, duration: 0.8, ease: 'easeOut' }}
-                                className={`text-6xl font-bold text-white ${modernizFont.className} mb-8`}
+            <section id="about-me" ref={aboutMeRef} className="relative h-[400vh] overflow-visible bg-black">
+                <div className="sticky top-0 flex h-[100vh] items-center justify-center bg-orange-500 text-center">
+                    <div>
+                        <h1 className={`text-6xl font-bold text-white ${modernizFont.className}`}>About Me</h1>
+                        <p className="mt-8 max-w-2xl text-lg text-white md:text-xl">
+                            Bright Egwuogu, known as P.B., is a Toronto-based pastor at Celebration Church International and a passionate contemporary
+                            Christian musician whose songs inspire audiences globally. He balances ministry and music with a career in cybersecurity
+                            across various industries, and enjoys life with his wife Ibiye and their son.
+                        </p>
+                        <div className="mt-12">
+                            <Link
+                                href="/about"
+                                className="group inline-flex items-center bg-red-700 px-8 py-4 font-semibold text-white transition-all duration-300 hover:bg-red-800 hover:text-white"
                             >
-                                About Me
-                            </motion.h1>
-                            <motion.p
-                                initial={{ opacity: 0, y: 30 }}
-                                animate={aboutMeInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
-                                transition={{ delay: 0.5, duration: 0.8, ease: 'easeOut' }}
-                                className="xs:py-0 py-4 text-white md:text-lg"
-                            >
-                                Bright Egwuogu serves as a pastor at Celebration Church International, a global apostolic ministry under the
-                                leadership of Apostle Emmanuel Iren, committed to the vision of guiding all individuals to celebrate eternal life in
-                                Christ Jesus. He currently fulfills the role of resident pastor at the Toronto campus, where he is dedicated to
-                                fostering spiritual growth among believers.
-                                <br />
-                                <br />
-                                Affectionately known as P.B., he is also an accomplished musician with a collection of contemporary Christian songs
-                                that have positively impacted thousands worldwide.
-                                <br />
-                                <br />
-                                Residing in Toronto, Canada, P.B. balances his pastoral and musical callings with a career as a cybersecurity
-                                professional serving the financial, retail, and insurance sectors. He is married to his supportive wife, Ibiye, and
-                                together they are blessed with a son.
-                            </motion.p>
+                                Learn More
+                                <FiArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-2" />
+                            </Link>
                         </div>
                     </div>
-                </div>
-            </section>
-
-            {/* GALLERY SECTION */}
-            <section id="gallery" ref={targetRef} className="relative h-[300vh] min-h-screen bg-black">
-                <div className="sticky top-0 z-10 overflow-hidden">
-                    <motion.div style={{ x }} className="flex w-max">
-                        {Array.from({ length: imageCount }, (_, i) => `${i + 1}`).map((_, index) => (
-                            <div
-                                key={index}
-                                className={`group relative h-[100vh] w-[80vh] flex-shrink-0 overflow-hidden ${index === imageCount - 1 ? 'mask-r-from-90%' : ''}`}
-                            >
-                                <Image
-                                    src={`/images/homeGallery/heroImage${index + 1}.jpg`}
-                                    alt={`Gallery Image ${index + 1}`}
-                                    fill
-                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                                    className="scale-102 mask-b-from-90% object-contain transition-all group-hover:scale-105"
-                                />
-                                <div className="pointer-events-none absolute inset-0 bg-black/0 transition-all duration-300 group-hover:bg-black/30" />
-                            </div>
-                        ))}
-                    </motion.div>
                 </div>
             </section>
 
@@ -458,14 +386,7 @@ export default function HomePage() {
                                 className="group inline-flex items-center bg-red-700 px-8 py-4 font-semibold text-white transition-all duration-300 hover:bg-red-800 hover:text-white"
                             >
                                 More
-                                <svg
-                                    className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                </svg>
+                                <FiArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-2" />
                             </Link>
                         </div>
                     </div>
@@ -591,14 +512,7 @@ export default function HomePage() {
                                 className="group inline-flex items-center bg-red-700 px-8 py-4 font-semibold text-white transition-all duration-300 hover:bg-red-800 hover:text-white"
                             >
                                 More
-                                <svg
-                                    className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-1"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                </svg>
+                                <FiArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-2" />
                             </Link>
                         </div>
                     </div>

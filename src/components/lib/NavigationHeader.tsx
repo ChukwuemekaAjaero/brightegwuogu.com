@@ -29,6 +29,14 @@ export default function NavigationHeader() {
                 {/* Navigation Links - Centered in viewport */}
                 <div className="absolute top-1/2 left-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center gap-6">
                     <Link
+                        href="/about"
+                        className={`px-4 py-2 font-medium no-underline transition-all duration-200 hover:bg-white/20 hover:text-red-500 ${
+                            pathname === '/about' ? 'text-red-500' : 'text-white'
+                        }`}
+                    >
+                        About
+                    </Link>
+                    <Link
                         href="/music"
                         className={`px-4 py-2 font-medium no-underline transition-all duration-200 hover:bg-white/20 hover:text-red-500 ${
                             pathname === '/music' ? 'text-red-500' : 'text-white'
