@@ -6,14 +6,14 @@ export const ParallaxImg = ({ className, alt, src, start, end }: { className?: s
 
     const { scrollYProgress } = useScroll({
         target: ref,
-        offset: [`${start}px end`, `end ${end * -1}px`]
+        offset: [`${start}vh end`, `end ${end * -1}vh`]
     });
 
     const opacity = useTransform(scrollYProgress, [0.75, 1], [1, 0]);
     const scale = useTransform(scrollYProgress, [0.75, 1], [1, 0.85]);
 
-    const y = useTransform(scrollYProgress, [0, 1], [start, end]);
-    const transform = useMotionTemplate`translateY(${y}px) scale(${scale})`;
+    const y = useTransform(scrollYProgress, [0, 1], [`${start}vh`, `${end}vh`]);
+    const transform = useMotionTemplate`translateY(${y}) scale(${scale})`;
 
     return <motion.img src={src} alt={alt} className={className} ref={ref} style={{ transform, opacity }} />;
 };

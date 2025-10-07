@@ -11,9 +11,17 @@ import { FiArrowRight, FiArrowDown } from 'react-icons/fi';
 import { SiAmazonmusic } from 'react-icons/si';
 import { TypingEffectText } from '@/components/lib/TypingEffectText';
 import { ParallaxImg } from '@/components/lib/ParallaxImg';
+import { ParallaxVideo } from '@/components/lib/ParallaxVideo';
 
-// Format date to "Year" format
-const formatDate = (dateString: string) => {
+// Format date to "Year" format for music
+const formatMusicDate = (dateString: string) => {
+    // Handle date string parsing to avoid timezone issues
+    const date = new Date(dateString + 'T00:00:00');
+    return date.getFullYear().toString();
+};
+
+// Format date to "Month Day, Year" format for sermons
+const formatSermonDate = (dateString: string) => {
     // Handle date string parsing to avoid timezone issues
     const date = new Date(dateString + 'T00:00:00');
     return date.toLocaleDateString('en-US', {
@@ -221,8 +229,8 @@ export default function HomePage() {
             </section>
 
             {/* ABOUT ME SECTION */}
-            <section id="about-me" ref={aboutMeRef} className="relative h-[400vh] overflow-visible bg-black">
-                <div className="sticky top-0 flex h-[100vh] items-center justify-center bg-orange-500 text-center">
+            <section id="about-me" ref={aboutMeRef} className="relative h-[400vh] overflow-visible bg-black px-4 sm:px-8">
+                <div className="sticky top-0 z-2 flex h-[100vh] items-center justify-center text-center">
                     <div>
                         <h1 className={`text-6xl font-bold text-white ${modernizFont.className}`}>About Me</h1>
                         <p className="mt-8 max-w-2xl text-lg text-white md:text-xl">
@@ -240,6 +248,44 @@ export default function HomePage() {
                             </Link>
                         </div>
                     </div>
+                </div>
+                <div className="relative mt-8 flex flex-wrap justify-center gap-4">
+                    <ParallaxImg
+                        className="z-1 h-64 w-64 object-cover"
+                        src="/images/homeGallery/heroImage1.jpg"
+                        alt="About Me Image 1"
+                        start={30}
+                        end={20}
+                    />
+                    <ParallaxImg
+                        className="h-64 w-64 object-cover"
+                        src="/images/homeGallery/heroImage2.jpg"
+                        alt="About Me Image 2"
+                        start={40}
+                        end={-25}
+                    />
+                    <ParallaxImg
+                        className="z-3 h-64 w-64 object-cover"
+                        src="/images/homeGallery/heroImage3.jpg"
+                        alt="About Me Image 3"
+                        start={20}
+                        end={50}
+                    />
+                    <ParallaxVideo className="h-64 w-64" src="/videos/ZealOfTheLordReel.mp4" start={25} end={-40} />
+                    <ParallaxImg
+                        className="h-64 w-64 object-cover"
+                        src="/images/homeGallery/heroImage4.jpg"
+                        alt="About Me Image 4"
+                        start={50}
+                        end={90}
+                    />
+                    <ParallaxImg
+                        className="h-64 w-64 object-cover"
+                        src="/images/homeGallery/heroImage5.jpg"
+                        alt="About Me Image 5"
+                        start={250}
+                        end={200}
+                    />
                 </div>
             </section>
 
@@ -322,7 +368,7 @@ export default function HomePage() {
                                                 {song.releaseDate && (
                                                     <>
                                                         {' • '}
-                                                        <span>{formatDate(song.releaseDate)}</span>
+                                                        <span>{formatMusicDate(song.releaseDate)}</span>
                                                     </>
                                                 )}
                                             </div>
@@ -500,7 +546,9 @@ export default function HomePage() {
                                                 </div>
                                             )}
 
-                                            <p className="text-sm text-gray-300 transition-colors duration-300">{formatDate(sermon.sermonDate)}</p>
+                                            <p className="text-sm text-gray-300 transition-colors duration-300">
+                                                {formatSermonDate(sermon.sermonDate)}
+                                            </p>
                                         </div>
                                     </a>
                                 ))
