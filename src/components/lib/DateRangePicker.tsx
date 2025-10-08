@@ -9,8 +9,8 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { DateRange } from 'react-day-picker';
 
 interface DateRangePickerProps {
-    value?: DateRange | undefined;
-    onChange?: (range: DateRange | undefined) => void;
+    value?: { from?: Date; to?: Date } | undefined;
+    onChange?: (range: { from?: Date; to?: Date } | undefined) => void;
     placeholder?: string;
     label?: string;
     id?: string;
@@ -19,7 +19,7 @@ interface DateRangePickerProps {
 
 export function DateRangePicker({ value, onChange, placeholder = 'Select date range', label, id = 'date-range', maxDate }: DateRangePickerProps) {
     const [open, setOpen] = React.useState(false);
-    const [dateRange, setDateRange] = React.useState<DateRange | undefined>(value);
+    const [dateRange, setDateRange] = React.useState<{ from?: Date; to?: Date } | undefined>(value);
     const [triggerWidth, setTriggerWidth] = React.useState<number>(0);
     const [isMobile, setIsMobile] = React.useState(false);
     const triggerRef = React.useRef<HTMLButtonElement>(null);
@@ -49,10 +49,15 @@ export function DateRangePicker({ value, onChange, placeholder = 'Select date ra
     }, [open]);
 
     const handleSelect = (newRange: DateRange | undefined) => {
+        // Convert DateRange to our custom type
+        const customRange = newRange ? { from: newRange.from, to: newRange.to } : undefined;
+
         // Check if the selected dates are after maxDate
-        if (newRange && maxDate) {
-            const fromDateOnly = newRange.from ? new Date(newRange.from.getFullYear(), newRange.from.getMonth(), newRange.from.getDate()) : null;
-            const toDateOnly = newRange.to ? new Date(newRange.to.getFullYear(), newRange.to.getMonth(), newRange.to.getDate()) : null;
+        if (customRange && maxDate) {
+            const fromDateOnly = customRange.from
+                ? new Date(customRange.from.getFullYear(), customRange.from.getMonth(), customRange.from.getDate())
+                : null;
+            const toDateOnly = customRange.to ? new Date(customRange.to.getFullYear(), customRange.to.getMonth(), customRange.to.getDate()) : null;
             const maxDateOnly = new Date(maxDate.getFullYear(), maxDate.getMonth(), maxDate.getDate());
 
             if ((fromDateOnly && fromDateOnly > maxDateOnly) || (toDateOnly && toDateOnly > maxDateOnly)) {
@@ -60,8 +65,8 @@ export function DateRangePicker({ value, onChange, placeholder = 'Select date ra
             }
         }
 
-        setDateRange(newRange);
-        onChange?.(newRange);
+        setDateRange(customRange);
+        onChange?.(customRange);
 
         // Don't auto-close - let user click Done or click outside
     };
@@ -117,7 +122,7 @@ export function DateRangePicker({ value, onChange, placeholder = 'Select date ra
                             <div className="flex-1 overflow-auto">
                                 <Calendar
                                     mode="range"
-                                    selected={dateRange}
+                                    selected={dateRange as DateRange}
                                     captionLayout="dropdown"
                                     onSelect={handleSelect}
                                     className="w-full rounded-none border-gray-600 bg-gray-800 text-white"
@@ -199,7 +204,7 @@ export function DateRangePicker({ value, onChange, placeholder = 'Select date ra
                 >
                     <Calendar
                         mode="range"
-                        selected={dateRange}
+                        selected={dateRange as DateRange}
                         captionLayout="dropdown"
                         onSelect={handleSelect}
                         className="w-full rounded-none border-gray-600 bg-gray-800 text-white"
