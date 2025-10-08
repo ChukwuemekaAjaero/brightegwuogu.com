@@ -103,7 +103,7 @@ export default function HomePage() {
                                 activeSection === 'about-me' ? 'bg-red-700 text-white' : 'text-white'
                             }`}
                         >
-                            About Me
+                            About
                         </a>
                         <a
                             href="#music"
@@ -229,62 +229,39 @@ export default function HomePage() {
             </section>
 
             {/* ABOUT ME SECTION */}
-            <section id="about-me" ref={aboutMeRef} className="relative h-[400vh] overflow-visible bg-black px-4 sm:px-8">
+            <section id="about-me" ref={aboutMeRef} className="relative h-[500vh] overflow-visible bg-black px-4 sm:px-8">
                 <div className="sticky top-0 z-2 flex h-[100vh] items-center justify-center text-center">
                     <div>
-                        <h1 className={`text-6xl font-bold text-white ${modernizFont.className}`}>About Me</h1>
+                        <h1 className={`text-6xl font-bold text-white ${modernizFont.className}`}>About</h1>
                         <p className="mt-8 max-w-2xl text-lg text-white md:text-xl">
                             Bright Egwuogu, known as P.B., is a Toronto-based pastor at Celebration Church International and a passionate contemporary
                             Christian musician whose songs inspire audiences globally. He balances ministry and music with a career in cybersecurity
                             across various industries, and enjoys life with his wife Ibiye and their son.
                         </p>
-                        <div className="mt-12">
-                            <Link
-                                href="/about"
-                                className="group inline-flex items-center bg-red-700 px-8 py-4 font-semibold text-white transition-all duration-300 hover:bg-red-800 hover:text-white"
-                            >
-                                Learn More
-                                <FiArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-2" />
-                            </Link>
-                        </div>
                     </div>
                 </div>
-                <div className="relative mx-auto mt-8">
+                <div className="relative container mx-auto mt-8">
                     <ParallaxImg
-                        className="z-1 w-2/3 object-cover md:w-5/12"
-                        src="/images/homeGallery/heroImage1.jpg"
+                        className="z-1 w-3/7 object-cover md:w-1/3"
+                        src="/images/homeGallery/heroImage3.jpg"
                         alt="About Me Image 1"
                         start={30}
                         end={20}
                     />
                     <ParallaxImg
-                        className="absolute right-0 z-3 w-1/3 object-cover md:right-24"
+                        className="absolute right-0 z-1 w-2/5 object-cover sm:right-12 md:right-24 md:w-1/3"
                         src="/images/homeGallery/heroImage2.jpg"
                         alt="About Me Image 2"
-                        start={40}
-                        end={-25}
-                    />
-                    <ParallaxImg
-                        className="z-3 h-64 w-64 object-cover"
-                        src="/images/homeGallery/heroImage3.jpg"
-                        alt="About Me Image 3"
                         start={20}
-                        end={50}
+                        end={-20}
                     />
-                    <ParallaxVideo className="h-64 w-64" src="/videos/ZealOfTheLordReel.mp4" start={25} end={-40} />
+                    <ParallaxVideo className="relative z-4 mx-auto w-3/5 sm:w-2/5" src="/videos/ZealOfTheLordReel.mp4" start={20} end={50} />
                     <ParallaxImg
-                        className="h-64 w-64 object-cover"
-                        src="/images/homeGallery/heroImage4.jpg"
-                        alt="About Me Image 4"
-                        start={50}
-                        end={90}
-                    />
-                    <ParallaxImg
-                        className="h-64 w-64 object-cover"
-                        src="/images/homeGallery/heroImage5.jpg"
-                        alt="About Me Image 5"
-                        start={250}
-                        end={200}
+                        className="w-fullx absolute right-0 z-1 object-cover sm:right-12 md:right-24 md:w-2/3"
+                        src="/images/heroImage.jpg"
+                        alt="About Me Image 2"
+                        start={10}
+                        end={100}
                     />
                 </div>
             </section>

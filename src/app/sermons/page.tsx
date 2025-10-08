@@ -2,19 +2,21 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useSermons } from '@/hooks/useContentful';
 import { modernizFont } from '@/lib/utils';
 import { FaYoutube } from 'react-icons/fa';
-import { DatePicker } from '@/components/lib/DatePicker';
+import { DateRangePicker } from '@/components/lib/DateRangePicker';
 
 export default function SermonsPage() {
     const { sermons, loading: sermonsLoading, error: sermonsError } = useSermons();
     const [visibleSermons, setVisibleSermons] = useState(10);
     const [searchQuery, setSearchQuery] = useState('');
-    const [fromDate, setFromDate] = useState<Date | undefined>(undefined);
-    const [toDate, setToDate] = useState<Date | undefined>(undefined);
+    const [dateRange, setDateRange] = useState<{ from?: Date; to?: Date } | undefined>(undefined);
     const [selectedTags, setSelectedTags] = useState<string[]>([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [canScrollLeft, setCanScrollLeft] = useState(false);
+    const [canScrollRight, setCanScrollRight] = useState(true);
 
     // Handle loading logic
     useEffect(() => {
@@ -25,6 +27,12 @@ export default function SermonsPage() {
 
     const loadMoreSermons = () => {
         setVisibleSermons((prev) => prev + 5);
+    };
+
+    const checkScrollPosition = (container: HTMLElement) => {
+        const { scrollLeft, scrollWidth, clientWidth } = container;
+        setCanScrollLeft(scrollLeft > 0);
+        setCanScrollRight(scrollLeft < scrollWidth - clientWidth);
     };
 
     // Extract unique tags from all sermons
@@ -58,14 +66,14 @@ export default function SermonsPage() {
 
         // Date range filter
         let matchesDateRange = true;
-        if (fromDate || toDate) {
-            if (fromDate) {
-                const from = new Date(fromDate);
+        if (dateRange?.from || dateRange?.to) {
+            if (dateRange.from) {
+                const from = new Date(dateRange.from);
                 from.setHours(0, 0, 0, 0);
                 matchesDateRange = matchesDateRange && sermonDate >= from;
             }
-            if (toDate) {
-                const to = new Date(toDate);
+            if (dateRange.to) {
+                const to = new Date(dateRange.to);
                 to.setHours(23, 59, 59, 999);
                 matchesDateRange = matchesDateRange && sermonDate <= to;
             }
@@ -142,20 +150,19 @@ export default function SermonsPage() {
                 <div className="py-20">
                     <div className="mb-12 text-center">
                         <h2 className={`text-5xl font-bold text-white md:text-6xl ${modernizFont.className}`}>All Sermons</h2>
-                        <p className="mt-4 text-xl text-gray-300">Complete collection of inspiring messages</p>
+                        <p className="mt-4 text-lg text-gray-300 md:text-xl">Complete collection of inspiring messages</p>
                     </div>
 
                     {/* SEARCH COMPONENT */}
                     <div className="mx-auto mb-12 max-w-4xl px-4 sm:px-8">
                         <div className="space-y-6">
                             {/* Clear Filters Button - Mobile Only */}
-                            {(searchQuery || fromDate || toDate || selectedTags.length > 0) && (
+                            {(searchQuery || dateRange?.from || dateRange?.to || selectedTags.length > 0) && (
                                 <div className="text-center sm:hidden">
                                     <button
                                         onClick={() => {
                                             setSearchQuery('');
-                                            setFromDate(undefined);
-                                            setToDate(undefined);
+                                            setDateRange(undefined);
                                             setSelectedTags([]);
                                         }}
                                         className="group inline-flex items-center bg-red-700 px-8 py-4 font-semibold text-white transition-all duration-300 hover:bg-red-800 hover:text-white"
@@ -206,17 +213,14 @@ export default function SermonsPage() {
                             </div>
 
                             {/* Date Range Picker */}
-                            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                                <DatePicker value={fromDate} onChange={setFromDate} placeholder="Select start date" label="From Date" id="fromDate" />
-                                <DatePicker
-                                    value={toDate}
-                                    onChange={setToDate}
-                                    placeholder="Select end date"
-                                    label="To Date"
-                                    id="toDate"
-                                    maxDate={new Date()}
-                                />
-                            </div>
+                            <DateRangePicker
+                                value={dateRange}
+                                onChange={setDateRange}
+                                placeholder="Select date range"
+                                label="Date Range"
+                                id="dateRange"
+                                maxDate={new Date()}
+                            />
 
                             {/* Tags Filter */}
                             {allTags.length > 0 && (
@@ -224,42 +228,52 @@ export default function SermonsPage() {
                                     <label className="block text-sm font-medium text-white">Filter by Tags</label>
                                     <div className="flex items-center gap-2">
                                         {/* Left Arrow Button */}
-                                        <button
-                                            onClick={() => {
-                                                const container = document.querySelector('.scrollbar-hide') as HTMLElement;
-                                                if (container) {
-                                                    container.scrollBy({ left: -200, behavior: 'smooth' });
-                                                }
-                                            }}
-                                            className="flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-full border border-gray-600 bg-gray-800 text-white transition-all duration-200 hover:border-red-500 hover:bg-red-600"
-                                        >
-                                            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                                            </svg>
-                                        </button>
+                                        <AnimatePresence>
+                                            {canScrollLeft && (
+                                                <motion.button
+                                                    initial={{ opacity: 0, scale: 0.8 }}
+                                                    animate={{ opacity: 1, scale: 1 }}
+                                                    exit={{ opacity: 0, scale: 0.8 }}
+                                                    transition={{ duration: 0.2, ease: 'easeInOut' }}
+                                                    onClick={() => {
+                                                        const container = document.querySelector('.scrollbar-hide') as HTMLElement;
+                                                        if (container) {
+                                                            container.scrollBy({ left: -200, behavior: 'smooth' });
+                                                        }
+                                                    }}
+                                                    className="flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-full border border-gray-600 bg-gray-800 text-white transition-all duration-200 hover:border-red-500 hover:bg-red-600"
+                                                >
+                                                    <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                                                    </svg>
+                                                </motion.button>
+                                            )}
+                                        </AnimatePresence>
 
                                         {/* Tags Container */}
                                         <div
                                             ref={(el) => {
                                                 if (el) {
                                                     const scrollContainer = el as HTMLElement;
-                                                    const scrollLeft = () => {
-                                                        scrollContainer.scrollBy({ left: -200, behavior: 'smooth' });
-                                                    };
-                                                    const scrollRight = () => {
-                                                        scrollContainer.scrollBy({ left: 200, behavior: 'smooth' });
-                                                    };
 
-                                                    // Store scroll functions on the element for button access
-                                                    (
-                                                        scrollContainer as HTMLElement & { scrollLeftFn: () => void; scrollRightFn: () => void }
-                                                    ).scrollLeftFn = scrollLeft;
-                                                    (
-                                                        scrollContainer as HTMLElement & { scrollLeftFn: () => void; scrollRightFn: () => void }
-                                                    ).scrollRightFn = scrollRight;
+                                                    // Initial check
+                                                    checkScrollPosition(scrollContainer);
+
+                                                    // Add scroll event listener
+                                                    const handleScroll = () => checkScrollPosition(scrollContainer);
+                                                    scrollContainer.addEventListener('scroll', handleScroll);
+
+                                                    // Cleanup function
+                                                    return () => {
+                                                        scrollContainer.removeEventListener('scroll', handleScroll);
+                                                    };
                                                 }
                                             }}
-                                            className="scrollbar-hide flex flex-1 gap-2 overflow-x-auto mask-r-from-90% mask-l-from-90%"
+                                            className="scrollbar-hide flex flex-1 gap-2 overflow-x-auto"
+                                            style={{
+                                                scrollbarWidth: 'none',
+                                                msOverflowStyle: 'none'
+                                            }}
                                         >
                                             {allTags.map((tag) => {
                                                 const isSelected = selectedTags.includes(tag);
@@ -286,31 +300,38 @@ export default function SermonsPage() {
                                         </div>
 
                                         {/* Right Arrow Button */}
-                                        <button
-                                            onClick={() => {
-                                                const container = document.querySelector('.scrollbar-hide') as HTMLElement;
-                                                if (container) {
-                                                    container.scrollBy({ left: 200, behavior: 'smooth' });
-                                                }
-                                            }}
-                                            className="flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-full border border-gray-600 bg-gray-800 text-white transition-all duration-200 hover:border-red-500 hover:bg-red-600"
-                                        >
-                                            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                            </svg>
-                                        </button>
+                                        <AnimatePresence>
+                                            {canScrollRight && (
+                                                <motion.button
+                                                    initial={{ opacity: 0, scale: 0.8 }}
+                                                    animate={{ opacity: 1, scale: 1 }}
+                                                    exit={{ opacity: 0, scale: 0.8 }}
+                                                    transition={{ duration: 0.2, ease: 'easeInOut' }}
+                                                    onClick={() => {
+                                                        const container = document.querySelector('.scrollbar-hide') as HTMLElement;
+                                                        if (container) {
+                                                            container.scrollBy({ left: 200, behavior: 'smooth' });
+                                                        }
+                                                    }}
+                                                    className="flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-full border border-gray-600 bg-gray-800 text-white transition-all duration-200 hover:border-red-500 hover:bg-red-600"
+                                                >
+                                                    <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                                    </svg>
+                                                </motion.button>
+                                            )}
+                                        </AnimatePresence>
                                     </div>
                                 </div>
                             )}
 
                             {/* Clear Filters Button - Desktop Only */}
-                            {(searchQuery || fromDate || toDate || selectedTags.length > 0) && (
+                            {(searchQuery || dateRange?.from || dateRange?.to || selectedTags.length > 0) && (
                                 <div className="hidden text-center sm:block">
                                     <button
                                         onClick={() => {
                                             setSearchQuery('');
-                                            setFromDate(undefined);
-                                            setToDate(undefined);
+                                            setDateRange(undefined);
                                             setSelectedTags([]);
                                         }}
                                         className="group inline-flex items-center bg-red-700 px-8 py-4 font-semibold text-white transition-all duration-300 hover:bg-red-800 hover:text-white"
@@ -329,7 +350,7 @@ export default function SermonsPage() {
                             )}
 
                             {/* Results Count */}
-                            {(searchQuery || fromDate || toDate || selectedTags.length > 0) && (
+                            {(searchQuery || dateRange?.from || dateRange?.to || selectedTags.length > 0) && (
                                 <p className="text-center text-sm text-gray-400">
                                     {filteredSermons.length} sermon{filteredSermons.length !== 1 ? 's' : ''} found
                                 </p>
