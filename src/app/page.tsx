@@ -12,6 +12,7 @@ import { SiAmazonmusic } from 'react-icons/si';
 import { TypingEffectText } from '@/components/lib/TypingEffectText';
 import { ParallaxImg } from '@/components/lib/ParallaxImg';
 import { ParallaxVideo } from '@/components/lib/ParallaxVideo';
+import ZoomParallax from '@/components/lib/ZoomParallax';
 
 // Format date to "Year" format for music
 const formatMusicDate = (dateString: string) => {
@@ -41,7 +42,7 @@ export default function HomePage() {
     const [currentTextIndex, setCurrentTextIndex] = useState(0);
 
     // Section refs for scroll-triggered animations
-    const aboutMeRef = useRef(null);
+    const aboutMeRef = useRef<HTMLElement>(null);
     const aboutMeInView = useInView(aboutMeRef, { once: true, margin: '-100px' });
 
     const musicRef = useRef(null);
@@ -229,40 +230,36 @@ export default function HomePage() {
             </section>
 
             {/* ABOUT ME SECTION */}
-            <section id="about-me" ref={aboutMeRef} className="relative h-[500vh] overflow-visible bg-black px-4 sm:px-8">
-                <div className="sticky top-0 z-2 flex h-[100vh] items-center justify-center text-center">
-                    <div>
-                        <h1 className={`text-6xl font-bold text-white ${modernizFont.className}`}>About</h1>
-                        <p className="mt-8 max-w-2xl text-lg text-white md:text-xl">
-                            Bright Egwuogu, known as P.B., is a Toronto-based pastor at Celebration Church International and a passionate contemporary
-                            Christian musician whose songs inspire audiences globally. He balances ministry and music with a career in cybersecurity
-                            across various industries, and enjoys life with his wife Ibiye and their son.
-                        </p>
+            <section id="about-me" ref={aboutMeRef} className="bg-black">
+                <div className="relative h-[500vh] overflow-visible px-4 sm:px-8">
+                    <div className="sticky top-0 z-2 flex h-[100vh] items-center justify-center text-center">
+                        <div>
+                            <h1 className={`text-6xl font-bold text-white ${modernizFont.className}`}>About</h1>
+                            <p className="mt-8 max-w-2xl text-lg text-white md:text-xl">
+                                Bright Egwuogu, known as P.B., is a Toronto-based pastor at Celebration Church International and a passionate
+                                contemporary Christian musician whose songs inspire audiences globally. He balances ministry and music with a career
+                                in cybersecurity across various industries, and enjoys life with his wife Ibiye and their son.
+                            </p>
+                        </div>
                     </div>
-                </div>
-                <div className="relative container mx-auto mt-8">
-                    <ParallaxImg
-                        className="z-1 w-3/7 object-cover md:w-1/3"
-                        src="/images/homeGallery/heroImage3.jpg"
-                        alt="About Me Image 1"
-                        start={30}
-                        end={20}
-                    />
-                    <ParallaxImg
-                        className="absolute right-0 z-1 w-2/5 object-cover sm:right-12 md:right-24 md:w-1/3"
-                        src="/images/homeGallery/heroImage2.jpg"
-                        alt="About Me Image 2"
-                        start={20}
-                        end={-20}
-                    />
-                    <ParallaxVideo className="relative z-4 mx-auto w-3/5 sm:w-2/5" src="/videos/ZealOfTheLordReel.mp4" start={20} end={50} />
-                    <ParallaxImg
-                        className="w-fullx absolute right-0 z-1 object-cover sm:right-12 md:right-24 md:w-2/3"
-                        src="/images/heroImage.jpg"
-                        alt="About Me Image 2"
-                        start={10}
-                        end={100}
-                    />
+                    <div className="relative container mx-auto mt-8 mb-8">
+                        <ParallaxImg
+                            className="z-1 w-3/7 object-cover md:w-1/3"
+                            src="/images/homeGallery/heroImage3.jpg"
+                            alt="About Me Image 1"
+                            start={30}
+                            end={20}
+                        />
+                        <ParallaxImg
+                            className="absolute right-0 z-4 w-2/5 object-cover sm:right-12 md:right-24 md:w-1/3"
+                            src="/images/homeGallery/heroImage2.jpg"
+                            alt="About Me Image 2"
+                            start={20}
+                            end={-20}
+                        />
+                        <ParallaxVideo className="relative z-1 mx-auto w-3/5 sm:w-2/5" src="/videos/ZealOfTheLordReel.mp4" start={20} end={10} />
+                    </div>
+                    <ZoomParallax src="/images/heroImage.jpg" alt="About Me Image 3" targetRef={aboutMeRef} />
                 </div>
             </section>
 
