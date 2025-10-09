@@ -31,14 +31,6 @@ export default function NavigationHeader() {
                 {/* Navigation Links - Desktop Only */}
                 <div className="absolute top-1/2 left-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-2 md:flex md:gap-8">
                     <Link
-                        href="/about"
-                        className={`px-4 py-2 font-medium no-underline transition-all duration-200 hover:bg-white/20 hover:text-red-500 ${
-                            pathname === '/about' ? 'text-red-500' : 'text-white'
-                        }`}
-                    >
-                        About
-                    </Link>
-                    <Link
                         href="/music"
                         className={`px-4 py-2 font-medium no-underline transition-all duration-200 hover:bg-white/20 hover:text-red-500 ${
                             pathname === '/music' ? 'text-red-500' : 'text-white'
@@ -85,15 +77,7 @@ export default function NavigationHeader() {
                     <div className="container mx-auto px-4 py-4">
                         <div className="flex flex-col space-y-4">
                             {/* Navigation Links */}
-                            <Link
-                                href="/about"
-                                onClick={() => setIsMobileMenuOpen(false)}
-                                className={`rounded-lg px-4 py-3 font-medium no-underline transition-all duration-200 hover:bg-white/20 hover:text-red-500 ${
-                                    pathname === '/about' ? 'bg-white/10 text-red-500' : 'text-white'
-                                }`}
-                            >
-                                About
-                            </Link>
+
                             <Link
                                 href="/music"
                                 onClick={() => setIsMobileMenuOpen(false)}

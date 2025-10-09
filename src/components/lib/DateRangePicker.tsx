@@ -41,6 +41,28 @@ export function DateRangePicker({ value, onChange, placeholder = 'Select date ra
         return () => window.removeEventListener('resize', checkScreenSize);
     }, []);
 
+    // Disable body scroll when mobile dialog is open
+    React.useEffect(() => {
+        if (open && isMobile) {
+            // Store original overflow style
+            const originalOverflow = document.body.style.overflow;
+            const originalPaddingRight = document.body.style.paddingRight;
+
+            // Calculate scrollbar width to prevent layout shift
+            const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+
+            // Disable scroll and add padding to prevent layout shift
+            document.body.style.overflow = 'hidden';
+            document.body.style.paddingRight = `${scrollbarWidth}px`;
+
+            return () => {
+                // Restore original styles
+                document.body.style.overflow = originalOverflow;
+                document.body.style.paddingRight = originalPaddingRight;
+            };
+        }
+    }, [open, isMobile]);
+
     // Measure trigger width when component mounts and when popover opens
     React.useEffect(() => {
         if (triggerRef.current) {
@@ -106,7 +128,7 @@ export function DateRangePicker({ value, onChange, placeholder = 'Select date ra
         return (
             <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm md:hidden">
                 <div className="fixed inset-0 flex items-center justify-center p-0 sm:inset-4 sm:p-0">
-                    <div className="relative h-full w-full border border-gray-600 bg-gray-800 sm:h-auto sm:max-w-2xl">
+                    <div className="relative flex h-full w-full flex-col border border-gray-600 bg-gray-800 sm:h-auto sm:max-w-2xl">
                         {/* Close button */}
                         <button
                             type="button"
@@ -118,23 +140,21 @@ export function DateRangePicker({ value, onChange, placeholder = 'Select date ra
                         </button>
 
                         {/* Calendar */}
-                        <div className="flex h-full flex-col p-4 pt-12">
-                            <div className="flex-1 overflow-auto">
-                                <Calendar
-                                    mode="range"
-                                    selected={dateRange as DateRange}
-                                    captionLayout="dropdown"
-                                    onSelect={handleSelect}
-                                    className="w-full rounded-none border-gray-600 bg-gray-800 text-white"
-                                    disabled={(date) => (maxDate ? date > maxDate : false)}
-                                    numberOfMonths={window.innerWidth < 640 ? 1 : 2}
-                                    defaultMonth={dateRange?.from || new Date()}
-                                />
-                            </div>
+                        <div className="flex-1 overflow-auto p-4 pt-12">
+                            <Calendar
+                                mode="range"
+                                selected={dateRange as DateRange}
+                                captionLayout="dropdown"
+                                onSelect={handleSelect}
+                                className="w-full rounded-none border-gray-600 bg-gray-800 text-white"
+                                disabled={(date) => (maxDate ? date > maxDate : false)}
+                                numberOfMonths={2}
+                                defaultMonth={dateRange?.from || new Date()}
+                            />
                         </div>
 
-                        {/* Buttons */}
-                        <div className="mt-auto flex gap-2 border-t border-gray-600 p-4">
+                        {/* Buttons - Always visible at bottom */}
+                        <div className="flex shrink-0 gap-2 border-t border-gray-600 bg-gray-800 p-4">
                             <button
                                 type="button"
                                 onClick={() => {
