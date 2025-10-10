@@ -33,7 +33,7 @@ export default function Music() {
                     <div className="relative z-10 flex min-h-screen items-center justify-center">
                         <div className="text-center">
                             <h1 className={`text-6xl font-bold text-white md:text-8xl ${modernizFont.className}`}>No Other God</h1>
-                            <p className="mt-4 text-2xl text-white">featuring Rhema Onuoha</p>
+                            <p className="mt-4 text-xl text-white">featuring Rhema Onuoha</p>
 
                             {/* Buttons */}
                             <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
@@ -56,7 +56,7 @@ export default function Music() {
                                             block: 'start'
                                         });
                                     }}
-                                    className="group inline-flex w-full max-w-[300px] items-center justify-center bg-black/80 px-8 py-4 font-semibold text-white transition-all duration-300 hover:scale-105 hover:bg-black/100"
+                                    className="group inline-flex w-full max-w-[300px] items-center justify-center bg-black px-8 py-4 font-semibold text-white transition-all duration-300 hover:scale-105"
                                 >
                                     <FaPlay className="mr-2 h-5 w-5" />
                                     Stream on all platforms
@@ -96,7 +96,7 @@ export default function Music() {
                                 <h2 className={`mb-6 text-4xl font-bold text-white sm:text-5xl md:text-6xl lg:text-7xl ${modernizFont.className}`}>
                                     Music
                                 </h2>
-                                <p className="mx-auto max-w-3xl text-lg leading-relaxed text-gray-300 sm:text-xl md:text-2xl">
+                                <p className="mx-auto max-w-3xl text-lg leading-relaxed text-gray-300 md:text-xl">
                                     Experience the power of worship through music that bridges heaven and earth, bringing faith to life through every
                                     melody and every word.
                                 </p>
@@ -159,7 +159,7 @@ export default function Music() {
                                             href={song.youTubeLink}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="group block overflow-hidden transition-all duration-300 hover:scale-105"
+                                            className="group block overflow-hidden transition-all duration-300 hover:scale-102"
                                         >
                                             <div className="relative aspect-square h-[330px] overflow-hidden sm:h-[500px]">
                                                 {song.musicThumbnail?.fields?.file?.url && (
@@ -168,7 +168,7 @@ export default function Music() {
                                                         alt={song.name}
                                                         fill
                                                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                                                        className="object-cover transition-all duration-300 group-hover:scale-110 group-hover:blur-sm"
+                                                        className="object-cover transition-all duration-300 group-hover:scale-105 group-hover:blur-xs"
                                                     />
                                                 )}
                                                 {/* Play Icon Overlay */}

@@ -231,8 +231,8 @@ export default function HomePage() {
 
             {/* ABOUT ME SECTION */}
             <section id="about-me" ref={aboutMeRef} className="bg-black">
-                <div className="relative h-[500vh] overflow-visible px-4 sm:px-8">
-                    <div className="sticky top-0 z-2 flex h-[100vh] items-center justify-center text-center">
+                <div className="relative h-[500vh] overflow-visible">
+                    <div className="sticky top-0 z-2 flex h-[100vh] items-center justify-center px-4 text-center sm:px-8">
                         <div>
                             <h1 className={`text-6xl font-bold text-white ${modernizFont.className}`}>About</h1>
                             <p className="mt-8 max-w-2xl text-lg text-white md:text-xl">
@@ -242,7 +242,7 @@ export default function HomePage() {
                             </p>
                         </div>
                     </div>
-                    <div className="relative container mx-auto mt-8 mb-8">
+                    <div className="relative container mx-auto mt-8 mb-8 px-4 sm:px-8">
                         <ParallaxImg
                             className="z-1 w-3/7 object-cover md:w-1/3"
                             src="/images/homeGallery/heroImage3.jpg"
@@ -259,7 +259,6 @@ export default function HomePage() {
                         />
                         <ParallaxVideo className="relative z-1 mx-auto w-3/5 sm:w-2/5" src="/videos/ZealOfTheLordReel.mp4" start={20} end={10} />
                     </div>
-                    <ZoomParallax src="/images/heroImage.jpg" alt="About Me Image 3" targetRef={aboutMeRef} />
                 </div>
             </section>
 

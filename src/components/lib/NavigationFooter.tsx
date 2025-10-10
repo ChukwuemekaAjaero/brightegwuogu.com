@@ -59,7 +59,7 @@ export default function NavigationFooter() {
 
                     {/* Follow Me Links */}
                     <div>
-                        <h3 className="mb-4 text-lg font-semibold">Follow Me</h3>
+                        <h3 className="mb-4 text-lg font-semibold">Follow</h3>
                         <div className="space-y-3">
                             <a
                                 href={instagramLink}

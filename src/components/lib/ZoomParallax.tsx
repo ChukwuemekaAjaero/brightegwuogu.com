@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { useScroll, useTransform, motion } from 'framer-motion';
 import { useRef } from 'react';
+import { modernizFont } from '@/lib/utils';
 
 interface ZoomParallaxProps {
     src: string;
@@ -21,7 +22,7 @@ export default function ZoomParallax({ src, alt = 'image', targetRef }: ZoomPara
         <div ref={container} className="sticky top-0 z-4 h-screen overflow-hidden">
             <motion.div style={{ scale }} className="absolute top-0 flex h-full w-full items-center justify-center">
                 <div className="relative h-[25vh] w-[50vw]">
-                    <Image src={src} fill alt={alt} className="object-cover object-[75%_50%]" />
+                    <Image src={src} fill alt={alt} className="mask-b-from-80% object-cover object-[75%_50%]" />
                 </div>
             </motion.div>
         </div>
