@@ -254,8 +254,8 @@ export default function HomePage() {
                             className="absolute right-4 z-4 w-2/5 object-cover sm:right-12 md:right-24 md:w-1/3"
                             src="/images/homeGallery/heroImage3.jpg"
                             alt="About Me Image 2"
-                            start={20}
-                            end={-20}
+                            start={-20}
+                            end={-60}
                         />
                         <ParallaxVideo className="relative z-1 mx-auto w-3/5 sm:w-2/5" src="/videos/ZealOfTheLordReel.mp4" start={20} end={10} />
                         <ParallaxImg
@@ -290,7 +290,7 @@ export default function HomePage() {
                         <div className="mb-12 text-center">
                             <motion.h1
                                 initial={{ opacity: 0, y: 30 }}
-                                animate={musicInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
+                                animate={musicInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
                                 transition={{ delay: 0.25, duration: 0.8, ease: 'easeOut' }}
                                 className={`text-6xl font-bold text-white ${modernizFont.className}`}
                             >
@@ -299,7 +299,7 @@ export default function HomePage() {
                             <br />
                             <motion.p
                                 initial={{ opacity: 0, y: 30 }}
-                                animate={musicInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
+                                animate={musicInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
                                 transition={{ delay: 0.5, duration: 0.8, ease: 'easeOut' }}
                                 className="text-white"
                             >
@@ -321,8 +321,14 @@ export default function HomePage() {
                                 <div className="col-span-full text-center text-red-700">Error loading music: {musicError}</div>
                             ) : (
                                 // Music items
-                                music.slice(0, 3).map((song) => (
-                                    <div key={song.name} className="group">
+                                music.slice(0, 3).map((song, index) => (
+                                    <motion.div
+                                        key={song.name}
+                                        className="group"
+                                        initial={{ opacity: 0, y: 30 }}
+                                        animate={musicInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
+                                        transition={{ delay: 0.75 + index * 0.1, duration: 0.8, ease: 'easeOut' }}
+                                    >
                                         {/* Music Thumbnail */}
                                         <a
                                             href={song.youTubeLink}
@@ -416,7 +422,7 @@ export default function HomePage() {
                                                 </a>
                                             </div>
                                         </div>
-                                    </div>
+                                    </motion.div>
                                 ))
                             )}
                         </div>
@@ -440,7 +446,7 @@ export default function HomePage() {
                         <div className="mb-12 text-center">
                             <motion.h1
                                 initial={{ opacity: 0, y: 30 }}
-                                animate={sermonsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
+                                animate={sermonsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
                                 transition={{ delay: 0.25, duration: 0.8, ease: 'easeOut' }}
                                 className={`text-4xl font-bold text-white sm:text-5xl md:text-6xl ${modernizFont.className}`}
                             >
@@ -449,7 +455,7 @@ export default function HomePage() {
                             <br />
                             <motion.p
                                 initial={{ opacity: 0, y: 30 }}
-                                animate={sermonsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
+                                animate={sermonsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
                                 transition={{ delay: 0.5, duration: 0.8, ease: 'easeOut' }}
                                 className="text-white"
                             >
@@ -471,13 +477,16 @@ export default function HomePage() {
                                 <div className="col-span-full text-center text-red-700">Error loading sermons: {sermonsError}</div>
                             ) : (
                                 // Sermon items
-                                sermons.slice(0, 3).map((sermon) => (
-                                    <a
+                                sermons.slice(0, 3).map((sermon, index) => (
+                                    <motion.a
                                         key={sermon.name}
                                         href={sermon.youTubeLink}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="group block overflow-hidden transition-all duration-300 hover:scale-103"
+                                        initial={{ opacity: 0, y: 30 }}
+                                        animate={sermonsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
+                                        transition={{ delay: 0.75 + index * 0.1, duration: 0.8, ease: 'easeOut' }}
                                     >
                                         <div className="relative aspect-[4/5] overflow-hidden">
                                             {sermon.thumbnailImage?.fields?.file?.url && (
@@ -544,7 +553,7 @@ export default function HomePage() {
                                                 {formatSermonDate(sermon.sermonDate)}
                                             </p>
                                         </div>
-                                    </a>
+                                    </motion.a>
                                 ))
                             )}
                         </div>
