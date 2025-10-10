@@ -276,7 +276,7 @@ export default function HomePage() {
                             className="absolute left-1/2 z-4 hidden w-4/5 -translate-x-1/2 object-cover sm:block"
                             src="/images/homeGallery/heroImage10.jpg"
                             alt="About Me Image 5"
-                            start={80}
+                            start={70}
                             end={40}
                         />
                     </div>
