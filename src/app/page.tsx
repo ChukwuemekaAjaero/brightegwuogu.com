@@ -234,24 +234,36 @@ export default function HomePage() {
                 <div className="relative h-[300vh] overflow-visible md:h-[500vh]">
                     <div className="sticky top-0 z-3 flex h-[100vh] items-center justify-center px-4 text-center sm:px-8">
                         <div>
-                            <h1 className={`text-6xl font-bold text-white ${modernizFont.className}`}>About</h1>
-                            <p className="mt-8 max-w-2xl text-lg text-white md:text-xl">
+                            <motion.h1
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={aboutMeInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
+                                transition={{ delay: 0.25, duration: 0.8, ease: 'easeOut' }}
+                                className={`text-6xl font-bold text-white ${modernizFont.className}`}
+                            >
+                                About
+                            </motion.h1>
+                            <motion.p
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={aboutMeInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
+                                transition={{ delay: 0.5, duration: 0.8, ease: 'easeOut' }}
+                                className="mt-8 max-w-2xl text-lg text-white md:text-xl"
+                            >
                                 Bright Egwuogu, known as P.B., is a Toronto-based pastor at Celebration Church International and a passionate
                                 contemporary Christian musician whose songs inspire audiences globally. He balances ministry and music with a career
                                 in cybersecurity across various industries, and enjoys life with his wife Ibiye and their son.
-                            </p>
+                            </motion.p>
                         </div>
                     </div>
                     <div className="relative container mx-auto mt-8 mb-8 px-4 sm:px-8">
                         <ParallaxImg
-                            className="z-1 w-3/7 object-cover md:w-1/3"
+                            className="z-2 w-3/7 object-cover md:w-1/3"
                             src="/images/homeGallery/heroImage2.jpg"
                             alt="About Me Image 1"
                             start={30}
                             end={20}
                         />
                         <ParallaxImg
-                            className="absolute right-4 z-4 w-2/5 object-cover sm:right-12 md:right-24 md:w-1/3"
+                            className="absolute right-4 z-2 w-2/5 object-cover sm:right-12 md:right-24 md:w-1/3"
                             src="/images/homeGallery/heroImage3.jpg"
                             alt="About Me Image 2"
                             start={-20}
@@ -266,7 +278,7 @@ export default function HomePage() {
                             end={-10}
                         />
                         <ParallaxImg
-                            className="absolute z-4 w-3/7 object-cover md:w-1/3"
+                            className="absolute z-2 w-3/7 object-cover md:w-1/3"
                             src="/images/homeGallery/heroImage9.jpg"
                             alt="About Me Image 4"
                             start={20}
