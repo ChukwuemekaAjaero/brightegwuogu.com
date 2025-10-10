@@ -123,17 +123,6 @@ export default function NavigationFooter() {
                 <div className="mt-12 border-t border-gray-800 pt-8">
                     <div className="flex flex-col items-center justify-between space-y-4 md:flex-row md:space-y-0">
                         <div className="text-sm text-gray-400">© {new Date().getFullYear()} Bright Egwuogu. All rights reserved.</div>
-                        <div className="flex space-x-6 text-sm text-gray-400">
-                            <a href="#" className="transition-colors duration-200 hover:text-red-700">
-                                Privacy Policy
-                            </a>
-                            <a href="#" className="transition-colors duration-200 hover:text-red-700">
-                                Terms of Service
-                            </a>
-                            <a href="#" className="transition-colors duration-200 hover:text-red-700">
-                                Cookie Policy
-                            </a>
-                        </div>
                     </div>
                 </div>
             </div>

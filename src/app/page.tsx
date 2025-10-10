@@ -307,7 +307,7 @@ export default function HomePage() {
                                             href={song.youTubeLink}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="group block overflow-hidden transition-all duration-300 hover:scale-105"
+                                            className="group block overflow-hidden transition-all duration-300 hover:scale-103"
                                         >
                                             <div className="relative aspect-square overflow-hidden bg-gray-800">
                                                 {song.musicThumbnail?.fields?.file?.url && (
@@ -316,7 +316,7 @@ export default function HomePage() {
                                                         alt={song.name}
                                                         fill
                                                         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                                                        className="object-cover object-center transition-transform duration-300 group-hover:scale-105 group-hover:blur-sm"
+                                                        className="object-cover object-center transition-transform duration-300 group-hover:scale-103 group-hover:blur-sm"
                                                     />
                                                 )}
                                                 {/* Play Icon Overlay */}
@@ -456,7 +456,7 @@ export default function HomePage() {
                                         href={sermon.youTubeLink}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="group block overflow-hidden transition-all duration-300"
+                                        className="group block overflow-hidden transition-all duration-300 hover:scale-103"
                                     >
                                         <div className="relative aspect-[4/5] overflow-hidden">
                                             {sermon.thumbnailImage?.fields?.file?.url && (
@@ -465,11 +465,11 @@ export default function HomePage() {
                                                     alt={sermon.name}
                                                     fill
                                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                                                    className="object-cover transition-all duration-300 group-hover:scale-110 group-hover:blur-sm"
+                                                    className="object-cover transition-all duration-300 group-hover:scale-105 group-hover:blur-sm"
                                                 />
                                             )}
                                             {/* Black Overlay */}
-                                            <div className="absolute inset-0 bg-black/80 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
+                                            <div className="absolute inset-0 bg-black/80 opacity-0 transition-opacity duration-300 group-hover:scale-120 group-hover:opacity-100"></div>
 
                                             {/* Play Icon Overlay or Description */}
                                             <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
@@ -500,7 +500,7 @@ export default function HomePage() {
 
                                         {/* Sermon Info Below Thumbnail */}
                                         <div className="py-4">
-                                            <h3 className="mb-2 line-clamp-2 text-lg font-bold text-white transition-colors duration-300">
+                                            <h3 className="mb-2 line-clamp-2 text-lg font-bold text-white transition-colors duration-300 group-hover:text-red-700">
                                                 {sermon.name}
                                             </h3>
 

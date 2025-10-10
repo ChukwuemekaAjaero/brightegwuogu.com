@@ -429,7 +429,7 @@ export default function SermonsPage() {
                                         href={sermon.youTubeLink}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="group relative block overflow-hidden transition-all duration-300 hover:scale-105"
+                                        className="group relative block overflow-hidden transition-all duration-300 hover:scale-103"
                                     >
                                         <div className="relative aspect-[4/5] overflow-hidden">
                                             {/* Image with scale and blur effect */}
