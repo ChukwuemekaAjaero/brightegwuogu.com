@@ -19,6 +19,7 @@ interface Link {
 interface SocialCTA {
     Component: React.ComponentType<{ className?: string }>;
     href: string;
+    name: string;
 }
 
 interface NavLinkProps {
@@ -63,17 +64,13 @@ const DesktopHeader = () => {
                 <div className="absolute top-1/2 left-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center gap-8">
                     <Link
                         href="/music"
-                        className={`px-4 py-2 font-medium no-underline transition-all duration-200 hover:bg-white/20 hover:text-red-500 ${
-                            pathname === '/music' ? 'text-red-500' : 'text-white'
-                        }`}
+                        className={`px-4 py-2 font-medium text-white no-underline transition-all duration-200 hover:bg-white/20 hover:text-red-500`}
                     >
                         Music
                     </Link>
                     <Link
                         href="/sermons"
-                        className={`px-4 py-2 font-medium no-underline transition-all duration-200 hover:bg-white/20 hover:text-red-500 ${
-                            pathname === '/sermons' ? 'text-red-500' : 'text-white'
-                        }`}
+                        className={`px-4 py-2 font-medium text-white no-underline transition-all duration-200 hover:bg-white/20 hover:text-red-500`}
                     >
                         Sermons
                     </Link>
@@ -123,16 +120,17 @@ const Nav = () => {
 const LinksOverlay = () => {
     return (
         <nav className="fixed top-4 right-4 z-40 h-[calc(100vh_-_32px)] w-[calc(100%_-_32px)] overflow-hidden">
-            <Logo />
-            <LinksContainer />
-            <FooterCTAs />
+            <div className="flex h-full flex-col justify-between">
+                <LinksContainer />
+                <FooterCTAs />
+            </div>
         </nav>
     );
 };
 
 const LinksContainer = () => {
     return (
-        <motion.div className="space-y-4 p-12 pl-4 md:pl-20">
+        <motion.div className="flex flex-1 flex-col justify-center space-y-4 p-12 pl-4 md:pl-20">
             {LINKS.map((l, idx) => {
                 return (
                     <NavLink key={l.title} href={l.href} idx={idx}>
@@ -145,6 +143,9 @@ const LinksContainer = () => {
 };
 
 const NavLink: React.FC<NavLinkProps> = ({ children, href, idx }) => {
+    const pathname = usePathname();
+    const isActive = pathname === href;
+
     return (
         <motion.div
             initial={{ opacity: 0, y: -8 }}
@@ -153,7 +154,7 @@ const NavLink: React.FC<NavLinkProps> = ({ children, href, idx }) => {
                 y: 0,
                 transition: {
                     delay: 0.75 + idx * 0.125,
-                    duration: 0.5,
+                    duration: 0.3,
                     ease: 'easeInOut'
                 }
             }}
@@ -161,7 +162,9 @@ const NavLink: React.FC<NavLinkProps> = ({ children, href, idx }) => {
         >
             <Link
                 href={href}
-                className={`block text-5xl font-semibold text-red-400 transition-colors hover:text-red-50 md:text-7xl ${modernizFont.className}`}
+                className={`block text-5xl font-semibold transition-colors hover:text-black md:text-7xl ${modernizFont.className} ${
+                    isActive ? 'text-black' : 'text-white'
+                }`}
             >
                 {children}.
             </Link>
@@ -176,7 +179,7 @@ const Logo = () => {
             animate={{
                 opacity: 1,
                 y: 0,
-                transition: { delay: 0.5, duration: 0.5, ease: 'easeInOut' }
+                transition: { delay: 0.5, duration: 0.3, ease: 'easeInOut' }
             }}
             exit={{ opacity: 0, y: -12 }}
         >
@@ -225,8 +228,8 @@ const HamburgerButton: React.FC<HamburgerButtonProps> = ({ active, setActive }) 
 
 const FooterCTAs = () => {
     return (
-        <>
-            <div className="absolute bottom-6 left-6 flex gap-4 md:flex-col">
+        <div className="flex justify-start p-6 pl-4 md:pl-20">
+            <div className="flex flex-col gap-4">
                 {SOCIAL_CTAS.map((l, idx) => {
                     return (
                         <motion.a
@@ -238,35 +241,20 @@ const FooterCTAs = () => {
                                 y: 0,
                                 transition: {
                                     delay: 1 + idx * 0.125,
-                                    duration: 0.5,
+                                    duration: 0.3,
                                     ease: 'easeInOut'
                                 }
                             }}
                             exit={{ opacity: 0, y: -8 }}
+                            className="flex items-center gap-3 text-white transition-colors hover:text-red-300"
                         >
-                            <l.Component className="text-3xl text-white transition-colors hover:text-red-300" />
+                            <l.Component className="text-3xl" />
+                            <span className={`text-lg ${modernizFont.className}`}>{l.name}</span>
                         </motion.a>
                     );
                 })}
             </div>
-
-            <motion.button
-                initial={{ opacity: 0, y: 8 }}
-                animate={{
-                    opacity: 1,
-                    y: 0,
-                    transition: {
-                        delay: 1.125,
-                        duration: 0.5,
-                        ease: 'easeInOut'
-                    }
-                }}
-                exit={{ opacity: 0, y: 8 }}
-                className={`absolute right-2 bottom-2 flex items-center gap-2 bg-red-700 px-3 py-3 text-4xl text-red-200 uppercase transition-colors hover:bg-white hover:text-red-600 md:right-4 md:bottom-4 md:px-6 md:text-2xl ${modernizFont.className}`}
-            >
-                <span className="hidden md:block">contact us</span> <FiArrowRight />
-            </motion.button>
-        </>
+        </div>
     );
 };
 
@@ -282,37 +270,39 @@ const LINKS: Link[] = [
     {
         title: 'sermons',
         href: '/sermons'
-    },
-    {
-        title: 'about',
-        href: '/about'
     }
 ];
 
 const SOCIAL_CTAS: SocialCTA[] = [
     {
         Component: SiInstagram,
-        href: 'https://www.instagram.com/britegwu/'
+        href: 'https://www.instagram.com/britegwu/',
+        name: 'Instagram'
     },
     {
         Component: FaYoutube,
-        href: 'https://www.youtube.com/channel/UCH-O0drzAagoobTUuIT4vDg'
+        href: 'https://www.youtube.com/channel/UCH-O0drzAagoobTUuIT4vDg',
+        name: 'YouTube'
     },
     {
         Component: SiSpotify,
-        href: 'https://open.spotify.com/artist/your-spotify-id'
+        href: 'https://open.spotify.com/artist/your-spotify-id',
+        name: 'Spotify'
     },
     {
         Component: FaApple,
-        href: 'https://music.apple.com/us/artist/bright-egwuogu/your-apple-music-id'
+        href: 'https://music.apple.com/us/artist/bright-egwuogu/your-apple-music-id',
+        name: 'Apple Music'
     },
     {
         Component: FaDeezer,
-        href: 'https://www.deezer.com/en/artist/159926162'
+        href: 'https://www.deezer.com/en/artist/159926162',
+        name: 'Deezer'
     },
     {
         Component: SiAmazonmusic,
-        href: 'https://music.amazon.com/artists/your-amazon-music-id/bright-egwuogu'
+        href: 'https://music.amazon.com/artists/your-amazon-music-id/bright-egwuogu',
+        name: 'Amazon Music'
     }
 ];
 
@@ -320,17 +310,17 @@ const UNDERLAY_VARIANTS: Variants = {
     open: {
         width: 'calc(100% - 32px)',
         height: 'calc(100vh - 32px)',
-        transition: { type: 'spring', mass: 3, stiffness: 400, damping: 50 }
+        transition: { type: 'spring', mass: 2, stiffness: 500, damping: 40 }
     },
     closed: {
         width: '80px',
         height: '80px',
         transition: {
-            delay: 0.75,
+            delay: 0.5,
             type: 'spring',
-            mass: 3,
-            stiffness: 400,
-            damping: 50
+            mass: 2,
+            stiffness: 500,
+            damping: 40
         }
     }
 };
