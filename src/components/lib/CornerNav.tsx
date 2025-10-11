@@ -64,13 +64,17 @@ const DesktopHeader = () => {
                 <div className="absolute top-1/2 left-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center gap-8">
                     <Link
                         href="/music"
-                        className={`px-4 py-2 font-medium text-white no-underline transition-all duration-200 hover:bg-white/20 hover:text-red-500`}
+                        className={`px-4 py-2 font-medium no-underline transition-all duration-200 hover:text-red-500 ${
+                            pathname === '/music' ? 'text-red-500' : 'text-white'
+                        }`}
                     >
                         Music
                     </Link>
                     <Link
                         href="/sermons"
-                        className={`px-4 py-2 font-medium text-white no-underline transition-all duration-200 hover:bg-white/20 hover:text-red-500`}
+                        className={`px-4 py-2 font-medium no-underline transition-all duration-200 hover:text-red-500 ${
+                            pathname === '/sermons' ? 'text-red-500' : 'text-white'
+                        }`}
                     >
                         Sermons
                     </Link>
@@ -176,7 +180,7 @@ const NavLink: React.FC<NavLinkProps> = ({ children, href, idx }) => {
         >
             <Link
                 href={href}
-                className={`block text-5xl font-semibold transition-colors hover:text-black md:text-7xl ${modernizFont.className} ${
+                className={`xs:text-5xl block text-4xl font-semibold transition-colors hover:text-black md:text-7xl ${modernizFont.className} ${
                     isActive ? 'text-black' : 'text-white'
                 }`}
             >
@@ -186,30 +190,21 @@ const NavLink: React.FC<NavLinkProps> = ({ children, href, idx }) => {
     );
 };
 
-const Logo = () => {
-    return (
-        <motion.div
-            initial={{ opacity: 0, y: -12 }}
-            animate={{
-                opacity: 1,
-                y: 0,
-                transition: { delay: 0.5, duration: 0.3, ease: 'easeInOut' }
-            }}
-            exit={{ opacity: 0, y: -12 }}
-        >
-            <Link href="/" className="grid h-20 w-20 place-content-center bg-white transition-colors hover:bg-red-50">
-                <svg width="50" height="39" viewBox="0 0 50 39" fill="none" xmlns="http://www.w3.org/2000/svg" className="fill-red-600">
-                    <path d="M16.4992 2H37.5808L22.0816 24.9729H1L16.4992 2Z" stopColor="#FFFFFF"></path>
-                    <path d="M17.4224 27.102L11.4192 36H33.5008L49 13.0271H32.7024L23.2064 27.102H17.4224Z" stopColor="#FFFFFF"></path>
-                </svg>
-            </Link>
-        </motion.div>
-    );
-};
-
 const HamburgerButton: React.FC<HamburgerButtonProps> = ({ active, setActive }) => {
     return (
         <>
+            {/* Background blur for closed state */}
+            {!active && (
+                <div className="fixed top-0 right-0 left-0 z-10 h-30 mask-b-from-50% backdrop-blur-md">
+                    <Link
+                        href="/"
+                        className={`absolute top-6 left-8 z-50 text-2xl font-bold text-white transition-colors hover:text-red-500 ${modernizFont.className}`}
+                    >
+                        P.B.
+                    </Link>
+                </div>
+            )}
+
             <motion.div
                 initial={false}
                 animate={active ? 'open' : 'closed'}
