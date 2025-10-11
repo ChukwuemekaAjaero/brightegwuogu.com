@@ -109,6 +109,20 @@ const Nav = () => {
         setActive(false);
     }, [pathname]);
 
+    // Disable scrollbar when menu is open
+    useEffect(() => {
+        if (active) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset';
+        }
+
+        // Cleanup function to restore scrollbar when component unmounts
+        return () => {
+            document.body.style.overflow = 'unset';
+        };
+    }, [active]);
+
     return (
         <>
             <HamburgerButton active={active} setActive={setActive} />
@@ -166,7 +180,7 @@ const NavLink: React.FC<NavLinkProps> = ({ children, href, idx }) => {
                     isActive ? 'text-black' : 'text-white'
                 }`}
             >
-                {children}.
+                {children}
             </Link>
         </motion.div>
     );
@@ -208,19 +222,19 @@ const HamburgerButton: React.FC<HamburgerButtonProps> = ({ active, setActive }) 
                 initial={false}
                 animate={active ? 'open' : 'closed'}
                 onClick={() => setActive((pv) => !pv)}
-                className="group fixed top-4 right-4 z-50 h-20 w-20 bg-white/0 transition-all hover:bg-white/20"
+                className="group fixed top-4 right-4 z-50 h-12 w-12 bg-white/0 transition-all hover:bg-white/20"
             >
                 <motion.span
                     variants={HAMBURGER_VARIANTS.top}
-                    className="absolute block h-1 w-10 bg-white"
+                    className="absolute block h-1 w-6 bg-white"
                     style={{ y: '-50%', left: '50%', x: '-50%' }}
                 />
                 <motion.span
                     variants={HAMBURGER_VARIANTS.middle}
-                    className="absolute block h-1 w-10 bg-white"
+                    className="absolute block h-1 w-6 bg-white"
                     style={{ left: '50%', x: '-50%', top: '50%', y: '-50%' }}
                 />
-                <motion.span variants={HAMBURGER_VARIANTS.bottom} className="absolute block h-1 w-5 bg-white" style={{ x: '-50%', y: '50%' }} />
+                <motion.span variants={HAMBURGER_VARIANTS.bottom} className="absolute block h-1 w-6 bg-white" style={{ x: '-50%', y: '50%' }} />
             </motion.button>
         </>
     );
@@ -235,6 +249,8 @@ const FooterCTAs = () => {
                         <motion.a
                             key={idx}
                             href={l.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
                             initial={{ opacity: 0, y: -8 }}
                             animate={{
                                 opacity: 1,
@@ -286,12 +302,12 @@ const SOCIAL_CTAS: SocialCTA[] = [
     },
     {
         Component: SiSpotify,
-        href: 'https://open.spotify.com/artist/your-spotify-id',
+        href: 'https://open.spotify.com/artist/2YsaAFq1fn9w2aiBcvURmn',
         name: 'Spotify'
     },
     {
         Component: FaApple,
-        href: 'https://music.apple.com/us/artist/bright-egwuogu/your-apple-music-id',
+        href: 'https://music.apple.com/us/artist/brite-egwuogu/1561427540',
         name: 'Apple Music'
     },
     {
@@ -301,7 +317,7 @@ const SOCIAL_CTAS: SocialCTA[] = [
     },
     {
         Component: SiAmazonmusic,
-        href: 'https://music.amazon.com/artists/your-amazon-music-id/bright-egwuogu',
+        href: 'https://www.amazon.com/music/player/artists/B09RY3QB5K/brite-egwuogu',
         name: 'Amazon Music'
     }
 ];
@@ -313,8 +329,8 @@ const UNDERLAY_VARIANTS: Variants = {
         transition: { type: 'spring', mass: 2, stiffness: 500, damping: 40 }
     },
     closed: {
-        width: '80px',
-        height: '80px',
+        width: '50px',
+        height: '50px',
         transition: {
             delay: 0.5,
             type: 'spring',
@@ -357,7 +373,7 @@ const HAMBURGER_VARIANTS: {
         closed: {
             rotate: ['45deg', '0deg', '0deg'],
             bottom: ['50%', '50%', '35%'],
-            left: 'calc(50% + 10px)'
+            left: '50%'
         }
     }
 };
