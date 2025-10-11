@@ -181,10 +181,10 @@ export default function HomePage() {
                 </div>
 
                 {/* Dark Overlay */}
-                <div className="absolute inset-0 z-10 bg-black/30"></div>
+                <div className="absolute inset-0 z-2 bg-black/30"></div>
 
                 {/* Text content */}
-                <div className="relative z-10 flex min-h-screen items-center justify-center">
+                <div className="relative z-2 flex min-h-screen items-center justify-center">
                     <div className="container mx-auto px-4 text-center text-white sm:px-8">
                         <motion.div
                             key={currentTextIndex}

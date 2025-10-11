@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import NavigationHeader from '@/components/lib/NavigationHeader';
+import { Example as CornerNav } from '@/components/lib/CornerNav';
 import NavigationFooter from '@/components/lib/NavigationFooter';
 import { ubisoftSansFont } from '@/lib/utils';
 
@@ -19,7 +19,7 @@ export default function RootLayout({
         <html lang="en">
             <body className={`${ubisoftSansFont.className}`} suppressHydrationWarning={true}>
                 <div className="relative">
-                    <NavigationHeader />
+                    <CornerNav />
                     {children}
                     <NavigationFooter />
                 </div>
