@@ -137,12 +137,23 @@ const Nav = () => {
 
 const LinksOverlay = () => {
     return (
-        <nav className="fixed top-4 right-4 z-40 h-[calc(100vh_-_32px)] w-[calc(100%_-_32px)] overflow-hidden">
-            <div className="flex h-full flex-col justify-between">
-                <LinksContainer />
-                <FooterCTAs />
-            </div>
-        </nav>
+        <>
+            {/* Backdrop blur for content underneath */}
+            <motion.div
+                initial={{ opacity: 0, backdropFilter: 'blur(0px)' }}
+                animate={{ opacity: 1, backdropFilter: 'blur(4px)' }}
+                exit={{ opacity: 0, backdropFilter: 'blur(0px)' }}
+                transition={{ duration: 0.2, ease: 'easeInOut' }}
+                className="fixed inset-0 z-5 bg-black/20"
+            />
+
+            <nav className="fixed top-4 right-4 z-40 h-[calc(100vh_-_32px)] w-[calc(100%_-_32px)] overflow-hidden">
+                <div className="flex h-full flex-col justify-between">
+                    <LinksContainer />
+                    <FooterCTAs />
+                </div>
+            </nav>
+        </>
     );
 };
 
