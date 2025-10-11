@@ -1,8 +1,8 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { useSermons } from '@/hooks/useContentful';
 import { modernizFont } from '@/lib/utils';
 import { FaYoutube } from 'react-icons/fa';
@@ -17,6 +17,10 @@ export default function SermonsPage() {
     const [isLoading, setIsLoading] = useState(true);
     const [canScrollLeft, setCanScrollLeft] = useState(false);
     const [canScrollRight, setCanScrollRight] = useState(true);
+
+    // Ref for sermons section animation
+    const sermonsRef = useRef(null);
+    const sermonsInView = useInView(sermonsRef, { margin: '-100px' });
 
     // Handle loading logic
     useEffect(() => {
@@ -422,14 +426,17 @@ export default function SermonsPage() {
                     ) : (
                         // Sermons grid
                         <div className="container mx-auto px-4 sm:px-8">
-                            <div className="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-                                {displaySermons.map((sermon) => (
-                                    <a
+                            <div ref={sermonsRef} className="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+                                {displaySermons.map((sermon, index) => (
+                                    <motion.a
                                         key={sermon.name}
                                         href={sermon.youTubeLink}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="group relative block overflow-hidden transition-all duration-300 hover:scale-103"
+                                        initial={{ opacity: 0, y: 30 }}
+                                        animate={sermonsInView ? { opacity: 0 } : { opacity: 1 }}
+                                        transition={{ delay: index * 0.1, duration: 0.8, ease: 'easeOut' }}
                                     >
                                         <div className="relative aspect-[4/5] overflow-hidden">
                                             {/* Image with scale and blur effect */}
@@ -491,7 +498,7 @@ export default function SermonsPage() {
                                                 })}
                                             </p>
                                         </div>
-                                    </a>
+                                    </motion.a>
                                 ))}
                             </div>
 

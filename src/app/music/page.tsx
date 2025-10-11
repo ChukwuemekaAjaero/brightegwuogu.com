@@ -5,9 +5,15 @@ import { useMusic } from '@/hooks/useContentful';
 import { FaApple, FaYoutube, FaSpotify, FaDeezer, FaPlay } from 'react-icons/fa';
 import { SiAmazonmusic } from 'react-icons/si';
 import Image from 'next/image';
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
 
 export default function Music() {
     const { music, loading: musicLoading, error: musicError } = useMusic();
+
+    // Ref for music section animation
+    const musicRef = useRef(null);
+    const musicInView = useInView(musicRef, { margin: '-100px' });
 
     return (
         <div className="relative">
@@ -151,9 +157,19 @@ export default function Music() {
                                 </a>
                             </div>
 
-                            <div id="music-grid" className="mx-auto grid max-w-[1000px] grid-cols-1 justify-items-center gap-8 xl:grid-cols-2">
-                                {music.map((song) => (
-                                    <div key={song.name} className="group">
+                            <div
+                                ref={musicRef}
+                                id="music-grid"
+                                className="mx-auto grid max-w-[1000px] grid-cols-1 justify-items-center gap-8 xl:grid-cols-2"
+                            >
+                                {music.map((song, index) => (
+                                    <motion.div
+                                        key={song.name}
+                                        className="group"
+                                        initial={{ opacity: 0 }}
+                                        animate={musicInView ? { opacity: 0 } : { opacity: 1 }}
+                                        transition={{ delay: index * 0.1, duration: 0.8, ease: 'easeOut' }}
+                                    >
                                         {/* Music Thumbnail */}
                                         <a
                                             href={song.youTubeLink}
@@ -247,7 +263,7 @@ export default function Music() {
                                                 </a>
                                             </div>
                                         </div>
-                                    </div>
+                                    </motion.div>
                                 ))}
                             </div>
                         </div>
