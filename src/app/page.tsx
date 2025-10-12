@@ -229,7 +229,7 @@ export default function HomePage() {
 
             {/* ABOUT ME SECTION */}
             <section id="about-me" ref={aboutMeRef} className="bg-black">
-                <div className="relative h-[300vh] overflow-visible">
+                <div className="relative h-[370vh] overflow-visible md:h-[400vh] lg:h-[330vh] xl:h-[300vh]">
                     <div className="sticky top-0 z-3 flex h-[100vh] items-center justify-center px-4 text-center sm:px-8">
                         <div>
                             <motion.h1
@@ -280,7 +280,7 @@ export default function HomePage() {
                                 />
                             </motion.div>
 
-                            {/* Image 2 */}
+                            {/* Video 3 */}
                             <motion.div
                                 className="mb-4 break-inside-avoid"
                                 initial={{ scale: 0.9, opacity: 0 }}
@@ -297,13 +297,10 @@ export default function HomePage() {
                                 }}
                                 viewport={{ once: true, margin: '-100px' }}
                             >
-                                <Image
-                                    src="/images/homeGallery/heroImage3.jpg"
-                                    alt="About Me Image 2"
-                                    width={400}
-                                    height={500}
-                                    className="w-full object-cover"
-                                />
+                                <video className="w-full" autoPlay muted loop playsInline>
+                                    <source src="/videos/InstagramReel3.mp4" type="video/mp4" />
+                                    Your browser does not support the video tag.
+                                </video>
                             </motion.div>
 
                             {/* Video */}
@@ -324,9 +321,35 @@ export default function HomePage() {
                                 viewport={{ once: true, margin: '-100px' }}
                             >
                                 <video className="w-full" autoPlay muted loop playsInline>
-                                    <source src="/videos/ZealOfTheLordReel.mp4" type="video/mp4" />
+                                    <source src="/videos/InstagramReel1.mp4" type="video/mp4" />
                                     Your browser does not support the video tag.
                                 </video>
+                            </motion.div>
+
+                            {/* Image 5 */}
+                            <motion.div
+                                className="mb-4 break-inside-avoid"
+                                initial={{ scale: 0.9, opacity: 0 }}
+                                whileInView={{
+                                    scale: 1,
+                                    opacity: 1,
+                                    transition: {
+                                        type: 'spring',
+                                        stiffness: 100,
+                                        damping: 15,
+                                        mass: 1,
+                                        delay: 0.25
+                                    }
+                                }}
+                                viewport={{ once: true, margin: '-100px' }}
+                            >
+                                <Image
+                                    src="/images/homeGallery/heroImage5.jpg"
+                                    alt="About Me Image 5"
+                                    width={400}
+                                    height={500}
+                                    className="w-full object-cover"
+                                />
                             </motion.div>
 
                             {/* Image 3 */}
@@ -355,7 +378,7 @@ export default function HomePage() {
                                 />
                             </motion.div>
 
-                            {/* Image 4 */}
+                            {/* Image 2 */}
                             <motion.div
                                 className="mb-4 break-inside-avoid"
                                 initial={{ scale: 0.9, opacity: 0 }}
@@ -373,10 +396,10 @@ export default function HomePage() {
                                 viewport={{ once: true, margin: '-100px' }}
                             >
                                 <Image
-                                    src="/images/homeGallery/heroImage9.jpg"
-                                    alt="About Me Image 4"
+                                    src="/images/homeGallery/heroImage3.jpg"
+                                    alt="About Me Image 2"
                                     width={400}
-                                    height={550}
+                                    height={500}
                                     className="w-full object-cover"
                                 />
                             </motion.div>
@@ -405,6 +428,29 @@ export default function HomePage() {
                                     height={650}
                                     className="w-full object-cover"
                                 />
+                            </motion.div>
+
+                            {/* Video 2 */}
+                            <motion.div
+                                className="mb-4 break-inside-avoid"
+                                initial={{ scale: 0.9, opacity: 0 }}
+                                whileInView={{
+                                    scale: 1,
+                                    opacity: 1,
+                                    transition: {
+                                        type: 'spring',
+                                        stiffness: 100,
+                                        damping: 15,
+                                        mass: 1,
+                                        delay: 0.6
+                                    }
+                                }}
+                                viewport={{ once: true, margin: '-100px' }}
+                            >
+                                <video className="w-full" autoPlay muted loop playsInline>
+                                    <source src="/videos/InstagramReel2.mp4" type="video/mp4" />
+                                    Your browser does not support the video tag.
+                                </video>
                             </motion.div>
                         </div>
                     </div>
