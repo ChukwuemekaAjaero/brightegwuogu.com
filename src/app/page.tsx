@@ -10,8 +10,6 @@ import { FaApple, FaYoutube, FaSpotify, FaDeezer } from 'react-icons/fa';
 import { FiArrowRight, FiArrowDown } from 'react-icons/fi';
 import { SiAmazonmusic } from 'react-icons/si';
 import { TypingEffectText } from '@/components/lib/TypingEffectText';
-import { ParallaxImg } from '@/components/lib/ParallaxImg';
-import { ParallaxVideo } from '@/components/lib/ParallaxVideo';
 import ZoomParallax from '@/components/lib/ZoomParallax';
 
 // Format date to "Year" format for music
@@ -231,7 +229,7 @@ export default function HomePage() {
 
             {/* ABOUT ME SECTION */}
             <section id="about-me" ref={aboutMeRef} className="bg-black">
-                <div className="relative h-[300vh] overflow-visible md:h-[500vh]">
+                <div className="relative h-[300vh] overflow-visible">
                     <div className="sticky top-0 z-3 flex h-[100vh] items-center justify-center px-4 text-center sm:px-8">
                         <div>
                             <motion.h1
@@ -254,43 +252,72 @@ export default function HomePage() {
                             </motion.p>
                         </div>
                     </div>
-                    <div className="relative container mx-auto mt-8 mb-8 px-4 sm:px-8">
-                        <ParallaxImg
-                            className="z-2 w-3/7 object-cover md:w-1/3"
-                            src="/images/homeGallery/heroImage2.jpg"
-                            alt="About Me Image 1"
-                            start={30}
-                            end={20}
-                        />
-                        <ParallaxImg
-                            className="absolute right-4 z-2 w-2/5 object-cover sm:right-12 md:right-24 md:w-1/3"
-                            src="/images/homeGallery/heroImage3.jpg"
-                            alt="About Me Image 2"
-                            start={-50}
-                            end={-40}
-                        />
-                        <ParallaxVideo className="relative z-1 mx-auto w-3/5 sm:w-2/5" src="/videos/ZealOfTheLordReel.mp4" start={20} end={10} />
-                        <ParallaxImg
-                            className="absolute right-4 z-2 w-2/5 object-cover sm:right-12 md:right-24 md:w-1/3"
-                            src="/images/homeGallery/heroImage1.jpg"
-                            alt="About Me Image 3"
-                            start={0}
-                            end={-10}
-                        />
-                        <ParallaxImg
-                            className="absolute z-2 w-3/7 object-cover md:w-1/3"
-                            src="/images/homeGallery/heroImage9.jpg"
-                            alt="About Me Image 4"
-                            start={20}
-                            end={-10}
-                        />
-                        <ParallaxImg
-                            className="absolute left-1/2 z-4 hidden w-4/5 -translate-x-1/2 object-cover sm:block"
-                            src="/images/homeGallery/heroImage10.jpg"
-                            alt="About Me Image 5"
-                            start={70}
-                            end={40}
-                        />
+                    <div className="z-10 container mx-auto mt-8 mb-8 px-4 sm:px-8">
+                        {/* Masonry Grid */}
+                        <div className="mx-auto columns-2 gap-4 lg:columns-3 xl:columns-4">
+                            {/* Image 1 */}
+                            <div className="mb-4 break-inside-avoid">
+                                <Image
+                                    src="/images/homeGallery/heroImage2.jpg"
+                                    alt="About Me Image 1"
+                                    width={400}
+                                    height={600}
+                                    className="w-full object-cover"
+                                />
+                            </div>
+
+                            {/* Image 2 */}
+                            <div className="mb-4 break-inside-avoid">
+                                <Image
+                                    src="/images/homeGallery/heroImage3.jpg"
+                                    alt="About Me Image 2"
+                                    width={400}
+                                    height={500}
+                                    className="w-full object-cover"
+                                />
+                            </div>
+
+                            {/* Video */}
+                            <div className="mb-4 break-inside-avoid">
+                                <video className="w-full" autoPlay muted loop playsInline>
+                                    <source src="/videos/ZealOfTheLordReel.mp4" type="video/mp4" />
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+
+                            {/* Image 3 */}
+                            <div className="mb-4 break-inside-avoid">
+                                <Image
+                                    src="/images/homeGallery/heroImage1.jpg"
+                                    alt="About Me Image 3"
+                                    width={400}
+                                    height={700}
+                                    className="w-full object-cover"
+                                />
+                            </div>
+
+                            {/* Image 4 */}
+                            <div className="mb-4 break-inside-avoid">
+                                <Image
+                                    src="/images/homeGallery/heroImage9.jpg"
+                                    alt="About Me Image 4"
+                                    width={400}
+                                    height={550}
+                                    className="w-full object-cover"
+                                />
+                            </div>
+
+                            {/* Image 5 */}
+                            <div className="mb-4 break-inside-avoid">
+                                <Image
+                                    src="/images/homeGallery/heroImage8.jpg"
+                                    alt="About Me Image 5"
+                                    width={400}
+                                    height={650}
+                                    className="w-full object-cover"
+                                />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
