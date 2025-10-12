@@ -6,20 +6,59 @@ import { FaApple, FaYoutube, FaSpotify, FaDeezer, FaPlay } from 'react-icons/fa'
 import { SiAmazonmusic } from 'react-icons/si';
 import Image from 'next/image';
 import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 
 export default function Music() {
     const { music, loading: musicLoading, error: musicError } = useMusic();
+    const [isLoading, setIsLoading] = useState(true);
 
     // Ref for music section animation
     const musicRef = useRef(null);
     const musicInView = useInView(musicRef, { margin: '-100px' });
+
+    // Handle loading logic
+    useEffect(() => {
+        if (!musicLoading) {
+            setIsLoading(false);
+        }
+    }, [musicLoading]);
 
     return (
         <div className="relative">
             <section id="hero" className="relative bg-black">
                 {/* Hero Section */}
                 <div className="relative min-h-screen overflow-hidden mask-b-from-50%">
+                    {/* Loading Screen */}
+                    {isLoading && (
+                        <div className="absolute inset-0 z-20 bg-black">
+                            {/* Video Background Skeleton */}
+                            <div
+                                className="absolute top-0 left-1/2 h-full w-[177.78vh] -translate-x-1/2 animate-pulse bg-gray-800"
+                                style={{ minWidth: '100vw' }}
+                            ></div>
+
+                            {/* Dark Overlay Skeleton */}
+                            <div className="absolute inset-0 bg-black/30"></div>
+
+                            {/* Content Skeleton */}
+                            <div className="relative z-10 flex min-h-screen items-center justify-center">
+                                <div className="text-center">
+                                    {/* Title Skeleton */}
+                                    <div className="mx-auto mb-4 h-16 w-3/4 animate-pulse rounded bg-gray-700 md:h-24"></div>
+
+                                    {/* Subtitle Skeleton */}
+                                    <div className="mx-auto mb-8 h-6 w-64 animate-pulse rounded bg-gray-700"></div>
+
+                                    {/* Buttons Skeleton */}
+                                    <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+                                        <div className="h-12 w-full max-w-[300px] animate-pulse rounded bg-gray-700"></div>
+                                        <div className="h-12 w-full max-w-[300px] animate-pulse rounded bg-gray-700"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
                     {/* Video Background */}
                     <video
                         className="absolute top-0 left-1/2 h-full w-[177.78vh] -translate-x-1/2 object-cover"
@@ -78,18 +117,48 @@ export default function Music() {
                 <div className="py-20">
                     {musicLoading ? (
                         // Loading state
-                        <div className="space-y-8">
-                            {Array.from({ length: 3 }, (_, index) => (
-                                <div key={index} className="flex animate-pulse gap-6 bg-gray-800 p-6">
-                                    <div className="h-32 w-32 flex-shrink-0 bg-gray-700"></div>
-                                    <div className="flex-1 space-y-3">
-                                        <div className="h-6 w-3/4 rounded bg-gray-700"></div>
-                                        <div className="h-4 w-1/2 rounded bg-gray-700"></div>
-                                        <div className="h-4 w-1/3 rounded bg-gray-700"></div>
-                                        <div className="h-4 w-1/4 rounded bg-gray-700"></div>
+                        <div className="container mx-auto px-4 sm:px-8">
+                            {/* Music Section Header Skeleton */}
+                            <div className="mx-auto mb-16 max-w-4xl text-center">
+                                <div className="mx-auto mb-6 h-16 w-48 animate-pulse rounded bg-gray-700 md:h-20"></div>
+                                <div className="mx-auto mb-4 h-6 w-full max-w-3xl animate-pulse rounded bg-gray-700"></div>
+                                <div className="mx-auto h-6 w-3/4 max-w-3xl animate-pulse rounded bg-gray-700"></div>
+                            </div>
+
+                            {/* Streaming Platform Buttons Skeleton */}
+                            <div className="mx-auto mb-12 flex max-w-[1000px] flex-wrap justify-center gap-4">
+                                {Array.from({ length: 5 }, (_, index) => (
+                                    <div key={index} className="h-12 w-24 animate-pulse rounded-lg bg-gray-700"></div>
+                                ))}
+                            </div>
+
+                            {/* Music Grid Skeleton */}
+                            <div className="mx-auto grid max-w-[1000px] grid-cols-1 justify-items-center gap-8 xl:grid-cols-2">
+                                {Array.from({ length: 4 }, (_, index) => (
+                                    <div key={index} className="group">
+                                        {/* Music Thumbnail Skeleton */}
+                                        <div className="relative aspect-square h-[330px] overflow-hidden bg-gray-700 sm:h-[500px]">
+                                            <div className="absolute inset-0 animate-pulse bg-gray-600"></div>
+                                        </div>
+
+                                        {/* Song Information Skeleton */}
+                                        <div className="mt-4 text-center">
+                                            {/* Song Name Skeleton */}
+                                            <div className="mx-auto mb-2 h-6 w-3/4 animate-pulse rounded bg-gray-700"></div>
+
+                                            {/* Artist and Release Date Skeleton */}
+                                            <div className="mx-auto mb-4 h-4 w-1/2 animate-pulse rounded bg-gray-700"></div>
+
+                                            {/* Music Platform Buttons Skeleton */}
+                                            <div className="flex justify-center gap-3">
+                                                {Array.from({ length: 5 }, (_, btnIndex) => (
+                                                    <div key={btnIndex} className="h-12 w-12 animate-pulse rounded-lg bg-gray-700"></div>
+                                                ))}
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                            ))}
+                                ))}
+                            </div>
                         </div>
                     ) : musicError ? (
                         // Error state

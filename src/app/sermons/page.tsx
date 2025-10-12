@@ -102,10 +102,37 @@ export default function SermonsPage() {
                 <div className="relative min-h-screen overflow-hidden mask-b-from-50%">
                     {/* Loading Screen */}
                     {isLoading && (
-                        <div className="absolute inset-0 z-20 flex items-center justify-center bg-black">
-                            <div className="text-center text-white">
-                                <div className="mb-4 h-16 w-16 animate-spin rounded-full border-4 border-white border-t-transparent"></div>
-                                <p className="text-xl">Loading sermons...</p>
+                        <div className="absolute inset-0 z-20 bg-black">
+                            {/* Video Background Skeleton */}
+                            <div
+                                className="absolute top-0 left-1/2 h-full w-[177.78vh] -translate-x-1/2 animate-pulse bg-gray-800"
+                                style={{ minWidth: '100vw' }}
+                            ></div>
+
+                            {/* Dark Overlay Skeleton */}
+                            <div className="absolute inset-0 bg-black/30"></div>
+
+                            {/* Content Skeleton */}
+                            <div className="relative z-10 flex min-h-screen items-center justify-center">
+                                <div className="container mx-auto px-4 text-center text-white sm:px-8">
+                                    {/* Title Skeleton */}
+                                    <div className="mx-auto mb-6 h-16 w-3/4 animate-pulse rounded bg-gray-700 md:h-24"></div>
+
+                                    {/* Tags Skeleton */}
+                                    <div className="mb-4 flex flex-wrap justify-center gap-2">
+                                        <div className="h-8 w-20 animate-pulse rounded-full bg-gray-700"></div>
+                                        <div className="h-8 w-24 animate-pulse rounded-full bg-gray-700"></div>
+                                        <div className="h-8 w-16 animate-pulse rounded-full bg-gray-700"></div>
+                                    </div>
+
+                                    {/* Date Skeleton */}
+                                    <div className="mx-auto mb-6 h-6 w-64 animate-pulse rounded bg-gray-700"></div>
+
+                                    {/* Button Skeleton */}
+                                    <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+                                        <div className="h-12 w-full max-w-[300px] animate-pulse rounded bg-gray-700"></div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     )}
@@ -392,10 +419,29 @@ export default function SermonsPage() {
                     {sermonsLoading ? (
                         // Loading state
                         <div className="container mx-auto px-4 sm:px-8">
-                            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+                            <div className="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
                                 {Array.from({ length: 10 }, (_, index) => (
-                                    <div key={index} className="group relative aspect-[4/5] overflow-hidden bg-gray-700">
-                                        <div className="absolute inset-0 animate-pulse bg-gray-600"></div>
+                                    <div key={index} className="group relative block overflow-hidden">
+                                        {/* Image skeleton */}
+                                        <div className="relative aspect-[4/5] overflow-hidden bg-gray-700">
+                                            <div className="absolute inset-0 animate-pulse bg-gray-600"></div>
+                                        </div>
+
+                                        {/* Text content skeleton */}
+                                        <div className="py-4">
+                                            {/* Title skeleton */}
+                                            <div className="mb-2 h-6 w-full animate-pulse rounded bg-gray-700"></div>
+                                            <div className="mb-2 h-4 w-3/4 animate-pulse rounded bg-gray-700"></div>
+
+                                            {/* Tags skeleton */}
+                                            <div className="mb-2 flex gap-2">
+                                                <div className="h-3 w-16 animate-pulse rounded bg-gray-700"></div>
+                                                <div className="h-3 w-20 animate-pulse rounded bg-gray-700"></div>
+                                            </div>
+
+                                            {/* Date skeleton */}
+                                            <div className="h-4 w-24 animate-pulse rounded bg-gray-700"></div>
+                                        </div>
                                     </div>
                                 ))}
                             </div>
