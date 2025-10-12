@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion, useScroll, useTransform, useInView } from 'framer-motion';
+import { motion, useScroll, useTransform, useInView, useMotionValue, useSpring } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import { modernizFont } from '@/lib/utils';
 import { useMusic, useSermons } from '@/hooks/useContentful';
@@ -256,7 +256,21 @@ export default function HomePage() {
                         {/* Masonry Grid */}
                         <div className="mx-auto columns-2 gap-4 lg:columns-3 xl:columns-4">
                             {/* Image 1 */}
-                            <div className="mb-4 break-inside-avoid">
+                            <motion.div
+                                className="mb-4 break-inside-avoid"
+                                initial={{ scale: 0.9, opacity: 0 }}
+                                whileInView={{
+                                    scale: 1,
+                                    opacity: 1,
+                                    transition: {
+                                        type: 'spring',
+                                        stiffness: 100,
+                                        damping: 15,
+                                        mass: 1
+                                    }
+                                }}
+                                viewport={{ once: true, margin: '-100px' }}
+                            >
                                 <Image
                                     src="/images/homeGallery/heroImage2.jpg"
                                     alt="About Me Image 1"
@@ -264,10 +278,25 @@ export default function HomePage() {
                                     height={600}
                                     className="w-full object-cover"
                                 />
-                            </div>
+                            </motion.div>
 
                             {/* Image 2 */}
-                            <div className="mb-4 break-inside-avoid">
+                            <motion.div
+                                className="mb-4 break-inside-avoid"
+                                initial={{ scale: 0.9, opacity: 0 }}
+                                whileInView={{
+                                    scale: 1,
+                                    opacity: 1,
+                                    transition: {
+                                        type: 'spring',
+                                        stiffness: 100,
+                                        damping: 15,
+                                        mass: 1,
+                                        delay: 0.1
+                                    }
+                                }}
+                                viewport={{ once: true, margin: '-100px' }}
+                            >
                                 <Image
                                     src="/images/homeGallery/heroImage3.jpg"
                                     alt="About Me Image 2"
@@ -275,18 +304,48 @@ export default function HomePage() {
                                     height={500}
                                     className="w-full object-cover"
                                 />
-                            </div>
+                            </motion.div>
 
                             {/* Video */}
-                            <div className="mb-4 break-inside-avoid">
+                            <motion.div
+                                className="mb-4 break-inside-avoid"
+                                initial={{ scale: 0.9, opacity: 0 }}
+                                whileInView={{
+                                    scale: 1,
+                                    opacity: 1,
+                                    transition: {
+                                        type: 'spring',
+                                        stiffness: 100,
+                                        damping: 15,
+                                        mass: 1,
+                                        delay: 0.2
+                                    }
+                                }}
+                                viewport={{ once: true, margin: '-100px' }}
+                            >
                                 <video className="w-full" autoPlay muted loop playsInline>
                                     <source src="/videos/ZealOfTheLordReel.mp4" type="video/mp4" />
                                     Your browser does not support the video tag.
                                 </video>
-                            </div>
+                            </motion.div>
 
                             {/* Image 3 */}
-                            <div className="mb-4 break-inside-avoid">
+                            <motion.div
+                                className="mb-4 break-inside-avoid"
+                                initial={{ scale: 0.9, opacity: 0 }}
+                                whileInView={{
+                                    scale: 1,
+                                    opacity: 1,
+                                    transition: {
+                                        type: 'spring',
+                                        stiffness: 100,
+                                        damping: 15,
+                                        mass: 1,
+                                        delay: 0.3
+                                    }
+                                }}
+                                viewport={{ once: true, margin: '-100px' }}
+                            >
                                 <Image
                                     src="/images/homeGallery/heroImage1.jpg"
                                     alt="About Me Image 3"
@@ -294,10 +353,25 @@ export default function HomePage() {
                                     height={700}
                                     className="w-full object-cover"
                                 />
-                            </div>
+                            </motion.div>
 
                             {/* Image 4 */}
-                            <div className="mb-4 break-inside-avoid">
+                            <motion.div
+                                className="mb-4 break-inside-avoid"
+                                initial={{ scale: 0.9, opacity: 0 }}
+                                whileInView={{
+                                    scale: 1,
+                                    opacity: 1,
+                                    transition: {
+                                        type: 'spring',
+                                        stiffness: 100,
+                                        damping: 15,
+                                        mass: 1,
+                                        delay: 0.4
+                                    }
+                                }}
+                                viewport={{ once: true, margin: '-100px' }}
+                            >
                                 <Image
                                     src="/images/homeGallery/heroImage9.jpg"
                                     alt="About Me Image 4"
@@ -305,10 +379,25 @@ export default function HomePage() {
                                     height={550}
                                     className="w-full object-cover"
                                 />
-                            </div>
+                            </motion.div>
 
                             {/* Image 5 */}
-                            <div className="mb-4 break-inside-avoid">
+                            <motion.div
+                                className="mb-4 break-inside-avoid"
+                                initial={{ scale: 0.9, opacity: 0 }}
+                                whileInView={{
+                                    scale: 1,
+                                    opacity: 1,
+                                    transition: {
+                                        type: 'spring',
+                                        stiffness: 100,
+                                        damping: 15,
+                                        mass: 1,
+                                        delay: 0.5
+                                    }
+                                }}
+                                viewport={{ once: true, margin: '-100px' }}
+                            >
                                 <Image
                                     src="/images/homeGallery/heroImage8.jpg"
                                     alt="About Me Image 5"
@@ -316,7 +405,7 @@ export default function HomePage() {
                                     height={650}
                                     className="w-full object-cover"
                                 />
-                            </div>
+                            </motion.div>
                         </div>
                     </div>
                 </div>

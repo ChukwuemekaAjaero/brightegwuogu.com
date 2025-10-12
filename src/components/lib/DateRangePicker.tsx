@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { ChevronDownIcon, X } from 'lucide-react';
+import { ChevronDownIcon, X, CalendarIcon } from 'lucide-react';
 
 import { Calendar } from '@/components/ui/calendar';
 import { Label } from '@/components/ui/label';
@@ -213,7 +213,10 @@ export function DateRangePicker({ value, onChange, placeholder = 'Select date ra
                         id={id}
                         className="flex w-full items-center justify-between border border-gray-600 bg-gray-800 py-3 pr-10 pl-4 text-left text-white placeholder-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                     >
-                        <span className={dateRange?.from ? 'text-white' : 'text-gray-400'}>{formatDateRange()}</span>
+                        <div className="flex items-center gap-3">
+                            <CalendarIcon className="h-5 w-5 text-gray-400" />
+                            <span className={dateRange?.from ? 'text-white' : 'text-gray-400'}>{formatDateRange()}</span>
+                        </div>
                         <ChevronDownIcon className="h-5 w-5 text-gray-400" />
                     </button>
                 </PopoverTrigger>
