@@ -20,7 +20,7 @@ export default function SermonsPage() {
 
     // Ref for sermons section animation
     const sermonsRef = useRef(null);
-    const sermonsInView = useInView(sermonsRef, { margin: '-100px' });
+    const sermonsInView = useInView(sermonsRef, { margin: '300px' });
 
     // Handle loading logic
     useEffect(() => {
@@ -473,79 +473,83 @@ export default function SermonsPage() {
                         // Sermons grid
                         <div className="container mx-auto px-4 sm:px-8">
                             <div ref={sermonsRef} className="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-                                {displaySermons.map((sermon, index) => (
-                                    <motion.a
-                                        key={sermon.name}
-                                        href={sermon.youTubeLink}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="group relative block overflow-hidden transition-all duration-300 hover:scale-103"
-                                        initial={{ opacity: 0, y: 30 }}
-                                        animate={sermonsInView ? { opacity: 0 } : { opacity: 1 }}
-                                        transition={{ delay: index * 0.1, duration: 0.8, ease: 'easeOut' }}
-                                    >
-                                        <div className="relative aspect-[4/5] overflow-hidden">
-                                            {/* Image with scale and blur effect */}
-                                            {sermon.thumbnailImage?.fields?.file?.url && (
-                                                <Image
-                                                    src={`https:${sermon.thumbnailImage.fields.file.url}`}
-                                                    alt={sermon.name}
-                                                    fill
-                                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                                                    className="object-cover transition-all duration-300 group-hover:scale-110 group-hover:blur-sm"
-                                                />
-                                            )}
+                                {displaySermons.map((sermon, index) => {
+                                    // Calculate delay based on position within current batch
+                                    const batchIndex = index % 5; // Reset every 5 items (batch size)
+                                    return (
+                                        <motion.a
+                                            key={sermon.name}
+                                            href={sermon.youTubeLink}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="group relative block overflow-hidden transition-all duration-300 hover:scale-103"
+                                            initial={{ opacity: 0, y: 30 }}
+                                            animate={sermonsInView ? { opacity: 0 } : { opacity: 1 }}
+                                            transition={{ delay: batchIndex * 0.1, duration: 0.8, ease: 'easeOut' }}
+                                        >
+                                            <div className="relative aspect-[4/5] overflow-hidden">
+                                                {/* Image with scale and blur effect */}
+                                                {sermon.thumbnailImage?.fields?.file?.url && (
+                                                    <Image
+                                                        src={`https:${sermon.thumbnailImage.fields.file.url}`}
+                                                        alt={sermon.name}
+                                                        fill
+                                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                                                        className="object-cover transition-all duration-300 group-hover:scale-110 group-hover:blur-sm"
+                                                    />
+                                                )}
 
-                                            {/* Description Overlay */}
-                                            <div className="absolute inset-0 bg-black/70 opacity-0 transition-all duration-300 group-hover:scale-110 group-hover:opacity-100">
-                                                <div className="flex h-full items-center justify-center p-8">
-                                                    {sermon.sermonDescription ? (
-                                                        <p className="text-center text-xs whitespace-pre-line text-white">
-                                                            {sermon.sermonDescription}
-                                                        </p>
-                                                    ) : (
-                                                        <div className="rounded-full border-4 border-white p-4">
-                                                            <svg
-                                                                className="h-20 w-20 text-white drop-shadow-lg"
-                                                                fill="currentColor"
-                                                                viewBox="0 0 24 24"
-                                                            >
-                                                                <path d="M8 5v14l11-7z" />
-                                                            </svg>
-                                                        </div>
-                                                    )}
+                                                {/* Description Overlay */}
+                                                <div className="absolute inset-0 bg-black/70 opacity-0 transition-all duration-300 group-hover:scale-110 group-hover:opacity-100">
+                                                    <div className="flex h-full items-center justify-center p-8">
+                                                        {sermon.sermonDescription ? (
+                                                            <p className="text-center text-xs whitespace-pre-line text-white">
+                                                                {sermon.sermonDescription}
+                                                            </p>
+                                                        ) : (
+                                                            <div className="rounded-full border-4 border-white p-4">
+                                                                <svg
+                                                                    className="h-20 w-20 text-white drop-shadow-lg"
+                                                                    fill="currentColor"
+                                                                    viewBox="0 0 24 24"
+                                                                >
+                                                                    <path d="M8 5v14l11-7z" />
+                                                                </svg>
+                                                            </div>
+                                                        )}
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
 
-                                        {/* Sermon Info Below Thumbnail */}
-                                        <div className="py-4">
-                                            <h3 className="mb-2 line-clamp-2 text-lg font-bold text-white transition-colors duration-300 group-hover:text-red-700">
-                                                {sermon.name}
-                                            </h3>
+                                            {/* Sermon Info Below Thumbnail */}
+                                            <div className="py-4">
+                                                <h3 className="mb-2 line-clamp-2 text-lg font-bold text-white transition-colors duration-300 group-hover:text-red-700">
+                                                    {sermon.name}
+                                                </h3>
 
-                                            {/* Sermon Tags */}
-                                            {sermon.sermonTags && sermon.sermonTags.length > 0 && (
-                                                <div className="mb-2 flex flex-wrap items-center gap-2 text-xs text-gray-300">
-                                                    {sermon.sermonTags.map((tag, index) => (
-                                                        <span key={index} className="flex items-center">
-                                                            {index > 0 && <span className="mr-2 text-gray-500">•</span>}
-                                                            {tag}
-                                                        </span>
-                                                    ))}
-                                                </div>
-                                            )}
+                                                {/* Sermon Tags */}
+                                                {sermon.sermonTags && sermon.sermonTags.length > 0 && (
+                                                    <div className="mb-2 flex flex-wrap items-center gap-2 text-xs text-gray-300">
+                                                        {sermon.sermonTags.map((tag, index) => (
+                                                            <span key={index} className="flex items-center">
+                                                                {index > 0 && <span className="mr-2 text-gray-500">•</span>}
+                                                                {tag}
+                                                            </span>
+                                                        ))}
+                                                    </div>
+                                                )}
 
-                                            <p className="text-sm text-gray-300 transition-colors duration-300 group-hover:text-gray-200">
-                                                {new Date(sermon.sermonDate + 'T00:00:00').toLocaleDateString('en-US', {
-                                                    month: 'short',
-                                                    day: 'numeric',
-                                                    year: 'numeric'
-                                                })}
-                                            </p>
-                                        </div>
-                                    </motion.a>
-                                ))}
+                                                <p className="text-sm text-gray-300 transition-colors duration-300 group-hover:text-gray-200">
+                                                    {new Date(sermon.sermonDate + 'T00:00:00').toLocaleDateString('en-US', {
+                                                        month: 'short',
+                                                        day: 'numeric',
+                                                        year: 'numeric'
+                                                    })}
+                                                </p>
+                                            </div>
+                                        </motion.a>
+                                    );
+                                })}
                             </div>
 
                             {/* More Button */}

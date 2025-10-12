@@ -484,9 +484,26 @@ export default function HomePage() {
                             {musicLoading ? (
                                 // Loading state
                                 Array.from({ length: 3 }, (_, index) => (
-                                    <div key={index} className="aspect-square animate-pulse bg-gray-200">
-                                        <div className="flex h-full w-full items-center justify-center">
-                                            <span className="text-gray-500">Loading...</span>
+                                    <div key={index} className="group">
+                                        {/* Music Thumbnail Skeleton */}
+                                        <div className="relative aspect-square h-[200px] overflow-hidden bg-gray-700 sm:h-[250px]">
+                                            <div className="absolute inset-0 animate-pulse bg-gray-600"></div>
+                                        </div>
+
+                                        {/* Song Information Skeleton */}
+                                        <div className="mt-4 text-center">
+                                            {/* Song Name Skeleton */}
+                                            <div className="mx-auto mb-2 h-5 w-3/4 animate-pulse rounded bg-gray-700"></div>
+
+                                            {/* Artist and Release Date Skeleton */}
+                                            <div className="mx-auto mb-3 h-4 w-1/2 animate-pulse rounded bg-gray-700"></div>
+
+                                            {/* Music Platform Buttons Skeleton */}
+                                            <div className="flex justify-center gap-2">
+                                                {Array.from({ length: 4 }, (_, btnIndex) => (
+                                                    <div key={btnIndex} className="h-8 w-8 animate-pulse rounded-lg bg-gray-700"></div>
+                                                ))}
+                                            </div>
                                         </div>
                                     </div>
                                 ))
@@ -640,9 +657,26 @@ export default function HomePage() {
                             {sermonsLoading ? (
                                 // Loading state
                                 Array.from({ length: 3 }, (_, index) => (
-                                    <div key={index} className="aspect-square animate-pulse bg-gray-200">
-                                        <div className="flex h-full w-full items-center justify-center">
-                                            <span className="text-gray-500">Loading...</span>
+                                    <div key={index} className="group relative block overflow-hidden">
+                                        {/* Image skeleton */}
+                                        <div className="relative aspect-[4/5] overflow-hidden bg-gray-700">
+                                            <div className="absolute inset-0 animate-pulse bg-gray-600"></div>
+                                        </div>
+
+                                        {/* Text content skeleton */}
+                                        <div className="py-4">
+                                            {/* Title skeleton */}
+                                            <div className="mb-2 h-5 w-full animate-pulse rounded bg-gray-700"></div>
+                                            <div className="mb-2 h-4 w-3/4 animate-pulse rounded bg-gray-700"></div>
+
+                                            {/* Tags skeleton */}
+                                            <div className="mb-2 flex gap-2">
+                                                <div className="h-3 w-16 animate-pulse rounded bg-gray-700"></div>
+                                                <div className="h-3 w-20 animate-pulse rounded bg-gray-700"></div>
+                                            </div>
+
+                                            {/* Date skeleton */}
+                                            <div className="h-4 w-24 animate-pulse rounded bg-gray-700"></div>
                                         </div>
                                     </div>
                                 ))
