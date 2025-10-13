@@ -187,7 +187,7 @@ export default function SermonsPage() {
                                 <a
                                     href={sermons[0]?.youTubeLink}
                                     target="_blank"
-                                    rel="noopener noreferrer"
+                                    rel="noopener   noreferrer"
                                     className="group inline-flex w-full max-w-[300px] items-center justify-center bg-red-600 px-8 py-4 font-semibold text-white transition-all duration-300 hover:scale-105 hover:bg-red-700"
                                 >
                                     <FaYoutube size={30} className="mr-4" />

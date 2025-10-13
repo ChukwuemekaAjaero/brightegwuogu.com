@@ -517,24 +517,24 @@ export default function HomePage() {
                             <div className="flex flex-col justify-center text-white">
                                 <div className="text-center lg:text-left">
                                     {/* Song Name */}
-                                    <h3 className={`mb-4 text-3xl font-bold lg:text-4xl ${modernizFont.className}`}>No Other God</h3>
+                                    <h3 className={`mb-6 text-2xl font-bold lg:text-3xl xl:text-4xl ${modernizFont.className}`}>No Other God</h3>
 
                                     {/* Artist and Release Date */}
-                                    <div className="mb-6 text-lg font-medium text-white/90">
+                                    <div className="mb-8 text-base font-medium text-white/90 lg:text-lg">
                                         <span className="font-bold">Brite Egwuogu</span>
                                         <span className="mx-2">•</span>
                                         <span>2025</span>
                                     </div>
 
                                     {/* Song Description */}
-                                    <p className="mb-8 text-lg leading-relaxed text-white/80">
+                                    <p className="mb-10 text-base leading-relaxed text-white/80 lg:text-lg">
                                         &ldquo;Jesus, No Other God&rdquo; is more than a song, it&apos;s a sound from a strange place. It&apos;s a
                                         declaration and a reminder that in a world full of names and options, there is still only One true God and
                                         He&apos;s different from the rest.
                                     </p>
 
                                     {/* Streaming Service Buttons */}
-                                    <div className="flex flex-wrap justify-center gap-3">
+                                    <div className="flex flex-wrap justify-center gap-4 lg:gap-5">
                                         <a
                                             href="https://open.spotify.com/track/6FCgNzCMwvYqEVwlyU3uYl?si=a50ed64ea8ea46aa"
                                             target="_blank"
@@ -587,9 +587,9 @@ export default function HomePage() {
 
                         {/* Other Music Preview */}
                         <div className="mt-16">
-                            <div className="mb-8 text-center">
+                            <div className="mb-12 text-center">
                                 <motion.h2
-                                    className={`text-2xl font-bold text-white ${modernizFont.className}`}
+                                    className={`text-2xl font-bold text-white lg:text-3xl ${modernizFont.className}`}
                                     initial={{ opacity: 0, y: 30 }}
                                     animate={musicInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
                                     transition={{ delay: 0.9, duration: 0.8, ease: 'easeOut' }}
@@ -597,7 +597,7 @@ export default function HomePage() {
                                     More Music
                                 </motion.h2>
                             </div>
-                            <div className="grid grid-cols-2 gap-6 lg:grid-cols-3 [&>*:nth-child(3)]:col-span-2 [&>*:nth-child(3)]:mx-auto [&>*:nth-child(3)]:max-w-xs lg:[&>*:nth-child(3)]:col-span-1 lg:[&>*:nth-child(3)]:mx-0 lg:[&>*:nth-child(3)]:max-w-none">
+                            <div className="grid grid-cols-2 gap-8 lg:grid-cols-3 lg:gap-10 [&>*:nth-child(3)]:col-span-2 [&>*:nth-child(3)]:mx-auto [&>*:nth-child(3)]:max-w-xs lg:[&>*:nth-child(3)]:col-span-1 lg:[&>*:nth-child(3)]:mx-0 lg:[&>*:nth-child(3)]:max-w-none">
                                 {musicLoading ? (
                                     // Loading state
                                     Array.from({ length: 3 }, (_, index) => (
@@ -700,12 +700,12 @@ export default function HomePage() {
                                             </div>
 
                                             {/* Song Information - Below thumbnail */}
-                                            <div className="mt-4 text-center text-white">
+                                            <div className="mt-6 text-center text-white">
                                                 {/* Song Name */}
-                                                <h3 className="mb-2 text-xl font-semibold">{song.name}</h3>
+                                                <h3 className="mb-3 text-lg font-semibold lg:text-xl">{song.name}</h3>
 
                                                 {/* Artist and Release Date */}
-                                                <div className="text-sm font-medium text-white/90">
+                                                <div className="mb-4 text-sm font-medium text-white/90 lg:text-base">
                                                     <span className="font-bold">{song.artists?.join(', ')}</span>
                                                     {song.releaseDate && (
                                                         <>
@@ -716,7 +716,7 @@ export default function HomePage() {
                                                 </div>
 
                                                 {/* Streaming Service Buttons */}
-                                                <div className="mt-4 hidden justify-center gap-3 lg:flex">
+                                                <div className="mt-6 hidden justify-center gap-4 lg:flex">
                                                     <a
                                                         href={song.spotifyLink}
                                                         target="_blank"
@@ -808,10 +808,10 @@ export default function HomePage() {
                                         {/* Song Information - Below thumbnail */}
                                         <div className="mt-4 text-center text-white">
                                             {/* Song Name */}
-                                            <h3 className="mb-2 text-xl font-semibold">{music[3].name}</h3>
+                                            <h3 className="mb-3 text-lg font-semibold lg:text-xl">{music[3].name}</h3>
 
                                             {/* Artist and Release Date */}
-                                            <div className="text-sm font-medium text-white/90">
+                                            <div className="mb-4 text-sm font-medium text-white/90 lg:text-base">
                                                 <span className="font-bold">{music[3].artists?.join(', ')}</span>
                                                 {music[3].releaseDate && (
                                                     <>
@@ -822,7 +822,7 @@ export default function HomePage() {
                                             </div>
 
                                             {/* Streaming Service Buttons */}
-                                            <div className="mt-4 flex justify-center gap-3">
+                                            <div className="mt-6 flex justify-center gap-4">
                                                 <a
                                                     href={music[3].spotifyLink}
                                                     target="_blank"
@@ -897,7 +897,7 @@ export default function HomePage() {
                                 initial={{ opacity: 0, y: 30 }}
                                 animate={sermonsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
                                 transition={{ delay: 0.25, duration: 0.8, ease: 'easeOut' }}
-                                className={`text-4xl font-bold text-white sm:text-5xl md:text-6xl ${modernizFont.className}`}
+                                className={`text-5xl font-bold text-white md:text-6xl ${modernizFont.className}`}
                             >
                                 Sermons
                             </motion.h1>
@@ -933,20 +933,20 @@ export default function HomePage() {
                             <div className="flex flex-col justify-center text-white">
                                 <div className="text-center lg:text-left">
                                     {/* Sermon Name */}
-                                    <h3 className={`mb-4 text-2xl font-bold lg:text-3xl ${modernizFont.className}`}>
+                                    <h3 className={`mb-6 text-2xl font-bold lg:text-3xl xl:text-4xl ${modernizFont.className}`}>
                                         {sermons.length > 0 ? sermons[0].name : 'Latest Sermon'}
                                     </h3>
 
                                     {/* Sermon Date */}
                                     {sermons.length > 0 && sermons[0].sermonDate && (
-                                        <div className="mb-6 text-lg text-white/90">
+                                        <div className="mb-8 text-base text-white/90 lg:text-lg">
                                             <span>{formatSermonDate(sermons[0].sermonDate)}</span>
                                         </div>
                                     )}
 
                                     {/* Sermon Tags */}
                                     {sermons.length > 0 && sermons[0].sermonTags && sermons[0].sermonTags.length > 0 && (
-                                        <div className="mb-6 flex flex-wrap justify-center gap-2 lg:justify-start">
+                                        <div className="mb-8 flex flex-wrap justify-center gap-3 lg:justify-start">
                                             {sermons[0].sermonTags.slice(0, 3).map((tag, index) => (
                                                 <span key={index} className="rounded-full bg-red-600/20 px-3 py-1 text-sm text-white">
                                                     {tag}
@@ -956,7 +956,7 @@ export default function HomePage() {
                                     )}
 
                                     {/* Sermon Description */}
-                                    <p className="mb-8 text-base leading-relaxed whitespace-pre-line text-white/80">
+                                    <p className="mb-10 text-base leading-relaxed whitespace-pre-line text-white/80 lg:text-lg">
                                         {sermons.length > 0 && sermons[0].sermonDescription
                                             ? sermons[0].sermonDescription
                                             : 'Discover powerful messages of hope, faith, and inspiration that will strengthen your walk with God and transform your life.'}
@@ -981,9 +981,9 @@ export default function HomePage() {
 
                         {/* Other Sermons Preview */}
                         <div className="mt-16">
-                            <div className="mb-8 text-center">
+                            <div className="mb-12 text-center">
                                 <motion.h2
-                                    className={`text-2xl font-bold text-white ${modernizFont.className}`}
+                                    className={`text-2xl font-bold text-white lg:text-3xl ${modernizFont.className}`}
                                     initial={{ opacity: 0, y: 30 }}
                                     animate={sermonsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
                                     transition={{ delay: 0.9, duration: 0.8, ease: 'easeOut' }}
@@ -991,7 +991,7 @@ export default function HomePage() {
                                     More Sermons
                                 </motion.h2>
                             </div>
-                            <div className="grid grid-cols-2 gap-6 lg:grid-cols-3 [&>*:nth-child(3)]:col-span-2 [&>*:nth-child(3)]:mx-auto [&>*:nth-child(3)]:max-w-xs lg:[&>*:nth-child(3)]:col-span-1 lg:[&>*:nth-child(3)]:mx-0 lg:[&>*:nth-child(3)]:max-w-none">
+                            <div className="grid grid-cols-2 gap-8 lg:grid-cols-3 lg:gap-10 [&>*:nth-child(3)]:col-span-2 [&>*:nth-child(3)]:mx-auto [&>*:nth-child(3)]:max-w-xs lg:[&>*:nth-child(3)]:col-span-1 lg:[&>*:nth-child(3)]:mx-0 lg:[&>*:nth-child(3)]:max-w-none">
                                 {sermonsLoading ? (
                                     // Loading state
                                     Array.from({ length: 3 }, (_, index) => (
@@ -1079,14 +1079,14 @@ export default function HomePage() {
                                             </div>
 
                                             {/* Sermon Info Below Thumbnail */}
-                                            <div className="py-4">
-                                                <h3 className="mb-2 line-clamp-2 text-lg font-bold text-white transition-colors duration-300 group-hover:text-red-700">
+                                            <div className="py-6">
+                                                <h3 className="mb-3 line-clamp-2 text-lg font-bold text-white transition-colors duration-300 group-hover:text-red-700 lg:text-xl">
                                                     {sermon.name}
                                                 </h3>
 
                                                 {/* Sermon Tags */}
                                                 {sermon.sermonTags && sermon.sermonTags.length > 0 && (
-                                                    <div className="mb-2 flex flex-wrap items-center gap-1 text-xs text-gray-400">
+                                                    <div className="mb-3 flex flex-wrap items-center gap-2 text-xs text-gray-400">
                                                         {sermon.sermonTags.slice(0, 3).map((tag, index) => (
                                                             <span key={index} className="flex items-center text-sm">
                                                                 {index > 0 && <span className="mr-1 text-sm text-gray-500">•</span>}
@@ -1099,7 +1099,7 @@ export default function HomePage() {
                                                     </div>
                                                 )}
 
-                                                <p className="text-sm text-gray-300 transition-colors duration-300">
+                                                <p className="text-sm text-gray-300 transition-colors duration-300 lg:text-base">
                                                     {formatSermonDate(sermon.sermonDate)}
                                                 </p>
                                             </div>
@@ -1159,14 +1159,14 @@ export default function HomePage() {
                                         </div>
 
                                         {/* Sermon Info Below Thumbnail */}
-                                        <div className="py-4">
-                                            <h3 className="mb-2 line-clamp-2 text-lg font-bold text-white transition-colors duration-300 group-hover:text-red-700">
+                                        <div className="py-6">
+                                            <h3 className="mb-3 line-clamp-2 text-lg font-bold text-white transition-colors duration-300 group-hover:text-red-700 lg:text-xl">
                                                 {sermons[3].name}
                                             </h3>
 
                                             {/* Sermon Tags */}
                                             {sermons[3].sermonTags && sermons[3].sermonTags.length > 0 && (
-                                                <div className="mb-2 flex flex-wrap items-center gap-1 text-xs text-gray-400">
+                                                <div className="mb-3 flex flex-wrap items-center gap-2 text-xs text-gray-400">
                                                     {sermons[3].sermonTags.slice(0, 3).map((tag, index) => (
                                                         <span key={index} className="flex items-center text-sm">
                                                             {index > 0 && <span className="mr-1 text-sm text-gray-500">•</span>}
@@ -1179,7 +1179,7 @@ export default function HomePage() {
                                                 </div>
                                             )}
 
-                                            <p className="text-sm text-gray-300 transition-colors duration-300">
+                                            <p className="text-sm text-gray-300 transition-colors duration-300 lg:text-base">
                                                 {formatSermonDate(sermons[3].sermonDate)}
                                             </p>
                                         </div>
