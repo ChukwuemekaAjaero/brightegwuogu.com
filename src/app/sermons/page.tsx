@@ -233,6 +233,11 @@ export default function SermonsPage() {
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                                         </svg>
                                     </button>
+
+                                    {/* Results Count - Mobile Only */}
+                                    <p className="mt-4 text-center text-sm text-gray-400">
+                                        {filteredSermons.length} sermon{filteredSermons.length !== 1 ? 's' : ''} found
+                                    </p>
                                 </div>
                             )}
 
@@ -382,37 +387,6 @@ export default function SermonsPage() {
                                         </AnimatePresence>
                                     </div>
                                 </div>
-                            )}
-
-                            {/* Clear Filters Button - Desktop Only */}
-                            {(searchQuery || dateRange?.from || dateRange?.to || selectedTags.length > 0) && (
-                                <div className="hidden text-center sm:block">
-                                    <button
-                                        onClick={() => {
-                                            setSearchQuery('');
-                                            setDateRange(undefined);
-                                            setSelectedTags([]);
-                                        }}
-                                        className="group inline-flex items-center bg-red-700 px-8 py-4 font-semibold text-white transition-all duration-300 hover:bg-red-800 hover:text-white"
-                                    >
-                                        Clear filters
-                                        <svg
-                                            className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            viewBox="0 0 24 24"
-                                        >
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                                        </svg>
-                                    </button>
-                                </div>
-                            )}
-
-                            {/* Results Count */}
-                            {(searchQuery || dateRange?.from || dateRange?.to || selectedTags.length > 0) && (
-                                <p className="text-center text-sm text-gray-400">
-                                    {filteredSermons.length} sermon{filteredSermons.length !== 1 ? 's' : ''} found
-                                </p>
                             )}
                         </div>
                     </div>
