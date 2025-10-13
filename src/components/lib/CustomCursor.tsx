@@ -14,7 +14,7 @@ interface CursorVelocity {
     speed: number;
 }
 
-type CursorVariant = 'default' | 'project' | 'contact';
+type CursorVariant = 'default' | 'project' | 'contact' | 'clickable';
 
 // Extend the Window interface to include our custom cursor function
 declare global {
@@ -57,6 +57,48 @@ const CustomCursor: React.FC = () => {
 
         return () => {
             window.removeEventListener('mousemove', updateMousePosition);
+        };
+    }, []);
+
+    // Add hover detection for clickable elements
+    useEffect(() => {
+        const handleMouseEnter = (e: Event): void => {
+            const target = e.target as HTMLElement;
+            if (
+                target.tagName === 'A' ||
+                target.tagName === 'BUTTON' ||
+                target.closest('a') ||
+                target.closest('button') ||
+                target.getAttribute('role') === 'button' ||
+                target.style.cursor === 'pointer' ||
+                target.classList.contains('cursor-pointer')
+            ) {
+                setCursorVariant('clickable');
+            }
+        };
+
+        const handleMouseLeave = (e: Event): void => {
+            const target = e.target as HTMLElement;
+            if (
+                target.tagName === 'A' ||
+                target.tagName === 'BUTTON' ||
+                target.closest('a') ||
+                target.closest('button') ||
+                target.getAttribute('role') === 'button' ||
+                target.style.cursor === 'pointer' ||
+                target.classList.contains('cursor-pointer')
+            ) {
+                setCursorVariant('default');
+            }
+        };
+
+        // Add event listeners to document for better coverage
+        document.addEventListener('mouseenter', handleMouseEnter, true);
+        document.addEventListener('mouseleave', handleMouseLeave, true);
+
+        return () => {
+            document.removeEventListener('mouseenter', handleMouseEnter, true);
+            document.removeEventListener('mouseleave', handleMouseLeave, true);
         };
     }, []);
 
@@ -104,6 +146,18 @@ const CustomCursor: React.FC = () => {
                     x: mousePosition.x - 32,
                     y: mousePosition.y - 32
                 };
+            case 'clickable':
+                return {
+                    ...baseProps,
+                    opacity: 0.8,
+                    backgroundColor: '#dc2626', // red-600
+                    color: '#fff',
+                    height: cursorSize * 1.2,
+                    width: cursorSize * 1.2,
+                    fontSize: '16px',
+                    x: mousePosition.x - (cursorSize * 1.2) / 2,
+                    y: mousePosition.y - (cursorSize * 1.2) / 2
+                };
             default:
                 return baseProps;
         }
@@ -149,7 +203,7 @@ const CustomCursor: React.FC = () => {
                     width: outlineSize,
                     height: outlineSize,
                     borderRadius: '50%',
-                    border: '2px solid #ffffff',
+                    border: `2px solid ${cursorVariant === 'clickable' ? '#dc2626' : '#ffffff'}`,
                     pointerEvents: 'none',
                     x: mousePosition.x - outlineSize / 2,
                     y: mousePosition.y - outlineSize / 2,
@@ -160,7 +214,8 @@ const CustomCursor: React.FC = () => {
                     height: outlineSize,
                     x: mousePosition.x - outlineSize / 2,
                     y: mousePosition.y - outlineSize / 2,
-                    opacity: outlineOpacity
+                    opacity: outlineOpacity,
+                    borderColor: cursorVariant === 'clickable' ? '#dc2626' : '#ffffff'
                 }}
                 transition={{
                     type: 'spring',

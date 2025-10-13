@@ -221,7 +221,7 @@ const HamburgerButton: React.FC<HamburgerButtonProps> = ({ active, setActive }) 
                 animate={active ? 'open' : 'closed'}
                 variants={UNDERLAY_VARIANTS}
                 style={{ top: 16, right: 16 }}
-                className="fixed z-10 bg-gradient-to-br from-red-600 to-red-500 shadow-lg shadow-red-800/20"
+                className="fixed z-20 bg-gradient-to-br from-red-600 to-red-500 shadow-lg shadow-red-800/20"
             />
 
             <motion.button

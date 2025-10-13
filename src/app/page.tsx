@@ -100,7 +100,7 @@ export default function HomePage() {
     return (
         <div className="relative scroll-smooth">
             {/* TABLE OF CONTENTS */}
-            {/* <div className="fixed top-1/2 left-8 z-50 hidden -translate-y-1/2 transform 2xl:block">
+            <div className="fixed top-1/2 left-8 z-50 hidden -translate-y-1/2 transform 2xl:block">
                 <div className="p-4">
                     <nav className="space-y-2">
                         <a
@@ -137,10 +137,10 @@ export default function HomePage() {
                         </a>
                     </nav>
                 </div>
-            </div> */}
+            </div>
 
             {/* HORIZONTAL TABLE OF CONTENTS - Mobile/Tablet */}
-            {/* <div className="fixed bottom-4 left-1/2 z-50 -translate-x-1/2 transform 2xl:hidden">
+            <div className="fixed bottom-4 left-1/2 z-10 -translate-x-1/2 transform 2xl:hidden">
                 <div className="rounded-lg bg-black/60 p-2 backdrop-blur-md">
                     <nav className="flex space-x-1">
                         <a
@@ -177,7 +177,7 @@ export default function HomePage() {
                         </a>
                     </nav>
                 </div>
-            </div> */}
+            </div>
 
             {/* HERO SECTION */}
             <section id="hero" className="relative flex min-h-screen items-center justify-center overflow-hidden bg-black">
@@ -517,7 +517,7 @@ export default function HomePage() {
                             <div className="flex flex-col justify-center text-white">
                                 <div className="text-center lg:text-left">
                                     {/* Song Name */}
-                                    <h3 className={`mb-4 text-3xl font-bold lg:text-4xl ${modernizFont.className} text-red-600`}>No Other God</h3>
+                                    <h3 className={`mb-4 text-3xl font-bold lg:text-4xl ${modernizFont.className}`}>No Other God</h3>
 
                                     {/* Artist and Release Date */}
                                     <div className="mb-6 text-lg font-medium text-white/90">
@@ -528,8 +528,9 @@ export default function HomePage() {
 
                                     {/* Song Description */}
                                     <p className="mb-8 text-lg leading-relaxed text-white/80">
-                                        A powerful worship anthem that declares the supremacy of our God above all else. This song captures the
-                                        essence of unwavering faith and devotion to the one true God.
+                                        &ldquo;Jesus, No Other God&rdquo; is more than a song, it&apos;s a sound from a strange place. It&apos;s a
+                                        declaration and a reminder that in a world full of names and options, there is still only One true God and
+                                        He&apos;s different from the rest.
                                     </p>
 
                                     {/* Streaming Service Buttons */}
@@ -967,7 +968,7 @@ export default function HomePage() {
                                     </p>
 
                                     {/* YouTube Button */}
-                                    <div className="flex justify-center lg:justify-start">
+                                    <div className="flex justify-center">
                                         <a
                                             href={sermons.length > 0 ? sermons[0].youTubeLink : '#'}
                                             target="_blank"
