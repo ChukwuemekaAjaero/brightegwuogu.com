@@ -534,56 +534,51 @@ export default function HomePage() {
                                     </p>
 
                                     {/* Streaming Service Buttons */}
-                                    <div className="flex flex-wrap justify-center gap-3 lg:justify-start">
+                                    <div className="flex flex-wrap justify-center gap-3">
                                         <a
                                             href="https://open.spotify.com/track/6FCgNzCMwvYqEVwlyU3uYl?si=a50ed64ea8ea46aa"
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="flex items-center justify-center rounded-md bg-gray-800 px-5 py-4 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-gray-700"
+                                            className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
                                             title="Listen on Spotify"
                                         >
-                                            <FaSpotify className="mr-1.5 h-8 w-8 text-green-400 lg:h-5 lg:w-5" />
-                                            <span className="hidden text-sm font-medium lg:inline">Spotify</span>
+                                            <FaSpotify className="flex h-6 w-6 items-center justify-center text-green-400 md:h-8 md:w-8" />
                                         </a>
                                         <a
                                             href="https://music.apple.com/us/song/no-other-god-feat-rhema-onuoha/1823930988"
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="flex items-center justify-center rounded-md bg-gray-800 px-5 py-4 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-gray-700"
+                                            className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
                                             title="Listen on Apple Music"
                                         >
-                                            <FaApple className="mr-1.5 h-8 w-8 text-white lg:h-5 lg:w-5" />
-                                            <span className="hidden text-sm font-medium lg:inline">Apple Music</span>
+                                            <FaApple className="flex h-6 w-6 items-center justify-center text-white md:h-8 md:w-8" />
                                         </a>
                                         <a
                                             href="https://www.youtube.com/watch?v=_uUzAETf9TE"
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="flex items-center justify-center rounded-md bg-gray-800 px-5 py-4 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-gray-700"
+                                            className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
                                             title="Watch on YouTube"
                                         >
-                                            <FaYoutube className="mr-1.5 h-8 w-8 text-red-500 lg:h-5 lg:w-5" />
-                                            <span className="hidden text-sm font-medium lg:inline">YouTube</span>
+                                            <FaYoutube className="flex h-6 w-6 items-center justify-center text-red-500 md:h-8 md:w-8" />
                                         </a>
                                         <a
                                             href="https://amazon.com/music/player/albums/B0FG7J681F?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_6dJgC1ZLuqn2jKSnYbUYlBQeN"
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="flex items-center justify-center rounded-md bg-gray-800 px-5 py-4 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-gray-700"
+                                            className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
                                             title="Listen on Amazon Music"
                                         >
-                                            <SiAmazonmusic className="mr-1.5 h-8 w-8 text-orange-400 lg:h-5 lg:w-5" />
-                                            <span className="hidden text-sm font-medium lg:inline">Amazon</span>
+                                            <SiAmazonmusic className="flex h-6 w-6 items-center justify-center text-orange-400 md:h-8 md:w-8" />
                                         </a>
                                         <a
                                             href="https://link.deezer.com/s/31278uhdrGzCshgIS9jRN"
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="flex items-center justify-center rounded-md bg-gray-800 px-5 py-4 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-gray-700"
+                                            className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
                                             title="Listen on Deezer"
                                         >
-                                            <FaDeezer className="mr-1.5 h-8 w-8 text-blue-400 lg:h-5 lg:w-5" />
-                                            <span className="hidden text-sm font-medium lg:inline">Deezer</span>
+                                            <FaDeezer className="flex h-6 w-6 items-center justify-center text-blue-400 md:h-8 md:w-8" />
                                         </a>
                                     </div>
                                 </div>
