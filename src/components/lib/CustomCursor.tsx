@@ -67,11 +67,11 @@ const CustomCursor: React.FC = () => {
             if (
                 target.tagName === 'A' ||
                 target.tagName === 'BUTTON' ||
-                target.closest('a') ||
-                target.closest('button') ||
-                target.getAttribute('role') === 'button' ||
-                target.style.cursor === 'pointer' ||
-                target.classList.contains('cursor-pointer')
+                (target.closest && target.closest('a')) ||
+                (target.closest && target.closest('button')) ||
+                (target.getAttribute && target.getAttribute('role') === 'button') ||
+                (target.style && target.style.cursor === 'pointer') ||
+                (target.classList && target.classList.contains('cursor-pointer'))
             ) {
                 setCursorVariant('clickable');
             }
@@ -82,11 +82,11 @@ const CustomCursor: React.FC = () => {
             if (
                 target.tagName === 'A' ||
                 target.tagName === 'BUTTON' ||
-                target.closest('a') ||
-                target.closest('button') ||
-                target.getAttribute('role') === 'button' ||
-                target.style.cursor === 'pointer' ||
-                target.classList.contains('cursor-pointer')
+                (target.closest && target.closest('a')) ||
+                (target.closest && target.closest('button')) ||
+                (target.getAttribute && target.getAttribute('role') === 'button') ||
+                (target.style && target.style.cursor === 'pointer') ||
+                (target.classList && target.classList.contains('cursor-pointer'))
             ) {
                 setCursorVariant('default');
             }
