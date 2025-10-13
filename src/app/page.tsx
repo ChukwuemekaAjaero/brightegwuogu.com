@@ -592,7 +592,14 @@ export default function HomePage() {
                         {/* Other Music Preview */}
                         <div className="mt-16">
                             <div className="mb-8 text-center">
-                                <h2 className={`text-2xl font-bold text-white ${modernizFont.className}`}>More Music</h2>
+                                <motion.h2
+                                    className={`text-2xl font-bold text-white ${modernizFont.className}`}
+                                    initial={{ opacity: 0, y: 30 }}
+                                    animate={musicInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
+                                    transition={{ delay: 0.9, duration: 0.8, ease: 'easeOut' }}
+                                >
+                                    More Music
+                                </motion.h2>
                             </div>
                             <div className="grid grid-cols-2 gap-6 lg:grid-cols-3 [&>*:nth-child(3)]:col-span-2 [&>*:nth-child(3)]:mx-auto [&>*:nth-child(3)]:max-w-xs lg:[&>*:nth-child(3)]:col-span-1 lg:[&>*:nth-child(3)]:mx-0 lg:[&>*:nth-child(3)]:max-w-none">
                                 {musicLoading ? (
@@ -953,7 +960,7 @@ export default function HomePage() {
                                     )}
 
                                     {/* Sermon Description */}
-                                    <p className="mb-8 text-base leading-relaxed whitespace-pre-line text-white/80 lg:text-lg">
+                                    <p className="mb-8 text-base leading-relaxed whitespace-pre-line text-white/80">
                                         {sermons.length > 0 && sermons[0].sermonDescription
                                             ? sermons[0].sermonDescription
                                             : 'Discover powerful messages of hope, faith, and inspiration that will strengthen your walk with God and transform your life.'}
@@ -979,7 +986,14 @@ export default function HomePage() {
                         {/* Other Sermons Preview */}
                         <div className="mt-16">
                             <div className="mb-8 text-center">
-                                <h2 className={`text-2xl font-bold text-white ${modernizFont.className}`}>More Sermons</h2>
+                                <motion.h2
+                                    className={`text-2xl font-bold text-white ${modernizFont.className}`}
+                                    initial={{ opacity: 0, y: 30 }}
+                                    animate={sermonsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
+                                    transition={{ delay: 0.9, duration: 0.8, ease: 'easeOut' }}
+                                >
+                                    More Sermons
+                                </motion.h2>
                             </div>
                             <div className="grid grid-cols-2 gap-6 lg:grid-cols-3 [&>*:nth-child(3)]:col-span-2 [&>*:nth-child(3)]:mx-auto [&>*:nth-child(3)]:max-w-xs lg:[&>*:nth-child(3)]:col-span-1 lg:[&>*:nth-child(3)]:mx-0 lg:[&>*:nth-child(3)]:max-w-none">
                                 {sermonsLoading ? (
