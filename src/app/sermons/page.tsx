@@ -6,6 +6,7 @@ import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { useSermons } from '@/hooks/useContentful';
 import { modernizFont } from '@/lib/utils';
 import { FaYoutube } from 'react-icons/fa';
+import { FiArrowRight } from 'react-icons/fi';
 import { DateRangePicker } from '@/components/lib/DateRangePicker';
 
 export default function SermonsPage() {
@@ -560,14 +561,7 @@ export default function SermonsPage() {
                                         className="group inline-flex items-center bg-red-700 px-8 py-4 font-semibold text-white transition-all duration-300 hover:bg-red-800 hover:text-white"
                                     >
                                         More
-                                        <svg
-                                            className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1"
-                                            fill="none"
-                                            stroke="currentColor"
-                                            viewBox="0 0 24 24"
-                                        >
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                                        </svg>
+                                        <FiArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-2" />
                                     </button>
                                 </div>
                             )}

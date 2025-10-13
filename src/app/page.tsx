@@ -905,7 +905,7 @@ export default function HomePage() {
                                 transition={{ delay: 0.5, duration: 0.8, ease: 'easeOut' }}
                                 className="text-white"
                             >
-                                Discover the latest messages of hope, faith, and inspiration.
+                                Discover P.B.'s latest sermons for your progress and joy in the faith.
                             </motion.p>
                         </div>
 
