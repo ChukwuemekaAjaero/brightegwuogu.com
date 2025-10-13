@@ -204,9 +204,7 @@ export default function SermonsPage() {
                 <div className="py-20">
                     <div className="mb-12 text-center">
                         <h2 className={`text-5xl font-bold text-white md:text-6xl ${modernizFont.className}`}>Sermons</h2>
-                        <p className="mt-4 text-lg text-gray-300 md:text-xl">
-                            Pastor Bright&apos;s latest sermons for your progress and joy in the faith
-                        </p>
+                        <p className="mt-4 text-lg text-gray-300 md:text-xl">P.B.&apos;s latest sermons for your progress and joy in the faith</p>
                     </div>
 
                     {/* SEARCH COMPONENT */}
