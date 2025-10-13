@@ -244,7 +244,7 @@ export default function Music() {
                                             href={song.youTubeLink}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="group block overflow-hidden transition-all duration-300 hover:scale-102"
+                                            className="group block hidden overflow-hidden transition-all duration-300 hover:scale-102 md:block"
                                         >
                                             <div className="relative aspect-square h-[330px] overflow-hidden sm:h-[500px]">
                                                 {song.musicThumbnail?.fields?.file?.url && (
@@ -266,6 +266,29 @@ export default function Music() {
                                                 </div>
                                             </div>
                                         </a>
+
+                                        {/* Non-clickable version for mobile/tablet */}
+                                        <div className="group block overflow-hidden transition-all duration-300 hover:scale-102 md:hidden">
+                                            <div className="relative aspect-square h-[330px] overflow-hidden sm:h-[500px]">
+                                                {song.musicThumbnail?.fields?.file?.url && (
+                                                    <Image
+                                                        src={`https:${song.musicThumbnail.fields.file.url}`}
+                                                        alt={song.name}
+                                                        fill
+                                                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                                                        className="object-cover transition-transform duration-300 group-hover:scale-105 group-hover:blur-sm"
+                                                    />
+                                                )}
+                                                {/* Play Icon Overlay */}
+                                                <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                                                    <div className="rounded-full border-4 border-white p-4">
+                                                        <svg className="h-20 w-20 text-white drop-shadow-lg" fill="currentColor" viewBox="0 0 24 24">
+                                                            <path d="M8 5v14l11-7z" />
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
 
                                         {/* Song Information - Always visible below thumbnail */}
                                         <div className="mt-4 text-center text-white">

@@ -539,7 +539,7 @@ export default function HomePage() {
                                             href="https://open.spotify.com/track/6FCgNzCMwvYqEVwlyU3uYl?si=a50ed64ea8ea46aa"
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="flex items-center justify-center rounded-lg bg-gray-800 px-3 py-2 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-gray-700"
+                                            className="flex items-center justify-center rounded-md bg-gray-950 px-3 py-2 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-gray-900"
                                             title="Listen on Spotify"
                                         >
                                             <FaSpotify className="mr-1.5 h-5 w-5 text-green-400" />
@@ -549,7 +549,7 @@ export default function HomePage() {
                                             href="https://music.apple.com/us/song/no-other-god-feat-rhema-onuoha/1823930988"
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="flex items-center justify-center rounded-lg bg-gray-800 px-3 py-2 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-gray-700"
+                                            className="flex items-center justify-center rounded-md bg-gray-950 px-3 py-2 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-gray-900"
                                             title="Listen on Apple Music"
                                         >
                                             <FaApple className="mr-1.5 h-5 w-5 text-white" />
@@ -559,7 +559,7 @@ export default function HomePage() {
                                             href="https://www.youtube.com/watch?v=_uUzAETf9TE"
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="flex items-center justify-center rounded-lg bg-gray-800 px-3 py-2 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-gray-700"
+                                            className="flex items-center justify-center rounded-md bg-gray-950 px-3 py-2 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-gray-900"
                                             title="Watch on YouTube"
                                         >
                                             <FaYoutube className="mr-1.5 h-5 w-5 text-red-500" />
@@ -569,7 +569,7 @@ export default function HomePage() {
                                             href="https://amazon.com/music/player/albums/B0FG7J681F?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_6dJgC1ZLuqn2jKSnYbUYlBQeN"
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="flex items-center justify-center rounded-lg bg-gray-800 px-3 py-2 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-gray-700"
+                                            className="flex items-center justify-center rounded-md bg-gray-950 px-3 py-2 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-gray-900"
                                             title="Listen on Amazon Music"
                                         >
                                             <SiAmazonmusic className="mr-1.5 h-5 w-5 text-orange-400" />
@@ -579,7 +579,7 @@ export default function HomePage() {
                                             href="https://link.deezer.com/s/31278uhdrGzCshgIS9jRN"
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="flex items-center justify-center rounded-lg bg-gray-800 px-3 py-2 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-gray-700"
+                                            className="flex items-center justify-center rounded-md bg-gray-950 px-3 py-2 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-gray-900"
                                             title="Listen on Deezer"
                                         >
                                             <FaDeezer className="mr-1.5 h-5 w-5 text-blue-400" />
@@ -832,7 +832,7 @@ export default function HomePage() {
                                                     href={music[3].spotifyLink}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="flex items-center justify-center rounded-lg bg-gray-800 px-3 py-2 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-gray-700"
+                                                    className="flex items-center justify-center rounded-md bg-gray-950 px-3 py-2 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-gray-900"
                                                     title="Listen on Spotify"
                                                 >
                                                     <FaSpotify className="h-6 w-6 text-green-400 md:h-8 md:w-8" />
@@ -841,7 +841,7 @@ export default function HomePage() {
                                                     href={music[3].appleMusicLink}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="flex items-center justify-center rounded-lg bg-gray-800 px-3 py-2 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-gray-700"
+                                                    className="flex items-center justify-center rounded-md bg-gray-950 px-3 py-2 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-gray-900"
                                                     title="Listen on Apple Music"
                                                 >
                                                     <FaApple className="h-6 w-6 text-white md:h-8 md:w-8" />
@@ -850,7 +850,7 @@ export default function HomePage() {
                                                     href={music[3].amazonMusicLink}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="flex items-center justify-center rounded-lg bg-gray-800 px-3 py-2 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-gray-700"
+                                                    className="flex items-center justify-center rounded-md bg-gray-950 px-3 py-2 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-gray-900"
                                                     title="Listen on Amazon Music"
                                                 >
                                                     <SiAmazonmusic className="h-6 w-6 text-orange-400 md:h-8 md:w-8" />
@@ -859,7 +859,7 @@ export default function HomePage() {
                                                     href={music[3].deezerLink}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="flex items-center justify-center rounded-lg bg-gray-800 px-3 py-2 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-gray-700"
+                                                    className="flex items-center justify-center rounded-md bg-gray-950 px-3 py-2 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-gray-900"
                                                     title="Listen on Deezer"
                                                 >
                                                     <FaDeezer className="h-6 w-6 text-blue-400 md:h-8 md:w-8" />
@@ -868,7 +868,7 @@ export default function HomePage() {
                                                     href={music[3].youTubeLink}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="flex items-center justify-center rounded-lg bg-gray-800 px-3 py-2 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-gray-700"
+                                                    className="flex items-center justify-center rounded-md bg-gray-950 px-3 py-2 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-gray-900"
                                                     title="Watch on YouTube"
                                                 >
                                                     <FaYoutube className="h-6 w-6 text-red-500 md:h-8 md:w-8" />
@@ -1241,12 +1241,12 @@ export default function HomePage() {
                                 damping: 20,
                                 mass: 0.8
                             }}
-                            className="m-8 flex h-[calc(100vh-4rem)] w-full max-w-2xl flex-col justify-center bg-gradient-to-br from-red-600 to-red-500 p-8 shadow-lg shadow-red-800/20"
+                            className="m-8 flex h-[calc(100vh-4rem)] w-[calc(100vw-4rem)] max-w-2xl flex-col justify-center bg-gradient-to-br from-red-600 to-red-500 p-8 shadow-lg shadow-red-800/20"
                         >
                             {/* Song Info */}
                             <div className="mb-8 text-center text-white">
                                 <motion.h3
-                                    className={`mb-4 text-3xl font-bold ${modernizFont.className}`}
+                                    className={`mb-4 text-xl font-bold sm:text-2xl md:text-3xl ${modernizFont.className} break-words`}
                                     initial={{ opacity: 0, y: -20 }}
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.2, duration: 0.4 }}
@@ -1280,7 +1280,7 @@ export default function HomePage() {
                                     href={selectedSong.spotifyLink}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-center justify-center rounded-lg bg-gray-800 px-3 py-2 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-gray-700"
+                                    className="flex items-center justify-center rounded-md bg-gray-950 px-3 py-2 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-gray-900"
                                     title="Listen on Spotify"
                                 >
                                     <FaSpotify className="mr-2 h-6 w-6 text-green-400" />
@@ -1290,7 +1290,7 @@ export default function HomePage() {
                                     href={selectedSong.appleMusicLink}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-center justify-center rounded-lg bg-gray-800 px-3 py-2 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-gray-700"
+                                    className="flex items-center justify-center rounded-md bg-gray-950 px-3 py-2 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-gray-900"
                                     title="Listen on Apple Music"
                                 >
                                     <FaApple className="mr-2 h-6 w-6 text-white" />
@@ -1300,7 +1300,7 @@ export default function HomePage() {
                                     href={selectedSong.amazonMusicLink}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-center justify-center rounded-lg bg-gray-800 px-3 py-2 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-gray-700"
+                                    className="flex items-center justify-center rounded-md bg-gray-950 px-3 py-2 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-gray-900"
                                     title="Listen on Amazon Music"
                                 >
                                     <SiAmazonmusic className="mr-2 h-6 w-6 text-orange-400" />
@@ -1310,7 +1310,7 @@ export default function HomePage() {
                                     href={selectedSong.deezerLink}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-center justify-center rounded-lg bg-gray-800 px-3 py-2 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-gray-700"
+                                    className="flex items-center justify-center rounded-md bg-gray-950 px-3 py-2 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-gray-900"
                                     title="Listen on Deezer"
                                 >
                                     <FaDeezer className="mr-2 h-6 w-6 text-blue-400" />
@@ -1320,7 +1320,7 @@ export default function HomePage() {
                                     href={selectedSong.youTubeLink}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-center justify-center rounded-lg bg-gray-800 px-3 py-2 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-gray-700"
+                                    className="flex items-center justify-center rounded-md bg-gray-950 px-3 py-2 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-gray-900"
                                     title="Watch on YouTube"
                                 >
                                     <FaYoutube className="mr-2 h-6 w-6 text-red-500" />
