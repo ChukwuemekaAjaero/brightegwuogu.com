@@ -122,86 +122,66 @@ export function DateRangePicker({ value, onChange, placeholder = 'Select date ra
         setOpen(false);
     };
 
+    // Memoized Calendar component to prevent re-animations on date selection
+    const MemoizedCalendar = React.memo(
+        ({
+            dateRange,
+            handleSelect,
+            maxDate
+        }: {
+            dateRange: DateRange | undefined;
+            handleSelect: (range: DateRange | undefined) => void;
+            maxDate?: Date;
+        }) => (
+            <Calendar
+                mode="range"
+                selected={dateRange}
+                captionLayout="dropdown"
+                onSelect={handleSelect}
+                className="w-full rounded-none border-gray-600 bg-gray-800 text-white"
+                disabled={(date) => (maxDate ? date > maxDate : false)}
+                numberOfMonths={2}
+                defaultMonth={dateRange?.from || new Date()}
+                classNames={{
+                    dropdown_root: 'relative has-focus:border-ring border border-input shadow-xs has-focus:ring-ring/50 has-focus:ring-[3px] rounded',
+                    months: 'flex flex-col gap-6 sm:flex-row sm:gap-4'
+                }}
+            />
+        )
+    );
+
     // Mobile dialog component
     const MobileDialog = () => {
         return (
-            <AnimatePresence>
+            <AnimatePresence mode="wait">
                 {open && isMobile && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.4, ease: 'easeInOut' }}
-                        className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm md:hidden"
-                    >
+                    <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm md:hidden">
                         <div className="fixed inset-0 flex items-center justify-center p-0 sm:inset-4 sm:p-0">
-                            <motion.div
-                                initial={{
-                                    opacity: 0,
-                                    scale: 0.8,
-                                    y: -50
-                                }}
-                                animate={{
-                                    opacity: 1,
-                                    scale: 1,
-                                    y: 0
-                                }}
-                                exit={{
-                                    opacity: 0,
-                                    scale: 0.8,
-                                    y: -50
-                                }}
-                                transition={{
-                                    type: 'spring',
-                                    stiffness: 200,
-                                    damping: 30,
-                                    mass: 1.2
-                                }}
-                                className="relative flex h-full w-full flex-col border border-gray-600 bg-gray-800 sm:h-auto sm:max-w-2xl"
-                            >
+                            <div className="relative flex h-full w-full flex-col border border-gray-600 bg-gray-800 sm:h-auto sm:max-w-2xl">
                                 {/* Close button */}
-                                <motion.button
+                                <button
                                     type="button"
                                     onClick={() => setOpen(false)}
-                                    className="absolute top-4 left-4 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-gray-700 text-white hover:bg-gray-600 focus:ring-2 focus:ring-red-500 focus:outline-none"
+                                    className="absolute top-4 left-4 z-10 h-8 w-8 bg-white/0 transition-all hover:bg-white/20"
                                     aria-label="Close"
-                                    initial={{ opacity: 0, scale: 0.8 }}
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    transition={{ delay: 0.2, duration: 0.4 }}
                                 >
-                                    <X className="h-4 w-4" />
-                                </motion.button>
+                                    <span
+                                        className="absolute block h-1 w-4 bg-white"
+                                        style={{ y: '-50%', left: '50%', x: '-50%', rotate: '45deg' }}
+                                    />
+                                    <span
+                                        className="absolute block h-1 w-4 bg-white"
+                                        style={{ left: '50%', x: '-50%', top: '50%', y: '-50%', rotate: '-45deg' }}
+                                    />
+                                </button>
 
                                 {/* Calendar */}
-                                <motion.div
-                                    className="flex-1 overflow-auto p-4 pt-12"
-                                    initial={{ opacity: 0, y: -20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: 0.3, duration: 0.6 }}
-                                >
-                                    <Calendar
-                                        mode="range"
-                                        selected={dateRange as DateRange}
-                                        captionLayout="dropdown"
-                                        onSelect={handleSelect}
-                                        className="w-full rounded-none border-gray-600 bg-gray-800 text-white"
-                                        disabled={(date) => (maxDate ? date > maxDate : false)}
-                                        numberOfMonths={2}
-                                        defaultMonth={dateRange?.from || new Date()}
-                                        classNames={{
-                                            dropdown_root:
-                                                'relative has-focus:border-ring border border-input shadow-xs has-focus:ring-ring/50 has-focus:ring-[3px] rounded'
-                                        }}
-                                    />
-                                </motion.div>
+                                <div className="flex-1 overflow-auto p-4 pt-12">
+                                    <MemoizedCalendar dateRange={dateRange as DateRange} handleSelect={handleSelect} maxDate={maxDate} />
+                                </div>
 
                                 {/* Buttons - Always visible at bottom */}
-                                <motion.div
-                                    className="flex shrink-0 gap-2 border-t border-gray-600 bg-gray-800 p-4"
-                                    initial={{ opacity: 0, y: -20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: 0.4, duration: 0.6 }}
-                                >
+                                <div className="flex shrink-0 gap-2 border-t border-gray-600 bg-gray-800 p-4">
                                     <button
                                         type="button"
                                         onClick={() => {
@@ -236,10 +216,10 @@ export function DateRangePicker({ value, onChange, placeholder = 'Select date ra
                                     >
                                         Done
                                     </button>
-                                </motion.div>
-                            </motion.div>
+                                </div>
+                            </div>
                         </div>
-                    </motion.div>
+                    </div>
                 )}
             </AnimatePresence>
         );
@@ -274,20 +254,7 @@ export function DateRangePicker({ value, onChange, placeholder = 'Select date ra
                     align="center"
                     style={{ width: triggerWidth > 0 ? `${triggerWidth}px` : 'auto', minWidth: '280px' }}
                 >
-                    <Calendar
-                        mode="range"
-                        selected={dateRange as DateRange}
-                        captionLayout="dropdown"
-                        onSelect={handleSelect}
-                        className="w-full rounded-none border-gray-600 bg-gray-800 text-white"
-                        disabled={(date) => (maxDate ? date > maxDate : false)}
-                        numberOfMonths={2}
-                        defaultMonth={dateRange?.from || new Date()}
-                        classNames={{
-                            dropdown_root:
-                                'relative has-focus:border-ring border border-input shadow-xs has-focus:ring-ring/50 has-focus:ring-[3px] rounded'
-                        }}
-                    />
+                    <MemoizedCalendar dateRange={dateRange as DateRange} handleSelect={handleSelect} maxDate={maxDate} />
                     <div className="flex gap-2 border-t border-gray-600 p-3">
                         <button
                             type="button"

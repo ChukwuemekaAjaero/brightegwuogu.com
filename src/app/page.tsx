@@ -117,15 +117,15 @@ export default function HomePage() {
                     <nav className="space-y-2">
                         <a
                             href="#hero"
-                            className={`block px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-sky-800 hover:text-white ${
-                                activeSection === 'hero' ? 'text-whitr bg-sky-700' : 'text-white'
+                            className={`block rounded px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-sky-800 hover:text-white ${
+                                activeSection === 'hero' ? 'bg-sky-700 text-white' : 'text-white'
                             }`}
                         >
                             Home
                         </a>
                         <a
                             href="#about-me"
-                            className={`block px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-sky-800 hover:text-white ${
+                            className={`block rounded px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-sky-800 hover:text-white ${
                                 activeSection === 'about-me' ? 'bg-sky-700 text-white' : 'text-white'
                             }`}
                         >
@@ -133,7 +133,7 @@ export default function HomePage() {
                         </a>
                         <a
                             href="#music"
-                            className={`block px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-sky-800 hover:text-white ${
+                            className={`block rounded px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-sky-800 hover:text-white ${
                                 activeSection === 'music' ? 'bg-sky-700 text-white' : 'text-white'
                             }`}
                         >
@@ -141,7 +141,7 @@ export default function HomePage() {
                         </a>
                         <a
                             href="#sermons"
-                            className={`block px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-sky-800 hover:text-white ${
+                            className={`block rounded px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-sky-800 hover:text-white ${
                                 activeSection === 'sermons' ? 'bg-sky-700 text-white' : 'text-white'
                             }`}
                         >
