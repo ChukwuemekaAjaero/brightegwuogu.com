@@ -55,7 +55,7 @@ const DesktopHeader = () => {
                 {/* Logo */}
                 <Link
                     href="/"
-                    className={`text-2xl font-bold text-white no-underline transition-colors hover:text-red-500 ${modernizFont.className}`}
+                    className={`text-2xl font-bold text-white no-underline transition-colors hover:text-sky-700 ${modernizFont.className}`}
                 >
                     Bright Egwuogu
                 </Link>
@@ -64,16 +64,16 @@ const DesktopHeader = () => {
                 <div className="absolute top-1/2 left-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center gap-8">
                     <Link
                         href="/music"
-                        className={`px-4 py-2 font-medium no-underline transition-all duration-200 hover:text-red-500 ${
-                            pathname === '/music' ? 'text-red-500' : 'text-white'
+                        className={`px-4 py-2 font-medium transition-all duration-200 hover:bg-gradient-to-br hover:from-blue-900 hover:to-teal-600 hover:bg-clip-text hover:text-transparent ${
+                            pathname === '/music' ? 'bg-gradient-to-br from-blue-900 to-teal-600 bg-clip-text text-transparent' : 'text-white'
                         }`}
                     >
                         Music
                     </Link>
                     <Link
                         href="/sermons"
-                        className={`px-4 py-2 font-medium no-underline transition-all duration-200 hover:text-red-500 ${
-                            pathname === '/sermons' ? 'text-red-500' : 'text-white'
+                        className={`px-4 py-2 font-medium transition-all duration-200 hover:bg-gradient-to-br hover:from-blue-900 hover:to-teal-600 hover:bg-clip-text hover:text-transparent ${
+                            pathname === '/sermons' ? 'bg-gradient-to-br from-blue-900 to-teal-600 bg-clip-text text-transparent' : 'text-white'
                         }`}
                     >
                         Sermons
@@ -86,7 +86,7 @@ const DesktopHeader = () => {
                         href="https://www.instagram.com/britegwu/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-white transition-colors hover:text-red-500"
+                        className="text-white transition-colors hover:text-sky-700"
                     >
                         <AiFillInstagram size={24} />
                     </a>
@@ -94,7 +94,7 @@ const DesktopHeader = () => {
                         href="https://www.youtube.com/channel/UCH-O0drzAagoobTUuIT4vDg"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-white transition-colors hover:text-red-500"
+                        className="text-white transition-colors hover:text-sky-700"
                     >
                         <FaYoutube size={24} />
                     </a>
@@ -189,14 +189,29 @@ const NavLink: React.FC<NavLinkProps> = ({ children, href, idx }) => {
             }}
             exit={{ opacity: 0, y: -8 }}
         >
-            <Link
-                href={href}
-                className={`xs:text-5xl block text-4xl font-semibold transition-colors hover:text-black md:text-7xl ${modernizFont.className} ${
-                    isActive ? 'text-black' : 'text-white'
-                }`}
-            >
-                {children}
-            </Link>
+            <div className="flex items-center gap-4">
+                <Link
+                    href={href}
+                    className={`xs:text-5xl text-4xl font-semibold transition-colors hover:text-[#030712] md:text-7xl ${modernizFont.className} ${
+                        isActive ? 'text-[#030712]' : 'text-white'
+                    }`}
+                >
+                    {children}
+                </Link>
+                {isActive && (
+                    <motion.div
+                        className="h-3 w-3 rounded-full bg-[#030712]"
+                        animate={{
+                            y: [0, -8, 0]
+                        }}
+                        transition={{
+                            duration: 1,
+                            repeat: Infinity,
+                            ease: 'easeInOut'
+                        }}
+                    />
+                )}
+            </div>
         </motion.div>
     );
 };
@@ -209,7 +224,7 @@ const HamburgerButton: React.FC<HamburgerButtonProps> = ({ active, setActive }) 
                 <div className="fixed top-0 right-0 left-0 z-10 h-30 mask-b-from-50% backdrop-blur-md">
                     <Link
                         href="/"
-                        className={`absolute top-6 left-8 z-50 text-2xl font-bold text-white transition-colors hover:text-red-500 ${modernizFont.className}`}
+                        className={`absolute top-6 left-8 z-50 text-2xl font-bold text-white transition-colors hover:text-sky-700 ${modernizFont.className}`}
                     >
                         P.B.
                     </Link>
@@ -221,7 +236,7 @@ const HamburgerButton: React.FC<HamburgerButtonProps> = ({ active, setActive }) 
                 animate={active ? 'open' : 'closed'}
                 variants={UNDERLAY_VARIANTS}
                 style={{ top: 16, right: 16 }}
-                className="fixed z-20 bg-gradient-to-br from-red-600 to-red-500 shadow-lg shadow-red-800/20"
+                className="fixed z-20 rounded bg-gradient-to-br from-blue-900 to-teal-600 shadow-lg shadow-blue-800/20"
             />
 
             <motion.button
@@ -268,7 +283,7 @@ const FooterCTAs = () => {
                                 }
                             }}
                             exit={{ opacity: 0, y: -8 }}
-                            className="flex items-center gap-3 text-white transition-colors hover:text-red-300"
+                            className="flex items-center gap-3 text-white transition-colors hover:text-sky-700"
                         >
                             <l.Component className="text-3xl" />
                             <span className={`text-lg ${modernizFont.className}`}>{l.name}</span>

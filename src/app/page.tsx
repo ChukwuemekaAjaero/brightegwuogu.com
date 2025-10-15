@@ -31,6 +31,18 @@ const formatSermonDate = (dateString: string) => {
     });
 };
 
+// Format date to "Weekday, Full Month Day, Year" format for featured sermon
+const formatFeaturedSermonDate = (dateString: string) => {
+    // Handle date string parsing to avoid timezone issues
+    const date = new Date(dateString + 'T00:00:00');
+    return date.toLocaleDateString('en-US', {
+        weekday: 'long',
+        month: 'long',
+        day: 'numeric',
+        year: 'numeric'
+    });
+};
+
 export default function HomePage() {
     const [activeSection, setActiveSection] = useState('hero');
     const [selectedSong, setSelectedSong] = useState<Music | null>(null);
@@ -105,32 +117,32 @@ export default function HomePage() {
                     <nav className="space-y-2">
                         <a
                             href="#hero"
-                            className={`block px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-red-800 hover:text-white ${
-                                activeSection === 'hero' ? 'text-whitr bg-red-700' : 'text-white'
+                            className={`block px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-sky-800 hover:text-white ${
+                                activeSection === 'hero' ? 'text-whitr bg-sky-700' : 'text-white'
                             }`}
                         >
                             Home
                         </a>
                         <a
                             href="#about-me"
-                            className={`block px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-red-800 hover:text-white ${
-                                activeSection === 'about-me' ? 'bg-red-700 text-white' : 'text-white'
+                            className={`block px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-sky-800 hover:text-white ${
+                                activeSection === 'about-me' ? 'bg-sky-700 text-white' : 'text-white'
                             }`}
                         >
                             About
                         </a>
                         <a
                             href="#music"
-                            className={`block px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-red-800 hover:text-white ${
-                                activeSection === 'music' ? 'bg-red-700 text-white' : 'text-white'
+                            className={`block px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-sky-800 hover:text-white ${
+                                activeSection === 'music' ? 'bg-sky-700 text-white' : 'text-white'
                             }`}
                         >
                             Music
                         </a>
                         <a
                             href="#sermons"
-                            className={`block px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-red-800 hover:text-white ${
-                                activeSection === 'sermons' ? 'bg-red-700 text-white' : 'text-white'
+                            className={`block px-3 py-2 text-sm font-medium transition-colors duration-200 hover:bg-sky-800 hover:text-white ${
+                                activeSection === 'sermons' ? 'bg-sky-700 text-white' : 'text-white'
                             }`}
                         >
                             Sermons
@@ -145,32 +157,32 @@ export default function HomePage() {
                     <nav className="flex space-x-1">
                         <a
                             href="#hero"
-                            className={`rounded px-3 py-2 text-xs font-medium transition-colors duration-200 hover:bg-red-800 hover:text-white ${
-                                activeSection === 'hero' ? 'bg-red-700 text-white' : 'text-white'
+                            className={`rounded px-3 py-2 text-xs font-medium transition-colors duration-200 hover:bg-sky-800 hover:text-white ${
+                                activeSection === 'hero' ? 'bg-sky-700 text-white' : 'text-white'
                             }`}
                         >
                             Home
                         </a>
                         <a
                             href="#about-me"
-                            className={`rounded px-3 py-2 text-xs font-medium transition-colors duration-200 hover:bg-red-800 hover:text-white ${
-                                activeSection === 'about-me' ? 'bg-red-700 text-white' : 'text-white'
+                            className={`rounded px-3 py-2 text-xs font-medium transition-colors duration-200 hover:bg-sky-800 hover:text-white ${
+                                activeSection === 'about-me' ? 'bg-sky-700 text-white' : 'text-white'
                             }`}
                         >
                             About
                         </a>
                         <a
                             href="#music"
-                            className={`rounded px-3 py-2 text-xs font-medium transition-colors duration-200 hover:bg-red-800 hover:text-white ${
-                                activeSection === 'music' ? 'bg-red-700 text-white' : 'text-white'
+                            className={`rounded px-3 py-2 text-xs font-medium transition-colors duration-200 hover:bg-sky-800 hover:text-white ${
+                                activeSection === 'music' ? 'bg-sky-700 text-white' : 'text-white'
                             }`}
                         >
                             Music
                         </a>
                         <a
                             href="#sermons"
-                            className={`rounded px-3 py-2 text-xs font-medium transition-colors duration-200 hover:bg-red-800 hover:text-white ${
-                                activeSection === 'sermons' ? 'bg-red-700 text-white' : 'text-white'
+                            className={`rounded px-3 py-2 text-xs font-medium transition-colors duration-200 hover:bg-sky-800 hover:text-white ${
+                                activeSection === 'sermons' ? 'bg-sky-700 text-white' : 'text-white'
                             }`}
                         >
                             Sermons
@@ -180,7 +192,7 @@ export default function HomePage() {
             </div>
 
             {/* HERO SECTION */}
-            <section id="hero" className="relative flex min-h-screen items-center justify-center overflow-hidden bg-black">
+            <section id="hero" className="relative flex min-h-screen items-center justify-center overflow-hidden rounded bg-[#030712]">
                 {/* Background Image */}
                 <div className="absolute inset-0 mask-b-from-50%">
                     <Image
@@ -243,7 +255,7 @@ export default function HomePage() {
             </section>
 
             {/* ABOUT ME SECTION */}
-            <section id="about-me" ref={aboutMeRef} className="bg-black">
+            <section id="about-me" ref={aboutMeRef} className="bg-[#030712]">
                 <div className="relative h-[370vh] overflow-visible md:h-[400vh] lg:h-[330vh] xl:h-[300vh]">
                     <div className="sticky top-0 z-3 flex h-[100vh] items-center justify-center px-4 text-center sm:px-8">
                         <div>
@@ -267,7 +279,7 @@ export default function HomePage() {
                             </motion.p>
                         </div>
                     </div>
-                    <div className="z-10 container mx-auto mt-8 mb-8 px-4 sm:px-8">
+                    <div id="about-me-gallery" className="z-10 container mx-auto mt-8 mb-8 px-4 sm:px-8">
                         {/* Masonry Grid */}
                         <div className="mx-auto columns-2 gap-4 lg:columns-3 xl:columns-4">
                             {/* Image 1 */}
@@ -473,137 +485,182 @@ export default function HomePage() {
             </section>
 
             {/* MUSIC PREVIEW SECTION */}
-            <section id="music" ref={musicRef} className="bg-black px-4 sm:px-8">
+            <section id="music" ref={musicRef} className="bg-[#030712] px-4 sm:px-8">
                 <div className="container mx-auto sm:px-8">
                     <div className="h-max py-20">
                         <div className="mb-12 text-center">
-                            <motion.h1
-                                initial={{ opacity: 0, y: 30 }}
-                                animate={musicInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
-                                transition={{ delay: 0.25, duration: 0.8, ease: 'easeOut' }}
-                                className={`text-6xl font-bold text-white ${modernizFont.className}`}
-                            >
-                                Music
-                            </motion.h1>
-                            <br />
-                            <motion.p
-                                initial={{ opacity: 0, y: 30 }}
-                                animate={musicInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
-                                transition={{ delay: 0.5, duration: 0.8, ease: 'easeOut' }}
-                                className="text-white"
-                            >
-                                Discover the latest songs of hope, faith, and inspiration.
-                            </motion.p>
+                            {musicLoading ? (
+                                // Music Section Header Skeleton
+                                <>
+                                    <div className="mx-auto mb-6 h-16 w-32 animate-pulse rounded bg-gray-700"></div>
+                                    <br />
+                                    <div className="mx-auto h-6 w-80 animate-pulse rounded bg-gray-700"></div>
+                                </>
+                            ) : (
+                                <>
+                                    <motion.h1
+                                        initial={{ opacity: 0, y: 30 }}
+                                        animate={musicInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
+                                        transition={{ delay: 0.25, duration: 0.8, ease: 'easeOut' }}
+                                        className={`text-6xl font-bold text-white ${modernizFont.className}`}
+                                    >
+                                        Music
+                                    </motion.h1>
+                                    <br />
+                                    <motion.p
+                                        initial={{ opacity: 0, y: 30 }}
+                                        animate={musicInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
+                                        transition={{ delay: 0.5, duration: 0.8, ease: 'easeOut' }}
+                                        className="text-white"
+                                    >
+                                        Discover the latest songs of hope, faith, and inspiration.
+                                    </motion.p>
+                                </>
+                            )}
                         </div>
 
                         {/* Featured Song - No Other God */}
-                        <motion.div
-                            className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12"
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={musicInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
-                            transition={{ delay: 0.75, duration: 0.8, ease: 'easeOut' }}
-                        >
-                            {/* Left Column - Video */}
-                            <div className="relative">
-                                <div className="relative aspect-video overflow-hidden rounded-[2px] bg-gray-800">
-                                    <video className="h-full w-full object-cover" autoPlay muted loop playsInline>
-                                        <source src="/videos/NoOtherGodHeroVideo.mp4" type="video/mp4" />
-                                        Your browser does not support the video tag.
-                                    </video>
-                                </div>
-                            </div>
-
-                            {/* Right Column - Song Information */}
-                            <div className="flex flex-col justify-center text-white">
-                                <div className="text-center lg:text-left">
-                                    {/* Song Name */}
-                                    <h3 className={`mb-6 text-2xl font-bold lg:text-3xl xl:text-4xl ${modernizFont.className}`}>No Other God</h3>
-
-                                    {/* Artist and Release Date */}
-                                    <div className="mb-8 text-base font-medium text-white/90 lg:text-lg">
-                                        <span className="font-bold">Brite Egwuogu</span>
-                                        <span className="mx-2">•</span>
-                                        <span>2025</span>
-                                    </div>
-
-                                    {/* Song Description */}
-                                    <p className="mb-10 text-base leading-relaxed text-white/80 lg:text-lg">
-                                        &ldquo;Jesus, No Other God&rdquo; is more than a song, it&apos;s a sound from a strange place. It&apos;s a
-                                        declaration and a reminder that in a world full of names and options, there is still only One true God and
-                                        He&apos;s different from the rest.
-                                    </p>
-
-                                    {/* Streaming Service Buttons */}
-                                    <div className="flex flex-wrap justify-center gap-4 lg:gap-5">
-                                        <a
-                                            href="https://open.spotify.com/track/6FCgNzCMwvYqEVwlyU3uYl?si=a50ed64ea8ea46aa"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
-                                            title="Listen on Spotify"
-                                        >
-                                            <FaSpotify className="flex h-6 w-6 items-center justify-center text-green-400 md:h-8 md:w-8" />
-                                        </a>
-                                        <a
-                                            href="https://music.apple.com/us/song/no-other-god-feat-rhema-onuoha/1823930988"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
-                                            title="Listen on Apple Music"
-                                        >
-                                            <FaApple className="flex h-6 w-6 items-center justify-center text-white md:h-8 md:w-8" />
-                                        </a>
-                                        <a
-                                            href="https://www.youtube.com/watch?v=_uUzAETf9TE"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
-                                            title="Watch on YouTube"
-                                        >
-                                            <FaYoutube className="flex h-6 w-6 items-center justify-center text-red-500 md:h-8 md:w-8" />
-                                        </a>
-                                        <a
-                                            href="https://amazon.com/music/player/albums/B0FG7J681F?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_6dJgC1ZLuqn2jKSnYbUYlBQeN"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
-                                            title="Listen on Amazon Music"
-                                        >
-                                            <SiAmazonmusic className="flex h-6 w-6 items-center justify-center text-orange-400 md:h-8 md:w-8" />
-                                        </a>
-                                        <a
-                                            href="https://link.deezer.com/s/31278uhdrGzCshgIS9jRN"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
-                                            title="Listen on Deezer"
-                                        >
-                                            <FaDeezer className="flex h-6 w-6 items-center justify-center text-blue-400 md:h-8 md:w-8" />
-                                        </a>
+                        {musicLoading ? (
+                            // Featured Music Loading State
+                            <motion.div
+                                className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12"
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={musicInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
+                                transition={{ delay: 0.75, duration: 0.8, ease: 'easeOut' }}
+                            >
+                                {/* Left Column - Video Skeleton */}
+                                <div className="relative">
+                                    <div className="relative aspect-[4/3] overflow-hidden rounded bg-gray-700">
+                                        <div className="absolute inset-0 animate-pulse bg-gray-600"></div>
                                     </div>
                                 </div>
-                            </div>
-                        </motion.div>
+
+                                {/* Right Column - Song Information Skeleton */}
+                                <div className="flex flex-col justify-center text-white">
+                                    <div className="text-center lg:text-left">
+                                        {/* Song Name Skeleton */}
+                                        <div className="mb-6 h-8 w-3/4 animate-pulse rounded bg-gray-700"></div>
+
+                                        {/* Artist and Release Date Skeleton */}
+                                        <div className="mb-8 h-6 w-1/2 animate-pulse rounded bg-gray-700"></div>
+
+                                        {/* Song Description Skeleton */}
+                                        <div className="mb-10 space-y-2">
+                                            <div className="h-4 w-full animate-pulse rounded bg-gray-700"></div>
+                                            <div className="h-4 w-full animate-pulse rounded bg-gray-700"></div>
+                                            <div className="h-4 w-3/4 animate-pulse rounded bg-gray-700"></div>
+                                        </div>
+
+                                        {/* Streaming Service Buttons Skeleton */}
+                                        <div className="flex flex-wrap justify-center gap-4 lg:gap-5">
+                                            {Array.from({ length: 5 }, (_, btnIndex) => (
+                                                <div key={btnIndex} className="h-12 w-12 animate-pulse rounded-lg bg-gray-700"></div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        ) : (
+                            <motion.div
+                                className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12"
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={musicInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
+                                transition={{ delay: 0.75, duration: 0.8, ease: 'easeOut' }}
+                            >
+                                {/* Left Column - Video */}
+                                <div className="relative">
+                                    <div className="relative aspect-[4/3] overflow-hidden rounded bg-gray-800">
+                                        <video className="h-full w-full object-cover" autoPlay muted loop playsInline>
+                                            <source src="/videos/NoOtherGodHeroVideo.mp4" type="video/mp4" />
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    </div>
+                                </div>
+
+                                {/* Right Column - Song Information */}
+                                <div className="flex flex-col justify-center text-white">
+                                    <div className="text-center lg:text-left">
+                                        {/* Song Name */}
+                                        <h3 className={`mb-6 text-center text-2xl font-bold lg:text-3xl xl:text-4xl ${modernizFont.className}`}>
+                                            No Other God
+                                        </h3>
+
+                                        {/* Artist and Release Date */}
+                                        <div className="mb-8 text-center text-base font-medium text-white/90">
+                                            <span>Brite Egwuogu</span>
+                                            <span className="mx-2">•</span>
+                                            <span>2025</span>
+                                        </div>
+
+                                        {/* Song Description */}
+                                        <p className="mb-10 text-center text-base leading-relaxed text-white/80 lg:text-lg">
+                                            &ldquo;Jesus, No Other God&rdquo; is more than a song, it&apos;s a sound from a strange place. It&apos;s a
+                                            declaration and a reminder that in a world full of names and options, there is still only One true God and
+                                            He&apos;s different from the rest.
+                                        </p>
+
+                                        {/* Streaming Service Buttons */}
+                                        <div className="flex flex-wrap justify-center gap-4 lg:gap-5">
+                                            <a
+                                                href="https://open.spotify.com/track/6FCgNzCMwvYqEVwlyU3uYl?si=a50ed64ea8ea46aa"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                                title="Listen on Spotify"
+                                            >
+                                                <FaSpotify className="flex h-6 w-6 items-center justify-center text-green-400 md:h-8 md:w-8" />
+                                            </a>
+                                            <a
+                                                href="https://music.apple.com/us/song/no-other-god-feat-rhema-onuoha/1823930988"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                                title="Listen on Apple Music"
+                                            >
+                                                <FaApple className="flex h-6 w-6 items-center justify-center text-white md:h-8 md:w-8" />
+                                            </a>
+                                            <a
+                                                href="https://www.youtube.com/watch?v=_uUzAETf9TE"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                                title="Watch on YouTube"
+                                            >
+                                                <FaYoutube className="flex h-6 w-6 items-center justify-center text-red-500 md:h-8 md:w-8" />
+                                            </a>
+                                            <a
+                                                href="https://amazon.com/music/player/albums/B0FG7J681F?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_6dJgC1ZLuqn2jKSnYbUYlBQeN"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                                title="Listen on Amazon Music"
+                                            >
+                                                <SiAmazonmusic className="flex h-6 w-6 items-center justify-center text-orange-400 md:h-8 md:w-8" />
+                                            </a>
+                                            <a
+                                                href="https://link.deezer.com/s/31278uhdrGzCshgIS9jRN"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                                title="Listen on Deezer"
+                                            >
+                                                <FaDeezer className="flex h-6 w-6 items-center justify-center text-blue-400 md:h-8 md:w-8" />
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        )}
 
                         {/* Other Music Preview */}
                         <div className="mt-16">
-                            <div className="mb-12 text-center">
-                                <motion.h2
-                                    className={`text-2xl font-bold text-white lg:text-3xl ${modernizFont.className}`}
-                                    initial={{ opacity: 0, y: 30 }}
-                                    animate={musicInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
-                                    transition={{ delay: 0.9, duration: 0.8, ease: 'easeOut' }}
-                                >
-                                    More Music
-                                </motion.h2>
-                            </div>
                             <div className="grid grid-cols-2 gap-8 lg:grid-cols-3 lg:gap-10 [&>*:nth-child(3)]:col-span-2 [&>*:nth-child(3)]:mx-auto [&>*:nth-child(3)]:max-w-xs lg:[&>*:nth-child(3)]:col-span-1 lg:[&>*:nth-child(3)]:mx-0 lg:[&>*:nth-child(3)]:max-w-none">
                                 {musicLoading ? (
                                     // Loading state
                                     Array.from({ length: 3 }, (_, index) => (
                                         <div key={index} className="group">
                                             {/* Music Thumbnail Skeleton */}
-                                            <div className="relative aspect-square h-[200px] overflow-hidden bg-gray-700 sm:h-[250px]">
+                                            <div className="relative aspect-square overflow-hidden rounded bg-gray-700">
                                                 <div className="absolute inset-0 animate-pulse bg-gray-600"></div>
                                             </div>
 
@@ -638,10 +695,10 @@ export default function HomePage() {
                                             transition={{ delay: 1.0 + index * 0.1, duration: 0.8, ease: 'easeOut' }}
                                         >
                                             {/* Music Thumbnail */}
-                                            <div className="group block w-full overflow-hidden transition-all duration-300 hover:scale-103">
+                                            <div className="group block w-full overflow-hidden rounded transition-all duration-300 hover:scale-103">
                                                 {/* Mobile/Tablet - Dialog Overlay */}
                                                 <button onClick={(e) => handleSongClick(song, e)} className="block w-full lg:hidden">
-                                                    <div className="relative aspect-square overflow-hidden bg-gray-800">
+                                                    <div className="relative aspect-square overflow-hidden rounded bg-gray-800">
                                                         {song.musicThumbnail?.fields?.file?.url && (
                                                             <Image
                                                                 src={`https:${song.musicThumbnail.fields.file.url}`}
@@ -673,7 +730,7 @@ export default function HomePage() {
                                                     rel="noopener noreferrer"
                                                     className="hidden w-full lg:block"
                                                 >
-                                                    <div className="relative aspect-square overflow-hidden bg-gray-800">
+                                                    <div className="relative aspect-square overflow-hidden rounded bg-gray-800">
                                                         {song.musicThumbnail?.fields?.file?.url && (
                                                             <Image
                                                                 src={`https:${song.musicThumbnail.fields.file.url}`}
@@ -776,10 +833,10 @@ export default function HomePage() {
                                         transition={{ delay: 1.2, duration: 0.8, ease: 'easeOut' }}
                                     >
                                         {/* Music Thumbnail */}
-                                        <div className="group block w-full overflow-hidden transition-all duration-300 hover:scale-103">
+                                        <div className="group block w-full overflow-hidden rounded transition-all duration-300 hover:scale-103">
                                             {/* Desktop - Direct YouTube Link */}
                                             <a href={music[3].youTubeLink} target="_blank" rel="noopener noreferrer" className="block w-full">
-                                                <div className="relative aspect-square overflow-hidden bg-gray-800">
+                                                <div className="relative aspect-square overflow-hidden rounded bg-gray-800">
                                                     {music[3].musicThumbnail?.fields?.file?.url && (
                                                         <Image
                                                             src={`https:${music[3].musicThumbnail.fields.file.url}`}
@@ -878,7 +935,7 @@ export default function HomePage() {
                         <div className="mt-12 text-center">
                             <Link
                                 href="/music"
-                                className="group inline-flex items-center bg-red-700 px-8 py-4 font-semibold text-white transition-all duration-300 hover:bg-red-800 hover:text-white"
+                                className="group inline-flex items-center rounded bg-gradient-to-br from-blue-900 to-teal-600 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300"
                             >
                                 More
                                 <FiArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-2" />
@@ -889,115 +946,147 @@ export default function HomePage() {
             </section>
 
             {/* SERMONS PREVIEW SECTION */}
-            <section id="sermons" ref={sermonsRef} className="bg-black px-4 sm:px-8">
+            <section id="sermons" ref={sermonsRef} className="bg-[#030712] px-4 sm:px-8">
                 <div className="container mx-auto sm:px-8">
                     <div className="h-max py-20">
                         <div className="mb-12 text-center">
-                            <motion.h1
-                                initial={{ opacity: 0, y: 30 }}
-                                animate={sermonsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
-                                transition={{ delay: 0.25, duration: 0.8, ease: 'easeOut' }}
-                                className={`text-5xl font-bold text-white md:text-6xl ${modernizFont.className}`}
-                            >
-                                Sermons
-                            </motion.h1>
-                            <br />
-                            <motion.p
-                                initial={{ opacity: 0, y: 30 }}
-                                animate={sermonsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
-                                transition={{ delay: 0.5, duration: 0.8, ease: 'easeOut' }}
-                                className="text-white"
-                            >
-                                Discover P.B.&apos;s latest sermons for your progress and joy in the faith.
-                            </motion.p>
+                            {sermonsLoading ? (
+                                // Sermons Section Header Skeleton
+                                <>
+                                    <div className="mx-auto mb-6 h-16 w-40 animate-pulse rounded bg-gray-700"></div>
+                                    <br />
+                                    <div className="mx-auto h-6 w-96 animate-pulse rounded bg-gray-700"></div>
+                                </>
+                            ) : (
+                                <>
+                                    <motion.h1
+                                        initial={{ opacity: 0, y: 30 }}
+                                        animate={sermonsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
+                                        transition={{ delay: 0.25, duration: 0.8, ease: 'easeOut' }}
+                                        className={`text-6xl font-bold text-white ${modernizFont.className}`}
+                                    >
+                                        Sermons
+                                    </motion.h1>
+                                    <br />
+                                    <motion.p
+                                        initial={{ opacity: 0, y: 30 }}
+                                        animate={sermonsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
+                                        transition={{ delay: 0.5, duration: 0.8, ease: 'easeOut' }}
+                                        className="text-white"
+                                    >
+                                        Discover P.B.&apos;s latest sermons for your progress and joy in the faith.
+                                    </motion.p>
+                                </>
+                            )}
                         </div>
 
                         {/* Featured Sermon */}
-                        <motion.div
-                            className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12"
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={sermonsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
-                            transition={{ delay: 0.75, duration: 0.8, ease: 'easeOut' }}
-                        >
-                            {/* Left Column - Video */}
-                            <div className="relative">
-                                <div className="relative aspect-video overflow-hidden rounded-[2px] bg-gray-800">
-                                    <video className="h-full w-full object-cover" autoPlay muted loop playsInline>
-                                        <source src="/videos/SermonsHeroVideo.mp4" type="video/mp4" />
-                                        Your browser does not support the video tag.
-                                    </video>
-                                </div>
-                            </div>
-
-                            {/* Right Column - Sermon Information */}
-                            <div className="flex flex-col justify-center text-white">
-                                <div className="text-center lg:text-left">
-                                    {/* Sermon Name */}
-                                    <h3 className={`mb-6 text-2xl font-bold lg:text-3xl xl:text-4xl ${modernizFont.className}`}>
-                                        {sermons.length > 0 ? sermons[0].name : 'Latest Sermon'}
-                                    </h3>
-
-                                    {/* Sermon Date */}
-                                    {sermons.length > 0 && sermons[0].sermonDate && (
-                                        <div className="mb-8 text-base text-white/90 lg:text-lg">
-                                            <span>{formatSermonDate(sermons[0].sermonDate)}</span>
-                                        </div>
-                                    )}
-
-                                    {/* Sermon Tags */}
-                                    {sermons.length > 0 && sermons[0].sermonTags && sermons[0].sermonTags.length > 0 && (
-                                        <div className="mb-8 flex flex-wrap justify-center gap-3 lg:justify-start">
-                                            {sermons[0].sermonTags.slice(0, 3).map((tag, index) => (
-                                                <span key={index} className="rounded-full bg-red-600/20 px-3 py-1 text-sm text-white">
-                                                    {tag}
-                                                </span>
-                                            ))}
-                                        </div>
-                                    )}
-
-                                    {/* Sermon Description */}
-                                    <p className="mb-10 text-base leading-relaxed whitespace-pre-line text-white/80 lg:text-lg">
-                                        {sermons.length > 0 && sermons[0].sermonDescription
-                                            ? sermons[0].sermonDescription
-                                            : 'Discover powerful messages of hope, faith, and inspiration that will strengthen your walk with God and transform your life.'}
-                                    </p>
-
-                                    {/* YouTube Button */}
-                                    <div className="flex justify-center">
-                                        <a
-                                            href={sermons.length > 0 ? sermons[0].youTubeLink : '#'}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="group inline-flex w-full max-w-[300px] items-center justify-center bg-red-600 px-8 py-4 font-semibold text-white transition-all duration-300 hover:scale-105 hover:bg-red-700"
-                                            title="Watch on YouTube"
-                                        >
-                                            <FaYoutube size={30} className="mr-4" />
-                                            Watch on YouTube
-                                        </a>
+                        {sermonsLoading ? (
+                            // Featured Sermon Loading State
+                            <motion.div
+                                className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12"
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={sermonsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
+                                transition={{ delay: 0.75, duration: 0.8, ease: 'easeOut' }}
+                            >
+                                {/* Left Column - Video Skeleton */}
+                                <div className="group relative">
+                                    <div className="relative aspect-[4/3] overflow-hidden rounded bg-gray-700">
+                                        <div className="absolute inset-0 animate-pulse bg-gray-600"></div>
                                     </div>
                                 </div>
-                            </div>
-                        </motion.div>
+
+                                {/* Right Column - Sermon Information Skeleton */}
+                                <div className="flex flex-col justify-center text-white">
+                                    <div className="text-center lg:text-left">
+                                        {/* Sermon Name Skeleton */}
+                                        <div className="mb-6 h-8 w-3/4 animate-pulse rounded bg-gray-700"></div>
+
+                                        {/* Sermon Date Skeleton */}
+                                        <div className="mb-8 h-6 w-1/2 animate-pulse rounded bg-gray-700"></div>
+
+                                        {/* Sermon Description Skeleton */}
+                                        <div className="mb-10 space-y-2">
+                                            <div className="h-4 w-full animate-pulse rounded bg-gray-700"></div>
+                                            <div className="h-4 w-full animate-pulse rounded bg-gray-700"></div>
+                                            <div className="h-4 w-3/4 animate-pulse rounded bg-gray-700"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        ) : (
+                            <motion.div
+                                className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12"
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={sermonsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
+                                transition={{ delay: 0.75, duration: 0.8, ease: 'easeOut' }}
+                            >
+                                {/* Left Column - Video */}
+                                <div className="group relative">
+                                    <a
+                                        href={sermons.length > 0 ? sermons[0].youTubeLink : '#'}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="block transition-all duration-300 hover:scale-103"
+                                    >
+                                        <div className="relative aspect-[4/3] overflow-hidden rounded bg-gray-800">
+                                            <video
+                                                className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-103 group-hover:blur-sm"
+                                                autoPlay
+                                                muted
+                                                loop
+                                                playsInline
+                                            >
+                                                <source src="/videos/SermonsHeroVideo.mp4" type="video/mp4" />
+                                                Your browser does not support the video tag.
+                                            </video>
+                                            {/* Play Icon Overlay */}
+                                            <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                                                <div className="rounded-full border-4 border-white p-4">
+                                                    <svg className="h-20 w-20 text-white drop-shadow-lg" fill="currentColor" viewBox="0 0 24 24">
+                                                        <path d="M8 5v14l11-7z" />
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+
+                                {/* Right Column - Sermon Information */}
+                                <div className="flex flex-col justify-center text-white">
+                                    <div className="text-center lg:text-left">
+                                        {/* Sermon Name */}
+                                        <h3 className={`mb-6 text-center text-2xl lg:text-3xl xl:text-4xl ${modernizFont.className}`}>
+                                            {sermons.length > 0 ? sermons[0].name : 'Latest Sermon'}
+                                        </h3>
+
+                                        {/* Sermon Date */}
+                                        {sermons.length > 0 && sermons[0].sermonDate && (
+                                            <div className="mb-8 text-center text-base text-white/90">
+                                                <span>{formatFeaturedSermonDate(sermons[0].sermonDate)}</span>
+                                            </div>
+                                        )}
+
+                                        {/* Sermon Description */}
+                                        <p className="mb-10 text-base leading-relaxed whitespace-pre-line text-white/80">
+                                            {sermons.length > 0 && sermons[0].sermonDescription
+                                                ? sermons[0].sermonDescription
+                                                : 'Discover powerful messages of hope, faith, and inspiration that will strengthen your walk with God and transform your life.'}
+                                        </p>
+                                    </div>
+                                </div>
+                            </motion.div>
+                        )}
 
                         {/* Other Sermons Preview */}
                         <div className="mt-16">
-                            <div className="mb-12 text-center">
-                                <motion.h2
-                                    className={`text-2xl font-bold text-white lg:text-3xl ${modernizFont.className}`}
-                                    initial={{ opacity: 0, y: 30 }}
-                                    animate={sermonsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
-                                    transition={{ delay: 0.9, duration: 0.8, ease: 'easeOut' }}
-                                >
-                                    More Sermons
-                                </motion.h2>
-                            </div>
                             <div className="grid grid-cols-2 gap-8 lg:grid-cols-3 lg:gap-10 [&>*:nth-child(3)]:col-span-2 [&>*:nth-child(3)]:mx-auto [&>*:nth-child(3)]:max-w-xs lg:[&>*:nth-child(3)]:col-span-1 lg:[&>*:nth-child(3)]:mx-0 lg:[&>*:nth-child(3)]:max-w-none">
                                 {sermonsLoading ? (
                                     // Loading state
                                     Array.from({ length: 3 }, (_, index) => (
-                                        <div key={index} className="group relative block overflow-hidden">
+                                        <div key={index} className="group relative block overflow-hidden rounded">
                                             {/* Image skeleton */}
-                                            <div className="relative aspect-[4/5] overflow-hidden bg-gray-700">
+                                            <div className="relative aspect-[4/5] overflow-hidden rounded bg-gray-700">
                                                 <div className="absolute inset-0 animate-pulse bg-gray-600"></div>
                                             </div>
 
@@ -1029,12 +1118,12 @@ export default function HomePage() {
                                             href={sermon.youTubeLink}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="group block overflow-hidden transition-all duration-300 hover:scale-103"
+                                            className="group block overflow-hidden rounded transition-all duration-300 hover:scale-103"
                                             initial={{ opacity: 0, y: 30 }}
                                             animate={sermonsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
                                             transition={{ delay: 1.0 + index * 0.1, duration: 0.8, ease: 'easeOut' }}
                                         >
-                                            <div className="relative aspect-[4/5] overflow-hidden">
+                                            <div className="relative aspect-[4/5] overflow-hidden rounded">
                                                 {sermon.thumbnailImage?.fields?.file?.url && (
                                                     <Image
                                                         src={`https:${sermon.thumbnailImage.fields.file.url}`}
@@ -1080,7 +1169,7 @@ export default function HomePage() {
 
                                             {/* Sermon Info Below Thumbnail */}
                                             <div className="py-6">
-                                                <h3 className="mb-3 line-clamp-2 text-lg font-bold text-white transition-colors duration-300 group-hover:text-red-700 lg:text-xl">
+                                                <h3 className="mb-3 line-clamp-2 text-lg font-bold text-white transition-colors duration-300 group-hover:text-sky-700 lg:text-xl">
                                                     {sermon.name}
                                                 </h3>
 
@@ -1113,12 +1202,12 @@ export default function HomePage() {
                                         href={sermons[3].youTubeLink}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="group hidden overflow-hidden transition-all duration-300 hover:scale-103 lg:block"
+                                        className="group hidden overflow-hidden rounded transition-all duration-300 hover:scale-103 lg:block"
                                         initial={{ opacity: 0, y: 30 }}
                                         animate={sermonsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
                                         transition={{ delay: 1.2, duration: 0.8, ease: 'easeOut' }}
                                     >
-                                        <div className="relative aspect-[4/5] overflow-hidden">
+                                        <div className="relative aspect-[4/5] overflow-hidden rounded">
                                             {sermons[3].thumbnailImage?.fields?.file?.url && (
                                                 <Image
                                                     src={`https:${sermons[3].thumbnailImage.fields.file.url}`}
@@ -1160,7 +1249,7 @@ export default function HomePage() {
 
                                         {/* Sermon Info Below Thumbnail */}
                                         <div className="py-6">
-                                            <h3 className="mb-3 line-clamp-2 text-lg font-bold text-white transition-colors duration-300 group-hover:text-red-700 lg:text-xl">
+                                            <h3 className="mb-3 line-clamp-2 text-lg font-bold text-white transition-colors duration-300 group-hover:text-sky-700 lg:text-xl">
                                                 {sermons[3].name}
                                             </h3>
 
@@ -1191,7 +1280,7 @@ export default function HomePage() {
                         <div className="mt-12 text-center">
                             <Link
                                 href="/sermons"
-                                className="group inline-flex items-center bg-red-700 px-8 py-4 font-semibold text-white transition-all duration-300 hover:bg-red-800 hover:text-white"
+                                className="group inline-flex items-center rounded bg-gradient-to-br from-blue-900 to-teal-600 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300"
                             >
                                 More
                                 <FiArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-2" />

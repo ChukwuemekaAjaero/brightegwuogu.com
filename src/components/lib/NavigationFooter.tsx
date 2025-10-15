@@ -14,7 +14,7 @@ const amazonMusicLink = 'https://www.amazon.com/music/player/artists/B09RY3QB5K/
 
 export default function NavigationFooter() {
     return (
-        <footer className="bg-black py-16 text-white">
+        <footer className="bg-[#030712] py-16 text-white">
             <div className="container mx-auto px-4 sm:px-8">
                 <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
                     {/* Brand Section */}
@@ -34,7 +34,7 @@ export default function NavigationFooter() {
                             <p>Toronto Campus</p>
                             <p>Toronto, Canada</p>
                             <p className="mt-3">
-                                <a href="mailto:contact@brightegwuogu.com" className="transition-colors duration-200 hover:text-red-700">
+                                <a href="mailto:contact@brightegwuogu.com" className="transition-colors duration-200 hover:text-sky-700">
                                     contact@brightegwuogu.com
                                 </a>
                             </p>
@@ -45,13 +45,13 @@ export default function NavigationFooter() {
                     <div>
                         <h3 className="mb-4 text-lg font-semibold">Navigation</h3>
                         <nav className="space-y-2">
-                            <Link href="/" className="block text-sm text-gray-300 transition-colors duration-200 hover:text-red-700">
+                            <Link href="/" className="block text-sm text-gray-300 transition-colors duration-200 hover:text-sky-700">
                                 Home
                             </Link>
-                            <Link href="/music" className="block text-sm text-gray-300 transition-colors duration-200 hover:text-red-700">
+                            <Link href="/music" className="block text-sm text-gray-300 transition-colors duration-200 hover:text-sky-700">
                                 Music
                             </Link>
-                            <Link href="/sermons" className="block text-sm text-gray-300 transition-colors duration-200 hover:text-red-700">
+                            <Link href="/sermons" className="block text-sm text-gray-300 transition-colors duration-200 hover:text-sky-700">
                                 Sermons
                             </Link>
                         </nav>
@@ -65,7 +65,7 @@ export default function NavigationFooter() {
                                 href={instagramLink}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex items-center text-sm text-gray-300 transition-colors duration-200 hover:text-red-700"
+                                className="flex items-center text-sm text-gray-300 transition-colors duration-200 hover:text-sky-700"
                             >
                                 <AiFillInstagram className="mr-2 h-5 w-5" />
                                 Instagram
@@ -74,7 +74,7 @@ export default function NavigationFooter() {
                                 href={youTubeLink}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex items-center text-sm text-gray-300 transition-colors duration-200 hover:text-red-700"
+                                className="flex items-center text-sm text-gray-300 transition-colors duration-200 hover:text-sky-700"
                             >
                                 <FaYoutube className="mr-2 h-5 w-5" />
                                 YouTube
@@ -83,7 +83,7 @@ export default function NavigationFooter() {
                                 href={spotifyLink}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex items-center text-sm text-gray-300 transition-colors duration-200 hover:text-red-700"
+                                className="flex items-center text-sm text-gray-300 transition-colors duration-200 hover:text-sky-700"
                             >
                                 <FaSpotify className="mr-2 h-5 w-5" />
                                 Spotify
@@ -92,7 +92,7 @@ export default function NavigationFooter() {
                                 href={appleMusicLink}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex items-center text-sm text-gray-300 transition-colors duration-200 hover:text-red-700"
+                                className="flex items-center text-sm text-gray-300 transition-colors duration-200 hover:text-sky-700"
                             >
                                 <FaApple className="mr-2 h-5 w-5" />
                                 Apple Music
@@ -101,7 +101,7 @@ export default function NavigationFooter() {
                                 href={deezerLink}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex items-center text-sm text-gray-300 transition-colors duration-200 hover:text-red-700"
+                                className="flex items-center text-sm text-gray-300 transition-colors duration-200 hover:text-sky-700"
                             >
                                 <FaDeezer className="mr-2 h-5 w-5" />
                                 Deezer
@@ -110,7 +110,7 @@ export default function NavigationFooter() {
                                 href={amazonMusicLink}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex items-center text-sm text-gray-300 transition-colors duration-200 hover:text-red-700"
+                                className="flex items-center text-sm text-gray-300 transition-colors duration-200 hover:text-sky-700"
                             >
                                 <SiAmazonmusic className="mr-2 h-5 w-5" />
                                 Amazon Music

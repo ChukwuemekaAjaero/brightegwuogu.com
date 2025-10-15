@@ -25,9 +25,9 @@ export default function Music() {
 
     return (
         <div className="relative">
-            <section id="hero" className="relative bg-black">
+            <section id="hero" className="relative bg-[#030712]">
                 {/* Hero Section */}
-                <div className="relative min-h-screen overflow-hidden mask-b-from-50%">
+                <div className="relative min-h-screen overflow-hidden rounded mask-b-from-50%">
                     {/* Loading Screen */}
                     {isLoading && (
                         <div className="absolute inset-0 z-20 bg-black">
@@ -86,7 +86,7 @@ export default function Music() {
                                     href="https://www.youtube.com/watch?v=_uUzAETf9TE"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="group inline-flex w-full max-w-[300px] items-center justify-center bg-red-600 px-8 py-4 font-semibold text-white transition-all duration-300 hover:scale-105 hover:bg-red-700"
+                                    className="group inline-flex w-full max-w-[300px] items-center justify-center rounded bg-red-600 px-8 py-4 font-semibold text-white transition-all duration-300 hover:scale-105 hover:bg-red-700"
                                 >
                                     <svg className="mr-2 h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                                         <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
@@ -101,7 +101,7 @@ export default function Music() {
                                             block: 'start'
                                         });
                                     }}
-                                    className="group inline-flex w-full max-w-[300px] items-center justify-center bg-black px-8 py-4 font-semibold text-white transition-all duration-300 hover:scale-105"
+                                    className="group inline-flex w-full max-w-[300px] items-center justify-center rounded bg-black px-8 py-4 font-semibold text-white transition-all duration-300 hover:scale-105"
                                 >
                                     <FaPlay className="mr-2 h-5 w-5" />
                                     Stream on all platforms
@@ -113,7 +113,7 @@ export default function Music() {
             </section>
 
             {/* Music List Section */}
-            <section id="music-section" className="relative min-h-screen overflow-hidden bg-black">
+            <section id="music-section" className="relative min-h-screen overflow-hidden rounded bg-[#030712]">
                 <div className="py-20">
                     {musicLoading ? (
                         // Loading state
@@ -137,7 +137,7 @@ export default function Music() {
                                 {Array.from({ length: 4 }, (_, index) => (
                                     <div key={index} className="group">
                                         {/* Music Thumbnail Skeleton */}
-                                        <div className="relative aspect-square h-[330px] overflow-hidden bg-gray-700 sm:h-[500px]">
+                                        <div className="relative aspect-square h-[330px] overflow-hidden rounded bg-gray-700 sm:h-[500px]">
                                             <div className="absolute inset-0 animate-pulse bg-gray-600"></div>
                                         </div>
 
@@ -244,9 +244,9 @@ export default function Music() {
                                             href={song.youTubeLink}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="group block hidden overflow-hidden transition-all duration-300 hover:scale-102 md:block"
+                                            className="group hidden overflow-hidden rounded transition-all duration-300 hover:scale-102 md:block"
                                         >
-                                            <div className="relative aspect-square h-[330px] overflow-hidden sm:h-[500px]">
+                                            <div className="relative aspect-square h-[330px] overflow-hidden rounded sm:h-[500px]">
                                                 {song.musicThumbnail?.fields?.file?.url && (
                                                     <Image
                                                         src={`https:${song.musicThumbnail.fields.file.url}`}
@@ -268,8 +268,8 @@ export default function Music() {
                                         </a>
 
                                         {/* Non-clickable version for mobile/tablet */}
-                                        <div className="group block overflow-hidden transition-all duration-300 hover:scale-102 md:hidden">
-                                            <div className="relative aspect-square h-[330px] overflow-hidden sm:h-[500px]">
+                                        <div className="group block overflow-hidden rounded transition-all duration-300 hover:scale-102 md:hidden">
+                                            <div className="relative aspect-square h-[330px] overflow-hidden rounded sm:h-[500px]">
                                                 {song.musicThumbnail?.fields?.file?.url && (
                                                     <Image
                                                         src={`https:${song.musicThumbnail.fields.file.url}`}

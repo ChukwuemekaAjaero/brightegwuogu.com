@@ -19,7 +19,6 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body className={`${ubisoftSansFont.className}`} suppressHydrationWarning={true}>
-                <ConditionalCursor />
                 <div className="relative">
                     <CornerNav />
                     {children}

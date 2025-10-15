@@ -99,8 +99,8 @@ export default function SermonsPage() {
     return (
         <div className="relative scroll-smooth">
             {/* HERO SECTION */}
-            <section id="hero" className="relative bg-black">
-                <div className="relative min-h-screen overflow-hidden mask-b-from-50%">
+            <section id="hero" className="relative bg-[#030712]">
+                <div className="relative min-h-screen overflow-hidden rounded mask-b-from-50%">
                     {/* Loading Screen */}
                     {isLoading && (
                         <div className="absolute inset-0 z-20 bg-black">
@@ -188,7 +188,7 @@ export default function SermonsPage() {
                                     href={sermons[0]?.youTubeLink}
                                     target="_blank"
                                     rel="noopener   noreferrer"
-                                    className="group inline-flex w-full max-w-[300px] items-center justify-center bg-red-600 px-8 py-4 font-semibold text-white transition-all duration-300 hover:scale-105 hover:bg-red-700"
+                                    className="group inline-flex w-full max-w-[300px] items-center justify-center rounded bg-red-600 px-8 py-4 font-semibold text-white transition-all duration-300 hover:scale-105 hover:bg-red-700"
                                 >
                                     <FaYoutube size={30} className="mr-4" />
                                     Watch on YouTube
@@ -200,7 +200,7 @@ export default function SermonsPage() {
             </section>
 
             {/* SERMONS LIST SECTION */}
-            <section className="relative min-h-screen overflow-hidden bg-black">
+            <section className="relative min-h-screen overflow-hidden rounded bg-[#030712]">
                 <div className="py-20">
                     <div className="mb-12 text-center">
                         <h2 className={`text-5xl font-bold text-white md:text-6xl ${modernizFont.className}`}>Sermons</h2>
@@ -258,7 +258,7 @@ export default function SermonsPage() {
                                         placeholder="Search sermons by name..."
                                         value={searchQuery}
                                         onChange={(e) => setSearchQuery(e.target.value)}
-                                        className="w-full border border-gray-600 bg-gray-800 py-3 pr-10 pl-10 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                        className="w-full rounded border border-gray-600 bg-gray-800 py-3 pr-10 pl-10 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                                     />
                                     {searchQuery && (
                                         <button
@@ -394,9 +394,9 @@ export default function SermonsPage() {
                         <div className="container mx-auto px-4 sm:px-8">
                             <div className="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
                                 {Array.from({ length: 10 }, (_, index) => (
-                                    <div key={index} className="group relative block overflow-hidden">
+                                    <div key={index} className="group relative block overflow-hidden rounded">
                                         {/* Image skeleton */}
-                                        <div className="relative aspect-[4/5] overflow-hidden bg-gray-700">
+                                        <div className="relative aspect-[4/5] overflow-hidden rounded bg-gray-700">
                                             <div className="absolute inset-0 animate-pulse bg-gray-600"></div>
                                         </div>
 
@@ -455,12 +455,12 @@ export default function SermonsPage() {
                                             href={sermon.youTubeLink}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="group relative block overflow-hidden transition-all duration-300 hover:scale-103"
+                                            className="group relative block overflow-hidden rounded transition-all duration-300 hover:scale-103"
                                             initial={{ opacity: 0, y: 30 }}
                                             animate={sermonsInView ? { opacity: 0 } : { opacity: 1 }}
                                             transition={{ delay: batchIndex * 0.1, duration: 0.8, ease: 'easeOut' }}
                                         >
-                                            <div className="relative aspect-[4/5] overflow-hidden">
+                                            <div className="relative aspect-[4/5] overflow-hidden rounded">
                                                 {/* Image with scale and blur effect */}
                                                 {sermon.thumbnailImage?.fields?.file?.url && (
                                                     <Image
@@ -496,7 +496,7 @@ export default function SermonsPage() {
 
                                             {/* Sermon Info Below Thumbnail */}
                                             <div className="py-4">
-                                                <h3 className="mb-2 line-clamp-2 text-lg font-bold text-white transition-colors duration-300 group-hover:text-red-700">
+                                                <h3 className="mb-2 line-clamp-2 text-lg font-bold text-white transition-colors duration-300 group-hover:text-sky-700">
                                                     {sermon.name}
                                                 </h3>
 
@@ -530,7 +530,7 @@ export default function SermonsPage() {
                                 <div className="mt-12 text-center">
                                     <button
                                         onClick={loadMoreSermons}
-                                        className="group inline-flex items-center bg-red-700 px-8 py-4 font-semibold text-white transition-all duration-300 hover:bg-red-800 hover:text-white"
+                                        className="group inline-flex items-center rounded bg-gradient-to-br from-blue-900 to-teal-600 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300"
                                     >
                                         More
                                         <FiArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-2" />

@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import { ChevronDownIcon, X, CalendarIcon } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 import { Calendar } from '@/components/ui/calendar';
 import { Label } from '@/components/ui/label';
@@ -123,76 +124,124 @@ export function DateRangePicker({ value, onChange, placeholder = 'Select date ra
 
     // Mobile dialog component
     const MobileDialog = () => {
-        if (!open || !isMobile) return null;
-
         return (
-            <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm md:hidden">
-                <div className="fixed inset-0 flex items-center justify-center p-0 sm:inset-4 sm:p-0">
-                    <div className="relative flex h-full w-full flex-col border border-gray-600 bg-gray-800 sm:h-auto sm:max-w-2xl">
-                        {/* Close button */}
-                        <button
-                            type="button"
-                            onClick={() => setOpen(false)}
-                            className="absolute top-4 left-4 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-gray-700 text-white hover:bg-gray-600 focus:ring-2 focus:ring-red-500 focus:outline-none"
-                            aria-label="Close"
-                        >
-                            <X className="h-4 w-4" />
-                        </button>
-
-                        {/* Calendar */}
-                        <div className="flex-1 overflow-auto p-4 pt-12">
-                            <Calendar
-                                mode="range"
-                                selected={dateRange as DateRange}
-                                captionLayout="dropdown"
-                                onSelect={handleSelect}
-                                className="w-full rounded-none border-gray-600 bg-gray-800 text-white"
-                                disabled={(date) => (maxDate ? date > maxDate : false)}
-                                numberOfMonths={2}
-                                defaultMonth={dateRange?.from || new Date()}
-                            />
-                        </div>
-
-                        {/* Buttons - Always visible at bottom */}
-                        <div className="flex shrink-0 gap-2 border-t border-gray-600 bg-gray-800 p-4">
-                            <button
-                                type="button"
-                                onClick={() => {
-                                    const today = new Date();
-                                    const thirtyDaysAgo = new Date();
-                                    thirtyDaysAgo.setDate(today.getDate() - 30);
-
-                                    if (!maxDate) {
-                                        handleSelect({ from: thirtyDaysAgo, to: today });
-                                    } else {
-                                        const todayOnly = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-                                        const maxDateOnly = new Date(maxDate.getFullYear(), maxDate.getMonth(), maxDate.getDate());
-                                        const fromDate = todayOnly <= maxDateOnly ? thirtyDaysAgo : maxDate;
-                                        handleSelect({ from: fromDate, to: todayOnly <= maxDateOnly ? today : maxDate });
-                                    }
+            <AnimatePresence>
+                {open && isMobile && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.4, ease: 'easeInOut' }}
+                        className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm md:hidden"
+                    >
+                        <div className="fixed inset-0 flex items-center justify-center p-0 sm:inset-4 sm:p-0">
+                            <motion.div
+                                initial={{
+                                    opacity: 0,
+                                    scale: 0.8,
+                                    y: -50
                                 }}
-                                className="flex-1 rounded-none border border-gray-600 bg-gray-700 px-3 py-2 text-sm text-white hover:bg-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                animate={{
+                                    opacity: 1,
+                                    scale: 1,
+                                    y: 0
+                                }}
+                                exit={{
+                                    opacity: 0,
+                                    scale: 0.8,
+                                    y: -50
+                                }}
+                                transition={{
+                                    type: 'spring',
+                                    stiffness: 200,
+                                    damping: 30,
+                                    mass: 1.2
+                                }}
+                                className="relative flex h-full w-full flex-col border border-gray-600 bg-gray-800 sm:h-auto sm:max-w-2xl"
                             >
-                                Last 30 days
-                            </button>
-                            <button
-                                type="button"
-                                onClick={clearRange}
-                                className="flex-1 rounded-none border border-gray-600 bg-gray-700 px-3 py-2 text-sm text-white hover:bg-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-                            >
-                                Clear
-                            </button>
-                            <button
-                                type="button"
-                                onClick={() => setOpen(false)}
-                                className="flex-1 rounded-none border border-red-600 bg-red-700 px-3 py-2 text-sm text-white hover:bg-red-600 focus:ring-2 focus:ring-red-500 focus:outline-none"
-                            >
-                                Done
-                            </button>
+                                {/* Close button */}
+                                <motion.button
+                                    type="button"
+                                    onClick={() => setOpen(false)}
+                                    className="absolute top-4 left-4 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-gray-700 text-white hover:bg-gray-600 focus:ring-2 focus:ring-red-500 focus:outline-none"
+                                    aria-label="Close"
+                                    initial={{ opacity: 0, scale: 0.8 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    transition={{ delay: 0.2, duration: 0.4 }}
+                                >
+                                    <X className="h-4 w-4" />
+                                </motion.button>
+
+                                {/* Calendar */}
+                                <motion.div
+                                    className="flex-1 overflow-auto p-4 pt-12"
+                                    initial={{ opacity: 0, y: -20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.3, duration: 0.6 }}
+                                >
+                                    <Calendar
+                                        mode="range"
+                                        selected={dateRange as DateRange}
+                                        captionLayout="dropdown"
+                                        onSelect={handleSelect}
+                                        className="w-full rounded-none border-gray-600 bg-gray-800 text-white"
+                                        disabled={(date) => (maxDate ? date > maxDate : false)}
+                                        numberOfMonths={2}
+                                        defaultMonth={dateRange?.from || new Date()}
+                                        classNames={{
+                                            dropdown_root:
+                                                'relative has-focus:border-ring border border-input shadow-xs has-focus:ring-ring/50 has-focus:ring-[3px] rounded'
+                                        }}
+                                    />
+                                </motion.div>
+
+                                {/* Buttons - Always visible at bottom */}
+                                <motion.div
+                                    className="flex shrink-0 gap-2 border-t border-gray-600 bg-gray-800 p-4"
+                                    initial={{ opacity: 0, y: -20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.4, duration: 0.6 }}
+                                >
+                                    <button
+                                        type="button"
+                                        onClick={() => {
+                                            const today = new Date();
+                                            const thirtyDaysAgo = new Date();
+                                            thirtyDaysAgo.setDate(today.getDate() - 30);
+
+                                            if (!maxDate) {
+                                                handleSelect({ from: thirtyDaysAgo, to: today });
+                                            } else {
+                                                const todayOnly = new Date(today.getFullYear(), today.getMonth(), today.getDate());
+                                                const maxDateOnly = new Date(maxDate.getFullYear(), maxDate.getMonth(), maxDate.getDate());
+                                                const fromDate = todayOnly <= maxDateOnly ? thirtyDaysAgo : maxDate;
+                                                handleSelect({ from: fromDate, to: todayOnly <= maxDateOnly ? today : maxDate });
+                                            }
+                                        }}
+                                        className="flex-1 rounded border border-gray-600 bg-gray-700 px-3 py-2 text-sm text-white hover:bg-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                    >
+                                        Last 30 days
+                                    </button>
+                                    <button
+                                        type="button"
+                                        onClick={clearRange}
+                                        className="flex-1 rounded border border-gray-600 bg-gray-700 px-3 py-2 text-sm text-white hover:bg-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                    >
+                                        Clear
+                                    </button>
+                                    <button
+                                        type="button"
+                                        onClick={() => setOpen(false)}
+                                        className="flex-1 rounded border border-red-600 bg-red-700 px-3 py-2 text-sm text-white hover:bg-red-600 focus:ring-2 focus:ring-red-500 focus:outline-none"
+                                    >
+                                        Done
+                                    </button>
+                                </motion.div>
+                            </motion.div>
                         </div>
-                    </div>
-                </div>
-            </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         );
     };
 
@@ -211,7 +260,7 @@ export function DateRangePicker({ value, onChange, placeholder = 'Select date ra
                         ref={triggerRef}
                         type="button"
                         id={id}
-                        className="flex w-full items-center justify-between border border-gray-600 bg-gray-800 py-3 pr-10 pl-4 text-left text-white placeholder-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                        className="flex w-full items-center justify-between rounded border border-gray-600 bg-gray-800 py-3 pr-10 pl-4 text-left text-white placeholder-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                     >
                         <div className="flex items-center gap-3">
                             <CalendarIcon className="h-5 w-5 text-gray-400" />
@@ -234,6 +283,10 @@ export function DateRangePicker({ value, onChange, placeholder = 'Select date ra
                         disabled={(date) => (maxDate ? date > maxDate : false)}
                         numberOfMonths={2}
                         defaultMonth={dateRange?.from || new Date()}
+                        classNames={{
+                            dropdown_root:
+                                'relative has-focus:border-ring border border-input shadow-xs has-focus:ring-ring/50 has-focus:ring-[3px] rounded'
+                        }}
                     />
                     <div className="flex gap-2 border-t border-gray-600 p-3">
                         <button
@@ -252,21 +305,21 @@ export function DateRangePicker({ value, onChange, placeholder = 'Select date ra
                                     handleSelect({ from: fromDate, to: todayOnly <= maxDateOnly ? today : maxDate });
                                 }
                             }}
-                            className="flex-1 rounded-none border border-gray-600 bg-gray-700 px-2 py-1 text-xs text-white hover:bg-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                            className="flex-1 rounded border border-gray-600 bg-gray-700 px-2 py-1 text-xs text-white hover:bg-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                         >
                             Last 30 days
                         </button>
                         <button
                             type="button"
                             onClick={clearRange}
-                            className="flex-1 rounded-none border border-gray-600 bg-gray-700 px-2 py-1 text-xs text-white hover:bg-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                            className="flex-1 rounded border border-gray-600 bg-gray-700 px-2 py-1 text-xs text-white hover:bg-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                         >
                             Clear
                         </button>
                         <button
                             type="button"
                             onClick={() => setOpen(false)}
-                            className="flex-1 rounded-none border border-red-600 bg-red-700 px-2 py-1 text-xs text-white hover:bg-red-600 focus:ring-2 focus:ring-red-500 focus:outline-none"
+                            className="flex-1 rounded border border-red-600 bg-red-700 px-2 py-1 text-xs text-white hover:bg-red-600 focus:ring-2 focus:ring-red-500 focus:outline-none"
                         >
                             Done
                         </button>
