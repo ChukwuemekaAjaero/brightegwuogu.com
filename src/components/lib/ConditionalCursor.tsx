@@ -14,7 +14,6 @@ const ConditionalCursor: React.FC = () => {
         // Detect touch device
         const checkTouchDevice = () => {
             const hasTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-            setIsTouchDevice(hasTouch);
 
             // Only render cursor if we're on client and not a touch device
             setShouldRender(!hasTouch);
