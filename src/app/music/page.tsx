@@ -101,7 +101,7 @@ export default function Music() {
                                             block: 'start'
                                         });
                                     }}
-                                    className="group inline-flex items-center justify-center rounded bg-black/80 px-6 py-4 font-semibold text-white transition-all duration-300 hover:scale-105"
+                                    className="group inline-flex items-center justify-center rounded bg-[#030712]/80 px-6 py-4 font-semibold text-white transition-all duration-300 hover:scale-105"
                                 >
                                     <FaPlay className="mr-3 h-5 w-5" />
                                     Stream on all platforms

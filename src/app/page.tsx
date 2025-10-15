@@ -968,7 +968,7 @@ export default function HomePage() {
                                         initial={{ opacity: 0, y: 30 }}
                                         animate={sermonsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
                                         transition={{ delay: 0.25, duration: 0.8, ease: 'easeOut' }}
-                                        className={`text-6xl font-bold text-white ${modernizFont.className}`}
+                                        className={`text-5xl font-bold text-white lg:text-6xl ${modernizFont.className}`}
                                     >
                                         Sermons
                                     </motion.h1>
