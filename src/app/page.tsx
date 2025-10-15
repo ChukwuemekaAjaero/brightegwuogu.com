@@ -1124,8 +1124,8 @@ export default function HomePage() {
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="group block overflow-hidden rounded transition-all duration-300 hover:scale-103"
-                                            initial={{ opacity: 0, y: 30 }}
-                                            animate={sermonsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
+                                            initial={{ opacity: 0 }}
+                                            animate={sermonsInView ? { opacity: 1 } : { opacity: 0 }}
                                             transition={{ delay: 1.0 + index * 0.1, duration: 0.8, ease: 'easeOut' }}
                                         >
                                             <div className="relative aspect-[4/5] overflow-hidden rounded">
@@ -1174,7 +1174,7 @@ export default function HomePage() {
 
                                             {/* Sermon Info Below Thumbnail */}
                                             <div className="py-6">
-                                                <h3 className="mb-3 line-clamp-2 text-lg font-bold text-white transition-colors duration-300 group-hover:text-sky-700 lg:text-xl">
+                                                <h3 className="mb-3 line-clamp-2 text-lg font-bold text-white transition-colors duration-300 lg:text-xl">
                                                     {sermon.name}
                                                 </h3>
 
@@ -1208,8 +1208,8 @@ export default function HomePage() {
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="group hidden overflow-hidden rounded transition-all duration-300 hover:scale-103 lg:block"
-                                        initial={{ opacity: 0, y: 30 }}
-                                        animate={sermonsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
+                                        initial={{ opacity: 0 }}
+                                        animate={sermonsInView ? { opacity: 1 } : { opacity: 0 }}
                                         transition={{ delay: 1.2, duration: 0.8, ease: 'easeOut' }}
                                     >
                                         <div className="relative aspect-[4/5] overflow-hidden rounded">
@@ -1254,7 +1254,7 @@ export default function HomePage() {
 
                                         {/* Sermon Info Below Thumbnail */}
                                         <div className="py-6">
-                                            <h3 className="mb-3 line-clamp-2 text-lg font-bold text-white transition-colors duration-300 group-hover:text-sky-700 lg:text-xl">
+                                            <h3 className="mb-3 line-clamp-2 text-lg font-bold text-white transition-colors duration-300 lg:text-xl">
                                                 {sermons[3].name}
                                             </h3>
 

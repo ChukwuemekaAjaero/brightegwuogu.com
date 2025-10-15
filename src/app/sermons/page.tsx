@@ -163,7 +163,10 @@ export default function SermonsPage() {
                             {sermons[0]?.sermonTags && sermons[0].sermonTags.length > 0 && (
                                 <div className="mb-4 flex flex-wrap justify-center gap-2">
                                     {sermons[0].sermonTags.map((tag, index) => (
-                                        <span key={index} className="rounded-full bg-red-600/20 px-3 py-1 text-sm text-white">
+                                        <span
+                                            key={index}
+                                            className="rounded-full bg-gradient-to-br from-blue-900/60 to-teal-600/60 px-3 py-1 text-sm text-white"
+                                        >
                                             {tag}
                                         </span>
                                     ))}
@@ -219,17 +222,17 @@ export default function SermonsPage() {
                                             setDateRange(undefined);
                                             setSelectedTags([]);
                                         }}
-                                        className="group inline-flex items-center bg-red-700 px-8 py-4 font-semibold text-white transition-all duration-300 hover:bg-red-800 hover:text-white"
+                                        className="group inline-flex items-center rounded bg-gradient-to-br from-blue-900 to-teal-600 px-8 py-4 font-semibold text-white transition-all duration-300 hover:from-blue-800 hover:to-teal-500 hover:text-white"
                                     >
-                                        Clear filters
                                         <svg
-                                            className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1"
+                                            className="mr-2 h-5 w-5 transition-transform group-hover:translate-x-1"
                                             fill="none"
                                             stroke="currentColor"
                                             viewBox="0 0 24 24"
                                         >
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                                         </svg>
+                                        Clear filters
                                     </button>
 
                                     {/* Results Count - Mobile Only */}
@@ -351,7 +354,7 @@ export default function SermonsPage() {
                                                         }}
                                                         className={`cursor-pointer rounded-full border px-3 py-1 text-sm whitespace-nowrap transition-all duration-200 ${
                                                             isSelected
-                                                                ? 'border-red-600 bg-red-600 text-white'
+                                                                ? 'border-transparent bg-gradient-to-br from-blue-900 to-teal-600 text-white'
                                                                 : 'border-gray-600 bg-gray-800 text-gray-300 hover:border-red-500 hover:bg-red-600 hover:text-white'
                                                         }`}
                                                     >
@@ -496,7 +499,7 @@ export default function SermonsPage() {
 
                                             {/* Sermon Info Below Thumbnail */}
                                             <div className="py-4">
-                                                <h3 className="mb-2 line-clamp-2 text-lg font-bold text-white transition-colors duration-300 group-hover:text-sky-700">
+                                                <h3 className="mb-2 line-clamp-2 text-lg font-bold text-white transition-colors duration-300">
                                                     {sermon.name}
                                                 </h3>
 
