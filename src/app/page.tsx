@@ -1348,7 +1348,7 @@ export default function HomePage() {
                                     animate={{ opacity: 1, y: 0 }}
                                     transition={{ delay: 0.4, duration: 0.4 }}
                                 >
-                                    <span className="font-bold">{selectedSong.artists?.join(', ')}</span>
+                                    <span>{selectedSong.artists?.join(', ')}</span>
                                     {selectedSong.releaseDate && (
                                         <>
                                             {' • '}
@@ -1360,61 +1360,116 @@ export default function HomePage() {
 
                             {/* Social Links */}
                             <motion.div
-                                className="flex flex-wrap justify-center gap-4"
+                                className="flex flex-col items-center gap-4"
                                 initial={{ opacity: 0, y: -20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.6, duration: 0.4 }}
                             >
-                                <a
+                                <motion.a
                                     href={selectedSong.spotifyLink}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-center justify-center rounded-md bg-gray-950 px-3 py-2 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-gray-900"
+                                    className="flex items-center gap-3 text-white transition-colors hover:text-sky-700"
                                     title="Listen on Spotify"
+                                    initial={{ opacity: 0, y: -8 }}
+                                    animate={{
+                                        opacity: 1,
+                                        y: 0,
+                                        transition: {
+                                            delay: 0.8,
+                                            duration: 0.3,
+                                            ease: 'easeInOut'
+                                        }
+                                    }}
+                                    exit={{ opacity: 0, y: -8 }}
                                 >
-                                    <FaSpotify className="mr-2 h-6 w-6 text-green-400" />
-                                    <span className="font-medium">Spotify</span>
-                                </a>
-                                <a
+                                    <FaSpotify className="h-6 w-6 text-white" />
+                                    <span className={`font-medium ${modernizFont.className}`}>Spotify</span>
+                                </motion.a>
+                                <motion.a
                                     href={selectedSong.appleMusicLink}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-center justify-center rounded-md bg-gray-950 px-3 py-2 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-gray-900"
+                                    className="flex items-center gap-3 text-white transition-colors hover:text-sky-700"
                                     title="Listen on Apple Music"
+                                    initial={{ opacity: 0, y: -8 }}
+                                    animate={{
+                                        opacity: 1,
+                                        y: 0,
+                                        transition: {
+                                            delay: 0.9,
+                                            duration: 0.3,
+                                            ease: 'easeInOut'
+                                        }
+                                    }}
+                                    exit={{ opacity: 0, y: -8 }}
                                 >
-                                    <FaApple className="mr-2 h-6 w-6 text-white" />
-                                    <span className="font-medium">Apple Music</span>
-                                </a>
-                                <a
+                                    <FaApple className="h-6 w-6 text-white" />
+                                    <span className={`font-medium ${modernizFont.className}`}>Apple Music</span>
+                                </motion.a>
+                                <motion.a
                                     href={selectedSong.amazonMusicLink}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-center justify-center rounded-md bg-gray-950 px-3 py-2 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-gray-900"
+                                    className="flex items-center gap-3 text-white transition-colors hover:text-sky-700"
                                     title="Listen on Amazon Music"
+                                    initial={{ opacity: 0, y: -8 }}
+                                    animate={{
+                                        opacity: 1,
+                                        y: 0,
+                                        transition: {
+                                            delay: 1.0,
+                                            duration: 0.3,
+                                            ease: 'easeInOut'
+                                        }
+                                    }}
+                                    exit={{ opacity: 0, y: -8 }}
                                 >
-                                    <SiAmazonmusic className="mr-2 h-6 w-6 text-orange-400" />
-                                    <span className="font-medium">Amazon Music</span>
-                                </a>
-                                <a
+                                    <SiAmazonmusic className="h-6 w-6 text-white" />
+                                    <span className={`font-medium ${modernizFont.className}`}>Amazon Music</span>
+                                </motion.a>
+                                <motion.a
                                     href={selectedSong.deezerLink}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-center justify-center rounded-md bg-gray-950 px-3 py-2 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-gray-900"
+                                    className="flex items-center gap-3 text-white transition-colors hover:text-sky-700"
                                     title="Listen on Deezer"
+                                    initial={{ opacity: 0, y: -8 }}
+                                    animate={{
+                                        opacity: 1,
+                                        y: 0,
+                                        transition: {
+                                            delay: 1.1,
+                                            duration: 0.3,
+                                            ease: 'easeInOut'
+                                        }
+                                    }}
+                                    exit={{ opacity: 0, y: -8 }}
                                 >
-                                    <FaDeezer className="mr-2 h-6 w-6 text-blue-400" />
-                                    <span className="font-medium">Deezer</span>
-                                </a>
-                                <a
+                                    <FaDeezer className="h-6 w-6 text-white" />
+                                    <span className={`font-medium ${modernizFont.className}`}>Deezer</span>
+                                </motion.a>
+                                <motion.a
                                     href={selectedSong.youTubeLink}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-center justify-center rounded-md bg-gray-950 px-3 py-2 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-gray-900"
+                                    className="flex items-center gap-3 text-white transition-colors hover:text-sky-700"
                                     title="Watch on YouTube"
+                                    initial={{ opacity: 0, y: -8 }}
+                                    animate={{
+                                        opacity: 1,
+                                        y: 0,
+                                        transition: {
+                                            delay: 1.2,
+                                            duration: 0.3,
+                                            ease: 'easeInOut'
+                                        }
+                                    }}
+                                    exit={{ opacity: 0, y: -8 }}
                                 >
-                                    <FaYoutube className="mr-2 h-6 w-6 text-red-500" />
-                                    <span className="font-medium">YouTube</span>
-                                </a>
+                                    <FaYoutube className="h-6 w-6 text-white" />
+                                    <span className={`font-medium ${modernizFont.className}`}>YouTube</span>
+                                </motion.a>
                             </motion.div>
 
                             {/* Close Button */}
