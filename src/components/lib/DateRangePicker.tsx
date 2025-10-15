@@ -1,8 +1,8 @@
 'use client';
 
 import * as React from 'react';
-import { ChevronDownIcon, X, CalendarIcon } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronDownIcon, CalendarIcon } from 'lucide-react';
+import { AnimatePresence } from 'framer-motion';
 
 import { Calendar } from '@/components/ui/calendar';
 import { Label } from '@/components/ui/label';
@@ -149,6 +149,8 @@ export function DateRangePicker({ value, onChange, placeholder = 'Select date ra
             />
         )
     );
+
+    MemoizedCalendar.displayName = 'MemoizedCalendar';
 
     // Mobile dialog component
     const MobileDialog = () => {

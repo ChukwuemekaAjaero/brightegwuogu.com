@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import CustomCursor from './CustomCursor';
 
 const ConditionalCursor: React.FC = () => {
-    const [isTouchDevice, setIsTouchDevice] = useState<boolean>(false);
     const [isClient, setIsClient] = useState<boolean>(false);
     const [shouldRender, setShouldRender] = useState<boolean>(false);
 

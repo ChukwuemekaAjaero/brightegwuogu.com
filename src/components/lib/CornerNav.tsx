@@ -5,7 +5,6 @@ import { FaYoutube, FaApple, FaDeezer } from 'react-icons/fa';
 import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion, Variants } from 'framer-motion';
 import { AiFillInstagram } from 'react-icons/ai';
-import { FiArrowRight } from 'react-icons/fi';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { modernizFont } from '@/lib/utils';

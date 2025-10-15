@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion, useScroll, useTransform, useInView, useMotionValue, useSpring, AnimatePresence } from 'framer-motion';
+import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import { modernizFont } from '@/lib/utils';
 import { useMusic, useSermons } from '@/hooks/useContentful';
@@ -11,7 +11,6 @@ import { FaApple, FaYoutube, FaSpotify, FaDeezer } from 'react-icons/fa';
 import { FiArrowRight, FiArrowDown } from 'react-icons/fi';
 import { SiAmazonmusic } from 'react-icons/si';
 import { TypingEffectText } from '@/components/lib/TypingEffectText';
-import ZoomParallax from '@/components/lib/ZoomParallax';
 
 // Format date to "Year" format for music
 const formatMusicDate = (dateString: string) => {
