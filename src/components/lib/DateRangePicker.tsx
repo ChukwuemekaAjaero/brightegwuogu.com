@@ -169,11 +169,19 @@ export function DateRangePicker({ value, onChange, placeholder = 'Select date ra
                                 >
                                     <span
                                         className="absolute block h-1 w-4 bg-white"
-                                        style={{ y: '-50%', left: '50%', x: '-50%', rotate: '45deg' }}
+                                        style={{
+                                            left: '50%',
+                                            top: '50%',
+                                            transform: 'translate(-50%, -50%) rotate(45deg)'
+                                        }}
                                     />
                                     <span
                                         className="absolute block h-1 w-4 bg-white"
-                                        style={{ left: '50%', x: '-50%', top: '50%', y: '-50%', rotate: '-45deg' }}
+                                        style={{
+                                            left: '50%',
+                                            top: '50%',
+                                            transform: 'translate(-50%, -50%) rotate(-45deg)'
+                                        }}
                                     />
                                 </button>
 
