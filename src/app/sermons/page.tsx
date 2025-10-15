@@ -163,7 +163,7 @@ export default function SermonsPage() {
                             {sermons[0]?.sermonTags && sermons[0].sermonTags.length > 0 && (
                                 <div className="mb-4 flex flex-wrap justify-center gap-2">
                                     {sermons[0].sermonTags.map((tag, index) => (
-                                        <span key={index} className="rounded-full bg-red-600/20 px-3 py-1 text-sm text-white">
+                                        <span key={index} className="rounded-full bg-blue-800/40 px-3 py-1 text-sm text-white">
                                             {tag}
                                         </span>
                                     ))}
@@ -188,9 +188,9 @@ export default function SermonsPage() {
                                     href={sermons[0]?.youTubeLink}
                                     target="_blank"
                                     rel="noopener   noreferrer"
-                                    className="group inline-flex w-full max-w-[300px] items-center justify-center rounded bg-red-600 px-8 py-4 font-semibold text-white transition-all duration-300 hover:scale-105 hover:bg-red-700"
+                                    className="group inline-flex items-center justify-center rounded bg-[#030712]/80 px-6 py-4 font-semibold text-white transition-all duration-300 hover:scale-105"
                                 >
-                                    <FaYoutube size={30} className="mr-4" />
+                                    <FaYoutube size={24} className="mr-3 text-red-600" />
                                     Watch on YouTube
                                 </a>
                             </div>

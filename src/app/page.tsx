@@ -484,6 +484,9 @@ export default function HomePage() {
                 </div>
             </section>
 
+            {/* Divider */}
+            <div className="h-px bg-gradient-to-r from-transparent via-gray-600 to-transparent"></div>
+
             {/* MUSIC PREVIEW SECTION */}
             <section id="music" ref={musicRef} className="bg-[#030712] px-4 sm:px-8">
                 <div className="container mx-auto sm:px-8">
@@ -945,6 +948,9 @@ export default function HomePage() {
                 </div>
             </section>
 
+            {/* Divider */}
+            <div className="h-px bg-gradient-to-r from-transparent via-gray-600 to-transparent"></div>
+
             {/* SERMONS PREVIEW SECTION */}
             <section id="sermons" ref={sermonsRef} className="bg-[#030712] px-4 sm:px-8">
                 <div className="container mx-auto sm:px-8">
@@ -1325,7 +1331,7 @@ export default function HomePage() {
                                 damping: 20,
                                 mass: 0.8
                             }}
-                            className="m-8 flex h-[calc(100vh-4rem)] w-[calc(100vw-4rem)] max-w-2xl flex-col justify-center bg-gradient-to-br from-red-600 to-red-500 p-8 shadow-lg shadow-red-800/20"
+                            className="m-8 flex h-[calc(100vh-4rem)] w-[calc(100vw-4rem)] max-w-2xl flex-col justify-center rounded bg-gradient-to-br from-blue-900 to-teal-600 p-8 shadow-lg shadow-blue-800/20"
                         >
                             {/* Song Info */}
                             <div className="mb-8 text-center text-white">
