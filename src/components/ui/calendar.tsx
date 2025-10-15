@@ -39,7 +39,7 @@ function Calendar({
                 root: cn('w-fit', defaultClassNames.root),
                 months: cn('flex gap-4 flex-col md:flex-row relative', defaultClassNames.months),
                 month: cn('flex flex-col w-full gap-4', defaultClassNames.month),
-                nav: cn('flex items-center gap-1 w-full justify-between', defaultClassNames.nav),
+                nav: cn('flex items-center gap-1 w-full absolute top-0 inset-x-0 justify-between', defaultClassNames.nav),
                 button_previous: cn(
                     buttonVariants({ variant: buttonVariant }),
                     'size-(--cell-size) aria-disabled:opacity-50 p-0 select-none',
@@ -70,10 +70,13 @@ function Calendar({
                 week: cn('flex w-full mt-2', defaultClassNames.week),
                 week_number_header: cn('select-none w-(--cell-size)', defaultClassNames.week_number_header),
                 week_number: cn('text-[0.8rem] select-none text-muted-foreground', defaultClassNames.week_number),
-                day: cn('relative w-full h-full p-0 text-center group/day aspect-square select-none', defaultClassNames.day),
-                range_start: cn('rounded bg-accent', defaultClassNames.range_start),
-                range_middle: cn('rounded', defaultClassNames.range_middle),
-                range_end: cn('rounded bg-accent', defaultClassNames.range_end),
+                day: cn(
+                    'relative w-full h-full p-0 text-center [&:first-child[data-selected=true]_button]:rounded-none [&:last-child[data-selected=true]_button]:rounded-none group/day aspect-square select-none',
+                    defaultClassNames.day
+                ),
+                range_start: cn('rounded-none bg-accent', defaultClassNames.range_start),
+                range_middle: cn('rounded-none', defaultClassNames.range_middle),
+                range_end: cn('rounded-none bg-accent', defaultClassNames.range_end),
                 outside: cn('text-muted-foreground aria-selected:text-muted-foreground', defaultClassNames.outside),
                 disabled: cn('text-muted-foreground opacity-50', defaultClassNames.disabled),
                 hidden: cn('invisible', defaultClassNames.hidden),
@@ -85,11 +88,11 @@ function Calendar({
                 },
                 Chevron: ({ className, orientation, ...props }) => {
                     if (orientation === 'left') {
-                        return <ChevronLeftIcon className={cn('size-6 text-white transition-colors hover:text-gray-300', className)} {...props} />;
+                        return <ChevronLeftIcon className={cn('size-4', className)} {...props} />;
                     }
 
                     if (orientation === 'right') {
-                        return <ChevronRightIcon className={cn('size-6 text-white transition-colors hover:text-gray-300', className)} {...props} />;
+                        return <ChevronRightIcon className={cn('size-4', className)} {...props} />;
                     }
 
                     return <ChevronDownIcon className={cn('size-4', className)} {...props} />;
