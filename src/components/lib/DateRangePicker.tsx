@@ -136,7 +136,7 @@ export function DateRangePicker({ value, onChange, placeholder = 'Select date ra
         return (
             <div className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm md:hidden">
                 <div className="fixed inset-0 flex items-center justify-center p-0 sm:inset-4 sm:p-0">
-                    <div className="relative flex h-full w-full flex-col border border-gray-600 bg-gray-800 sm:h-auto sm:max-w-2xl">
+                    <div className="relative flex h-full w-full flex-col bg-gray-800 sm:h-auto sm:max-w-2xl">
                         {/* Close button */}
                         <button
                             type="button"
@@ -169,7 +169,7 @@ export function DateRangePicker({ value, onChange, placeholder = 'Select date ra
                                 selected={dateRange as DateRange}
                                 captionLayout="dropdown"
                                 onSelect={handleSelect}
-                                className="w-full rounded-none border-gray-600 bg-gray-800 text-white"
+                                className="w-full rounded bg-gray-800 text-white"
                                 disabled={(date) => (maxDate ? date > maxDate : false)}
                                 numberOfMonths={1}
                                 month={currentMonth}
@@ -198,21 +198,21 @@ export function DateRangePicker({ value, onChange, placeholder = 'Select date ra
                                         handleSelect({ from: fromDate, to: todayOnly <= maxDateOnly ? today : maxDate });
                                     }
                                 }}
-                                className="flex-1 rounded border border-gray-600 bg-gray-700 px-3 py-2 text-sm text-white hover:bg-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                className="flex-1 rounded bg-gray-700 px-3 py-2 text-base text-white hover:bg-gray-600 focus:outline-none"
                             >
                                 Last 30 days
                             </button>
                             <button
                                 type="button"
                                 onClick={clearRange}
-                                className="flex-1 rounded border border-gray-600 bg-gray-700 px-3 py-2 text-sm text-white hover:bg-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                className="flex-1 rounded bg-gray-700 px-3 py-2 text-base text-white hover:bg-gray-600 focus:outline-none"
                             >
                                 Clear
                             </button>
                             <button
                                 type="button"
                                 onClick={() => setOpen(false)}
-                                className="flex-1 rounded border border-red-600 bg-red-700 px-3 py-2 text-sm text-white hover:bg-red-600 focus:ring-2 focus:ring-red-500 focus:outline-none"
+                                className="flex-1 rounded bg-red-700 px-3 py-2 text-base text-white hover:bg-red-600 focus:outline-none"
                             >
                                 Done
                             </button>
@@ -238,7 +238,7 @@ export function DateRangePicker({ value, onChange, placeholder = 'Select date ra
                         ref={triggerRef}
                         type="button"
                         id={id}
-                        className="flex w-full items-center justify-between rounded border border-gray-600 bg-gray-800 py-3 pr-10 pl-4 text-left text-white placeholder-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                        className="flex w-full items-center justify-between rounded bg-gray-800 py-3 pr-10 pl-4 text-left text-white placeholder-gray-400 focus:outline-none"
                     >
                         <div className="flex items-center gap-3">
                             <CalendarIcon className="h-5 w-5 text-gray-400" />
@@ -248,7 +248,7 @@ export function DateRangePicker({ value, onChange, placeholder = 'Select date ra
                     </button>
                 </PopoverTrigger>
                 <PopoverContent
-                    className="overflow-hidden rounded-none border-gray-600 bg-gray-800 p-0"
+                    className="overflow-hidden rounded bg-gray-800 p-0"
                     align="center"
                     style={{ width: triggerWidth > 0 ? `${triggerWidth}px` : 'auto', minWidth: '280px' }}
                 >
@@ -257,7 +257,7 @@ export function DateRangePicker({ value, onChange, placeholder = 'Select date ra
                         selected={dateRange as DateRange}
                         captionLayout="dropdown"
                         onSelect={handleSelect}
-                        className="w-full rounded-none border-gray-600 bg-gray-800 text-white"
+                        className="w-full rounded bg-gray-800 text-white"
                         disabled={(date) => (maxDate ? date > maxDate : false)}
                         numberOfMonths={2}
                         month={currentMonth}
@@ -283,21 +283,21 @@ export function DateRangePicker({ value, onChange, placeholder = 'Select date ra
                                     handleSelect({ from: fromDate, to: todayOnly <= maxDateOnly ? today : maxDate });
                                 }
                             }}
-                            className="flex-1 rounded border border-gray-600 bg-gray-700 px-2 py-1 text-xs text-white hover:bg-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                            className="flex-1 rounded bg-gray-700 px-2 py-1 text-sm text-white hover:bg-gray-600 focus:outline-none"
                         >
                             Last 30 days
                         </button>
                         <button
                             type="button"
                             onClick={clearRange}
-                            className="flex-1 rounded border border-gray-600 bg-gray-700 px-2 py-1 text-xs text-white hover:bg-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                            className="flex-1 rounded bg-gray-700 px-2 py-1 text-sm text-white hover:bg-gray-600 focus:outline-none"
                         >
                             Clear
                         </button>
                         <button
                             type="button"
                             onClick={() => setOpen(false)}
-                            className="flex-1 rounded border border-red-600 bg-red-700 px-2 py-1 text-xs text-white hover:bg-red-600 focus:ring-2 focus:ring-red-500 focus:outline-none"
+                            className="flex-1 rounded bg-red-700 px-2 py-1 text-sm text-white hover:bg-red-600 focus:outline-none"
                         >
                             Done
                         </button>

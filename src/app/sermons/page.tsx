@@ -258,7 +258,7 @@ export default function SermonsPage() {
                                         placeholder="Search sermons by name..."
                                         value={searchQuery}
                                         onChange={(e) => setSearchQuery(e.target.value)}
-                                        className="w-full rounded border border-gray-600 bg-gray-800 py-3 pr-10 pl-10 text-white placeholder-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                                        className="w-full rounded bg-gray-800 py-3 pr-10 pl-10 text-white placeholder-gray-400 focus:outline-none"
                                     />
                                     {searchQuery && (
                                         <button
@@ -303,7 +303,7 @@ export default function SermonsPage() {
                                                             container.scrollBy({ left: -200, behavior: 'smooth' });
                                                         }
                                                     }}
-                                                    className="flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-full border border-gray-600 bg-gray-800 text-white transition-all duration-200 hover:border-red-500 hover:bg-red-600"
+                                                    className="flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-full bg-gray-800 text-white transition-all duration-200 hover:bg-red-600"
                                                 >
                                                     <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -349,10 +349,10 @@ export default function SermonsPage() {
                                                                 setSelectedTags([...selectedTags, tag]);
                                                             }
                                                         }}
-                                                        className={`cursor-pointer rounded-full border px-3 py-1 text-sm whitespace-nowrap transition-all duration-200 ${
+                                                        className={`cursor-pointer rounded-full px-3 py-1 text-sm whitespace-nowrap transition-all duration-200 ${
                                                             isSelected
-                                                                ? 'border-transparent bg-sky-800 text-white'
-                                                                : 'border-gray-600 bg-gray-800 text-gray-300 hover:border-transparent hover:bg-sky-800 hover:text-white'
+                                                                ? 'bg-sky-800 text-white'
+                                                                : 'bg-gray-800 text-gray-300 hover:bg-sky-800 hover:text-white'
                                                         }`}
                                                     >
                                                         {tag}
@@ -375,7 +375,7 @@ export default function SermonsPage() {
                                                             container.scrollBy({ left: 200, behavior: 'smooth' });
                                                         }
                                                     }}
-                                                    className="flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-full border border-gray-600 bg-gray-800 text-white transition-all duration-200 hover:border-red-500 hover:bg-red-600"
+                                                    className="flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-full bg-gray-800 text-white transition-all duration-200 hover:bg-red-600"
                                                 >
                                                     <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />

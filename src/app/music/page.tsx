@@ -27,7 +27,7 @@ export default function Music() {
         <div className="relative">
             <section id="hero" className="relative bg-[#030712]">
                 {/* Hero Section */}
-                <div className="relative min-h-screen overflow-hidden rounded mask-b-from-50%">
+                <div className="relative min-h-screen overflow-hidden rounded-lg mask-b-from-50%">
                     {/* Loading Screen */}
                     {isLoading && (
                         <div className="absolute inset-0 z-20 bg-black">
@@ -44,15 +44,15 @@ export default function Music() {
                             <div className="relative z-10 flex min-h-screen items-center justify-center">
                                 <div className="text-center">
                                     {/* Title Skeleton */}
-                                    <div className="mx-auto mb-4 h-16 w-3/4 animate-pulse rounded bg-gray-700 md:h-24"></div>
+                                    <div className="mx-auto mb-4 h-16 w-3/4 animate-pulse rounded-lg bg-gray-700 md:h-24"></div>
 
                                     {/* Subtitle Skeleton */}
-                                    <div className="mx-auto mb-8 h-6 w-64 animate-pulse rounded bg-gray-700"></div>
+                                    <div className="mx-auto mb-8 h-6 w-64 animate-pulse rounded-lg bg-gray-700"></div>
 
                                     {/* Buttons Skeleton */}
                                     <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
-                                        <div className="h-12 w-full max-w-[300px] animate-pulse rounded bg-gray-700"></div>
-                                        <div className="h-12 w-full max-w-[300px] animate-pulse rounded bg-gray-700"></div>
+                                        <div className="h-12 w-full max-w-[300px] animate-pulse rounded-lg bg-gray-700"></div>
+                                        <div className="h-12 w-full max-w-[300px] animate-pulse rounded-lg bg-gray-700"></div>
                                     </div>
                                 </div>
                             </div>
@@ -86,7 +86,7 @@ export default function Music() {
                                     href="https://www.youtube.com/watch?v=_uUzAETf9TE"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="group inline-flex items-center justify-center rounded bg-[#030712]/80 px-6 py-4 font-semibold text-white transition-all duration-300 hover:scale-105"
+                                    className="group inline-flex items-center justify-center rounded-lg bg-[#030712]/80 px-6 py-4 font-semibold text-white transition-all duration-300 hover:scale-105"
                                 >
                                     <svg className="mr-3 h-5 w-5 text-red-600" fill="currentColor" viewBox="0 0 24 24">
                                         <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
@@ -101,7 +101,7 @@ export default function Music() {
                                             block: 'start'
                                         });
                                     }}
-                                    className="group inline-flex items-center justify-center rounded bg-[#030712]/80 px-6 py-4 font-semibold text-white transition-all duration-300 hover:scale-105"
+                                    className="group inline-flex items-center justify-center rounded-lg bg-[#030712]/80 px-6 py-4 font-semibold text-white transition-all duration-300 hover:scale-105"
                                 >
                                     <FaPlay className="mr-3 h-5 w-5" />
                                     Stream on all platforms
@@ -113,16 +113,16 @@ export default function Music() {
             </section>
 
             {/* Music List Section */}
-            <section id="music-section" className="relative min-h-screen overflow-hidden rounded bg-[#030712]">
+            <section id="music-section" className="relative min-h-screen overflow-hidden rounded-lg bg-[#030712]">
                 <div className="py-20">
                     {musicLoading ? (
                         // Loading state
                         <div className="container mx-auto px-4 sm:px-8">
                             {/* Music Section Header Skeleton */}
                             <div className="mx-auto mb-16 max-w-4xl text-center">
-                                <div className="mx-auto mb-6 h-16 w-48 animate-pulse rounded bg-gray-700 md:h-20"></div>
-                                <div className="mx-auto mb-4 h-6 w-full max-w-3xl animate-pulse rounded bg-gray-700"></div>
-                                <div className="mx-auto h-6 w-3/4 max-w-3xl animate-pulse rounded bg-gray-700"></div>
+                                <div className="mx-auto mb-6 h-16 w-48 animate-pulse rounded-lg bg-gray-700 md:h-20"></div>
+                                <div className="mx-auto mb-4 h-6 w-full max-w-3xl animate-pulse rounded-lg bg-gray-700"></div>
+                                <div className="mx-auto h-6 w-3/4 max-w-3xl animate-pulse rounded-lg bg-gray-700"></div>
                             </div>
 
                             {/* Streaming Platform Buttons Skeleton */}
@@ -137,17 +137,17 @@ export default function Music() {
                                 {Array.from({ length: 4 }, (_, index) => (
                                     <div key={index} className="group">
                                         {/* Music Thumbnail Skeleton */}
-                                        <div className="relative aspect-square h-[330px] overflow-hidden rounded bg-gray-700 sm:h-[500px]">
+                                        <div className="relative aspect-square h-[330px] overflow-hidden rounded-lg bg-gray-700 sm:h-[500px]">
                                             <div className="absolute inset-0 animate-pulse bg-gray-600"></div>
                                         </div>
 
                                         {/* Song Information Skeleton */}
                                         <div className="mt-4 text-center">
                                             {/* Song Name Skeleton */}
-                                            <div className="mx-auto mb-2 h-6 w-3/4 animate-pulse rounded bg-gray-700"></div>
+                                            <div className="mx-auto mb-2 h-6 w-3/4 animate-pulse rounded-lg bg-gray-700"></div>
 
                                             {/* Artist and Release Date Skeleton */}
-                                            <div className="mx-auto mb-4 h-4 w-1/2 animate-pulse rounded bg-gray-700"></div>
+                                            <div className="mx-auto mb-4 h-4 w-1/2 animate-pulse rounded-lg bg-gray-700"></div>
 
                                             {/* Music Platform Buttons Skeleton */}
                                             <div className="flex justify-center gap-3">
@@ -244,9 +244,9 @@ export default function Music() {
                                             href={song.youTubeLink}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="group hidden overflow-hidden rounded transition-all duration-300 hover:scale-102 md:block"
+                                            className="group hidden overflow-hidden rounded-lg transition-all duration-300 hover:scale-102 md:block"
                                         >
-                                            <div className="relative aspect-square h-[330px] overflow-hidden rounded sm:h-[500px]">
+                                            <div className="relative aspect-square h-[330px] overflow-hidden rounded-lg sm:h-[500px]">
                                                 {song.musicThumbnail?.fields?.file?.url && (
                                                     <Image
                                                         src={`https:${song.musicThumbnail.fields.file.url}`}
@@ -258,7 +258,7 @@ export default function Music() {
                                                 )}
                                                 {/* Play Icon Overlay */}
                                                 <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                                                    <div className="rounded-full border-4 border-white p-4">
+                                                    <div className="rounded-lg-full border-4 border-white p-4">
                                                         <svg className="h-20 w-20 text-white drop-shadow-lg" fill="currentColor" viewBox="0 0 24 24">
                                                             <path d="M8 5v14l11-7z" />
                                                         </svg>
@@ -268,8 +268,8 @@ export default function Music() {
                                         </a>
 
                                         {/* Non-clickable version for mobile/tablet */}
-                                        <div className="group block overflow-hidden rounded transition-all duration-300 hover:scale-102 md:hidden">
-                                            <div className="relative aspect-square h-[330px] overflow-hidden rounded sm:h-[500px]">
+                                        <div className="group block overflow-hidden rounded-lg transition-all duration-300 hover:scale-102 md:hidden">
+                                            <div className="relative aspect-square h-[330px] overflow-hidden rounded-lg sm:h-[500px]">
                                                 {song.musicThumbnail?.fields?.file?.url && (
                                                     <Image
                                                         src={`https:${song.musicThumbnail.fields.file.url}`}
@@ -281,7 +281,7 @@ export default function Music() {
                                                 )}
                                                 {/* Play Icon Overlay */}
                                                 <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                                                    <div className="rounded-full border-4 border-white p-4">
+                                                    <div className="rounded-lg-full border-4 border-white p-4">
                                                         <svg className="h-20 w-20 text-white drop-shadow-lg" fill="currentColor" viewBox="0 0 24 24">
                                                             <path d="M8 5v14l11-7z" />
                                                         </svg>
