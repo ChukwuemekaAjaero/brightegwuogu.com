@@ -163,10 +163,7 @@ export default function SermonsPage() {
                             {sermons[0]?.sermonTags && sermons[0].sermonTags.length > 0 && (
                                 <div className="mb-4 flex flex-wrap justify-center gap-2">
                                     {sermons[0].sermonTags.map((tag, index) => (
-                                        <span
-                                            key={index}
-                                            className="rounded-full bg-gradient-to-br from-blue-900/60 to-teal-600/60 px-3 py-1 text-sm text-white"
-                                        >
+                                        <span key={index} className="rounded-full bg-sky-800/40 px-3 py-1 text-sm text-white backdrop-blur-sm">
                                             {tag}
                                         </span>
                                     ))}
@@ -191,7 +188,7 @@ export default function SermonsPage() {
                                     href={sermons[0]?.youTubeLink}
                                     target="_blank"
                                     rel="noopener   noreferrer"
-                                    className="group inline-flex items-center justify-center rounded bg-[#030712]/80 px-6 py-4 font-semibold text-white transition-all duration-300 hover:scale-105"
+                                    className="group inline-flex items-center justify-center rounded bg-[#030712]/60 px-6 py-4 font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:scale-105"
                                 >
                                     <FaYoutube size={24} className="mr-3 text-red-600" />
                                     Watch on YouTube
@@ -354,8 +351,8 @@ export default function SermonsPage() {
                                                         }}
                                                         className={`cursor-pointer rounded-full border px-3 py-1 text-sm whitespace-nowrap transition-all duration-200 ${
                                                             isSelected
-                                                                ? 'border-transparent bg-gradient-to-br from-blue-900 to-teal-600 text-white'
-                                                                : 'border-gray-600 bg-gray-800 text-gray-300 hover:border-red-500 hover:bg-red-600 hover:text-white'
+                                                                ? 'border-transparent bg-sky-800 text-white'
+                                                                : 'border-gray-600 bg-gray-800 text-gray-300 hover:border-transparent hover:bg-sky-800 hover:text-white'
                                                         }`}
                                                     >
                                                         {tag}

@@ -5,7 +5,7 @@ import NavigationFooter from '@/components/lib/NavigationFooter';
 import { ubisoftSansFont } from '@/lib/utils';
 
 export const metadata: Metadata = {
-    title: 'Bright Egwuogu',
+    title: 'Bright Egwuogu - Pastor, musician, child of God',
     description: 'Musician, pastor, husband, and father.',
     other: { 'color-scheme': 'dark' }
 };
