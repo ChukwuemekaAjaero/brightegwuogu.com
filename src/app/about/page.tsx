@@ -12,35 +12,50 @@ export default function AboutMePage() {
                             <Image src="/images/homeGallery/galleryP1.jpg" alt="Gallery Image 1" fill className="rounded object-cover" />
                         </div>
                         <div className="relative h-[25vh] w-full">
-                            <Image src="/images/homeGallery/galleryL2.jpg" alt="Gallery Image 2" fill className="rounded object-cover" />
+                            <Image src="/images/homeGallery/galleryL1.jpg" alt="Gallery Image 2" fill className="rounded object-cover" />
                         </div>
                         <div className="relative h-[40vh] w-full">
-                            <Image src="/images/homeGallery/galleryP3.jpg" alt="Gallery Image 3" fill className="rounded object-cover" />
+                            <Image src="/images/homeGallery/galleryP2.jpg" alt="Gallery Image 3" fill className="rounded object-cover" />
                         </div>
                     </div>
                     <div className="grid gap-4">
                         <div className="relative h-[20vh] w-full">
-                            <Image src="/images/homeGallery/galleryL4.jpg" alt="Gallery Image 4" fill className="rounded object-cover" />
+                            <Image
+                                src="/images/homeGallery/galleryL4.jpg"
+                                alt="Gallery Image 4"
+                                fill
+                                className="rounded object-cover object-[75%_50%]"
+                            />
                         </div>
                         <div className="relative h-[35vh] w-full">
                             <Image src="/images/homeGallery/galleryP5.jpg" alt="Gallery Image 5" fill className="rounded object-cover" />
                         </div>
                         <div className="relative h-[25vh] w-full">
-                            <Image src="/images/homeGallery/galleryL6.jpg" alt="Gallery Image 6" fill className="rounded object-cover" />
+                            <Image
+                                src="/images/homeGallery/galleryL6.jpg"
+                                alt="Gallery Image 6"
+                                fill
+                                className="rounded object-cover object-[0%_50%]"
+                            />
                         </div>
                         <div className="relative h-[20vh] w-full">
-                            <Image src="/images/homeGallery/galleryP1.jpg" alt="Gallery Image 7" fill className="rounded object-cover" />
+                            <Image
+                                src="/images/homeGallery/galleryL3.jpg"
+                                alt="Gallery Image 7"
+                                fill
+                                className="rounded object-cover object-[100%_50%]"
+                            />
                         </div>
                     </div>
                     <div className="grid gap-4">
                         <div className="relative h-[25vh] w-full">
-                            <Image src="/images/homeGallery/galleryL1.jpg" alt="Gallery Image 7" fill className="rounded object-cover" />
+                            <Image src="/images/homeGallery/galleryL2.jpg" alt="Gallery Image 7" fill className="rounded object-cover" />
                         </div>
                         <div className="relative h-[40vh] w-full">
-                            <Image src="/images/homeGallery/galleryP2.jpg" alt="Gallery Image 8" fill className="rounded object-cover" />
+                            <Image src="/images/homeGallery/galleryP3.jpg" alt="Gallery Image 8" fill className="rounded object-cover" />
                         </div>
                         <div className="relative h-[35vh] w-full">
-                            <Image src="/images/homeGallery/galleryL3.jpg" alt="Gallery Image 9" fill className="rounded object-cover" />
+                            <Image src="/images/homeGallery/galleryP7.jpg" alt="Gallery Image 9" fill className="rounded object-cover" />
                         </div>
                     </div>
                     <div className="grid gap-4">
@@ -51,7 +66,12 @@ export default function AboutMePage() {
                             <Image src="/images/homeGallery/galleryP6.jpg" alt="Gallery Image 12" fill className="rounded object-cover" />
                         </div>
                         <div className="relative h-[20vh] w-full">
-                            <Image src="/images/homeGallery/galleryL5.jpg" alt="Gallery Image 11" fill className="rounded object-cover" />
+                            <Image
+                                src="/images/homeGallery/galleryL5.jpg"
+                                alt="Gallery Image 11"
+                                fill
+                                className="rounded object-cover object-[100%_50%]"
+                            />
                         </div>
                     </div>
                 </div>
