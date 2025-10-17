@@ -46,6 +46,7 @@ export default function HomePage() {
     const [activeSection, setActiveSection] = useState('hero');
     const [selectedSong, setSelectedSong] = useState<Music | null>(null);
     const [dialogOrigin, setDialogOrigin] = useState({ x: 0, y: 0, width: 0, height: 0 });
+    const [aboutTextOpacity, setAboutTextOpacity] = useState(1);
     const { music, loading: musicLoading, error: musicError } = useMusic();
     const { sermons, loading: sermonsLoading, error: sermonsError } = useSermons();
 
@@ -85,6 +86,38 @@ export default function HomePage() {
         handleScroll(); // Check initial position
 
         return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    // IntersectionObserver for about text opacity
+    useEffect(() => {
+        const galleryElement = document.getElementById('about-me-gallery');
+
+        if (!galleryElement) return;
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        // Gallery is intersecting with offset viewport, make text disappear
+                        setAboutTextOpacity(0);
+                    } else {
+                        // Gallery is not intersecting, text is fully visible
+                        setAboutTextOpacity(1);
+                    }
+                });
+            },
+            {
+                root: null, // Use viewport as root
+                rootMargin: '-300px 0px -300px 0px', // Grace period offset: 200px from top and bottom
+                threshold: 0 // Trigger as soon as any part is visible
+            }
+        );
+
+        observer.observe(galleryElement);
+
+        return () => {
+            observer.unobserve(galleryElement);
+        };
     }, []);
 
     // Text carousel effect
@@ -214,7 +247,7 @@ export default function HomePage() {
                             key={currentTextIndex}
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
-                            exit={{ opacity: 0, y: -20 }}
+                            exit={{ opacity: 0 }}
                             transition={{ duration: 0.5, ease: 'easeInOut' }}
                             className={`mb-6 ${modernizFont.className}`}
                         >
@@ -222,8 +255,8 @@ export default function HomePage() {
                         </motion.div>
                         <motion.p
                             className="mb-8 text-xl"
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
                             transition={{ delay: 0.25, duration: 0.8 }}
                         >
                             On a mission to know Christ deeply, make Him known, use my gifts to advance His kingdom.
@@ -232,8 +265,8 @@ export default function HomePage() {
                         {/* Scroll Down Animation */}
                         <motion.div
                             className="mt-12 flex flex-col items-center"
-                            initial={{ opacity: 0, y: 10 }}
-                            animate={{ opacity: 1, y: 0 }}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
                             transition={{ delay: 0.5, duration: 0.8 }}
                         >
                             <span className="mb-2 text-sm text-white/80">Scroll down</span>
@@ -256,19 +289,19 @@ export default function HomePage() {
             {/* ABOUT ME SECTION */}
             <section id="about-me" ref={aboutMeRef} className="bg-[#030712]">
                 <div className="relative">
-                    <div className="sticky top-0 z-3 flex h-[100vh] items-center justify-center px-4 text-center sm:px-8">
-                        <div>
+                    <div id="about-me-text" className="sticky top-0 z-3 flex h-[100vh] items-center justify-center px-4 text-center sm:px-8">
+                        <div style={{ opacity: aboutTextOpacity, transition: 'opacity 0.3s ease-in-out' }}>
                             <motion.h1
-                                initial={{ opacity: 0, y: 30 }}
-                                animate={aboutMeInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
+                                initial={{ opacity: 0 }}
+                                animate={aboutMeInView ? { opacity: 1 } : { opacity: 0 }}
                                 transition={{ delay: 0.25, duration: 0.8, ease: 'easeOut' }}
                                 className={`text-6xl font-bold text-white ${modernizFont.className}`}
                             >
                                 About
                             </motion.h1>
                             <motion.p
-                                initial={{ opacity: 0, y: 30 }}
-                                animate={aboutMeInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
+                                initial={{ opacity: 0 }}
+                                animate={aboutMeInView ? { opacity: 1 } : { opacity: 0 }}
                                 transition={{ delay: 0.5, duration: 0.8, ease: 'easeOut' }}
                                 className="mt-8 max-w-2xl text-lg text-white md:text-xl"
                             >
@@ -566,8 +599,8 @@ export default function HomePage() {
                             ) : (
                                 <>
                                     <motion.h1
-                                        initial={{ opacity: 0, y: 30 }}
-                                        animate={musicInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
+                                        initial={{ opacity: 0 }}
+                                        animate={musicInView ? { opacity: 1 } : { opacity: 0 }}
                                         transition={{ delay: 0.25, duration: 0.8, ease: 'easeOut' }}
                                         className={`text-6xl font-bold text-white ${modernizFont.className}`}
                                     >
@@ -575,8 +608,8 @@ export default function HomePage() {
                                     </motion.h1>
                                     <br />
                                     <motion.p
-                                        initial={{ opacity: 0, y: 30 }}
-                                        animate={musicInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
+                                        initial={{ opacity: 0 }}
+                                        animate={musicInView ? { opacity: 1 } : { opacity: 0 }}
                                         transition={{ delay: 0.5, duration: 0.8, ease: 'easeOut' }}
                                         className="text-white"
                                     >
@@ -591,8 +624,8 @@ export default function HomePage() {
                             // Featured Music Loading State
                             <motion.div
                                 className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12"
-                                initial={{ opacity: 0, y: 30 }}
-                                animate={musicInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
+                                initial={{ opacity: 0 }}
+                                animate={musicInView ? { opacity: 1 } : { opacity: 0 }}
                                 transition={{ delay: 0.75, duration: 0.8, ease: 'easeOut' }}
                             >
                                 {/* Left Column - Video Skeleton */}
@@ -630,8 +663,8 @@ export default function HomePage() {
                         ) : (
                             <motion.div
                                 className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12"
-                                initial={{ opacity: 0, y: 30 }}
-                                animate={musicInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
+                                initial={{ opacity: 0 }}
+                                animate={musicInView ? { opacity: 1 } : { opacity: 0 }}
                                 transition={{ delay: 0.75, duration: 0.8, ease: 'easeOut' }}
                             >
                                 {/* Left Column - Video */}
@@ -757,8 +790,8 @@ export default function HomePage() {
                                         <motion.div
                                             key={song.name}
                                             className="group"
-                                            initial={{ opacity: 0, y: 30 }}
-                                            animate={musicInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
+                                            initial={{ opacity: 0 }}
+                                            animate={musicInView ? { opacity: 1 } : { opacity: 0 }}
                                             transition={{ delay: 1.0 + index * 0.1, duration: 0.8, ease: 'easeOut' }}
                                         >
                                             {/* Music Thumbnail */}
@@ -895,8 +928,8 @@ export default function HomePage() {
                                 {music.length > 3 && (
                                     <motion.div
                                         className="group hidden lg:block"
-                                        initial={{ opacity: 0, y: 30 }}
-                                        animate={musicInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
+                                        initial={{ opacity: 0 }}
+                                        animate={musicInView ? { opacity: 1 } : { opacity: 0 }}
                                         transition={{ delay: 1.2, duration: 0.8, ease: 'easeOut' }}
                                     >
                                         {/* Music Thumbnail */}
@@ -1035,8 +1068,8 @@ export default function HomePage() {
                             ) : (
                                 <>
                                     <motion.h1
-                                        initial={{ opacity: 0, y: 30 }}
-                                        animate={sermonsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
+                                        initial={{ opacity: 0 }}
+                                        animate={sermonsInView ? { opacity: 1 } : { opacity: 0 }}
                                         transition={{ delay: 0.25, duration: 0.8, ease: 'easeOut' }}
                                         className={`text-5xl font-bold text-white lg:text-6xl ${modernizFont.className}`}
                                     >
@@ -1044,8 +1077,8 @@ export default function HomePage() {
                                     </motion.h1>
                                     <br />
                                     <motion.p
-                                        initial={{ opacity: 0, y: 30 }}
-                                        animate={sermonsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
+                                        initial={{ opacity: 0 }}
+                                        animate={sermonsInView ? { opacity: 1 } : { opacity: 0 }}
                                         transition={{ delay: 0.5, duration: 0.8, ease: 'easeOut' }}
                                         className="text-white"
                                     >
@@ -1060,8 +1093,8 @@ export default function HomePage() {
                             // Featured Sermon Loading State
                             <motion.div
                                 className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12"
-                                initial={{ opacity: 0, y: 30 }}
-                                animate={sermonsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
+                                initial={{ opacity: 0 }}
+                                animate={sermonsInView ? { opacity: 1 } : { opacity: 0 }}
                                 transition={{ delay: 0.75, duration: 0.8, ease: 'easeOut' }}
                             >
                                 {/* Left Column - Video Skeleton */}
@@ -1092,8 +1125,8 @@ export default function HomePage() {
                         ) : (
                             <motion.div
                                 className="grid grid-cols-1 gap-8 lg:grid-cols-2 lg:gap-12"
-                                initial={{ opacity: 0, y: 30 }}
-                                animate={sermonsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 25 }}
+                                initial={{ opacity: 0 }}
+                                animate={sermonsInView ? { opacity: 1 } : { opacity: 0 }}
                                 transition={{ delay: 0.75, duration: 0.8, ease: 'easeOut' }}
                             >
                                 {/* Left Column - Video */}
@@ -1390,8 +1423,7 @@ export default function HomePage() {
                             animate={{
                                 opacity: 1,
                                 scale: 1,
-                                x: 0,
-                                y: 0
+                                x: 0
                             }}
                             exit={{
                                 opacity: 0,
@@ -1411,16 +1443,16 @@ export default function HomePage() {
                             <div className="mb-8 text-center text-white">
                                 <motion.h3
                                     className={`mb-4 text-xl font-bold sm:text-2xl md:text-3xl ${modernizFont.className} break-words`}
-                                    initial={{ opacity: 0, y: -20 }}
-                                    animate={{ opacity: 1, y: 0 }}
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
                                     transition={{ delay: 0.2, duration: 0.4 }}
                                 >
                                     {selectedSong.name}
                                 </motion.h3>
                                 <motion.div
                                     className="mb-4 text-lg text-white/90"
-                                    initial={{ opacity: 0, y: -20 }}
-                                    animate={{ opacity: 1, y: 0 }}
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
                                     transition={{ delay: 0.4, duration: 0.4 }}
                                 >
                                     <span>{selectedSong.artists?.join(', ')}</span>
@@ -1436,8 +1468,8 @@ export default function HomePage() {
                             {/* Social Links */}
                             <motion.div
                                 className="flex flex-col items-center gap-4"
-                                initial={{ opacity: 0, y: -20 }}
-                                animate={{ opacity: 1, y: 0 }}
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
                                 transition={{ delay: 0.6, duration: 0.4 }}
                             >
                                 <motion.a
@@ -1446,17 +1478,16 @@ export default function HomePage() {
                                     rel="noopener noreferrer"
                                     className="flex items-center gap-3 text-white transition-colors hover:text-sky-700"
                                     title="Listen on Spotify"
-                                    initial={{ opacity: 0, y: -8 }}
+                                    initial={{ opacity: 0 }}
                                     animate={{
                                         opacity: 1,
-                                        y: 0,
                                         transition: {
                                             delay: 0.8,
                                             duration: 0.3,
                                             ease: 'easeInOut'
                                         }
                                     }}
-                                    exit={{ opacity: 0, y: -8 }}
+                                    exit={{ opacity: 0 }}
                                 >
                                     <FaSpotify className="h-6 w-6 text-white" />
                                     <span className={`font-medium ${modernizFont.className}`}>Spotify</span>
@@ -1467,17 +1498,16 @@ export default function HomePage() {
                                     rel="noopener noreferrer"
                                     className="flex items-center gap-3 text-white transition-colors hover:text-sky-700"
                                     title="Listen on Apple Music"
-                                    initial={{ opacity: 0, y: -8 }}
+                                    initial={{ opacity: 0 }}
                                     animate={{
                                         opacity: 1,
-                                        y: 0,
                                         transition: {
                                             delay: 0.9,
                                             duration: 0.3,
                                             ease: 'easeInOut'
                                         }
                                     }}
-                                    exit={{ opacity: 0, y: -8 }}
+                                    exit={{ opacity: 0 }}
                                 >
                                     <FaApple className="h-6 w-6 text-white" />
                                     <span className={`font-medium ${modernizFont.className}`}>Apple Music</span>
@@ -1488,17 +1518,16 @@ export default function HomePage() {
                                     rel="noopener noreferrer"
                                     className="flex items-center gap-3 text-white transition-colors hover:text-sky-700"
                                     title="Listen on Amazon Music"
-                                    initial={{ opacity: 0, y: -8 }}
+                                    initial={{ opacity: 0 }}
                                     animate={{
                                         opacity: 1,
-                                        y: 0,
                                         transition: {
                                             delay: 1.0,
                                             duration: 0.3,
                                             ease: 'easeInOut'
                                         }
                                     }}
-                                    exit={{ opacity: 0, y: -8 }}
+                                    exit={{ opacity: 0 }}
                                 >
                                     <SiAmazonmusic className="h-6 w-6 text-white" />
                                     <span className={`font-medium ${modernizFont.className}`}>Amazon Music</span>
@@ -1509,17 +1538,16 @@ export default function HomePage() {
                                     rel="noopener noreferrer"
                                     className="flex items-center gap-3 text-white transition-colors hover:text-sky-700"
                                     title="Listen on Deezer"
-                                    initial={{ opacity: 0, y: -8 }}
+                                    initial={{ opacity: 0 }}
                                     animate={{
                                         opacity: 1,
-                                        y: 0,
                                         transition: {
                                             delay: 1.1,
                                             duration: 0.3,
                                             ease: 'easeInOut'
                                         }
                                     }}
-                                    exit={{ opacity: 0, y: -8 }}
+                                    exit={{ opacity: 0 }}
                                 >
                                     <FaDeezer className="h-6 w-6 text-white" />
                                     <span className={`font-medium ${modernizFont.className}`}>Deezer</span>
@@ -1530,17 +1558,16 @@ export default function HomePage() {
                                     rel="noopener noreferrer"
                                     className="flex items-center gap-3 text-white transition-colors hover:text-sky-700"
                                     title="Watch on YouTube"
-                                    initial={{ opacity: 0, y: -8 }}
+                                    initial={{ opacity: 0 }}
                                     animate={{
                                         opacity: 1,
-                                        y: 0,
                                         transition: {
                                             delay: 1.2,
                                             duration: 0.3,
                                             ease: 'easeInOut'
                                         }
                                     }}
-                                    exit={{ opacity: 0, y: -8 }}
+                                    exit={{ opacity: 0 }}
                                 >
                                     <FaYoutube className="h-6 w-6 text-white" />
                                     <span className={`font-medium ${modernizFont.className}`}>YouTube</span>
