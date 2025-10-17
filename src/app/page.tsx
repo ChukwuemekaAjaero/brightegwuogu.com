@@ -47,6 +47,7 @@ export default function HomePage() {
     const [selectedSong, setSelectedSong] = useState<Music | null>(null);
     const [dialogOrigin, setDialogOrigin] = useState({ x: 0, y: 0, width: 0, height: 0 });
     const [aboutTextOpacity, setAboutTextOpacity] = useState(1);
+    const [galleryLoading, setGalleryLoading] = useState(true);
     const { music, loading: musicLoading, error: musicError } = useMusic();
     const { sermons, loading: sermonsLoading, error: sermonsError } = useSermons();
 
@@ -118,6 +119,15 @@ export default function HomePage() {
         return () => {
             observer.unobserve(galleryElement);
         };
+    }, []);
+
+    // Gallery loading simulation
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setGalleryLoading(false);
+        }, 2000); // Simulate 2 second loading time
+
+        return () => clearTimeout(timer);
     }, []);
 
     // Text carousel effect
@@ -313,269 +323,328 @@ export default function HomePage() {
                     </div>
                     <div id="about-me-gallery" className="container mx-auto px-4 py-20 sm:px-8">
                         {/* Gallery Grid */}
-                        <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
-                            <div className="grid gap-4">
-                                <motion.div
-                                    className="relative h-[35vh] w-full"
-                                    initial={{ scale: 0.9, opacity: 0 }}
-                                    whileInView={{
-                                        scale: 1,
-                                        opacity: 1,
-                                        transition: {
-                                            type: 'spring',
-                                            stiffness: 100,
-                                            damping: 15,
-                                            mass: 1
-                                        }
-                                    }}
-                                    viewport={{ once: true, margin: '-100px' }}
-                                >
-                                    <Image src="/images/homeGallery/galleryP1.jpg" alt="Gallery Image 1" fill className="rounded object-cover" />
-                                </motion.div>
-                                <motion.div
-                                    className="relative h-[25vh] w-full"
-                                    initial={{ scale: 0.9, opacity: 0 }}
-                                    whileInView={{
-                                        scale: 1,
-                                        opacity: 1,
-                                        transition: {
-                                            type: 'spring',
-                                            stiffness: 100,
-                                            damping: 15,
-                                            mass: 1,
-                                            delay: 0.1
-                                        }
-                                    }}
-                                    viewport={{ once: true, margin: '-100px' }}
-                                >
-                                    <Image src="/images/homeGallery/galleryL1.jpg" alt="Gallery Image 2" fill className="rounded object-cover" />
-                                </motion.div>
-                                <motion.div
-                                    className="relative h-[40vh] w-full"
-                                    initial={{ scale: 0.9, opacity: 0 }}
-                                    whileInView={{
-                                        scale: 1,
-                                        opacity: 1,
-                                        transition: {
-                                            type: 'spring',
-                                            stiffness: 100,
-                                            damping: 15,
-                                            mass: 1,
-                                            delay: 0.2
-                                        }
-                                    }}
-                                    viewport={{ once: true, margin: '-100px' }}
-                                >
-                                    <Image src="/images/homeGallery/galleryP2.jpg" alt="Gallery Image 3" fill className="rounded object-cover" />
-                                </motion.div>
+                        {galleryLoading ? (
+                            <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+                                {/* Column 1 Skeletons */}
+                                <div className="grid gap-4">
+                                    <div className="relative h-[35vh] w-full">
+                                        <div className="h-full w-full animate-pulse rounded bg-gray-700"></div>
+                                    </div>
+                                    <div className="relative h-[25vh] w-full">
+                                        <div className="h-full w-full animate-pulse rounded bg-gray-700"></div>
+                                    </div>
+                                    <div className="relative h-[40vh] w-full">
+                                        <div className="h-full w-full animate-pulse rounded bg-gray-700"></div>
+                                    </div>
+                                </div>
+
+                                {/* Column 2 Skeletons */}
+                                <div className="grid gap-4">
+                                    <div className="relative h-[20vh] w-full">
+                                        <div className="h-full w-full animate-pulse rounded bg-gray-700"></div>
+                                    </div>
+                                    <div className="relative h-[35vh] w-full">
+                                        <div className="h-full w-full animate-pulse rounded bg-gray-700"></div>
+                                    </div>
+                                    <div className="relative h-[25vh] w-full">
+                                        <div className="h-full w-full animate-pulse rounded bg-gray-700"></div>
+                                    </div>
+                                    <div className="relative h-[20vh] w-full">
+                                        <div className="h-full w-full animate-pulse rounded bg-gray-700"></div>
+                                    </div>
+                                </div>
+
+                                {/* Column 3 Skeletons */}
+                                <div className="grid gap-4">
+                                    <div className="relative h-[25vh] w-full">
+                                        <div className="h-full w-full animate-pulse rounded bg-gray-700"></div>
+                                    </div>
+                                    <div className="relative h-[40vh] w-full">
+                                        <div className="h-full w-full animate-pulse rounded bg-gray-700"></div>
+                                    </div>
+                                    <div className="relative h-[35vh] w-full">
+                                        <div className="h-full w-full animate-pulse rounded bg-gray-700"></div>
+                                    </div>
+                                </div>
+
+                                {/* Column 4 Skeletons */}
+                                <div className="grid gap-4">
+                                    <div className="relative h-[45vh] w-full">
+                                        <div className="h-full w-full animate-pulse rounded bg-gray-700"></div>
+                                    </div>
+                                    <div className="relative h-[35vh] w-full">
+                                        <div className="h-full w-full animate-pulse rounded bg-gray-700"></div>
+                                    </div>
+                                    <div className="relative h-[20vh] w-full">
+                                        <div className="h-full w-full animate-pulse rounded bg-gray-700"></div>
+                                    </div>
+                                </div>
                             </div>
-                            <div className="grid gap-4">
-                                <motion.div
-                                    className="relative h-[20vh] w-full"
-                                    initial={{ scale: 0.9, opacity: 0 }}
-                                    whileInView={{
-                                        scale: 1,
-                                        opacity: 1,
-                                        transition: {
-                                            type: 'spring',
-                                            stiffness: 100,
-                                            damping: 15,
-                                            mass: 1,
-                                            delay: 0.25
-                                        }
-                                    }}
-                                    viewport={{ once: true, margin: '-100px' }}
-                                >
-                                    <Image
-                                        src="/images/homeGallery/galleryL4.jpg"
-                                        alt="Gallery Image 4"
-                                        fill
-                                        className="rounded object-cover object-[75%_50%]"
-                                    />
-                                </motion.div>
-                                <motion.div
-                                    className="relative h-[35vh] w-full"
-                                    initial={{ scale: 0.9, opacity: 0 }}
-                                    whileInView={{
-                                        scale: 1,
-                                        opacity: 1,
-                                        transition: {
-                                            type: 'spring',
-                                            stiffness: 100,
-                                            damping: 15,
-                                            mass: 1,
-                                            delay: 0.3
-                                        }
-                                    }}
-                                    viewport={{ once: true, margin: '-100px' }}
-                                >
-                                    <Image src="/images/homeGallery/galleryP5.jpg" alt="Gallery Image 5" fill className="rounded object-cover" />
-                                </motion.div>
-                                <motion.div
-                                    className="relative h-[25vh] w-full"
-                                    initial={{ scale: 0.9, opacity: 0 }}
-                                    whileInView={{
-                                        scale: 1,
-                                        opacity: 1,
-                                        transition: {
-                                            type: 'spring',
-                                            stiffness: 100,
-                                            damping: 15,
-                                            mass: 1,
-                                            delay: 0.4
-                                        }
-                                    }}
-                                    viewport={{ once: true, margin: '-100px' }}
-                                >
-                                    <Image
-                                        src="/images/homeGallery/galleryL6.jpg"
-                                        alt="Gallery Image 6"
-                                        fill
-                                        className="rounded object-cover object-[0%_50%]"
-                                    />
-                                </motion.div>
-                                <motion.div
-                                    className="relative h-[20vh] w-full"
-                                    initial={{ scale: 0.9, opacity: 0 }}
-                                    whileInView={{
-                                        scale: 1,
-                                        opacity: 1,
-                                        transition: {
-                                            type: 'spring',
-                                            stiffness: 100,
-                                            damping: 15,
-                                            mass: 1,
-                                            delay: 0.5
-                                        }
-                                    }}
-                                    viewport={{ once: true, margin: '-100px' }}
-                                >
-                                    <Image
-                                        src="/images/homeGallery/galleryL3.jpg"
-                                        alt="Gallery Image 7"
-                                        fill
-                                        className="rounded object-cover object-[100%_50%]"
-                                    />
-                                </motion.div>
+                        ) : (
+                            <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+                                <div className="grid gap-4">
+                                    <motion.div
+                                        className="relative h-[35vh] w-full"
+                                        initial={{ scale: 0.9, opacity: 0 }}
+                                        whileInView={{
+                                            scale: 1,
+                                            opacity: 1,
+                                            transition: {
+                                                type: 'spring',
+                                                stiffness: 100,
+                                                damping: 15,
+                                                mass: 1
+                                            }
+                                        }}
+                                        viewport={{ once: true, margin: '-100px' }}
+                                    >
+                                        <Image src="/images/homeGallery/galleryP1.jpg" alt="Gallery Image 1" fill className="rounded object-cover" />
+                                    </motion.div>
+                                    <motion.div
+                                        className="relative h-[25vh] w-full"
+                                        initial={{ scale: 0.9, opacity: 0 }}
+                                        whileInView={{
+                                            scale: 1,
+                                            opacity: 1,
+                                            transition: {
+                                                type: 'spring',
+                                                stiffness: 100,
+                                                damping: 15,
+                                                mass: 1,
+                                                delay: 0.1
+                                            }
+                                        }}
+                                        viewport={{ once: true, margin: '-100px' }}
+                                    >
+                                        <Image src="/images/homeGallery/galleryL1.jpg" alt="Gallery Image 2" fill className="rounded object-cover" />
+                                    </motion.div>
+                                    <motion.div
+                                        className="relative h-[40vh] w-full"
+                                        initial={{ scale: 0.9, opacity: 0 }}
+                                        whileInView={{
+                                            scale: 1,
+                                            opacity: 1,
+                                            transition: {
+                                                type: 'spring',
+                                                stiffness: 100,
+                                                damping: 15,
+                                                mass: 1,
+                                                delay: 0.2
+                                            }
+                                        }}
+                                        viewport={{ once: true, margin: '-100px' }}
+                                    >
+                                        <Image src="/images/homeGallery/galleryP2.jpg" alt="Gallery Image 3" fill className="rounded object-cover" />
+                                    </motion.div>
+                                </div>
+                                <div className="grid gap-4">
+                                    <motion.div
+                                        className="relative h-[20vh] w-full"
+                                        initial={{ scale: 0.9, opacity: 0 }}
+                                        whileInView={{
+                                            scale: 1,
+                                            opacity: 1,
+                                            transition: {
+                                                type: 'spring',
+                                                stiffness: 100,
+                                                damping: 15,
+                                                mass: 1,
+                                                delay: 0.25
+                                            }
+                                        }}
+                                        viewport={{ once: true, margin: '-100px' }}
+                                    >
+                                        <Image
+                                            src="/images/homeGallery/galleryL4.jpg"
+                                            alt="Gallery Image 4"
+                                            fill
+                                            className="rounded object-cover object-[75%_50%]"
+                                        />
+                                    </motion.div>
+                                    <motion.div
+                                        className="relative h-[35vh] w-full"
+                                        initial={{ scale: 0.9, opacity: 0 }}
+                                        whileInView={{
+                                            scale: 1,
+                                            opacity: 1,
+                                            transition: {
+                                                type: 'spring',
+                                                stiffness: 100,
+                                                damping: 15,
+                                                mass: 1,
+                                                delay: 0.3
+                                            }
+                                        }}
+                                        viewport={{ once: true, margin: '-100px' }}
+                                    >
+                                        <Image src="/images/homeGallery/galleryP5.jpg" alt="Gallery Image 5" fill className="rounded object-cover" />
+                                    </motion.div>
+                                    <motion.div
+                                        className="relative h-[25vh] w-full"
+                                        initial={{ scale: 0.9, opacity: 0 }}
+                                        whileInView={{
+                                            scale: 1,
+                                            opacity: 1,
+                                            transition: {
+                                                type: 'spring',
+                                                stiffness: 100,
+                                                damping: 15,
+                                                mass: 1,
+                                                delay: 0.4
+                                            }
+                                        }}
+                                        viewport={{ once: true, margin: '-100px' }}
+                                    >
+                                        <Image
+                                            src="/images/homeGallery/galleryL6.jpg"
+                                            alt="Gallery Image 6"
+                                            fill
+                                            className="rounded object-cover object-[0%_50%]"
+                                        />
+                                    </motion.div>
+                                    <motion.div
+                                        className="relative h-[20vh] w-full"
+                                        initial={{ scale: 0.9, opacity: 0 }}
+                                        whileInView={{
+                                            scale: 1,
+                                            opacity: 1,
+                                            transition: {
+                                                type: 'spring',
+                                                stiffness: 100,
+                                                damping: 15,
+                                                mass: 1,
+                                                delay: 0.5
+                                            }
+                                        }}
+                                        viewport={{ once: true, margin: '-100px' }}
+                                    >
+                                        <Image
+                                            src="/images/homeGallery/galleryL3.jpg"
+                                            alt="Gallery Image 7"
+                                            fill
+                                            className="rounded object-cover object-[100%_50%]"
+                                        />
+                                    </motion.div>
+                                </div>
+                                <div className="grid gap-4">
+                                    <motion.div
+                                        className="relative h-[25vh] w-full"
+                                        initial={{ scale: 0.9, opacity: 0 }}
+                                        whileInView={{
+                                            scale: 1,
+                                            opacity: 1,
+                                            transition: {
+                                                type: 'spring',
+                                                stiffness: 100,
+                                                damping: 15,
+                                                mass: 1,
+                                                delay: 0.6
+                                            }
+                                        }}
+                                        viewport={{ once: true, margin: '-100px' }}
+                                    >
+                                        <Image src="/images/homeGallery/galleryL2.jpg" alt="Gallery Image 7" fill className="rounded object-cover" />
+                                    </motion.div>
+                                    <motion.div
+                                        className="relative h-[40vh] w-full"
+                                        initial={{ scale: 0.9, opacity: 0 }}
+                                        whileInView={{
+                                            scale: 1,
+                                            opacity: 1,
+                                            transition: {
+                                                type: 'spring',
+                                                stiffness: 100,
+                                                damping: 15,
+                                                mass: 1,
+                                                delay: 0.7
+                                            }
+                                        }}
+                                        viewport={{ once: true, margin: '-100px' }}
+                                    >
+                                        <Image src="/images/homeGallery/galleryP3.jpg" alt="Gallery Image 8" fill className="rounded object-cover" />
+                                    </motion.div>
+                                    <motion.div
+                                        className="relative h-[35vh] w-full"
+                                        initial={{ scale: 0.9, opacity: 0 }}
+                                        whileInView={{
+                                            scale: 1,
+                                            opacity: 1,
+                                            transition: {
+                                                type: 'spring',
+                                                stiffness: 100,
+                                                damping: 15,
+                                                mass: 1,
+                                                delay: 0.8
+                                            }
+                                        }}
+                                        viewport={{ once: true, margin: '-100px' }}
+                                    >
+                                        <Image src="/images/homeGallery/galleryP7.jpg" alt="Gallery Image 9" fill className="rounded object-cover" />
+                                    </motion.div>
+                                </div>
+                                <div className="grid gap-4">
+                                    <motion.div
+                                        className="relative h-[45vh] w-full"
+                                        initial={{ scale: 0.9, opacity: 0 }}
+                                        whileInView={{
+                                            scale: 1,
+                                            opacity: 1,
+                                            transition: {
+                                                type: 'spring',
+                                                stiffness: 100,
+                                                damping: 15,
+                                                mass: 1,
+                                                delay: 0.9
+                                            }
+                                        }}
+                                        viewport={{ once: true, margin: '-100px' }}
+                                    >
+                                        <Image src="/images/homeGallery/galleryP4.jpg" alt="Gallery Image 10" fill className="rounded object-cover" />
+                                    </motion.div>
+                                    <motion.div
+                                        className="relative h-[35vh] w-full"
+                                        initial={{ scale: 0.9, opacity: 0 }}
+                                        whileInView={{
+                                            scale: 1,
+                                            opacity: 1,
+                                            transition: {
+                                                type: 'spring',
+                                                stiffness: 100,
+                                                damping: 15,
+                                                mass: 1,
+                                                delay: 1.0
+                                            }
+                                        }}
+                                        viewport={{ once: true, margin: '-100px' }}
+                                    >
+                                        <Image src="/images/homeGallery/galleryP6.jpg" alt="Gallery Image 12" fill className="rounded object-cover" />
+                                    </motion.div>
+                                    <motion.div
+                                        className="relative h-[20vh] w-full"
+                                        initial={{ scale: 0.9, opacity: 0 }}
+                                        whileInView={{
+                                            scale: 1,
+                                            opacity: 1,
+                                            transition: {
+                                                type: 'spring',
+                                                stiffness: 100,
+                                                damping: 15,
+                                                mass: 1,
+                                                delay: 1.1
+                                            }
+                                        }}
+                                        viewport={{ once: true, margin: '-100px' }}
+                                    >
+                                        <Image
+                                            src="/images/homeGallery/galleryL5.jpg"
+                                            alt="Gallery Image 11"
+                                            fill
+                                            className="rounded object-cover object-[100%_50%]"
+                                        />
+                                    </motion.div>
+                                </div>
                             </div>
-                            <div className="grid gap-4">
-                                <motion.div
-                                    className="relative h-[25vh] w-full"
-                                    initial={{ scale: 0.9, opacity: 0 }}
-                                    whileInView={{
-                                        scale: 1,
-                                        opacity: 1,
-                                        transition: {
-                                            type: 'spring',
-                                            stiffness: 100,
-                                            damping: 15,
-                                            mass: 1,
-                                            delay: 0.6
-                                        }
-                                    }}
-                                    viewport={{ once: true, margin: '-100px' }}
-                                >
-                                    <Image src="/images/homeGallery/galleryL2.jpg" alt="Gallery Image 7" fill className="rounded object-cover" />
-                                </motion.div>
-                                <motion.div
-                                    className="relative h-[40vh] w-full"
-                                    initial={{ scale: 0.9, opacity: 0 }}
-                                    whileInView={{
-                                        scale: 1,
-                                        opacity: 1,
-                                        transition: {
-                                            type: 'spring',
-                                            stiffness: 100,
-                                            damping: 15,
-                                            mass: 1,
-                                            delay: 0.7
-                                        }
-                                    }}
-                                    viewport={{ once: true, margin: '-100px' }}
-                                >
-                                    <Image src="/images/homeGallery/galleryP3.jpg" alt="Gallery Image 8" fill className="rounded object-cover" />
-                                </motion.div>
-                                <motion.div
-                                    className="relative h-[35vh] w-full"
-                                    initial={{ scale: 0.9, opacity: 0 }}
-                                    whileInView={{
-                                        scale: 1,
-                                        opacity: 1,
-                                        transition: {
-                                            type: 'spring',
-                                            stiffness: 100,
-                                            damping: 15,
-                                            mass: 1,
-                                            delay: 0.8
-                                        }
-                                    }}
-                                    viewport={{ once: true, margin: '-100px' }}
-                                >
-                                    <Image src="/images/homeGallery/galleryP7.jpg" alt="Gallery Image 9" fill className="rounded object-cover" />
-                                </motion.div>
-                            </div>
-                            <div className="grid gap-4">
-                                <motion.div
-                                    className="relative h-[45vh] w-full"
-                                    initial={{ scale: 0.9, opacity: 0 }}
-                                    whileInView={{
-                                        scale: 1,
-                                        opacity: 1,
-                                        transition: {
-                                            type: 'spring',
-                                            stiffness: 100,
-                                            damping: 15,
-                                            mass: 1,
-                                            delay: 0.9
-                                        }
-                                    }}
-                                    viewport={{ once: true, margin: '-100px' }}
-                                >
-                                    <Image src="/images/homeGallery/galleryP4.jpg" alt="Gallery Image 10" fill className="rounded object-cover" />
-                                </motion.div>
-                                <motion.div
-                                    className="relative h-[35vh] w-full"
-                                    initial={{ scale: 0.9, opacity: 0 }}
-                                    whileInView={{
-                                        scale: 1,
-                                        opacity: 1,
-                                        transition: {
-                                            type: 'spring',
-                                            stiffness: 100,
-                                            damping: 15,
-                                            mass: 1,
-                                            delay: 1.0
-                                        }
-                                    }}
-                                    viewport={{ once: true, margin: '-100px' }}
-                                >
-                                    <Image src="/images/homeGallery/galleryP6.jpg" alt="Gallery Image 12" fill className="rounded object-cover" />
-                                </motion.div>
-                                <motion.div
-                                    className="relative h-[20vh] w-full"
-                                    initial={{ scale: 0.9, opacity: 0 }}
-                                    whileInView={{
-                                        scale: 1,
-                                        opacity: 1,
-                                        transition: {
-                                            type: 'spring',
-                                            stiffness: 100,
-                                            damping: 15,
-                                            mass: 1,
-                                            delay: 1.1
-                                        }
-                                    }}
-                                    viewport={{ once: true, margin: '-100px' }}
-                                >
-                                    <Image
-                                        src="/images/homeGallery/galleryL5.jpg"
-                                        alt="Gallery Image 11"
-                                        fill
-                                        className="rounded object-cover object-[100%_50%]"
-                                    />
-                                </motion.div>
-                            </div>
-                        </div>
+                        )}
                     </div>
                     <div className="flex h-[100vh] justify-center bg-[#030712]"></div>
                 </div>
@@ -1040,7 +1109,7 @@ export default function HomePage() {
                         >
                             <Link
                                 href="/music"
-                                className="group inline-flex items-center rounded bg-gradient-to-br from-blue-900 to-teal-600 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300"
+                                className="group inline-flex cursor-pointer items-center rounded bg-gradient-to-br from-blue-900 to-teal-600 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300"
                             >
                                 More
                                 <FiArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-2" />
@@ -1393,7 +1462,7 @@ export default function HomePage() {
                         >
                             <Link
                                 href="/sermons"
-                                className="group inline-flex items-center rounded bg-gradient-to-br from-blue-900 to-teal-600 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300"
+                                className="group inline-flex cursor-pointer items-center rounded bg-gradient-to-br from-blue-900 to-teal-600 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300"
                             >
                                 More
                                 <FiArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-2" />
