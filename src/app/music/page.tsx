@@ -268,8 +268,8 @@ export default function Music() {
                                         </a>
 
                                         {/* Non-clickable version for mobile/tablet */}
-                                        <div className="group block overflow-hidden rounded-lg transition-all duration-300 hover:scale-102 md:hidden">
-                                            <div className="relative aspect-square h-[330px] overflow-hidden rounded-lg sm:h-[500px]">
+                                        <div className="group block overflow-hidden rounded transition-all duration-300 hover:scale-102 md:hidden">
+                                            <div className="relative aspect-square h-[330px] overflow-hidden rounded sm:h-[500px]">
                                                 {song.musicThumbnail?.fields?.file?.url && (
                                                     <Image
                                                         src={`https:${song.musicThumbnail.fields.file.url}`}

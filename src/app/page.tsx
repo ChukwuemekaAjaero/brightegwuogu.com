@@ -1107,13 +1107,13 @@ export default function HomePage() {
                             animate={musicInView ? { opacity: 1 } : { opacity: 0 }}
                             transition={{ delay: 1.3, duration: 0.8, ease: 'easeOut' }}
                         >
-                            <a
+                            <Link
                                 href="/music"
                                 className="group inline-flex cursor-pointer items-center rounded bg-gradient-to-br from-blue-900 to-teal-600 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300"
                             >
                                 More
                                 <FiArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-2" />
-                            </a>
+                            </Link>
                         </motion.div>
                     </div>
                 </div>
@@ -1460,13 +1460,13 @@ export default function HomePage() {
                             animate={sermonsInView ? { opacity: 1 } : { opacity: 0 }}
                             transition={{ delay: 1.3, duration: 0.8, ease: 'easeOut' }}
                         >
-                            <a
+                            <Link
                                 href="/sermons"
                                 className="group inline-flex cursor-pointer items-center rounded bg-gradient-to-br from-blue-900 to-teal-600 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300"
                             >
                                 More
                                 <FiArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-2" />
-                            </a>
+                            </Link>
                         </motion.div>
                     </div>
                 </div>
