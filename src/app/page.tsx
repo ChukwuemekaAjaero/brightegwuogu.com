@@ -109,7 +109,7 @@ export default function HomePage() {
             },
             {
                 root: null, // Use viewport as root
-                rootMargin: '-300px 0px -300px 0px', // Grace period offset: 200px from top and bottom
+                rootMargin: '-30% 0px -30% 0px', // Grace period offset: 200px from top and bottom
                 threshold: 0 // Trigger as soon as any part is visible
             }
         );
