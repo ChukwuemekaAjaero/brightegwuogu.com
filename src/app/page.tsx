@@ -298,7 +298,7 @@ export default function HomePage() {
                                 viewport={{ once: true, margin: '-100px' }}
                             >
                                 <Image
-                                    src="/images/homeGallery/heroImage2.jpg"
+                                    src="/images/homeGallery/galleryP1.jpg"
                                     alt="About Me Image 1"
                                     width={400}
                                     height={600}
@@ -370,7 +370,7 @@ export default function HomePage() {
                                 viewport={{ once: true, margin: '-100px' }}
                             >
                                 <Image
-                                    src="/images/homeGallery/heroImage5.jpg"
+                                    src="/images/homeGallery/galleryP2.jpg"
                                     alt="About Me Image 5"
                                     width={400}
                                     height={500}
@@ -396,7 +396,7 @@ export default function HomePage() {
                                 viewport={{ once: true, margin: '-100px' }}
                             >
                                 <Image
-                                    src="/images/homeGallery/heroImage1.jpg"
+                                    src="/images/homeGallery/galleryP3.jpg"
                                     alt="About Me Image 3"
                                     width={400}
                                     height={700}
@@ -422,7 +422,7 @@ export default function HomePage() {
                                 viewport={{ once: true, margin: '-100px' }}
                             >
                                 <Image
-                                    src="/images/homeGallery/heroImage3.jpg"
+                                    src="/images/homeGallery/galleryP4.jpg"
                                     alt="About Me Image 2"
                                     width={400}
                                     height={500}
@@ -448,7 +448,7 @@ export default function HomePage() {
                                 viewport={{ once: true, margin: '-100px' }}
                             >
                                 <Image
-                                    src="/images/homeGallery/heroImage8.jpg"
+                                    src="/images/homeGallery/galleryP5.jpg"
                                     alt="About Me Image 5"
                                     width={400}
                                     height={650}
@@ -934,7 +934,12 @@ export default function HomePage() {
                             </div>
                         </div>
 
-                        <div className="mt-12 text-center">
+                        <motion.div
+                            className="mt-12 text-center"
+                            initial={{ opacity: 0 }}
+                            animate={musicInView ? { opacity: 1 } : { opacity: 0 }}
+                            transition={{ delay: 1.3, duration: 0.8, ease: 'easeOut' }}
+                        >
                             <Link
                                 href="/music"
                                 className="group inline-flex items-center rounded bg-gradient-to-br from-blue-900 to-teal-600 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300"
@@ -942,7 +947,7 @@ export default function HomePage() {
                                 More
                                 <FiArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-2" />
                             </Link>
-                        </div>
+                        </motion.div>
                     </div>
                 </div>
             </section>
@@ -1282,7 +1287,12 @@ export default function HomePage() {
                             </div>
                         </div>
 
-                        <div className="mt-12 text-center">
+                        <motion.div
+                            className="mt-12 text-center"
+                            initial={{ opacity: 0 }}
+                            animate={sermonsInView ? { opacity: 1 } : { opacity: 0 }}
+                            transition={{ delay: 1.3, duration: 0.8, ease: 'easeOut' }}
+                        >
                             <Link
                                 href="/sermons"
                                 className="group inline-flex items-center rounded bg-gradient-to-br from-blue-900 to-teal-600 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300"
@@ -1290,7 +1300,7 @@ export default function HomePage() {
                                 More
                                 <FiArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-2" />
                             </Link>
-                        </div>
+                        </motion.div>
                     </div>
                 </div>
             </section>
