@@ -171,7 +171,7 @@ export default function Music() {
                                 <h2 className={`mb-6 text-4xl font-bold text-white sm:text-5xl md:text-6xl lg:text-7xl ${modernizFont.className}`}>
                                     Music
                                 </h2>
-                                <p className="mx-auto max-w-3xl text-lg leading-relaxed text-gray-300 md:text-xl">
+                                <p className="text-md mx-auto max-w-3xl leading-relaxed text-gray-300 lg:text-lg">
                                     Experience the power of worship through music that bridges heaven and earth, bringing faith to life through every
                                     melody and every word.
                                 </p>

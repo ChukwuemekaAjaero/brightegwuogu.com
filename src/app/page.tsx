@@ -680,9 +680,9 @@ export default function HomePage() {
                                         initial={{ opacity: 0 }}
                                         animate={musicInView ? { opacity: 1 } : { opacity: 0 }}
                                         transition={{ delay: 0.5, duration: 0.8, ease: 'easeOut' }}
-                                        className="text-white"
+                                        className="text-md text-white lg:text-lg"
                                     >
-                                        Discover the latest songs of hope, faith, and inspiration.
+                                        Discover P.B.&apos;s latest songs that will strengthen your walk with God and transform your life.
                                     </motion.p>
                                 </>
                             )}
@@ -1149,7 +1149,7 @@ export default function HomePage() {
                                         initial={{ opacity: 0 }}
                                         animate={sermonsInView ? { opacity: 1 } : { opacity: 0 }}
                                         transition={{ delay: 0.5, duration: 0.8, ease: 'easeOut' }}
-                                        className="text-white"
+                                        className="text-md text-white lg:text-lg"
                                     >
                                         Discover P.B.&apos;s latest sermons for your progress and joy in the faith.
                                     </motion.p>

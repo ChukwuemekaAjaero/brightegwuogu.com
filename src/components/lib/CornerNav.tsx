@@ -52,10 +52,7 @@ const DesktopHeader = () => {
         <nav className="sticky top-0 z-30 -mb-30 hidden w-full overflow-visible mask-b-from-50% backdrop-blur-md lg:block">
             <div className="container mx-auto flex h-30 w-full -translate-y-3 items-center justify-between px-4 sm:px-8">
                 {/* Logo */}
-                <Link
-                    href="/"
-                    className={`text-2xl font-bold text-white no-underline transition-colors hover:text-sky-800 ${modernizFont.className}`}
-                >
+                <Link href="/" className={`text-2xl font-bold text-white no-underline transition-colors ${modernizFont.className}`}>
                     Bright Egwuogu
                 </Link>
 
@@ -63,17 +60,13 @@ const DesktopHeader = () => {
                 <div className="absolute top-1/2 left-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center gap-8">
                     <Link
                         href="/music"
-                        className={`px-4 py-2 font-medium transition-all duration-200 hover:text-sky-800 ${
-                            pathname === '/music' ? 'text-sky-800' : 'text-white'
-                        }`}
+                        className={`px-4 py-2 font-medium transition-all duration-200 ${pathname === '/music' ? 'text-sky-800' : 'text-white'}`}
                     >
                         Music
                     </Link>
                     <Link
                         href="/sermons"
-                        className={`px-4 py-2 font-medium transition-all duration-200 hover:text-sky-800 ${
-                            pathname === '/sermons' ? 'text-sky-800' : 'text-white'
-                        }`}
+                        className={`px-4 py-2 font-medium transition-all duration-200 ${pathname === '/sermons' ? 'text-sky-800' : 'text-white'}`}
                     >
                         Sermons
                     </Link>
@@ -81,19 +74,14 @@ const DesktopHeader = () => {
 
                 {/* Social Media Links - Right */}
                 <div className="flex items-center gap-4">
-                    <a
-                        href="https://www.instagram.com/britegwu/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-white transition-colors hover:text-sky-800"
-                    >
+                    <a href="https://www.instagram.com/britegwu/" target="_blank" rel="noopener noreferrer" className="text-white transition-colors">
                         <AiFillInstagram size={24} />
                     </a>
                     <a
                         href="https://www.youtube.com/channel/UCH-O0drzAagoobTUuIT4vDg"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-white transition-colors hover:text-sky-800"
+                        className="text-white transition-colors"
                     >
                         <FaYoutube size={24} />
                     </a>

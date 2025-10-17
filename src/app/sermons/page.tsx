@@ -163,7 +163,7 @@ export default function SermonsPage() {
                             {sermons[0]?.sermonTags && sermons[0].sermonTags.length > 0 && (
                                 <div className="mb-4 flex flex-wrap justify-center gap-2">
                                     {sermons[0].sermonTags.map((tag, index) => (
-                                        <span key={index} className="rounded-full bg-sky-800/40 px-3 py-1 text-sm text-white backdrop-blur-sm">
+                                        <span key={index} className="rounded-full bg-red-600/40 px-3 py-1 text-sm text-white backdrop-blur-sm">
                                             {tag}
                                         </span>
                                     ))}
