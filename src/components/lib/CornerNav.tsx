@@ -60,13 +60,13 @@ const DesktopHeader = () => {
                 <div className="absolute top-1/2 left-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center gap-8">
                     <Link
                         href="/music"
-                        className={`px-4 py-2 font-medium transition-all duration-200 ${pathname === '/music' ? 'text-sky-800' : 'text-white'}`}
+                        className={`px-4 py-2 font-medium transition-all duration-200 ${pathname === '/music' ? 'text-black' : 'text-white'}`}
                     >
                         Music
                     </Link>
                     <Link
                         href="/sermons"
-                        className={`px-4 py-2 font-medium transition-all duration-200 ${pathname === '/sermons' ? 'text-sky-800' : 'text-white'}`}
+                        className={`px-4 py-2 font-medium transition-all duration-200 ${pathname === '/sermons' ? 'text-black' : 'text-white'}`}
                     >
                         Sermons
                     </Link>

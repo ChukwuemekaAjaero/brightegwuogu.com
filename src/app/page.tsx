@@ -477,7 +477,12 @@ export default function HomePage() {
                                         }}
                                         viewport={{ once: true, margin: '-100px' }}
                                     >
-                                        <Image src="/images/homeGallery/galleryP5.jpg" alt="Gallery Image 5" fill className="rounded object-cover" />
+                                        <Image
+                                            src="/images/homeGallery/galleryP5.jpg"
+                                            alt="Gallery Image 5"
+                                            fill
+                                            className="rounded object-cover object-[50%_50%]"
+                                        />
                                     </motion.div>
                                     <motion.div
                                         className="relative h-[25vh] w-full"
@@ -579,7 +584,12 @@ export default function HomePage() {
                                         }}
                                         viewport={{ once: true, margin: '-100px' }}
                                     >
-                                        <Image src="/images/homeGallery/galleryP7.jpg" alt="Gallery Image 9" fill className="rounded object-cover" />
+                                        <Image
+                                            src="/images/homeGallery/galleryP7.jpg"
+                                            alt="Gallery Image 9"
+                                            fill
+                                            className="rounded object-cover object-[50%_20%]"
+                                        />
                                     </motion.div>
                                 </div>
                                 <div className="grid gap-4">
@@ -1149,7 +1159,7 @@ export default function HomePage() {
                                         initial={{ opacity: 0 }}
                                         animate={sermonsInView ? { opacity: 1 } : { opacity: 0 }}
                                         transition={{ delay: 0.5, duration: 0.8, ease: 'easeOut' }}
-                                        className="text-md text-white lg:text-lg"
+                                        className="text-base text-white lg:text-lg"
                                     >
                                         Discover P.B.&apos;s latest sermons for your progress and joy in the faith.
                                     </motion.p>
@@ -1239,13 +1249,13 @@ export default function HomePage() {
 
                                         {/* Sermon Date */}
                                         {sermons.length > 0 && sermons[0].sermonDate && (
-                                            <div className="mb-8 text-center text-base text-white/90">
+                                            <div className="mb-8 text-center text-base text-white/90 lg:text-lg">
                                                 <span>{formatFeaturedSermonDate(sermons[0].sermonDate)}</span>
                                             </div>
                                         )}
 
                                         {/* Sermon Description */}
-                                        <p className="mb-10 text-base leading-relaxed whitespace-pre-line text-white/80">
+                                        <p className="mb-10 text-base leading-relaxed whitespace-pre-line text-white/80 lg:text-lg">
                                             {sermons.length > 0 && sermons[0].sermonDescription
                                                 ? sermons[0].sermonDescription
                                                 : 'Discover powerful messages of hope, faith, and inspiration that will strengthen your walk with God and transform your life.'}
