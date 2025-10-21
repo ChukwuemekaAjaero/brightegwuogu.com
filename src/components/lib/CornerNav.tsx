@@ -46,8 +46,6 @@ export const Example = () => {
 };
 
 const DesktopHeader = () => {
-    const pathname = usePathname();
-
     return (
         <nav className="sticky top-0 z-30 -mb-30 hidden w-full overflow-visible mask-b-from-50% backdrop-blur-md lg:block">
             <div className="container mx-auto flex h-30 w-full -translate-y-3 items-center justify-between px-4 sm:px-8">
@@ -58,16 +56,10 @@ const DesktopHeader = () => {
 
                 {/* Navigation Links - Center */}
                 <div className="absolute top-1/2 left-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center gap-8">
-                    <Link
-                        href="/music"
-                        className={`px-4 py-2 font-medium transition-all duration-200 ${pathname === '/music' ? 'text-black' : 'text-white'}`}
-                    >
+                    <Link href="/music" className="px-4 py-2 font-medium text-white">
                         Music
                     </Link>
-                    <Link
-                        href="/sermons"
-                        className={`px-4 py-2 font-medium transition-all duration-200 ${pathname === '/sermons' ? 'text-black' : 'text-white'}`}
-                    >
+                    <Link href="/sermons" className="px-4 py-2 font-medium text-white">
                         Sermons
                     </Link>
                 </div>
