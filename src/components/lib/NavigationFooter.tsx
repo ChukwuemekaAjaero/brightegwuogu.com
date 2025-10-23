@@ -38,8 +38,8 @@ export default function NavigationFooter() {
                                 <p>Toronto Campus</p>
                                 <p>Toronto, Canada</p>
                                 <p className="mt-3">
-                                    <a href="mailto:contact@brightegwuogu.com" className="transition-colors duration-200 hover:text-sky-700">
-                                        contact@brightegwuogu.com
+                                    <a href="mailto:contact@brightegwuogu.com" className="transition-colors duration-200">
+                                        &lt;PLACEHOLDER&gt; contact@brightegwuogu.com
                                     </a>
                                 </p>
                             </div>
@@ -49,13 +49,13 @@ export default function NavigationFooter() {
                         <div>
                             <h3 className="mb-4 text-lg font-semibold">Navigation</h3>
                             <nav className="space-y-2">
-                                <Link href="/" className="block text-sm text-gray-300 transition-colors duration-200 hover:text-sky-700">
+                                <Link href="/" className="block text-sm text-gray-300 transition-colors duration-200">
                                     Home
                                 </Link>
-                                <Link href="/music" className="block text-sm text-gray-300 transition-colors duration-200 hover:text-sky-700">
+                                <Link href="/music" className="block text-sm text-gray-300 transition-colors duration-200">
                                     Music
                                 </Link>
-                                <Link href="/sermons" className="block text-sm text-gray-300 transition-colors duration-200 hover:text-sky-700">
+                                <Link href="/sermons" className="block text-sm text-gray-300 transition-colors duration-200">
                                     Sermons
                                 </Link>
                             </nav>
@@ -69,7 +69,7 @@ export default function NavigationFooter() {
                                     href={instagramLink}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-center text-sm text-gray-300 transition-colors duration-200 hover:text-sky-700"
+                                    className="flex items-center text-sm text-gray-300 transition-colors duration-200"
                                 >
                                     <AiFillInstagram className="mr-2 h-5 w-5" />
                                     Instagram
@@ -78,7 +78,7 @@ export default function NavigationFooter() {
                                     href={youTubeLink}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-center text-sm text-gray-300 transition-colors duration-200 hover:text-sky-700"
+                                    className="flex items-center text-sm text-gray-300 transition-colors duration-200"
                                 >
                                     <FaYoutube className="mr-2 h-5 w-5" />
                                     YouTube
@@ -87,7 +87,7 @@ export default function NavigationFooter() {
                                     href={spotifyLink}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-center text-sm text-gray-300 transition-colors duration-200 hover:text-sky-700"
+                                    className="flex items-center text-sm text-gray-300 transition-colors duration-200"
                                 >
                                     <FaSpotify className="mr-2 h-5 w-5" />
                                     Spotify
@@ -96,7 +96,7 @@ export default function NavigationFooter() {
                                     href={appleMusicLink}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-center text-sm text-gray-300 transition-colors duration-200 hover:text-sky-700"
+                                    className="flex items-center text-sm text-gray-300 transition-colors duration-200"
                                 >
                                     <FaApple className="mr-2 h-5 w-5" />
                                     Apple Music
@@ -105,7 +105,7 @@ export default function NavigationFooter() {
                                     href={deezerLink}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-center text-sm text-gray-300 transition-colors duration-200 hover:text-sky-700"
+                                    className="flex items-center text-sm text-gray-300 transition-colors duration-200"
                                 >
                                     <FaDeezer className="mr-2 h-5 w-5" />
                                     Deezer
@@ -114,7 +114,7 @@ export default function NavigationFooter() {
                                     href={amazonMusicLink}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-center text-sm text-gray-300 transition-colors duration-200 hover:text-sky-700"
+                                    className="flex items-center text-sm text-gray-300 transition-colors duration-200"
                                 >
                                     <SiAmazonmusic className="mr-2 h-5 w-5" />
                                     Amazon Music
