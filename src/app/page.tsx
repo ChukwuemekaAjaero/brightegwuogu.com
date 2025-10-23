@@ -315,9 +315,17 @@ export default function HomePage() {
                                 transition={{ delay: 0.5, duration: 0.8, ease: 'easeOut' }}
                                 className="mt-8 max-w-2xl text-lg text-white md:text-xl"
                             >
-                                Bright Egwuogu, known as P.B., is a Toronto-based pastor at Celebration Church International and a passionate
-                                contemporary Christian musician whose songs inspire audiences globally. He balances ministry and music with a career
-                                in cybersecurity across various industries, and enjoys life with his wife Ibiye and their son.
+                                Bright Egwuogu serves as a pastor at Celebration Church International, a global apostolic ministry under the
+                                leadership of Apostle Emmanuel Iren, committed to the vision of guiding all individuals to celebrate eternal life in
+                                Christ Jesus. <br />
+                                <br />
+                                He currently fulfills the role of resident pastor at the Toronto campus, where he is dedicated to fostering spiritual
+                                growth among believers. Affectionately known as P.B., he is also an accomplished musician with a collection of
+                                contemporary Christian songs that have positively impacted thousands worldwide. <br />
+                                <br />
+                                Residing in Toronto, Canada, P.B. balances his pastoral and musical callings with a career as a cybersecurity
+                                professional serving the financial, retail, and insurance sectors. He is married to his supportive wife, Ibiye, and
+                                together they are blessed with a son.
                             </motion.p>
                         </div>
                     </div>
