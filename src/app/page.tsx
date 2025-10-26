@@ -313,7 +313,7 @@ export default function HomePage() {
                                 initial={{ opacity: 0 }}
                                 animate={aboutMeInView ? { opacity: 1 } : { opacity: 0 }}
                                 transition={{ delay: 0.5, duration: 0.8, ease: 'easeOut' }}
-                                className="mt-8 max-w-2xl text-lg text-white md:text-xl"
+                                className="mt-8 max-w-2xl text-sm text-white md:text-base lg:text-lg xl:text-xl"
                             >
                                 Bright Egwuogu serves as a pastor at Celebration Church International, a global apostolic ministry under the
                                 leadership of Apostle Emmanuel Iren, committed to the vision of guiding all individuals to celebrate eternal life in
