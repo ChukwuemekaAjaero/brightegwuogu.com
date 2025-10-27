@@ -154,7 +154,7 @@ export default function HomePage() {
     return (
         <div className="relative scroll-smooth">
             {/* TABLE OF CONTENTS */}
-            <div className="fixed top-1/2 left-8 z-50 hidden -translate-y-1/2 transform 2xl:block">
+            {/* <div className="fixed top-1/2 left-8 z-50 hidden -translate-y-1/2 transform 2xl:block">
                 <div className="p-4">
                     <nav className="space-y-2">
                         <a
@@ -191,10 +191,10 @@ export default function HomePage() {
                         </a>
                     </nav>
                 </div>
-            </div>
+            </div> */}
 
             {/* HORIZONTAL TABLE OF CONTENTS - Mobile/Tablet */}
-            <div className="fixed bottom-4 left-1/2 z-10 -translate-x-1/2 transform 2xl:hidden">
+            {/* <div className="fixed bottom-4 left-1/2 z-10 -translate-x-1/2 transform 2xl:hidden">
                 <div className="rounded-lg bg-black/60 p-2 backdrop-blur-md">
                     <nav className="flex space-x-1">
                         <a
@@ -231,7 +231,7 @@ export default function HomePage() {
                         </a>
                     </nav>
                 </div>
-            </div>
+            </div> */}
 
             {/* HERO SECTION */}
             <section id="hero" className="relative flex min-h-screen items-center justify-center overflow-hidden rounded bg-[#030712]">
