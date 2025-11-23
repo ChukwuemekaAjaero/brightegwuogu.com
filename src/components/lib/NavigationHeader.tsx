@@ -29,6 +29,14 @@ export default function NavigationHeader() {
                 {/* Navigation Links - Desktop Only */}
                 <div className="absolute top-1/2 left-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-2 md:flex md:gap-8">
                     <Link
+                        href="/home"
+                        className={`px-4 py-2 font-medium no-underline transition-all duration-200 hover:bg-white/20 hover:text-red-500 ${
+                            pathname === '/home' ? 'text-red-500' : 'text-white'
+                        }`}
+                    >
+                        Home
+                    </Link>
+                    <Link
                         href="/music"
                         className={`px-4 py-2 font-medium no-underline transition-all duration-200 hover:bg-white/20 hover:text-red-500 ${
                             pathname === '/music' ? 'text-red-500' : 'text-white'
@@ -37,12 +45,20 @@ export default function NavigationHeader() {
                         Music
                     </Link>
                     <Link
-                        href="/sermons"
+                        href="/ministry"
                         className={`px-4 py-2 font-medium no-underline transition-all duration-200 hover:bg-white/20 hover:text-red-500 ${
-                            pathname === '/sermons' ? 'text-red-500' : 'text-white'
+                            pathname === '/ministry' ? 'text-red-500' : 'text-white'
                         }`}
                     >
-                        Sermons
+                        Ministry
+                    </Link>
+                    <Link
+                        href="/career"
+                        className={`px-4 py-2 font-medium no-underline transition-all duration-200 hover:bg-white/20 hover:text-red-500 ${
+                            pathname === '/career' ? 'text-red-500' : 'text-white'
+                        }`}
+                    >
+                        Career
                     </Link>
                 </div>
 

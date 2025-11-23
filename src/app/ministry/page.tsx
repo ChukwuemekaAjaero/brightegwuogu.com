@@ -9,7 +9,7 @@ import { FaYoutube } from 'react-icons/fa';
 import { FiArrowRight } from 'react-icons/fi';
 import { DateRangePicker } from '@/components/lib/DateRangePicker';
 
-export default function SermonsPage() {
+export default function MinistryPage() {
     const { sermons, loading: sermonsLoading, error: sermonsError } = useSermons();
     const [visibleSermons, setVisibleSermons] = useState(10);
     const [searchQuery, setSearchQuery] = useState('');
@@ -544,3 +544,5 @@ export default function SermonsPage() {
         </div>
     );
 }
+
+

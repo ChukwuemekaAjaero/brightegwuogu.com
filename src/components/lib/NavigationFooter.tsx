@@ -49,14 +49,17 @@ export default function NavigationFooter() {
                         <div>
                             <h3 className="mb-4 text-lg font-semibold">Navigation</h3>
                             <nav className="space-y-2">
-                                <Link href="/" className="block text-sm text-gray-300 transition-colors duration-200">
+                                <Link href="/home" className="block text-sm text-gray-300 transition-colors duration-200">
                                     Home
                                 </Link>
                                 <Link href="/music" className="block text-sm text-gray-300 transition-colors duration-200">
                                     Music
                                 </Link>
-                                <Link href="/sermons" className="block text-sm text-gray-300 transition-colors duration-200">
-                                    Sermons
+                                <Link href="/ministry" className="block text-sm text-gray-300 transition-colors duration-200">
+                                    Ministry
+                                </Link>
+                                <Link href="/career" className="block text-sm text-gray-300 transition-colors duration-200">
+                                    Career
                                 </Link>
                             </nav>
                         </div>

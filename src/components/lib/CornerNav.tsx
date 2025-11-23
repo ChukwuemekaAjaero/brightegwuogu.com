@@ -59,8 +59,8 @@ const DesktopHeader = () => {
                     <Link href="/music" className="px-4 py-2 font-medium text-white">
                         Music
                     </Link>
-                    <Link href="/sermons" className="px-4 py-2 font-medium text-white">
-                        Sermons
+                    <Link href="/ministry" className="px-4 py-2 font-medium text-white">
+                        Ministry
                     </Link>
                 </div>
 
@@ -277,15 +277,19 @@ const FooterCTAs = () => {
 const LINKS: Link[] = [
     {
         title: 'home',
-        href: '/'
+        href: '/home'
     },
     {
         title: 'music',
         href: '/music'
     },
     {
-        title: 'sermons',
-        href: '/sermons'
+        title: 'ministry',
+        href: '/ministry'
+    },
+    {
+        title: 'career',
+        href: '/career'
     }
 ];
 
