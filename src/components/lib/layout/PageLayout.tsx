@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { Example as CornerNav } from '@/components/lib/CornerNav';
+import { NavigationHeader } from '@/components/lib/NavigationHeader';
 import NavigationFooter from '@/components/lib/NavigationFooter';
 
 interface PageLayoutProps {
@@ -9,11 +9,9 @@ interface PageLayoutProps {
 export default function PageLayout({ children }: PageLayoutProps) {
     return (
         <div className="relative">
-            <CornerNav />
+            <NavigationHeader />
             {children}
             <NavigationFooter />
         </div>
     );
 }
-
-

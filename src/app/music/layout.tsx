@@ -1,4 +1,4 @@
-import PageLayout from '@/components/lib/PageLayout';
+import PageLayout from '@/components/lib/layout/PageLayout';
 
 export default function MusicLayout({
     children
@@ -7,5 +7,3 @@ export default function MusicLayout({
 }>) {
     return <PageLayout>{children}</PageLayout>;
 }
-
-
