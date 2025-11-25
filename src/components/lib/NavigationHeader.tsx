@@ -2,7 +2,8 @@
 
 import { SiInstagram, SiSpotify, SiAmazonmusic } from 'react-icons/si';
 import { FaYoutube, FaApple, FaDeezer } from 'react-icons/fa';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { AnimatePresence, motion, Variants } from 'framer-motion';
 import { AiFillInstagram } from 'react-icons/ai';
 import Link from 'next/link';
@@ -46,22 +47,107 @@ export const NavigationHeader = () => {
 };
 
 const DesktopHeader = () => {
+    const pathname = usePathname();
+    const [isLogoHovered, setIsLogoHovered] = useState(false);
+    const [dropdownPosition, setDropdownPosition] = useState({ top: 0, left: 0 });
+    const logoRef = useRef<HTMLAnchorElement>(null);
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    useEffect(() => {
+        if (isLogoHovered && logoRef.current) {
+            const rect = logoRef.current.getBoundingClientRect();
+            setDropdownPosition({
+                top: rect.bottom + 8,
+                left: rect.left
+            });
+        }
+    }, [isLogoHovered]);
+
+    // Get navigation links based on current route
+    const getDesktopNavLinks = () => {
+        if (pathname?.startsWith('/music')) {
+            return [
+                { title: 'About', href: '/music/about' },
+                { title: 'Discography', href: '/music/discography' },
+                { title: 'Contact', href: '/music/contact' }
+            ];
+        } else if (pathname?.startsWith('/ministry')) {
+            return [
+                { title: 'About', href: '/ministry/about' },
+                { title: 'Sermons', href: '/ministry/sermons' },
+                { title: 'Resources', href: '/ministry/resources' },
+                { title: 'Contact', href: '/ministry/contact' }
+            ];
+        }
+        // Default links for other routes
+        return [
+            { title: 'Music', href: '/music' },
+            { title: 'Ministry', href: '/ministry' }
+        ];
+    };
+
+    const navLinks = getDesktopNavLinks();
+
+    const dropdownItems = [
+        { title: 'Ministry', href: '/ministry' },
+        { title: 'Music', href: '/music' },
+        { title: 'Career', href: '/career' }
+    ];
+
+    const dropdownContent = (
+        <AnimatePresence>
+            {isLogoHovered && mounted && (
+                <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{ duration: 0.2 }}
+                    className="fixed z-[9999] min-w-[180px] overflow-hidden rounded-md border border-gray-700 bg-gray-800/95 shadow-lg backdrop-blur-sm"
+                    style={{
+                        top: `${dropdownPosition.top}px`,
+                        left: `${dropdownPosition.left}px`
+                    }}
+                    onMouseEnter={() => setIsLogoHovered(true)}
+                    onMouseLeave={() => setIsLogoHovered(false)}
+                >
+                    {dropdownItems.map((item) => (
+                        <Link key={item.href} href={item.href} className="block px-4 py-3 text-white transition-colors hover:bg-gray-700/50">
+                            {item.title}
+                        </Link>
+                    ))}
+                </motion.div>
+            )}
+        </AnimatePresence>
+    );
+
     return (
-        <nav className="sticky top-0 z-30 -mb-30 hidden w-full overflow-visible mask-b-from-50% backdrop-blur-md lg:block">
+        <nav className="sticky top-0 z-30 -mb-30 hidden w-full mask-b-from-50% backdrop-blur-md lg:block">
             <div className="container mx-auto flex h-30 w-full -translate-y-3 items-center justify-between px-4 sm:px-8">
-                {/* Logo */}
-                <Link href="/" className={`text-2xl font-bold text-white no-underline transition-colors ${modernizFont.className}`}>
-                    Bright Egwuogu
-                </Link>
+                {/* Logo with Dropdown */}
+                <div className="relative" onMouseEnter={() => setIsLogoHovered(true)} onMouseLeave={() => setIsLogoHovered(false)}>
+                    <Link
+                        ref={logoRef}
+                        href="/"
+                        className={`text-2xl font-bold text-white no-underline transition-colors hover:text-gray-300 ${modernizFont.className}`}
+                    >
+                        Bright Egwuogu
+                    </Link>
+                </div>
+
+                {/* Render dropdown via portal outside nav constraints */}
+                {mounted && typeof window !== 'undefined' && createPortal(dropdownContent, document.body)}
 
                 {/* Navigation Links - Center */}
                 <div className="absolute top-1/2 left-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center gap-8">
-                    <Link href="/music" className="px-4 py-2 font-medium text-white">
-                        Music
-                    </Link>
-                    <Link href="/ministry" className="px-4 py-2 font-medium text-white">
-                        Ministry
-                    </Link>
+                    {navLinks.map((link) => (
+                        <Link key={link.href} href={link.href} className="px-4 py-2 font-medium text-white">
+                            {link.title}
+                        </Link>
+                    ))}
                 </div>
 
                 {/* Social Media Links - Right */}
@@ -137,11 +223,35 @@ const LinksOverlay = () => {
 };
 
 const LinksContainer = () => {
+    const pathname = usePathname();
+
+    // Get navigation links based on current route
+    const getMobileNavLinks = () => {
+        if (pathname?.startsWith('/music')) {
+            return [
+                { title: 'About', href: '/music/about' },
+                { title: 'Discography', href: '/music/discography' },
+                { title: 'Contact', href: '/music/contact' }
+            ];
+        } else if (pathname?.startsWith('/ministry')) {
+            return [
+                { title: 'About', href: '/ministry/about' },
+                { title: 'Sermons', href: '/ministry/sermons' },
+                { title: 'Resources', href: '/ministry/resources' },
+                { title: 'Contact', href: '/ministry/contact' }
+            ];
+        }
+        // Default links for other routes
+        return LINKS;
+    };
+
+    const navLinks = getMobileNavLinks();
+
     return (
         <motion.div className="flex flex-1 flex-col justify-center space-y-4 p-12 pl-4 md:pl-20">
-            {LINKS.map((l, idx) => {
+            {navLinks.map((l, idx) => {
                 return (
-                    <NavLink key={l.title} href={l.href} idx={idx}>
+                    <NavLink key={l.href} href={l.href} idx={idx}>
                         {l.title}
                     </NavLink>
                 );

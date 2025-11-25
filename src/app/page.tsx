@@ -14,9 +14,30 @@ const slides = [
     { title: 'Career', href: '/career', disabled: true }
 ];
 
+const STORAGE_KEY = 'rootPageCurrentSlide';
+
 export default function RootPage() {
-    const [currentIndex, setCurrentIndex] = useState(0);
+    // Load saved slide index from localStorage on mount
+    const [currentIndex, setCurrentIndex] = useState(() => {
+        if (typeof window !== 'undefined') {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (saved !== null) {
+                const index = parseInt(saved, 10);
+                if (index >= 0 && index < slides.length) {
+                    return index;
+                }
+            }
+        }
+        return 0;
+    });
     const [direction, setDirection] = useState<'left' | 'right'>('right');
+
+    // Save currentIndex to localStorage whenever it changes
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            localStorage.setItem(STORAGE_KEY, currentIndex.toString());
+        }
+    }, [currentIndex]);
 
     const goToSlide = (index: number) => {
         const newDirection = index > currentIndex ? 'right' : 'left';
