@@ -81,7 +81,7 @@ export default function RootPage() {
                         <p className={`text-center text-xl font-bold text-white`}>Select a side of Bright</p>
                     </div>
 
-                    <AnimatePresence mode="wait" custom={direction}>
+                    <AnimatePresence mode="wait" custom={direction} initial={false}>
                         {slides.map((slide, index) => {
                             if (index !== currentIndex) return null;
 
@@ -96,29 +96,28 @@ export default function RootPage() {
                                 },
                                 exit: (custom: 'left' | 'right') => ({
                                     opacity: 0,
-                                    x: custom === 'right' ? -300 : 300
+                                    x: custom === 'right' ? -300 : 300,
+                                    pointerEvents: 'none' as const
                                 })
                             };
 
                             return (
                                 <motion.div
-                                    key={index}
+                                    key={`${index}-${slide.title}`}
                                     custom={direction}
                                     variants={slideVariants}
                                     initial="enter"
                                     animate="center"
                                     exit="exit"
                                     transition={{
-                                        type: 'spring',
-                                        stiffness: 200,
-                                        damping: 15,
-                                        mass: 1
+                                        opacity: { duration: 0.2, ease: 'easeInOut' },
+                                        x: { type: 'spring', stiffness: 200, damping: 15, mass: 1 }
                                     }}
                                     drag="x"
                                     dragConstraints={{ left: 0, right: 0 }}
                                     dragElastic={0.2}
                                     onDragEnd={handleDragEnd}
-                                    className="absolute inset-0 flex flex-col items-center justify-center gap-16"
+                                    className="absolute inset-0 flex flex-col items-center justify-center gap-16 will-change-transform"
                                 >
                                     {/* Page Title */}
                                     <div className="flex-shrink-0">
