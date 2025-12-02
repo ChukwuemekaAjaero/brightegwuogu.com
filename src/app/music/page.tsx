@@ -3,6 +3,14 @@
 import { modernizFont } from '@/lib/utils';
 import { FaPlay } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
+import { Playfair_Display } from 'next/font/google';
+import Link from 'next/link';
+
+const playfairDisplay = Playfair_Display({
+    subsets: ['latin'],
+    weight: ['400', '700'],
+    display: 'swap'
+});
 
 export default function Music() {
     const [isLoading, setIsLoading] = useState(true);
@@ -100,17 +108,32 @@ export default function Music() {
                 </div>
             </section>
 
-            {/* Filler Section */}
+            {/* Bible Verse Section */}
             <section className="relative min-h-screen bg-[#030712] py-20">
                 <div className="container mx-auto px-4 sm:px-8">
                     <div className="flex min-h-[60vh] items-center justify-center">
                         <div className="text-center">
-                            <h2 className={`mb-4 text-4xl font-bold text-white md:text-6xl ${modernizFont.className}`}>
-                                Welcome to Music
-                            </h2>
-                            <p className="mx-auto max-w-2xl text-lg text-gray-300 md:text-xl">
-                                Explore our discography, discover new releases, and experience worship through music.
+                            <blockquote className={`mb-6 text-3xl text-white md:text-5xl lg:text-6xl ${playfairDisplay.className}`}>
+                                "My heart is steadfast, O God, my heart is steadfast; I will sing and make music."
+                            </blockquote>
+                            <p className="mb-8 text-lg text-gray-400 md:text-xl">— Psalms 57:7</p>
+
+                            {/* About Text */}
+                            <p className="text-sm text-red-500 md:text-base">NOTE: Change the width on different screen sizes</p>
+                            <p className="mx-auto my-8 max-w-5xl text-base leading-relaxed text-gray-300 md:text-xl">
+                                Bright Egwuogu is the resident pastor of Celebration Church International’s Toronto campus, part of the global
+                                ministry led by Apostle Emmanuel Iren. He is passionate about helping people grow spiritually and is also a
+                                contemporary Christian musician whose songs have impacted listeners around the world. Based in Toronto, he combines
+                                his pastoral and musical callings with a career in cybersecurity, and is married to his wife, Ibiye; they have a son.
                             </p>
+
+                            {/* Read My Story Button */}
+                            <Link
+                                href="/music/about"
+                                className="group inline-flex items-center justify-center rounded bg-gradient-to-br from-blue-900 to-teal-600 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300 hover:scale-105 hover:from-blue-800 hover:to-teal-500"
+                            >
+                                Read my story
+                            </Link>
                         </div>
                     </div>
                 </div>

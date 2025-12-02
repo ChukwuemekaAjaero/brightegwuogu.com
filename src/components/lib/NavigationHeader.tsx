@@ -106,7 +106,7 @@ const DesktopHeader = () => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.2 }}
-                    className="fixed z-[9999] min-w-[180px] overflow-hidden rounded-md border border-gray-700 bg-gray-800/95 shadow-lg backdrop-blur-sm"
+                    className="fixed z-[100] min-w-[180px] overflow-hidden rounded-sm border border-gray-700 bg-gray-800/20 shadow-lg backdrop-blur-sm"
                     style={{
                         top: `${dropdownPosition.top}px`,
                         left: `${dropdownPosition.left}px`
@@ -115,7 +115,11 @@ const DesktopHeader = () => {
                     onMouseLeave={() => setIsLogoHovered(false)}
                 >
                     {dropdownItems.map((item) => (
-                        <Link key={item.href} href={item.href} className="block px-4 py-3 text-white transition-colors hover:bg-gray-700/50">
+                        <Link
+                            key={item.href}
+                            href={item.href}
+                            className={`block px-4 py-3 text-white transition-colors hover:bg-gray-700/50 ${modernizFont.className}`}
+                        >
                             {item.title}
                         </Link>
                     ))}
