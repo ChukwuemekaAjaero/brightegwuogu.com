@@ -87,14 +87,16 @@ export default function MinistrySermons() {
 
     // Update visible sermons when search changes
     const displaySermons = filteredSermons.slice(0, visibleSermons);
-    
+
     return (
         <div className="relative scroll-smooth">
             {/* SERMONS LIST SECTION */}
-            <section className="relative min-h-screen overflow-hidden rounded bg-[#030712]">
+            <section className="wmin-h-screen relative overflow-hidden bg-[#030712] pt-16">
                 <div className="py-20">
                     <div className="mb-12 text-center">
-                        <h2 className={`text-5xl font-bold text-white md:text-6xl ${modernizFont.className}`}>Sermons</h2>
+                        <h2 className={`text-5xl font-bold text-white sm:text-5xl md:text-6xl md:text-7xl xl:text-8xl ${modernizFont.className}`}>
+                            Sermons
+                        </h2>
                         <p className="mt-4 text-lg text-gray-300 md:text-xl">P.B.&apos;s latest sermons for your progress and joy in the faith</p>
                     </div>
 

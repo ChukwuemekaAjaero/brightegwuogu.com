@@ -78,15 +78,15 @@ export default function MusicDiscography() {
                         <div className="text-center text-red-500">Error loading music: {musicError}</div>
                     ) : (
                         // Music Grid
-                        <div className="container mx-auto px-4 sm:px-8">
+                        <div className="container mx-auto mt-16 px-4 sm:px-8">
                             {/* Music Section Header */}
-                            <div className="mx-auto mb-16 max-w-4xl text-center">
-                                <h2 className={`mb-6 text-4xl font-bold text-white sm:text-5xl md:text-6xl lg:text-7xl ${modernizFont.className}`}>
-                                    Music
+                            <div className="mx-auto mb-16 text-center">
+                                <h2 className={`mb-6 text-4xl font-bold text-white sm:text-5xl md:text-7xl xl:text-8xl ${modernizFont.className}`}>
+                                    Discography
                                 </h2>
-                                <p className="text-md mx-auto max-w-3xl leading-relaxed text-gray-300 lg:text-lg">
-                                    Experience the power of worship through music that bridges heaven and earth, bringing faith to life through every
-                                    melody and every word.
+                                <p className="text-md mx-auto max-w-3xl text-center leading-relaxed text-gray-300 lg:text-lg">
+                                    Lorem ipsum dolor sit amet consectetur adipiscing elit. Dolor sit amet consectetur adipiscing elit quisque
+                                    faucibus.
                                 </p>
                             </div>
 
