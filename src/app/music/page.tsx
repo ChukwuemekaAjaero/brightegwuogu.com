@@ -109,7 +109,7 @@ export default function Music() {
             </section>
 
             {/* Bible Verse Section */}
-            <section className="relative min-h-screen bg-[#030712] py-20">
+            <section className="relative bg-[#030712] py-20">
                 <div className="container mx-auto px-4 sm:px-8">
                     <div className="flex min-h-[60vh] items-center justify-center">
                         <div className="text-center">
@@ -132,9 +132,124 @@ export default function Music() {
                                 href="/music/about"
                                 className="group inline-flex items-center justify-center rounded bg-gradient-to-br from-blue-900 to-teal-600 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300 hover:scale-105 hover:from-blue-800 hover:to-teal-500"
                             >
-                                Read my story
+                                Read My Story
                             </Link>
                         </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* No Other God Video Section */}
+            <section className="relative bg-[#030712] py-20">
+                <div className="container mx-auto px-4 sm:px-8">
+                    <div className="relative text-center">
+                        <h2 className={`relative z-10 mb-0 text-5xl font-bold text-white md:text-7xl lg:text-9xl ${modernizFont.className}`}>
+                            No Other God
+                        </h2>
+
+                        {/* Video Skeleton */}
+                        <div className="max-w-9xl relative z-0 mx-auto -mt-6 md:-mt-12 lg:-mt-24">
+                            <div className="relative aspect-video w-full overflow-visible rounded-xs bg-gray-800">
+                                <div className="absolute inset-0 animate-pulse bg-gray-700"></div>
+                            </div>
+                        </div>
+                        {/* Album Cover Skeleton - Bottom Left */}
+                        <div className="absolute -right-8 -bottom-8 z-20 hidden aspect-square w-40 overflow-hidden rounded bg-gray-600 shadow-lg md:w-60 lg:block lg:w-80">
+                            <div className="absolute inset-0 animate-pulse bg-gray-500"></div>
+                        </div>
+                    </div>
+
+                    {/* Song Information */}
+                    <div className="mt-12 text-center">
+                        <p className="mb-2 text-lg text-white md:text-xl">Brite Egwuogu, Rhema Onuoha</p>
+                        <p className="mb-8 text-base text-gray-400 md:text-lg">2025</p>
+                        <p className="mx-auto mb-8 max-w-3xl text-base leading-relaxed text-gray-300 md:text-lg">
+                            "Jesus, No Other God" is more than a song, it's a sound from a strange place. It's a declaration and a reminder that in a
+                            world full of names and options, there is still only One true God and He's different from the rest.
+                        </p>
+
+                        {/* Learn More Button */}
+                        <button className="group inline-flex items-center justify-center rounded bg-gradient-to-br from-blue-900 to-teal-600 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300 hover:scale-105 hover:from-blue-800 hover:to-teal-500">
+                            Learn More
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            {/* Joy Unspeakable Video Section */}
+            <section className="relative bg-[#030712] py-20">
+                <div className="container mx-auto px-4 sm:px-8">
+                    <div className="relative text-center">
+                        <h2
+                            className={`relative z-10 mb-0 text-3xl font-bold text-white sm:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl ${modernizFont.className}`}
+                        >
+                            Joy Unspeakable
+                        </h2>
+
+                        {/* Video Skeleton */}
+                        <div className="max-w-9xl relative z-0 mx-auto -mt-6 md:-mt-12 lg:-mt-16">
+                            <div className="relative aspect-video w-full overflow-visible rounded-xs bg-gray-800">
+                                <div className="absolute inset-0 animate-pulse bg-gray-700"></div>
+                            </div>
+                        </div>
+                        {/* Album Cover Skeleton - Bottom Left */}
+                        <div className="absolute -right-8 -bottom-8 z-20 hidden aspect-square w-40 overflow-hidden rounded bg-gray-600 shadow-lg md:w-60 lg:block lg:w-80">
+                            <div className="absolute inset-0 animate-pulse bg-gray-500"></div>
+                        </div>
+                    </div>
+
+                    {/* Song Information */}
+                    <div className="mt-12 text-center">
+                        <p className="mb-2 text-lg text-white md:text-xl">Brite Egwuogu, Daniel Ike</p>
+                        <p className="mb-8 text-base text-gray-400 md:text-lg">2025</p>
+                        <p className="mx-auto mb-8 max-w-3xl text-base leading-relaxed text-gray-300 md:text-lg">
+                            Lorem ipsum dolor sit amet consectetur adipiscing elit. Consectetur adipiscing elit quisque faucibus ex sapien vitae. Ex
+                            sapien vitae pellentesque sem placerat in id. Placerat in id cursus mi pretium tellus duis. Pretium tellus duis convallis
+                            tempus leo eu aenean.
+                        </p>
+
+                        {/* Learn More Button */}
+                        <button className="group inline-flex items-center justify-center rounded bg-gradient-to-br from-blue-900 to-teal-600 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300 hover:scale-105 hover:from-blue-800 hover:to-teal-500">
+                            Learn More
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            {/* Never Lost (Live) Video Section */}
+            <section className="relative bg-[#030712] py-20">
+                <div className="container mx-auto px-4 sm:px-8">
+                    <div className="relative text-center">
+                        <h2 className={`relative z-10 mb-0 text-5xl font-bold text-white md:text-7xl lg:text-9xl ${modernizFont.className}`}>
+                            Never Lost (Live)
+                        </h2>
+
+                        {/* Video Skeleton */}
+                        <div className="max-w-9xl relative z-0 mx-auto -mt-6 md:-mt-12 lg:-mt-24">
+                            <div className="relative aspect-video w-full overflow-visible rounded-xs bg-gray-800">
+                                <div className="absolute inset-0 animate-pulse bg-gray-700"></div>
+                            </div>
+                        </div>
+                        {/* Album Cover Skeleton - Bottom Left */}
+                        <div className="absolute -right-8 -bottom-8 z-20 hidden aspect-square w-40 overflow-hidden rounded bg-gray-600 shadow-lg md:w-60 lg:block lg:w-80">
+                            <div className="absolute inset-0 animate-pulse bg-gray-500"></div>
+                        </div>
+                    </div>
+
+                    {/* Song Information */}
+                    <div className="mt-12 text-center">
+                        <p className="mb-2 text-lg text-white md:text-xl">Brite Egwuogu</p>
+                        <p className="mb-8 text-base text-gray-400 md:text-lg">2023</p>
+                        <p className="mx-auto mb-8 max-w-3xl text-base leading-relaxed text-gray-300 md:text-lg">
+                            Lorem ipsum dolor sit amet consectetur adipiscing elit. Consectetur adipiscing elit quisque faucibus ex sapien vitae. Ex
+                            sapien vitae pellentesque sem placerat in id. Placerat in id cursus mi pretium tellus duis. Pretium tellus duis convallis
+                            tempus leo eu aenean.
+                        </p>
+
+                        {/* Learn More Button */}
+                        <button className="group inline-flex items-center justify-center rounded bg-gradient-to-br from-blue-900 to-teal-600 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300 hover:scale-105 hover:from-blue-800 hover:to-teal-500">
+                            Learn More
+                        </button>
                     </div>
                 </div>
             </section>
