@@ -5,6 +5,8 @@ import { FaPlay } from 'react-icons/fa';
 import { useState, useEffect } from 'react';
 import { Playfair_Display } from 'next/font/google';
 import Link from 'next/link';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
 
 const playfairDisplay = Playfair_Display({
     subsets: ['latin'],
@@ -14,6 +16,39 @@ const playfairDisplay = Playfair_Display({
 
 export default function Music() {
     const [isLoading, setIsLoading] = useState(true);
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        message: ''
+    });
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = e.target;
+        setFormData((prev) => ({
+            ...prev,
+            [name]: value
+        }));
+    };
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+        setSubmitStatus('idle');
+
+        // Simulate form submission
+        try {
+            // TODO: Replace with actual API call
+            await new Promise((resolve) => setTimeout(resolve, 1000));
+            setSubmitStatus('success');
+            setFormData({ name: '', email: '', message: '' });
+        } catch (error) {
+            setSubmitStatus('error');
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
 
     // Handle loading logic
     useEffect(() => {
@@ -250,6 +285,92 @@ export default function Music() {
                         <button className="group inline-flex items-center justify-center rounded bg-gradient-to-br from-blue-900 to-teal-600 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300 hover:scale-105 hover:from-blue-800 hover:to-teal-500">
                             Learn More
                         </button>
+                    </div>
+                </div>
+            </section>
+
+            {/* Contact Form Section */}
+            <section className="relative bg-[#030712] py-20">
+                <div className="container mx-auto px-4 sm:px-8">
+                    <div className="mx-auto max-w-2xl">
+                        <h2 className={`mb-8 text-center text-4xl font-bold text-white md:text-5xl lg:text-6xl ${modernizFont.className}`}>
+                            Get In Touch
+                        </h2>
+                        <p className="mb-12 text-center text-lg text-gray-300 md:text-xl">
+                            Have a question or want to connect? Send me a message and I'll get back to you as soon as possible.
+                        </p>
+
+                        <form onSubmit={handleSubmit} className="space-y-6">
+                            <div>
+                                <label htmlFor="name" className="mb-2 block text-sm font-medium text-gray-300">
+                                    Name
+                                </label>
+                                <Input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    value={formData.name}
+                                    onChange={handleInputChange}
+                                    required
+                                    className="w-full rounded-xs border-gray-700 bg-gray-900/50 text-white placeholder:text-gray-500 focus:border-blue-500 focus:ring-blue-500"
+                                    placeholder="Your name"
+                                />
+                            </div>
+
+                            <div>
+                                <label htmlFor="email" className="mb-2 block text-sm font-medium text-gray-300">
+                                    Email
+                                </label>
+                                <Input
+                                    type="email"
+                                    id="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleInputChange}
+                                    required
+                                    className="w-full rounded-xs border-gray-700 bg-gray-900/50 text-white placeholder:text-gray-500 focus:border-blue-500 focus:ring-blue-500"
+                                    placeholder="your.email@example.com"
+                                />
+                            </div>
+
+                            <div>
+                                <label htmlFor="message" className="mb-2 block text-sm font-medium text-gray-300">
+                                    Message
+                                </label>
+                                <textarea
+                                    id="message"
+                                    name="message"
+                                    value={formData.message}
+                                    onChange={handleInputChange}
+                                    required
+                                    rows={6}
+                                    className="flex w-full min-w-0 rounded-xs border border-gray-700 bg-gray-900/50 px-3 py-2 text-base text-white shadow-xs transition-[color,box-shadow] outline-none placeholder:text-gray-500 focus-visible:border-blue-500 focus-visible:ring-[3px] focus-visible:ring-blue-500/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
+                                    placeholder="Your message..."
+                                />
+                            </div>
+
+                            {submitStatus === 'success' && (
+                                <div className="rounded-xs border border-green-700 bg-green-900/30 px-4 py-3 text-green-300">
+                                    Thank you! Your message has been sent successfully.
+                                </div>
+                            )}
+
+                            {submitStatus === 'error' && (
+                                <div className="rounded-xs border border-red-700 bg-red-900/30 px-4 py-3 text-red-300">
+                                    Something went wrong. Please try again later.
+                                </div>
+                            )}
+
+                            <div className="flex justify-center">
+                                <Button
+                                    type="submit"
+                                    disabled={isSubmitting}
+                                    className="group inline-flex items-center justify-center rounded bg-gradient-to-br from-blue-900 to-teal-600 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300 hover:scale-105 hover:from-blue-800 hover:to-teal-500 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100"
+                                >
+                                    {isSubmitting ? 'Sending...' : 'Send Message'}
+                                </Button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </section>
