@@ -66,7 +66,7 @@ export default function MusicAbout() {
             <div className="container mx-auto px-4 py-20 pt-62 sm:px-8">
                 <div className="flex flex-col items-center justify-center">
                     {/* Large Header */}
-                    <h1 className={`z-1000 text-center text-3xl font-bold text-white md:text-5xl lg:text-7xl xl:text-9xl ${modernizFont.className}`}>
+                    <h1 className={`z-2 text-center text-3xl font-bold text-white md:text-5xl lg:text-7xl xl:text-9xl ${modernizFont.className}`}>
                         Brite
                         <br />
                         Egwuogu
