@@ -1,6 +1,7 @@
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import localFont from 'next/font/local';
+import { Lato, Oswald, Karla, Lexend, Alegreya_Sans } from 'next/font/google';
 
 export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
@@ -9,6 +10,41 @@ export function cn(...inputs: ClassValue[]) {
 export const modernizFont = localFont({
     src: '../../public/fonts/Moderniz.otf',
     variable: '--font-moderniz',
+    display: 'swap'
+});
+
+export const latoFont = Lato({
+    weight: ['100', '300', '400', '700', '900'],
+    subsets: ['latin'],
+    variable: '--font-lato',
+    display: 'swap'
+});
+
+export const oswaldFont = Oswald({
+    weight: ['200', '300', '400', '500', '600', '700'],
+    subsets: ['latin'],
+    variable: '--font-oswald',
+    display: 'swap'
+});
+
+export const karlaFont = Karla({
+    weight: ['200', '300', '400', '500', '600', '700', '800'],
+    subsets: ['latin'],
+    variable: '--font-karla',
+    display: 'swap'
+});
+
+export const lexendFont = Lexend({
+    weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+    subsets: ['latin'],
+    variable: '--font-lexend',
+    display: 'swap'
+});
+
+export const alegreyaSansFont = Alegreya_Sans({
+    weight: ['100', '300', '400', '500', '700', '800', '900'],
+    subsets: ['latin'],
+    variable: '--font-alegreya-sans',
     display: 'swap'
 });
 
