@@ -315,6 +315,7 @@ export default function MinistryPage() {
 
                 {/* Sermon Carousel - Full Width */}
                 <div className="relative w-full overflow-visible">
+                    <p className="text-center text-red-500">NOTE: The left padding needs to match the breakpoints for the container class</p>
                     {/* Carousel Container */}
                     <div
                         ref={carouselRef}

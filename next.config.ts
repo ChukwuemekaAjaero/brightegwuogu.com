@@ -2,7 +2,20 @@ import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
     images: {
-        domains: ['images.ctfassets.net', 'downloads.ctfassets.net', 'videos.ctfassets.net']
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'images.ctfassets.net'
+            },
+            {
+                protocol: 'https',
+                hostname: 'downloads.ctfassets.net'
+            },
+            {
+                protocol: 'https',
+                hostname: 'videos.ctfassets.net'
+            }
+        ]
     }
 };
 
