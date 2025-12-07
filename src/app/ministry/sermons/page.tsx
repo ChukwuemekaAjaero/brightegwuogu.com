@@ -90,18 +90,40 @@ export default function MinistrySermons() {
 
     return (
         <div className="relative scroll-smooth">
+            {/* HERO SECTION */}
+            <section id="hero" className="relative flex min-h-screen items-center justify-center overflow-hidden rounded bg-[#030712]">
+                {/* Background Image */}
+                <div className="absolute inset-0 mask-b-from-50%">
+                    <Image
+                        src="/images/heroImage.jpg"
+                        alt="Sermons Hero Image"
+                        fill
+                        sizes="100vw"
+                        className="z-0 object-cover object-[75%_50%]"
+                        priority
+                    />
+                </div>
+
+                {/* Dark Overlay */}
+                <div className="absolute inset-0 z-2 bg-[#030712]/30"></div>
+
+                {/* Text content */}
+                <div className="relative z-2 flex min-h-screen items-center justify-center">
+                    <div className="container mx-auto px-4 text-center text-white sm:px-8">
+                        <h1 className={`mb-6 text-5xl font-bold md:text-8xl ${modernizFont.className}`}>Sermons</h1>
+                        <p className="text-lg text-gray-300 md:text-xl">P.B.&apos;s latest sermons for your progress and joy in the faith</p>
+                    </div>
+                </div>
+            </section>
+
             {/* SERMONS LIST SECTION */}
             <section className="wmin-h-screen relative overflow-hidden bg-[#030712] pt-16">
                 <div className="py-20">
-                    <div className="mb-12 text-center">
-                        <h2 className={`text-5xl font-bold text-white sm:text-5xl md:text-6xl md:text-7xl xl:text-8xl ${modernizFont.className}`}>
-                            Sermons
-                        </h2>
-                        <p className="mt-4 text-lg text-gray-300 md:text-xl">P.B.&apos;s latest sermons for your progress and joy in the faith</p>
-                    </div>
-
                     {/* SEARCH COMPONENT */}
                     <div className="mx-auto mb-12 max-w-4xl px-4 sm:px-8">
+                        <div className="mb-8 text-center">
+                            <h2 className={`text-4xl font-bold text-white md:text-5xl lg:text-6xl ${modernizFont.className}`}>Browse Sermons</h2>
+                        </div>
                         <div className="space-y-6">
                             {/* Clear Filters Button - Mobile Only */}
                             {(searchQuery || dateRange?.from || dateRange?.to || selectedTags.length > 0) && (

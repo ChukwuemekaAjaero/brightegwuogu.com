@@ -168,3 +168,8 @@ html {
         background-position: 41% 0%;
     }
 }
+
+/* Hide scrollbar for webkit browsers */
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
