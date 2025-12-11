@@ -16,6 +16,15 @@ const playfairDisplay = Playfair_Display({
 
 export default function Music() {
     const [isLoading, setIsLoading] = useState(true);
+    const [noOtherGodVideoLoaded, setNoOtherGodVideoLoaded] = useState(false);
+    const [noOtherGodVideoActive, setNoOtherGodVideoActive] = useState(false);
+    const [noOtherGodImageLoaded, setNoOtherGodImageLoaded] = useState(false);
+    const [joyUnspeakableVideoLoaded, setJoyUnspeakableVideoLoaded] = useState(false);
+    const [joyUnspeakableVideoActive, setJoyUnspeakableVideoActive] = useState(false);
+    const [joyUnspeakableImageLoaded, setJoyUnspeakableImageLoaded] = useState(false);
+    const [neverLostVideoLoaded, setNeverLostVideoLoaded] = useState(false);
+    const [neverLostVideoActive, setNeverLostVideoActive] = useState(false);
+    const [neverLostImageLoaded, setNeverLostImageLoaded] = useState(false);
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -182,15 +191,43 @@ export default function Music() {
                             No Other God
                         </h2>
 
-                        {/* Video Skeleton */}
-                        <div className="max-w-9xl relative z-0 mx-auto -mt-6 md:-mt-12 lg:-mt-24">
-                            <div className="relative aspect-video w-full overflow-visible rounded-xs bg-gray-800">
-                                <div className="absolute inset-0 animate-pulse bg-gray-700"></div>
+                        {/* Video */}
+                        <div
+                            className={`max-w-9xl relative z-0 mx-auto -mt-6 transition-all duration-200 ease-in-out md:-mt-12 lg:-mt-24 ${noOtherGodVideoActive ? 'z-[100] scale-[1.01]' : 'scale-100'}`}
+                            onMouseEnter={() => setNoOtherGodVideoActive(true)}
+                            onMouseLeave={() => setNoOtherGodVideoActive(false)}
+                        >
+                            <div
+                                className={`relative aspect-video w-full overflow-visible rounded-xs bg-gray-800 transition-all duration-200 ease-in-out ${noOtherGodVideoActive ? 'shadow-2xl shadow-black/50' : 'shadow-none'}`}
+                            >
+                                {/* Skeleton - shown until video loads */}
+                                {!noOtherGodVideoLoaded && <div className="absolute inset-0 animate-pulse bg-gray-700"></div>}
+                                {/* YouTube iframe */}
+                                <iframe
+                                    src="https://www.youtube.com/embed/_uUzAETf9TE"
+                                    title="No Other God - YouTube Video"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowFullScreen
+                                    className={`h-full w-full transition-opacity duration-300 ${noOtherGodVideoLoaded ? 'opacity-100' : 'opacity-0'}`}
+                                    onLoad={() => setNoOtherGodVideoLoaded(true)}
+                                    onFocus={() => setNoOtherGodVideoActive(true)}
+                                    onBlur={() => setNoOtherGodVideoActive(false)}
+                                ></iframe>
                             </div>
                         </div>
-                        {/* Album Cover Skeleton - Bottom Left */}
+                        {/* Album Cover - Bottom Left */}
                         <div className="absolute -right-8 -bottom-8 z-20 hidden aspect-square w-40 overflow-hidden rounded bg-gray-600 shadow-lg md:w-60 lg:block lg:w-80">
-                            <div className="absolute inset-0 animate-pulse bg-gray-500"></div>
+                            {/* Skeleton - shown until image loads */}
+                            {!noOtherGodImageLoaded && <div className="absolute inset-0 animate-pulse bg-gray-500"></div>}
+                            {/* Image */}
+                            <img
+                                src="/images/music/NoOtherGod.jpg"
+                                alt="No Other God Album Cover"
+                                className={`h-full w-full object-cover transition-opacity duration-300 ${
+                                    noOtherGodImageLoaded ? 'opacity-100' : 'opacity-0'
+                                }`}
+                                onLoad={() => setNoOtherGodImageLoaded(true)}
+                            />
                         </div>
                     </div>
 
@@ -221,15 +258,43 @@ export default function Music() {
                             Joy Unspeakable
                         </h2>
 
-                        {/* Video Skeleton */}
-                        <div className="max-w-9xl relative z-0 mx-auto -mt-6 md:-mt-12 lg:-mt-16">
-                            <div className="relative aspect-video w-full overflow-visible rounded-xs bg-gray-800">
-                                <div className="absolute inset-0 animate-pulse bg-gray-700"></div>
+                        {/* Video */}
+                        <div
+                            className={`max-w-9xl relative z-0 mx-auto -mt-6 transition-all duration-200 ease-in-out md:-mt-12 lg:-mt-16 ${joyUnspeakableVideoActive ? 'z-[100] scale-[1.01]' : 'scale-100'}`}
+                            onMouseEnter={() => setJoyUnspeakableVideoActive(true)}
+                            onMouseLeave={() => setJoyUnspeakableVideoActive(false)}
+                        >
+                            <div
+                                className={`relative aspect-video w-full overflow-visible rounded-xs bg-gray-800 transition-all duration-200 ease-in-out ${joyUnspeakableVideoActive ? 'shadow-2xl shadow-black/50' : 'shadow-none'}`}
+                            >
+                                {/* Skeleton - shown until video loads */}
+                                {!joyUnspeakableVideoLoaded && <div className="absolute inset-0 animate-pulse bg-gray-700"></div>}
+                                {/* YouTube iframe */}
+                                <iframe
+                                    src="https://www.youtube.com/embed/I4h5s5ppu7g"
+                                    title="Joy Unspeakable - YouTube Video"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowFullScreen
+                                    className={`h-full w-full transition-opacity duration-300 ${joyUnspeakableVideoLoaded ? 'opacity-100' : 'opacity-0'}`}
+                                    onLoad={() => setJoyUnspeakableVideoLoaded(true)}
+                                    onFocus={() => setJoyUnspeakableVideoActive(true)}
+                                    onBlur={() => setJoyUnspeakableVideoActive(false)}
+                                ></iframe>
                             </div>
                         </div>
-                        {/* Album Cover Skeleton - Bottom Left */}
+                        {/* Album Cover - Bottom Left */}
                         <div className="absolute -right-8 -bottom-8 z-20 hidden aspect-square w-40 overflow-hidden rounded bg-gray-600 shadow-lg md:w-60 lg:block lg:w-80">
-                            <div className="absolute inset-0 animate-pulse bg-gray-500"></div>
+                            {/* Skeleton - shown until image loads */}
+                            {!joyUnspeakableImageLoaded && <div className="absolute inset-0 animate-pulse bg-gray-500"></div>}
+                            {/* Image */}
+                            <img
+                                src="/images/music/JoyUnspeakable.jpg"
+                                alt="Joy Unspeakable Album Cover"
+                                className={`h-full w-full object-cover transition-opacity duration-300 ${
+                                    joyUnspeakableImageLoaded ? 'opacity-100' : 'opacity-0'
+                                }`}
+                                onLoad={() => setJoyUnspeakableImageLoaded(true)}
+                            />
                         </div>
                     </div>
 
@@ -259,15 +324,43 @@ export default function Music() {
                             Never Lost (Live)
                         </h2>
 
-                        {/* Video Skeleton */}
-                        <div className="max-w-9xl relative z-0 mx-auto -mt-6 md:-mt-12 lg:-mt-24">
-                            <div className="relative aspect-video w-full overflow-visible rounded-xs bg-gray-800">
-                                <div className="absolute inset-0 animate-pulse bg-gray-700"></div>
+                        {/* Video */}
+                        <div
+                            className={`max-w-9xl relative z-0 mx-auto -mt-6 transition-all duration-200 ease-in-out md:-mt-12 lg:-mt-24 ${neverLostVideoActive ? 'z-[100] scale-[1.01]' : 'scale-100'}`}
+                            onMouseEnter={() => setNeverLostVideoActive(true)}
+                            onMouseLeave={() => setNeverLostVideoActive(false)}
+                        >
+                            <div
+                                className={`relative aspect-video w-full overflow-visible rounded-xs bg-gray-800 transition-all duration-200 ease-in-out ${neverLostVideoActive ? 'shadow-2xl shadow-black/50' : 'shadow-none'}`}
+                            >
+                                {/* Skeleton - shown until video loads */}
+                                {!neverLostVideoLoaded && <div className="absolute inset-0 animate-pulse bg-gray-700"></div>}
+                                {/* YouTube iframe */}
+                                <iframe
+                                    src="https://www.youtube.com/embed/4Se2Tt_FuVM"
+                                    title="Never Lost (Live) - YouTube Video"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowFullScreen
+                                    className={`h-full w-full transition-opacity duration-300 ${neverLostVideoLoaded ? 'opacity-100' : 'opacity-0'}`}
+                                    onLoad={() => setNeverLostVideoLoaded(true)}
+                                    onFocus={() => setNeverLostVideoActive(true)}
+                                    onBlur={() => setNeverLostVideoActive(false)}
+                                ></iframe>
                             </div>
                         </div>
-                        {/* Album Cover Skeleton - Bottom Left */}
+                        {/* Album Cover - Bottom Left */}
                         <div className="absolute -right-8 -bottom-8 z-20 hidden aspect-square w-40 overflow-hidden rounded bg-gray-600 shadow-lg md:w-60 lg:block lg:w-80">
-                            <div className="absolute inset-0 animate-pulse bg-gray-500"></div>
+                            {/* Skeleton - shown until image loads */}
+                            {!neverLostImageLoaded && <div className="absolute inset-0 animate-pulse bg-gray-500"></div>}
+                            {/* Image */}
+                            <img
+                                src="/images/music/NeverLost.jpg"
+                                alt="Never Lost (Live) Album Cover"
+                                className={`h-full w-full object-cover transition-opacity duration-300 ${
+                                    neverLostImageLoaded ? 'opacity-100' : 'opacity-0'
+                                }`}
+                                onLoad={() => setNeverLostImageLoaded(true)}
+                            />
                         </div>
                     </div>
 
