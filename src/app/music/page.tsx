@@ -188,8 +188,8 @@ export default function Music() {
                 <div className="container mx-auto px-4 sm:px-8">
                     <div className="relative text-center">
                         <h2
-                            className={`relative z-10 mb-0 text-5xl font-bold text-white transition-opacity duration-200 md:text-7xl lg:text-9xl ${modernizFont.className} ${
-                                noOtherGodVideoActive ? 'opacity-40' : 'opacity-100'
+                            className={`relative z-10 mb-0 text-5xl font-bold text-white transition-all duration-200 md:text-7xl lg:text-9xl ${modernizFont.className} ${
+                                noOtherGodVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100'
                             }`}
                         >
                             No Other God
@@ -197,7 +197,7 @@ export default function Music() {
 
                         {/* Video */}
                         <div
-                            className={`max-w-9xl relative z-0 mx-auto -mt-6 transition-all duration-200 ease-in-out md:-mt-12 lg:-mt-24 ${noOtherGodVideoActive ? 'z-[100]' : ''}`}
+                            className={`max-w-9xl relative z-0 mx-auto -mt-6 transition-all duration-200 ease-in-out md:-mt-12 lg:-mt-24 ${noOtherGodVideoActive ? 'z-[100] scale-[1.01]' : 'scale-100'}`}
                             onMouseEnter={() => setNoOtherGodVideoActive(true)}
                             onMouseLeave={() => setNoOtherGodVideoActive(false)}
                         >
@@ -227,8 +227,8 @@ export default function Music() {
                             <img
                                 src="/images/music/NoOtherGod.jpg"
                                 alt="No Other God Album Cover"
-                                className={`h-full w-full object-cover transition-opacity duration-200 ${
-                                    noOtherGodImageLoaded ? (noOtherGodVideoActive ? 'opacity-40' : 'opacity-100') : 'opacity-0'
+                                className={`h-full w-full object-cover transition-all duration-200 ${
+                                    noOtherGodImageLoaded ? (noOtherGodVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100') : 'blur-0 opacity-0'
                                 }`}
                                 onLoad={() => setNoOtherGodImageLoaded(true)}
                             />
@@ -237,15 +237,35 @@ export default function Music() {
 
                     {/* Song Information */}
                     <div className="mt-12 text-center">
-                        <p className="mb-2 text-lg text-white md:text-xl">Brite Egwuogu, Rhema Onuoha</p>
-                        <p className="mb-8 text-base text-gray-400 md:text-lg">2025</p>
-                        <p className="mx-auto mb-8 max-w-3xl text-base leading-relaxed text-gray-300 md:text-lg">
+                        <p
+                            className={`mb-2 text-lg text-white transition-all duration-200 md:text-xl ${
+                                noOtherGodVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100'
+                            }`}
+                        >
+                            Brite Egwuogu, Rhema Onuoha
+                        </p>
+                        <p
+                            className={`mb-8 text-base text-gray-400 transition-all duration-200 md:text-lg ${
+                                noOtherGodVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100'
+                            }`}
+                        >
+                            2025
+                        </p>
+                        <p
+                            className={`mx-auto mb-8 max-w-3xl text-base leading-relaxed text-gray-300 transition-all duration-200 md:text-lg ${
+                                noOtherGodVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100'
+                            }`}
+                        >
                             "Jesus, No Other God" is more than a song, it's a sound from a strange place. It's a declaration and a reminder that in a
                             world full of names and options, there is still only One true God and He's different from the rest.
                         </p>
 
                         {/* Learn More Button */}
-                        <button className="group inline-flex items-center justify-center rounded bg-blue-900 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300 hover:scale-105 hover:bg-blue-800">
+                        <button
+                            className={`group inline-flex items-center justify-center rounded bg-blue-900 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-200 hover:scale-105 hover:bg-blue-800 ${
+                                noOtherGodVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100'
+                            }`}
+                        >
                             Learn More
                         </button>
                     </div>
@@ -257,8 +277,8 @@ export default function Music() {
                 <div className="container mx-auto px-4 sm:px-8">
                     <div className="relative text-center">
                         <h2
-                            className={`relative z-10 mb-0 text-3xl font-bold text-white transition-opacity duration-200 sm:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl ${modernizFont.className} ${
-                                joyUnspeakableVideoActive ? 'opacity-40' : 'opacity-100'
+                            className={`relative z-10 mb-0 text-3xl font-bold text-white transition-all duration-200 sm:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl ${modernizFont.className} ${
+                                joyUnspeakableVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100'
                             }`}
                         >
                             Joy Unspeakable
@@ -266,7 +286,7 @@ export default function Music() {
 
                         {/* Video */}
                         <div
-                            className={`max-w-9xl relative z-0 mx-auto -mt-6 transition-all duration-200 ease-in-out md:-mt-12 lg:-mt-16 ${joyUnspeakableVideoActive ? 'z-[100]' : ''}`}
+                            className={`max-w-9xl relative z-0 mx-auto -mt-6 transition-all duration-200 ease-in-out md:-mt-12 lg:-mt-16 ${joyUnspeakableVideoActive ? 'z-[100] scale-[1.01]' : 'scale-100'}`}
                             onMouseEnter={() => setJoyUnspeakableVideoActive(true)}
                             onMouseLeave={() => setJoyUnspeakableVideoActive(false)}
                         >
@@ -296,8 +316,12 @@ export default function Music() {
                             <img
                                 src="/images/music/JoyUnspeakable.jpg"
                                 alt="Joy Unspeakable Album Cover"
-                                className={`h-full w-full object-cover transition-opacity duration-200 ${
-                                    joyUnspeakableImageLoaded ? (joyUnspeakableVideoActive ? 'opacity-40' : 'opacity-100') : 'opacity-0'
+                                className={`h-full w-full object-cover transition-all duration-200 ${
+                                    joyUnspeakableImageLoaded
+                                        ? joyUnspeakableVideoActive
+                                            ? 'opacity-40 blur-xs'
+                                            : 'blur-0 opacity-100'
+                                        : 'blur-0 opacity-0'
                                 }`}
                                 onLoad={() => setJoyUnspeakableImageLoaded(true)}
                             />
@@ -306,16 +330,36 @@ export default function Music() {
 
                     {/* Song Information */}
                     <div className="mt-12 text-center">
-                        <p className="mb-2 text-lg text-white md:text-xl">Brite Egwuogu, Daniel Ike</p>
-                        <p className="mb-8 text-base text-gray-400 md:text-lg">2025</p>
-                        <p className="mx-auto mb-8 max-w-3xl text-base leading-relaxed text-gray-300 md:text-lg">
+                        <p
+                            className={`mb-2 text-lg text-white transition-all duration-200 md:text-xl ${
+                                joyUnspeakableVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100'
+                            }`}
+                        >
+                            Brite Egwuogu, Daniel Ike
+                        </p>
+                        <p
+                            className={`mb-8 text-base text-gray-400 transition-all duration-200 md:text-lg ${
+                                joyUnspeakableVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100'
+                            }`}
+                        >
+                            2025
+                        </p>
+                        <p
+                            className={`mx-auto mb-8 max-w-3xl text-base leading-relaxed text-gray-300 transition-all duration-200 md:text-lg ${
+                                joyUnspeakableVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100'
+                            }`}
+                        >
                             Lorem ipsum dolor sit amet consectetur adipiscing elit. Consectetur adipiscing elit quisque faucibus ex sapien vitae. Ex
                             sapien vitae pellentesque sem placerat in id. Placerat in id cursus mi pretium tellus duis. Pretium tellus duis convallis
                             tempus leo eu aenean.
                         </p>
 
                         {/* Learn More Button */}
-                        <button className="group inline-flex items-center justify-center rounded bg-blue-900 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300 hover:scale-105 hover:bg-blue-800">
+                        <button
+                            className={`group inline-flex items-center justify-center rounded bg-blue-900 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-200 hover:scale-105 hover:bg-blue-800 ${
+                                joyUnspeakableVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100'
+                            }`}
+                        >
                             Learn More
                         </button>
                     </div>
@@ -327,8 +371,8 @@ export default function Music() {
                 <div className="container mx-auto px-4 sm:px-8">
                     <div className="relative text-center">
                         <h2
-                            className={`relative z-10 mb-0 text-5xl font-bold text-white transition-opacity duration-200 md:text-7xl lg:text-9xl ${modernizFont.className} ${
-                                neverLostVideoActive ? 'opacity-40' : 'opacity-100'
+                            className={`relative z-10 mb-0 text-5xl font-bold text-white transition-all duration-200 md:text-7xl lg:text-9xl ${modernizFont.className} ${
+                                neverLostVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100'
                             }`}
                         >
                             Never Lost (Live)
@@ -336,7 +380,7 @@ export default function Music() {
 
                         {/* Video */}
                         <div
-                            className={`max-w-9xl relative z-0 mx-auto -mt-6 transition-all duration-200 ease-in-out md:-mt-12 lg:-mt-24 ${neverLostVideoActive ? 'z-[100]' : ''}`}
+                            className={`max-w-9xl relative z-0 mx-auto -mt-6 transition-all duration-200 ease-in-out md:-mt-12 lg:-mt-24 ${neverLostVideoActive ? 'z-[100] scale-[1.01]' : 'scale-100'}`}
                             onMouseEnter={() => setNeverLostVideoActive(true)}
                             onMouseLeave={() => setNeverLostVideoActive(false)}
                         >
@@ -366,8 +410,8 @@ export default function Music() {
                             <img
                                 src="/images/music/NeverLost.jpg"
                                 alt="Never Lost (Live) Album Cover"
-                                className={`h-full w-full object-cover transition-opacity duration-200 ${
-                                    neverLostImageLoaded ? (neverLostVideoActive ? 'opacity-40' : 'opacity-100') : 'opacity-0'
+                                className={`h-full w-full object-cover transition-all duration-200 ${
+                                    neverLostImageLoaded ? (neverLostVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100') : 'blur-0 opacity-0'
                                 }`}
                                 onLoad={() => setNeverLostImageLoaded(true)}
                             />
@@ -376,16 +420,36 @@ export default function Music() {
 
                     {/* Song Information */}
                     <div className="mt-12 text-center">
-                        <p className="mb-2 text-lg text-white md:text-xl">Brite Egwuogu</p>
-                        <p className="mb-8 text-base text-gray-400 md:text-lg">2023</p>
-                        <p className="mx-auto mb-8 max-w-3xl text-base leading-relaxed text-gray-300 md:text-lg">
+                        <p
+                            className={`mb-2 text-lg text-white transition-all duration-200 md:text-xl ${
+                                neverLostVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100'
+                            }`}
+                        >
+                            Brite Egwuogu
+                        </p>
+                        <p
+                            className={`mb-8 text-base text-gray-400 transition-all duration-200 md:text-lg ${
+                                neverLostVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100'
+                            }`}
+                        >
+                            2023
+                        </p>
+                        <p
+                            className={`mx-auto mb-8 max-w-3xl text-base leading-relaxed text-gray-300 transition-all duration-200 md:text-lg ${
+                                neverLostVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100'
+                            }`}
+                        >
                             Lorem ipsum dolor sit amet consectetur adipiscing elit. Consectetur adipiscing elit quisque faucibus ex sapien vitae. Ex
                             sapien vitae pellentesque sem placerat in id. Placerat in id cursus mi pretium tellus duis. Pretium tellus duis convallis
                             tempus leo eu aenean.
                         </p>
 
                         {/* Learn More Button */}
-                        <button className="group inline-flex items-center justify-center rounded bg-blue-900 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300 hover:scale-105 hover:bg-blue-800">
+                        <button
+                            className={`group inline-flex items-center justify-center rounded bg-blue-900 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-200 hover:scale-105 hover:bg-blue-800 ${
+                                neverLostVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100'
+                            }`}
+                        >
                             Learn More
                         </button>
                     </div>
