@@ -1127,7 +1127,7 @@ export default function HomePage() {
                         >
                             <Link
                                 href="/music"
-                                className="group inline-flex cursor-pointer items-center rounded bg-gradient-to-br from-blue-900 to-teal-600 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300"
+                                className="group inline-flex cursor-pointer items-center rounded bg-blue-900 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300"
                             >
                                 More
                                 <FiArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-2" />
@@ -1480,7 +1480,7 @@ export default function HomePage() {
                         >
                             <Link
                                 href="/ministry"
-                                className="group inline-flex cursor-pointer items-center rounded bg-gradient-to-br from-blue-900 to-teal-600 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300"
+                                className="group inline-flex cursor-pointer items-center rounded bg-blue-900 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300"
                             >
                                 More
                                 <FiArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-2" />
@@ -1524,7 +1524,7 @@ export default function HomePage() {
                                 damping: 20,
                                 mass: 0.8
                             }}
-                            className="m-8 flex h-[calc(100vh-4rem)] w-[calc(100vw-4rem)] max-w-2xl flex-col justify-center rounded bg-gradient-to-br from-blue-900 to-teal-600 p-8 shadow-lg shadow-blue-800/20"
+                            className="m-8 flex h-[calc(100vh-4rem)] w-[calc(100vw-4rem)] max-w-2xl flex-col justify-center rounded bg-blue-900 p-8 shadow-lg shadow-blue-800/20"
                         >
                             {/* Song Info */}
                             <div className="mb-8 text-center text-white">

@@ -140,7 +140,7 @@ export default function MusicContact() {
                                 <Button
                                     type="submit"
                                     disabled={isSubmitting}
-                                    className="group inline-flex items-center justify-center rounded bg-gradient-to-br from-blue-900 to-teal-600 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300 hover:scale-105 hover:from-blue-800 hover:to-teal-500 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100"
+                                    className="group inline-flex items-center justify-center rounded bg-blue-900 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300 hover:scale-105 hover:bg-blue-800 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100"
                                 >
                                     {isSubmitting ? 'Sending...' : 'Send Message'}
                                 </Button>
@@ -189,7 +189,7 @@ export default function MusicContact() {
                                 <Button
                                     type="submit"
                                     disabled={isSubscribing}
-                                    className="group inline-flex items-center justify-center rounded bg-gradient-to-br from-blue-900 to-teal-600 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300 hover:scale-105 hover:from-blue-800 hover:to-teal-500 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100"
+                                    className="group inline-flex items-center justify-center rounded bg-blue-900 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300 hover:scale-105 hover:bg-blue-800 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100"
                                 >
                                     {isSubscribing ? 'Subscribing...' : 'Subscribe'}
                                 </Button>

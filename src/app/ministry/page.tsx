@@ -271,7 +271,7 @@ export default function MinistryPage() {
                         <div className="mt-12 flex justify-center">
                             <Link
                                 href="/ministry/about"
-                                className="group inline-flex items-center justify-center rounded bg-gradient-to-br from-blue-900 to-teal-600 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300 hover:scale-105 hover:from-blue-800 hover:to-teal-500"
+                                className="group inline-flex items-center justify-center rounded bg-blue-900 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300 hover:scale-105 hover:bg-blue-800"
                             >
                                 Learn More
                             </Link>
@@ -447,7 +447,7 @@ export default function MinistryPage() {
                         <div className="mt-32 flex justify-center md:mt-40">
                             <Link
                                 href="/ministry/sermons"
-                                className="group inline-flex items-center justify-center rounded bg-gradient-to-br from-blue-900 to-teal-600 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300 hover:scale-105 hover:from-blue-800 hover:to-teal-500"
+                                className="group inline-flex items-center justify-center rounded bg-blue-900 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300 hover:scale-105 hover:bg-blue-800"
                             >
                                 View All Sermons
                                 <FiArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
@@ -574,7 +574,7 @@ export default function MinistryPage() {
                                 <Button
                                     type="submit"
                                     disabled={isSubmitting}
-                                    className="group inline-flex items-center justify-center rounded bg-gradient-to-br from-blue-900 to-teal-600 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300 hover:scale-105 hover:from-blue-800 hover:to-teal-500 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100"
+                                    className="group inline-flex items-center justify-center rounded bg-blue-900 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300 hover:scale-105 hover:bg-blue-800 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100"
                                 >
                                     {isSubmitting ? 'Sending...' : 'Send Message'}
                                 </Button>

@@ -174,7 +174,7 @@ export default function Music() {
                             {/* Read My Story Button */}
                             <Link
                                 href="/music/about"
-                                className="group inline-flex items-center justify-center rounded bg-gradient-to-br from-blue-900 to-teal-600 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300 hover:scale-105 hover:from-blue-800 hover:to-teal-500"
+                                className="group inline-flex items-center justify-center rounded bg-blue-900 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300 hover:scale-105 hover:bg-blue-800"
                             >
                                 Read My Story
                             </Link>
@@ -187,13 +187,17 @@ export default function Music() {
             <section className="relative bg-[#030712] py-20">
                 <div className="container mx-auto px-4 sm:px-8">
                     <div className="relative text-center">
-                        <h2 className={`relative z-10 mb-0 text-5xl font-bold text-white md:text-7xl lg:text-9xl ${modernizFont.className}`}>
+                        <h2
+                            className={`relative z-10 mb-0 text-5xl font-bold text-white transition-opacity duration-200 md:text-7xl lg:text-9xl ${modernizFont.className} ${
+                                noOtherGodVideoActive ? 'opacity-40' : 'opacity-100'
+                            }`}
+                        >
                             No Other God
                         </h2>
 
                         {/* Video */}
                         <div
-                            className={`max-w-9xl relative z-0 mx-auto -mt-6 transition-all duration-200 ease-in-out md:-mt-12 lg:-mt-24 ${noOtherGodVideoActive ? 'z-[100] scale-[1.01]' : 'scale-100'}`}
+                            className={`max-w-9xl relative z-0 mx-auto -mt-6 transition-all duration-200 ease-in-out md:-mt-12 lg:-mt-24 ${noOtherGodVideoActive ? 'z-[100]' : ''}`}
                             onMouseEnter={() => setNoOtherGodVideoActive(true)}
                             onMouseLeave={() => setNoOtherGodVideoActive(false)}
                         >
@@ -216,15 +220,15 @@ export default function Music() {
                             </div>
                         </div>
                         {/* Album Cover - Bottom Left */}
-                        <div className="absolute -right-8 -bottom-8 z-20 hidden aspect-square w-40 overflow-hidden rounded bg-gray-600 shadow-lg md:w-60 lg:block lg:w-80">
+                        <div className="absolute -right-8 -bottom-8 z-20 hidden aspect-square w-40 overflow-hidden rounded shadow-lg md:w-60 lg:block lg:w-80">
                             {/* Skeleton - shown until image loads */}
                             {!noOtherGodImageLoaded && <div className="absolute inset-0 animate-pulse bg-gray-500"></div>}
                             {/* Image */}
                             <img
                                 src="/images/music/NoOtherGod.jpg"
                                 alt="No Other God Album Cover"
-                                className={`h-full w-full object-cover transition-opacity duration-300 ${
-                                    noOtherGodImageLoaded ? 'opacity-100' : 'opacity-0'
+                                className={`h-full w-full object-cover transition-opacity duration-200 ${
+                                    noOtherGodImageLoaded ? (noOtherGodVideoActive ? 'opacity-40' : 'opacity-100') : 'opacity-0'
                                 }`}
                                 onLoad={() => setNoOtherGodImageLoaded(true)}
                             />
@@ -241,7 +245,7 @@ export default function Music() {
                         </p>
 
                         {/* Learn More Button */}
-                        <button className="group inline-flex items-center justify-center rounded bg-gradient-to-br from-blue-900 to-teal-600 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300 hover:scale-105 hover:from-blue-800 hover:to-teal-500">
+                        <button className="group inline-flex items-center justify-center rounded bg-blue-900 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300 hover:scale-105 hover:bg-blue-800">
                             Learn More
                         </button>
                     </div>
@@ -253,14 +257,16 @@ export default function Music() {
                 <div className="container mx-auto px-4 sm:px-8">
                     <div className="relative text-center">
                         <h2
-                            className={`relative z-10 mb-0 text-3xl font-bold text-white sm:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl ${modernizFont.className}`}
+                            className={`relative z-10 mb-0 text-3xl font-bold text-white transition-opacity duration-200 sm:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl ${modernizFont.className} ${
+                                joyUnspeakableVideoActive ? 'opacity-40' : 'opacity-100'
+                            }`}
                         >
                             Joy Unspeakable
                         </h2>
 
                         {/* Video */}
                         <div
-                            className={`max-w-9xl relative z-0 mx-auto -mt-6 transition-all duration-200 ease-in-out md:-mt-12 lg:-mt-16 ${joyUnspeakableVideoActive ? 'z-[100] scale-[1.01]' : 'scale-100'}`}
+                            className={`max-w-9xl relative z-0 mx-auto -mt-6 transition-all duration-200 ease-in-out md:-mt-12 lg:-mt-16 ${joyUnspeakableVideoActive ? 'z-[100]' : ''}`}
                             onMouseEnter={() => setJoyUnspeakableVideoActive(true)}
                             onMouseLeave={() => setJoyUnspeakableVideoActive(false)}
                         >
@@ -283,15 +289,15 @@ export default function Music() {
                             </div>
                         </div>
                         {/* Album Cover - Bottom Left */}
-                        <div className="absolute -right-8 -bottom-8 z-20 hidden aspect-square w-40 overflow-hidden rounded bg-gray-600 shadow-lg md:w-60 lg:block lg:w-80">
+                        <div className="absolute -right-8 -bottom-8 z-20 hidden aspect-square w-40 overflow-hidden rounded shadow-lg md:w-60 lg:block lg:w-80">
                             {/* Skeleton - shown until image loads */}
                             {!joyUnspeakableImageLoaded && <div className="absolute inset-0 animate-pulse bg-gray-500"></div>}
                             {/* Image */}
                             <img
                                 src="/images/music/JoyUnspeakable.jpg"
                                 alt="Joy Unspeakable Album Cover"
-                                className={`h-full w-full object-cover transition-opacity duration-300 ${
-                                    joyUnspeakableImageLoaded ? 'opacity-100' : 'opacity-0'
+                                className={`h-full w-full object-cover transition-opacity duration-200 ${
+                                    joyUnspeakableImageLoaded ? (joyUnspeakableVideoActive ? 'opacity-40' : 'opacity-100') : 'opacity-0'
                                 }`}
                                 onLoad={() => setJoyUnspeakableImageLoaded(true)}
                             />
@@ -309,7 +315,7 @@ export default function Music() {
                         </p>
 
                         {/* Learn More Button */}
-                        <button className="group inline-flex items-center justify-center rounded bg-gradient-to-br from-blue-900 to-teal-600 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300 hover:scale-105 hover:from-blue-800 hover:to-teal-500">
+                        <button className="group inline-flex items-center justify-center rounded bg-blue-900 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300 hover:scale-105 hover:bg-blue-800">
                             Learn More
                         </button>
                     </div>
@@ -320,13 +326,17 @@ export default function Music() {
             <section className="relative bg-[#030712] py-20">
                 <div className="container mx-auto px-4 sm:px-8">
                     <div className="relative text-center">
-                        <h2 className={`relative z-10 mb-0 text-5xl font-bold text-white md:text-7xl lg:text-9xl ${modernizFont.className}`}>
+                        <h2
+                            className={`relative z-10 mb-0 text-5xl font-bold text-white transition-opacity duration-200 md:text-7xl lg:text-9xl ${modernizFont.className} ${
+                                neverLostVideoActive ? 'opacity-40' : 'opacity-100'
+                            }`}
+                        >
                             Never Lost (Live)
                         </h2>
 
                         {/* Video */}
                         <div
-                            className={`max-w-9xl relative z-0 mx-auto -mt-6 transition-all duration-200 ease-in-out md:-mt-12 lg:-mt-24 ${neverLostVideoActive ? 'z-[100] scale-[1.01]' : 'scale-100'}`}
+                            className={`max-w-9xl relative z-0 mx-auto -mt-6 transition-all duration-200 ease-in-out md:-mt-12 lg:-mt-24 ${neverLostVideoActive ? 'z-[100]' : ''}`}
                             onMouseEnter={() => setNeverLostVideoActive(true)}
                             onMouseLeave={() => setNeverLostVideoActive(false)}
                         >
@@ -349,15 +359,15 @@ export default function Music() {
                             </div>
                         </div>
                         {/* Album Cover - Bottom Left */}
-                        <div className="absolute -right-8 -bottom-8 z-20 hidden aspect-square w-40 overflow-hidden rounded bg-gray-600 shadow-lg md:w-60 lg:block lg:w-80">
+                        <div className="absolute -right-8 -bottom-8 z-20 hidden aspect-square w-40 overflow-hidden rounded shadow-lg md:w-60 lg:block lg:w-80">
                             {/* Skeleton - shown until image loads */}
                             {!neverLostImageLoaded && <div className="absolute inset-0 animate-pulse bg-gray-500"></div>}
                             {/* Image */}
                             <img
                                 src="/images/music/NeverLost.jpg"
                                 alt="Never Lost (Live) Album Cover"
-                                className={`h-full w-full object-cover transition-opacity duration-300 ${
-                                    neverLostImageLoaded ? 'opacity-100' : 'opacity-0'
+                                className={`h-full w-full object-cover transition-opacity duration-200 ${
+                                    neverLostImageLoaded ? (neverLostVideoActive ? 'opacity-40' : 'opacity-100') : 'opacity-0'
                                 }`}
                                 onLoad={() => setNeverLostImageLoaded(true)}
                             />
@@ -375,7 +385,7 @@ export default function Music() {
                         </p>
 
                         {/* Learn More Button */}
-                        <button className="group inline-flex items-center justify-center rounded bg-gradient-to-br from-blue-900 to-teal-600 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300 hover:scale-105 hover:from-blue-800 hover:to-teal-500">
+                        <button className="group inline-flex items-center justify-center rounded bg-blue-900 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300 hover:scale-105 hover:bg-blue-800">
                             Learn More
                         </button>
                     </div>
@@ -458,7 +468,7 @@ export default function Music() {
                                 <Button
                                     type="submit"
                                     disabled={isSubmitting}
-                                    className="group inline-flex items-center justify-center rounded bg-gradient-to-br from-blue-900 to-teal-600 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300 hover:scale-105 hover:from-blue-800 hover:to-teal-500 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100"
+                                    className="group inline-flex items-center justify-center rounded bg-blue-900 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300 hover:scale-105 hover:bg-blue-800 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100"
                                 >
                                     {isSubmitting ? 'Sending...' : 'Send Message'}
                                 </Button>
