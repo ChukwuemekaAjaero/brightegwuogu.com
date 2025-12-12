@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence, PanInfo } from 'framer-motion';
 import { modernizFont } from '@/lib/utils';
 import { FiArrowLeft, FiArrowRight, FiArrowRight as ExploreIcon } from 'react-icons/fi';
@@ -17,9 +18,34 @@ const slides = [
 const STORAGE_KEY = 'rootPageCurrentSlide';
 
 export default function RootPage() {
-    // Load saved slide index from localStorage on mount
+    const pathname = usePathname();
+
+    // Function to get slide index from route (matches routes that start with slide href)
+    const getSlideIndexFromRoute = (route: string): number | null => {
+        console.log('route', route);
+        const slideIndex = slides.findIndex((slide) => route.startsWith(slide.href));
+        return slideIndex >= 0 ? slideIndex : null;
+    };
+
+    // Load saved slide index from localStorage on mount, or detect from referrer
     const [currentIndex, setCurrentIndex] = useState(() => {
         if (typeof window !== 'undefined') {
+            // Check if we have a referrer that matches one of our routes
+            const referrer = document.referrer;
+            if (referrer) {
+                try {
+                    const referrerUrl = new URL(referrer);
+                    const referrerPath = referrerUrl.pathname;
+                    const slideIndex = getSlideIndexFromRoute(referrerPath);
+                    if (slideIndex !== null) {
+                        return slideIndex;
+                    }
+                } catch (e) {
+                    // If URL parsing fails, fall through to localStorage
+                }
+            }
+
+            // Fall back to localStorage
             const saved = localStorage.getItem(STORAGE_KEY);
             if (saved !== null) {
                 const index = parseInt(saved, 10);
@@ -38,6 +64,25 @@ export default function RootPage() {
             localStorage.setItem(STORAGE_KEY, currentIndex.toString());
         }
     }, [currentIndex]);
+
+    // Update slide index based on referrer when component mounts
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            const referrer = document.referrer;
+            if (referrer) {
+                try {
+                    const referrerUrl = new URL(referrer);
+                    const referrerPath = referrerUrl.pathname;
+                    const slideIndex = getSlideIndexFromRoute(referrerPath);
+                    if (slideIndex !== null && slideIndex !== currentIndex) {
+                        setCurrentIndex(slideIndex);
+                    }
+                } catch (e) {
+                    // If URL parsing fails, ignore
+                }
+            }
+        }
+    }, []);
 
     const goToSlide = (index: number) => {
         const newDirection = index > currentIndex ? 'right' : 'left';
@@ -105,7 +150,7 @@ export default function RootPage() {
                         <p className={`text-center text-xl font-bold text-white`}>Select a side of Bright</p>
                     </div>
 
-                    <AnimatePresence mode="wait" custom={direction} initial={false}>
+                    <AnimatePresence custom={direction} initial={false}>
                         {slides.map((slide, index) => {
                             if (index !== currentIndex) return null;
 
@@ -135,7 +180,7 @@ export default function RootPage() {
                                     exit="exit"
                                     transition={{
                                         opacity: { duration: 0.2, ease: 'easeInOut' },
-                                        x: { type: 'spring', stiffness: 200, damping: 15, mass: 1 }
+                                        x: { duration: 0.8, type: 'spring', stiffness: 200, damping: 15, mass: 1 }
                                     }}
                                     drag="x"
                                     dragConstraints={{ left: 0, right: 0 }}
