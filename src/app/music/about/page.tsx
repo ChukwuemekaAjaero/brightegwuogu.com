@@ -11,6 +11,9 @@ export default function MusicAbout() {
     const lastScrollY = useRef(0);
     const accumulatedScroll = useRef(0);
     const isInitialized = useRef(false);
+    const [profileImageLoaded, setProfileImageLoaded] = useState(false);
+    const [isHovered, setIsHovered] = useState(false);
+    const videoRef = useRef<HTMLVideoElement>(null);
 
     // Initialize carousel with first image off-screen to the left
     useEffect(() => {
@@ -72,9 +75,25 @@ export default function MusicAbout() {
                         Egwuogu
                     </h1>
 
-                    {/* Profile Image Skeleton */}
-                    <div className="relative -mt-16 aspect-[3/4] w-80 overflow-hidden rounded-xs bg-gray-800 shadow-lg md:w-96 lg:w-[28rem] xl:w-[32rem]">
-                        <div className="absolute inset-0 animate-pulse bg-gray-700"></div>
+                    {/* Profile Image */}
+                    <div
+                        className="relative -mt-16 aspect-[3/4] w-80 overflow-hidden rounded-xs bg-gray-800 shadow-lg md:w-96 lg:w-[28rem] xl:w-[32rem]"
+                        onMouseEnter={() => setIsHovered(true)}
+                        onMouseLeave={() => setIsHovered(false)}
+                    >
+                        {/* Skeleton - shown until image loads */}
+                        {!profileImageLoaded && <div className="absolute inset-0 animate-pulse bg-gray-700"></div>}
+
+                        {/* Video */}
+                        <video
+                            ref={videoRef}
+                            className="absolute inset-0 h-full w-full object-cover"
+                            src="/images/music/ZealOfTheLordReel.mp4"
+                            autoPlay
+                            muted
+                            loop
+                            playsInline
+                        />
                     </div>
 
                     {/* Lorem Ipsum Paragraphs */}

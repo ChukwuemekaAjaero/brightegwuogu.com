@@ -11,6 +11,7 @@ export default function MinistryAbout() {
     const lastScrollY = useRef(0);
     const accumulatedScroll = useRef(0);
     const isInitialized = useRef(false);
+    const [videoLoaded, setVideoLoaded] = useState(false);
 
     // Initialize carousel with first image off-screen to the left
     useEffect(() => {
@@ -67,14 +68,25 @@ export default function MinistryAbout() {
                 <div className="flex flex-col items-center justify-center">
                     {/* Large Header */}
                     <h1 className={`z-2 text-center text-3xl font-bold text-white md:text-5xl lg:text-7xl xl:text-9xl ${modernizFont.className}`}>
-                        <span className="text-red-800">P</span>astor
+                        <span className="text-blue-900">P</span>astor
                         <br />
-                        <span className="text-red-800">B</span>right
+                        <span className="text-blue-900">B</span>right
                     </h1>
 
-                    {/* Profile Image Skeleton */}
+                    {/* Profile Video */}
                     <div className="relative -mt-16 aspect-[3/4] w-80 overflow-hidden rounded-xs bg-gray-800 shadow-lg md:w-96 lg:w-[28rem] xl:w-[32rem]">
-                        <div className="absolute inset-0 animate-pulse bg-gray-700"></div>
+                        {/* Skeleton - shown until video loads */}
+                        {!videoLoaded && <div className="absolute inset-0 animate-pulse bg-gray-700"></div>}
+                        {/* Video */}
+                        <video
+                            className={`h-full w-full object-cover transition-opacity duration-300 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
+                            src="/videos/ministry/MinistryAboutMe.mp4"
+                            autoPlay
+                            muted
+                            loop
+                            playsInline
+                            onLoadedData={() => setVideoLoaded(true)}
+                        />
                     </div>
 
                     {/* Lorem Ipsum Paragraphs */}
