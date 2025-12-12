@@ -1,6 +1,6 @@
 import { modernizFont } from '@/lib/utils';
 import Link from 'next/link';
-import { FaYoutube, FaSpotify, FaApple, FaDeezer } from 'react-icons/fa';
+import { FaYoutube, FaSpotify, FaApple, FaDeezer, FaEnvelope } from 'react-icons/fa';
 import { SiAmazonmusic } from 'react-icons/si';
 import { AiFillInstagram } from 'react-icons/ai';
 
@@ -34,12 +34,10 @@ export default function NavigationFooter() {
                         <div>
                             <h3 className="mb-4 text-lg font-semibold">Contact</h3>
                             <div className="space-y-2 text-sm text-gray-300">
-                                <p>Celebration Church International</p>
-                                <p>Toronto Campus</p>
-                                <p>Toronto, Canada</p>
                                 <p className="mt-3">
-                                    <a href="mailto:contact@brightegwuogu.com" className="transition-colors duration-200">
-                                        &lt;PLACEHOLDER&gt; contact@brightegwuogu.com
+                                    <a href="mailto:bright.egwuogu@gmail.com" className="flex items-center transition-colors duration-200">
+                                        <FaEnvelope className="mr-2 h-5 w-5" />
+                                        bright.egwuogu@gmail.com
                                     </a>
                                 </p>
                             </div>
