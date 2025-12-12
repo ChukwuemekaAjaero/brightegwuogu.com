@@ -94,7 +94,10 @@ export default function RootPage() {
     return (
         console.log('Component rendered Test', direction),
         (
-            <div className="relative flex h-screen w-full overflow-hidden bg-[#030712]">
+            <div className="relative flex h-screen w-full overflow-hidden bg-black">
+                {/* Black Background - Always visible */}
+                <div className="absolute inset-0 bg-black" />
+
                 {/* Carousel Container */}
                 <div className="relative flex h-full w-full">
                     {/* Header Text - Above Page Title (outside AnimatePresence) */}
@@ -138,15 +141,59 @@ export default function RootPage() {
                                     dragConstraints={{ left: 0, right: 0 }}
                                     dragElastic={0.2}
                                     onDragEnd={handleDragEnd}
-                                    className="absolute inset-0 flex flex-col items-center justify-center gap-16 will-change-transform"
+                                    className={`absolute inset-0 flex flex-col items-center justify-center gap-16 will-change-transform ${
+                                        slide.title === 'Music' || slide.title === 'Ministry' ? '' : 'bg-[#142557]'
+                                    }`}
                                 >
+                                    {/* Video Background - Only for Music slide */}
+                                    {slide.title === 'Music' && (
+                                        <video
+                                            className="absolute inset-0 h-full w-full scale-[0.95] object-cover"
+                                            src="/videos/NoOtherGodHeroVideo.mp4"
+                                            autoPlay
+                                            muted
+                                            loop
+                                            playsInline
+                                        />
+                                    )}
+
+                                    {/* Video Background - Only for Ministry slide */}
+                                    {slide.title === 'Ministry' && (
+                                        <video
+                                            className="absolute inset-0 h-full w-full scale-[0.95] object-cover"
+                                            src="/videos/SermonsHeroVideo.mp4"
+                                            autoPlay
+                                            muted
+                                            loop
+                                            playsInline
+                                        />
+                                    )}
+
+                                    {/* Semi-transparent overlay for videos to improve text readability */}
+                                    {(slide.title === 'Music' || slide.title === 'Ministry') && <div className="absolute inset-0 z-0 bg-black/30" />}
+
+                                    {/* Black Overlay with Rectangular Center Cutout */}
+                                    <svg
+                                        className="pointer-events-none absolute inset-0 z-10 h-full w-full"
+                                        viewBox="0 0 100 100"
+                                        preserveAspectRatio="none"
+                                    >
+                                        <defs>
+                                            <mask id="overlay-mask">
+                                                <rect width="100" height="100" fill="white" />
+                                                <rect x="10" y="7" width="80" height="86" rx="1" ry="1" fill="black" />
+                                            </mask>
+                                        </defs>
+                                        <rect width="100" height="100" fill="black" mask="url(#overlay-mask)" />
+                                    </svg>
+
                                     {/* Page Title */}
-                                    <div className="flex-shrink-0">
+                                    <div className="relative z-20 flex-shrink-0">
                                         <h1 className={`text-5xl font-bold text-white lg:text-9xl ${modernizFont.className}`}>{slide.title}</h1>
                                     </div>
 
                                     {/* Explore Button */}
-                                    <div className="flex-shrink-0">
+                                    <div className="relative z-20 flex-shrink-0">
                                         {slide.disabled ? (
                                             <button
                                                 disabled
