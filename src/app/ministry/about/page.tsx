@@ -21,7 +21,7 @@ export default function MinistryAbout() {
             const viewportWidth = window.innerWidth;
             // Position carousel so first image is way off-screen to the left
             // This ensures no empty space when scrolling down (images move right)
-            const initialOffset = -2000; // Position far to the left
+            const initialOffset = -2000; // Position fara to the left
 
             setTranslateX(initialOffset);
             accumulatedScroll.current = initialOffset;
