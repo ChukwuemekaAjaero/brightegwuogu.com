@@ -44,7 +44,7 @@ export function useMediaPreloader(mediaItems: MediaItem[]) {
                 } else if (item.type === 'video') {
                     const video = document.createElement('video');
                     video.preload = 'auto';
-                    
+
                     const handleCanPlay = () => {
                         completed++;
                         setLoadedCount(completed);
@@ -83,4 +83,3 @@ export function useMediaPreloader(mediaItems: MediaItem[]) {
 
     return { loading, progress, loadedCount, total: mediaItems.length };
 }
-

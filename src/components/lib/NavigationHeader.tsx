@@ -94,8 +94,7 @@ const DesktopHeader = () => {
 
     const dropdownItems = [
         { title: 'Ministry', href: '/ministry' },
-        { title: 'Music', href: '/music' },
-        { title: 'Career', href: '/career' }
+        { title: 'Music', href: '/music' }
     ];
 
     const dropdownContent = (

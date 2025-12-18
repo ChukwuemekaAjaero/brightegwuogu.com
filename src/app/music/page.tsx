@@ -2,7 +2,7 @@
 
 import { modernizFont } from '@/lib/utils';
 import { FaPlay } from 'react-icons/fa';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Playfair_Display } from 'next/font/google';
 import Link from 'next/link';
 import { Input } from '@/components/ui/input';
@@ -15,6 +15,7 @@ const playfairDisplay = Playfair_Display({
 });
 
 export default function Music() {
+    const heroVideoRef = useRef<HTMLVideoElement>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [noOtherGodVideoLoaded, setNoOtherGodVideoLoaded] = useState(false);
     const [noOtherGodVideoActive, setNoOtherGodVideoActive] = useState(false);
@@ -59,13 +60,40 @@ export default function Music() {
         }
     };
 
-    // Handle loading logic
+    // Handle loading logic for hero video
     useEffect(() => {
-        // Simulate loading for hero video
-        const timer = setTimeout(() => {
+        const video = heroVideoRef.current;
+        if (!video) return;
+
+        // Check if video is already loaded (cached from preloader)
+        if (video.readyState >= 3) {
+            // HAVE_FUTURE_DATA (3) or HAVE_ENOUGH_DATA (4) means video is ready
             setIsLoading(false);
-        }, 500);
-        return () => clearTimeout(timer);
+            return;
+        }
+
+        const handleCanPlay = () => {
+            setIsLoading(false);
+        };
+
+        const handleLoadedData = () => {
+            // Video has loaded enough data to start playing
+            setIsLoading(false);
+        };
+
+        video.addEventListener('canplay', handleCanPlay);
+        video.addEventListener('loadeddata', handleLoadedData);
+
+        // Fallback timeout in case events don't fire
+        const fallbackTimer = setTimeout(() => {
+            setIsLoading(false);
+        }, 2000);
+
+        return () => {
+            video.removeEventListener('canplay', handleCanPlay);
+            video.removeEventListener('loadeddata', handleLoadedData);
+            clearTimeout(fallbackTimer);
+        };
     }, []);
 
     return (
@@ -106,12 +134,14 @@ export default function Music() {
 
                     {/* Video Background */}
                     <video
+                        ref={heroVideoRef}
                         className="absolute top-0 left-1/2 h-full w-[177.78vh] -translate-x-1/2 object-cover"
                         style={{ minWidth: '100vw' }}
                         autoPlay
                         muted
                         loop
                         playsInline
+                        preload="auto"
                     >
                         <source src="/videos/NoOtherGodHeroVideo.mp4" type="video/mp4" />
                         Your browser does not support the video tag.
