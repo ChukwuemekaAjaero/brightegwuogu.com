@@ -1,21 +1,26 @@
 'use client';
 
 import { modernizFont } from '@/lib/utils';
-import { FaPlay } from 'react-icons/fa';
+import { FaPlay, FaApple, FaDeezer, FaEnvelope } from 'react-icons/fa';
+import { SiSpotify, SiAmazonmusic } from 'react-icons/si';
 import { useState, useEffect, useRef } from 'react';
 import { Playfair_Display } from 'next/font/google';
 import Link from 'next/link';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 
-const playfairDisplay = Playfair_Display({
-    subsets: ['latin'],
-    weight: ['400', '700'],
-    display: 'swap'
-});
+// Helper function to format seconds into "min s" format
+const formatSongLength = (seconds: number): string => {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60;
+    return `${minutes} min ${remainingSeconds} sec`;
+};
 
 export default function Music() {
     const heroVideoRef = useRef<HTMLVideoElement>(null);
+    const noOtherGodImageRef = useRef<HTMLImageElement>(null);
+    const joyUnspeakableImageRef = useRef<HTMLImageElement>(null);
+    const neverLostImageRef = useRef<HTMLImageElement>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [noOtherGodVideoLoaded, setNoOtherGodVideoLoaded] = useState(false);
     const [noOtherGodVideoActive, setNoOtherGodVideoActive] = useState(false);
@@ -93,6 +98,37 @@ export default function Music() {
             video.removeEventListener('canplay', handleCanPlay);
             video.removeEventListener('loadeddata', handleLoadedData);
             clearTimeout(fallbackTimer);
+        };
+    }, []);
+
+    // Handle image loading - check if already cached
+    useEffect(() => {
+        const cleanupFunctions: (() => void)[] = [];
+
+        const checkImageLoaded = (imgRef: React.RefObject<HTMLImageElement | null>, setLoaded: (value: boolean) => void) => {
+            if (imgRef.current) {
+                // Check if image is already loaded (cached from preloader)
+                if (imgRef.current.complete && imgRef.current.naturalHeight !== 0) {
+                    setLoaded(true);
+                } else {
+                    const handleLoad = () => setLoaded(true);
+                    const handleError = () => setLoaded(true); // Show image even if error to avoid skeleton forever
+                    imgRef.current.addEventListener('load', handleLoad);
+                    imgRef.current.addEventListener('error', handleError);
+                    cleanupFunctions.push(() => {
+                        imgRef.current?.removeEventListener('load', handleLoad);
+                        imgRef.current?.removeEventListener('error', handleError);
+                    });
+                }
+            }
+        };
+
+        checkImageLoaded(noOtherGodImageRef, setNoOtherGodImageLoaded);
+        checkImageLoaded(joyUnspeakableImageRef, setJoyUnspeakableImageLoaded);
+        checkImageLoaded(neverLostImageRef, setNeverLostImageLoaded);
+
+        return () => {
+            cleanupFunctions.forEach((cleanup) => cleanup());
         };
     }, []);
 
@@ -187,27 +223,22 @@ export default function Music() {
                 <div className="container mx-auto px-4 sm:px-8">
                     <div className="flex min-h-[60vh] items-center justify-center">
                         <div className="text-center">
-                            <blockquote className={`mb-6 text-3xl text-white md:text-5xl lg:text-6xl ${playfairDisplay.className}`}>
-                                "My heart is steadfast, O God, my heart is steadfast; I will sing and make music."
-                            </blockquote>
-                            <p className="mb-8 text-lg text-gray-400 md:text-xl">— Psalms 57:7</p>
-
                             {/* About Text */}
-                            <p className="text-sm text-red-500 md:text-base">NOTE: Change the width on different screen sizes</p>
-                            <p className="mx-auto my-8 max-w-5xl text-base leading-relaxed text-gray-300 md:text-xl">
-                                Bright Egwuogu is the resident pastor of Celebration Church International’s Toronto campus, part of the global
-                                ministry led by Apostle Emmanuel Iren. He is passionate about helping people grow spiritually and is also a
-                                contemporary Christian musician whose songs have impacted listeners around the world. Based in Toronto, he combines
-                                his pastoral and musical callings with a career in cybersecurity, and is married to his wife, Ibiye; they have a son.
-                            </p>
 
-                            {/* Read My Story Button */}
-                            <Link
-                                href="/music/about"
-                                className="group inline-flex items-center justify-center rounded bg-blue-900 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300 hover:scale-105 hover:bg-blue-800"
-                            >
-                                Read My Story
-                            </Link>
+                            <p className="mx-auto my-8 max-w-5xl text-base leading-relaxed text-gray-300 md:text-xl">
+                                Bright Egwuogu (fondly called PB) serves as the Resident Pastor of the Toronto campus of Celebration Church
+                                International, a global apostolic ministry led by Apostle Emmanuel Iren with a vision to see all men celebrating
+                                endless life in Christ Jesus. He is passionate about spiritual growth and discipleship, committed to helping believers
+                                understand Christ, mature in faith, and live out the realities of the Gospel with clarity and confidence. His teaching
+                                ministry is marked by sound doctrine, practical insight, and a heart for raising believers who walk in purpose and
+                                spiritual depth.
+                            </p>
+                            <p className="mx-auto my-8 max-w-5xl text-base leading-relaxed text-gray-300 md:text-xl">
+                                A gifted musician, PB has released multiple contemporary Christian songs that inspire and encourage listeners around
+                                the world through worship and sound biblical expression. Beyond ministry, he is a cybersecurity professional serving
+                                Canada’s financial, retail, and insurance industries, and he currently resides in Toronto, Canada, with his wife,
+                                Ibiye, and their son.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -219,7 +250,9 @@ export default function Music() {
                     <div className="relative text-center">
                         <h2
                             className={`relative z-10 mb-0 text-5xl font-bold text-white transition-all duration-200 md:text-7xl lg:text-9xl ${modernizFont.className} ${
-                                noOtherGodVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100'
+                                noOtherGodVideoActive || joyUnspeakableVideoActive || neverLostVideoActive
+                                    ? 'opacity-40 blur-xs'
+                                    : 'blur-0 opacity-100'
                             }`}
                         >
                             No Other God
@@ -242,7 +275,7 @@ export default function Music() {
                                     title="No Other God - YouTube Video"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                     allowFullScreen
-                                    className={`h-full w-full transition-opacity duration-300 ${noOtherGodVideoLoaded ? 'opacity-100' : 'opacity-0'}`}
+                                    className={`h-full w-full transition-all duration-300 ${noOtherGodVideoLoaded ? 'opacity-100' : 'opacity-0'} ${noOtherGodVideoActive ? 'blur-0' : joyUnspeakableVideoActive || neverLostVideoActive ? 'blur-sm' : 'blur-0'}`}
                                     onLoad={() => setNoOtherGodVideoLoaded(true)}
                                     onFocus={() => setNoOtherGodVideoActive(true)}
                                     onBlur={() => setNoOtherGodVideoActive(false)}
@@ -255,12 +288,18 @@ export default function Music() {
                             {!noOtherGodImageLoaded && <div className="absolute inset-0 animate-pulse bg-gray-500"></div>}
                             {/* Image */}
                             <img
+                                ref={noOtherGodImageRef}
                                 src="/images/music/NoOtherGod.jpg"
                                 alt="No Other God Album Cover"
                                 className={`h-full w-full object-cover transition-all duration-200 ${
-                                    noOtherGodImageLoaded ? (noOtherGodVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100') : 'blur-0 opacity-0'
+                                    noOtherGodImageLoaded
+                                        ? noOtherGodVideoActive || joyUnspeakableVideoActive || neverLostVideoActive
+                                            ? 'opacity-40 blur-xs'
+                                            : 'blur-0 opacity-100'
+                                        : 'blur-0 opacity-0'
                                 }`}
                                 onLoad={() => setNoOtherGodImageLoaded(true)}
+                                onError={() => setNoOtherGodImageLoaded(true)}
                             />
                         </div>
                     </div>
@@ -269,35 +308,65 @@ export default function Music() {
                     <div className="mt-12 text-center">
                         <p
                             className={`mb-2 text-lg text-white transition-all duration-200 md:text-xl ${
-                                noOtherGodVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100'
+                                noOtherGodVideoActive || joyUnspeakableVideoActive || neverLostVideoActive
+                                    ? 'opacity-40 blur-xs'
+                                    : 'blur-0 opacity-100'
                             }`}
                         >
                             Brite Egwuogu, Rhema Onuoha
                         </p>
-                        <p
-                            className={`mb-8 text-base text-gray-400 transition-all duration-200 md:text-lg ${
-                                noOtherGodVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100'
-                            }`}
+                        <div
+                            className={`mb-8 transition-all duration-200 ${noOtherGodVideoActive || joyUnspeakableVideoActive || neverLostVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100'}`}
                         >
-                            2025
-                        </p>
-                        <p
-                            className={`mx-auto mb-8 max-w-3xl text-base leading-relaxed text-gray-300 transition-all duration-200 md:text-lg ${
-                                noOtherGodVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100'
-                            }`}
-                        >
-                            "Jesus, No Other God" is more than a song, it's a sound from a strange place. It's a declaration and a reminder that in a
-                            world full of names and options, there is still only One true God and He's different from the rest.
-                        </p>
+                            <p className="mb-1 text-lg text-gray-300 md:text-xl">2025</p>
+                            <p className="text-sm text-gray-500 md:text-base">{formatSongLength(480)}</p>
+                        </div>
 
-                        {/* Learn More Button */}
-                        <button
-                            className={`group inline-flex items-center justify-center rounded bg-blue-900 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-200 hover:scale-105 hover:bg-blue-800 ${
-                                noOtherGodVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100'
+                        {/* Streaming Service Links */}
+                        <div
+                            className={`flex flex-wrap items-center justify-center gap-4 transition-all duration-200 ${
+                                noOtherGodVideoActive || joyUnspeakableVideoActive || neverLostVideoActive
+                                    ? 'opacity-40 blur-xs'
+                                    : 'blur-0 opacity-100'
                             }`}
                         >
-                            Learn More
-                        </button>
+                            <a
+                                href="https://open.spotify.com/track/6FCgNzCMwvYqEVwlyU3uYl?si=a50ed64ea8ea46aa"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                title="Listen on Spotify"
+                            >
+                                <SiSpotify className="h-6 w-6 text-green-400" />
+                            </a>
+                            <a
+                                href="https://music.apple.com/us/song/no-other-god-feat-rhema-onuoha/1823930988"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                title="Listen on Apple Music"
+                            >
+                                <FaApple className="h-6 w-6 text-white" />
+                            </a>
+                            <a
+                                href="https://amazon.com/music/player/albums/B0FG7J681F?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_6dJgC1ZLuqn2jKSnYbUYlBQeN"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                title="Listen on Amazon Music"
+                            >
+                                <SiAmazonmusic className="h-6 w-6 text-orange-400" />
+                            </a>
+                            <a
+                                href="https://link.deezer.com/s/31278uhdrGzCshgIS9jRN"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                title="Listen on Deezer"
+                            >
+                                <FaDeezer className="h-6 w-6 text-blue-400" />
+                            </a>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -308,7 +377,9 @@ export default function Music() {
                     <div className="relative text-center">
                         <h2
                             className={`relative z-10 mb-0 text-3xl font-bold text-white transition-all duration-200 sm:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl ${modernizFont.className} ${
-                                joyUnspeakableVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100'
+                                noOtherGodVideoActive || joyUnspeakableVideoActive || neverLostVideoActive
+                                    ? 'opacity-40 blur-xs'
+                                    : 'blur-0 opacity-100'
                             }`}
                         >
                             Joy Unspeakable
@@ -331,7 +402,7 @@ export default function Music() {
                                     title="Joy Unspeakable - YouTube Video"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                     allowFullScreen
-                                    className={`h-full w-full transition-opacity duration-300 ${joyUnspeakableVideoLoaded ? 'opacity-100' : 'opacity-0'}`}
+                                    className={`h-full w-full transition-all duration-300 ${joyUnspeakableVideoLoaded ? 'opacity-100' : 'opacity-0'} ${joyUnspeakableVideoActive ? 'blur-0' : noOtherGodVideoActive || neverLostVideoActive ? 'blur-sm' : 'blur-0'}`}
                                     onLoad={() => setJoyUnspeakableVideoLoaded(true)}
                                     onFocus={() => setJoyUnspeakableVideoActive(true)}
                                     onBlur={() => setJoyUnspeakableVideoActive(false)}
@@ -344,16 +415,18 @@ export default function Music() {
                             {!joyUnspeakableImageLoaded && <div className="absolute inset-0 animate-pulse bg-gray-500"></div>}
                             {/* Image */}
                             <img
+                                ref={joyUnspeakableImageRef}
                                 src="/images/music/JoyUnspeakable.jpg"
                                 alt="Joy Unspeakable Album Cover"
                                 className={`h-full w-full object-cover transition-all duration-200 ${
                                     joyUnspeakableImageLoaded
-                                        ? joyUnspeakableVideoActive
+                                        ? noOtherGodVideoActive || joyUnspeakableVideoActive || neverLostVideoActive
                                             ? 'opacity-40 blur-xs'
                                             : 'blur-0 opacity-100'
                                         : 'blur-0 opacity-0'
                                 }`}
                                 onLoad={() => setJoyUnspeakableImageLoaded(true)}
+                                onError={() => setJoyUnspeakableImageLoaded(true)}
                             />
                         </div>
                     </div>
@@ -362,36 +435,65 @@ export default function Music() {
                     <div className="mt-12 text-center">
                         <p
                             className={`mb-2 text-lg text-white transition-all duration-200 md:text-xl ${
-                                joyUnspeakableVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100'
+                                noOtherGodVideoActive || joyUnspeakableVideoActive || neverLostVideoActive
+                                    ? 'opacity-40 blur-xs'
+                                    : 'blur-0 opacity-100'
                             }`}
                         >
                             Brite Egwuogu, Daniel Ike
                         </p>
-                        <p
-                            className={`mb-8 text-base text-gray-400 transition-all duration-200 md:text-lg ${
-                                joyUnspeakableVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100'
-                            }`}
+                        <div
+                            className={`mb-8 transition-all duration-200 ${noOtherGodVideoActive || joyUnspeakableVideoActive || neverLostVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100'}`}
                         >
-                            2025
-                        </p>
-                        <p
-                            className={`mx-auto mb-8 max-w-3xl text-base leading-relaxed text-gray-300 transition-all duration-200 md:text-lg ${
-                                joyUnspeakableVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100'
-                            }`}
-                        >
-                            Lorem ipsum dolor sit amet consectetur adipiscing elit. Consectetur adipiscing elit quisque faucibus ex sapien vitae. Ex
-                            sapien vitae pellentesque sem placerat in id. Placerat in id cursus mi pretium tellus duis. Pretium tellus duis convallis
-                            tempus leo eu aenean.
-                        </p>
+                            <p className="mb-1 text-lg text-gray-300 md:text-xl">2025</p>
+                            <p className="text-sm text-gray-500 md:text-base">{formatSongLength(363)}</p>
+                        </div>
 
-                        {/* Learn More Button */}
-                        <button
-                            className={`group inline-flex items-center justify-center rounded bg-blue-900 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-200 hover:scale-105 hover:bg-blue-800 ${
-                                joyUnspeakableVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100'
+                        {/* Streaming Service Links */}
+                        <div
+                            className={`flex flex-wrap items-center justify-center gap-4 transition-all duration-200 ${
+                                noOtherGodVideoActive || joyUnspeakableVideoActive || neverLostVideoActive
+                                    ? 'opacity-40 blur-xs'
+                                    : 'blur-0 opacity-100'
                             }`}
                         >
-                            Learn More
-                        </button>
+                            <a
+                                href="https://open.spotify.com/track/0GbVNSPa8I6nPGxYKS5jsU?si=90f05dbd51c14034"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                title="Listen on Spotify"
+                            >
+                                <SiSpotify className="h-6 w-6 text-green-400" />
+                            </a>
+                            <a
+                                href="https://music.apple.com/us/song/joy-unspeakable-feat-daniel-ike/1802768269"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                title="Listen on Apple Music"
+                            >
+                                <FaApple className="h-6 w-6 text-white" />
+                            </a>
+                            <a
+                                href="https://amazon.com/music/player/tracks/B0F1QXX8NQ?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_GVHr0mQtDnmTFETZzKQ2n7CcZ"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                title="Listen on Amazon Music"
+                            >
+                                <SiAmazonmusic className="h-6 w-6 text-orange-400" />
+                            </a>
+                            <a
+                                href="https://link.deezer.com/s/3127DbiZuf95BQxH7nnlR"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                title="Listen on Deezer"
+                            >
+                                <FaDeezer className="h-6 w-6 text-blue-400" />
+                            </a>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -402,7 +504,9 @@ export default function Music() {
                     <div className="relative text-center">
                         <h2
                             className={`relative z-10 mb-0 text-5xl font-bold text-white transition-all duration-200 md:text-7xl lg:text-9xl ${modernizFont.className} ${
-                                neverLostVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100'
+                                noOtherGodVideoActive || joyUnspeakableVideoActive || neverLostVideoActive
+                                    ? 'opacity-40 blur-xs'
+                                    : 'blur-0 opacity-100'
                             }`}
                         >
                             Never Lost (Live)
@@ -425,7 +529,7 @@ export default function Music() {
                                     title="Never Lost (Live) - YouTube Video"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                     allowFullScreen
-                                    className={`h-full w-full transition-opacity duration-300 ${neverLostVideoLoaded ? 'opacity-100' : 'opacity-0'}`}
+                                    className={`h-full w-full transition-all duration-300 ${neverLostVideoLoaded ? 'opacity-100' : 'opacity-0'} ${neverLostVideoActive ? 'blur-0' : noOtherGodVideoActive || joyUnspeakableVideoActive ? 'blur-sm' : 'blur-0'}`}
                                     onLoad={() => setNeverLostVideoLoaded(true)}
                                     onFocus={() => setNeverLostVideoActive(true)}
                                     onBlur={() => setNeverLostVideoActive(false)}
@@ -438,12 +542,18 @@ export default function Music() {
                             {!neverLostImageLoaded && <div className="absolute inset-0 animate-pulse bg-gray-500"></div>}
                             {/* Image */}
                             <img
+                                ref={neverLostImageRef}
                                 src="/images/music/NeverLost.jpg"
                                 alt="Never Lost (Live) Album Cover"
                                 className={`h-full w-full object-cover transition-all duration-200 ${
-                                    neverLostImageLoaded ? (neverLostVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100') : 'blur-0 opacity-0'
+                                    neverLostImageLoaded
+                                        ? noOtherGodVideoActive || joyUnspeakableVideoActive || neverLostVideoActive
+                                            ? 'opacity-40 blur-xs'
+                                            : 'blur-0 opacity-100'
+                                        : 'blur-0 opacity-0'
                                 }`}
                                 onLoad={() => setNeverLostImageLoaded(true)}
+                                onError={() => setNeverLostImageLoaded(true)}
                             />
                         </div>
                     </div>
@@ -452,36 +562,64 @@ export default function Music() {
                     <div className="mt-12 text-center">
                         <p
                             className={`mb-2 text-lg text-white transition-all duration-200 md:text-xl ${
-                                neverLostVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100'
+                                noOtherGodVideoActive || joyUnspeakableVideoActive || neverLostVideoActive
+                                    ? 'opacity-40 blur-xs'
+                                    : 'blur-0 opacity-100'
                             }`}
                         >
                             Brite Egwuogu
                         </p>
-                        <p
-                            className={`mb-8 text-base text-gray-400 transition-all duration-200 md:text-lg ${
-                                neverLostVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100'
+                        <div
+                            className={`mb-8 transition-all duration-200 ${noOtherGodVideoActive || joyUnspeakableVideoActive || neverLostVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100'}`}
+                        >
+                            <p className="mb-1 text-lg text-gray-300 md:text-xl">2023</p>
+                            <p className="text-sm text-gray-500 md:text-base">{formatSongLength(436)}</p>
+                        </div>
+                        {/* Streaming Service Links */}
+                        <div
+                            className={`flex flex-wrap items-center justify-center gap-4 transition-all duration-200 ${
+                                noOtherGodVideoActive || joyUnspeakableVideoActive || neverLostVideoActive
+                                    ? 'opacity-40 blur-xs'
+                                    : 'blur-0 opacity-100'
                             }`}
                         >
-                            2023
-                        </p>
-                        <p
-                            className={`mx-auto mb-8 max-w-3xl text-base leading-relaxed text-gray-300 transition-all duration-200 md:text-lg ${
-                                neverLostVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100'
-                            }`}
-                        >
-                            Lorem ipsum dolor sit amet consectetur adipiscing elit. Consectetur adipiscing elit quisque faucibus ex sapien vitae. Ex
-                            sapien vitae pellentesque sem placerat in id. Placerat in id cursus mi pretium tellus duis. Pretium tellus duis convallis
-                            tempus leo eu aenean.
-                        </p>
-
-                        {/* Learn More Button */}
-                        <button
-                            className={`group inline-flex items-center justify-center rounded bg-blue-900 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-200 hover:scale-105 hover:bg-blue-800 ${
-                                neverLostVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100'
-                            }`}
-                        >
-                            Learn More
-                        </button>
+                            <a
+                                href="https://open.spotify.com/track/7KIFgCFh0W3aaOe2KL6J2j?si=21d0e9c4d2604c47"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                title="Listen on Spotify"
+                            >
+                                <SiSpotify className="h-6 w-6 text-green-400" />
+                            </a>
+                            <a
+                                href="https://music.apple.com/us/song/never-lost-live/1687272944"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                title="Listen on Apple Music"
+                            >
+                                <FaApple className="h-6 w-6 text-white" />
+                            </a>
+                            <a
+                                href="https://amazon.com/music/player/tracks/B0C5PJYTS4?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_6Ib6NCtyloUQvclBxjqZRZ27G"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                title="Listen on Amazon Music"
+                            >
+                                <SiAmazonmusic className="h-6 w-6 text-orange-400" />
+                            </a>
+                            <a
+                                href="https://link.deezer.com/s/3127oFPuVWyzeTtPIwGXV"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                title="Listen on Deezer"
+                            >
+                                <FaDeezer className="h-6 w-6 text-blue-400" />
+                            </a>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -489,85 +627,24 @@ export default function Music() {
             {/* Contact Form Section */}
             <section className="relative bg-[#030712] py-20">
                 <div className="container mx-auto px-4 sm:px-8">
-                    <div className="mx-auto max-w-2xl">
-                        <h2 className={`mb-8 text-center text-4xl font-bold text-white md:text-5xl lg:text-6xl ${modernizFont.className}`}>
+                    <div
+                        className={`mx-auto max-w-2xl transition-all duration-200 ${
+                            noOtherGodVideoActive || joyUnspeakableVideoActive || neverLostVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100'
+                        }`}
+                    >
+                        <h2 className={`mb-12 text-center text-4xl font-bold text-white md:text-5xl lg:text-6xl ${modernizFont.className}`}>
                             Get In Touch
                         </h2>
-                        <p className="mb-12 text-center text-lg text-gray-300 md:text-xl">
-                            Have a question or want to connect? Send me a message and I'll get back to you as soon as possible.
-                        </p>
 
-                        <form onSubmit={handleSubmit} className="space-y-6">
-                            <div>
-                                <label htmlFor="name" className="mb-2 block text-sm font-medium text-gray-300">
-                                    Name
-                                </label>
-                                <Input
-                                    type="text"
-                                    id="name"
-                                    name="name"
-                                    value={formData.name}
-                                    onChange={handleInputChange}
-                                    required
-                                    className="w-full rounded-xs border-gray-700 bg-gray-900/50 text-white placeholder:text-gray-500 focus:border-blue-500 focus:ring-blue-500"
-                                    placeholder="Your name"
-                                />
-                            </div>
-
-                            <div>
-                                <label htmlFor="email" className="mb-2 block text-sm font-medium text-gray-300">
-                                    Email
-                                </label>
-                                <Input
-                                    type="email"
-                                    id="email"
-                                    name="email"
-                                    value={formData.email}
-                                    onChange={handleInputChange}
-                                    required
-                                    className="w-full rounded-xs border-gray-700 bg-gray-900/50 text-white placeholder:text-gray-500 focus:border-blue-500 focus:ring-blue-500"
-                                    placeholder="your.email@example.com"
-                                />
-                            </div>
-
-                            <div>
-                                <label htmlFor="message" className="mb-2 block text-sm font-medium text-gray-300">
-                                    Message
-                                </label>
-                                <textarea
-                                    id="message"
-                                    name="message"
-                                    value={formData.message}
-                                    onChange={handleInputChange}
-                                    required
-                                    rows={6}
-                                    className="flex w-full min-w-0 rounded-xs border border-gray-700 bg-gray-900/50 px-3 py-2 text-base text-white shadow-xs transition-[color,box-shadow] outline-none placeholder:text-gray-500 focus-visible:border-blue-500 focus-visible:ring-[3px] focus-visible:ring-blue-500/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                                    placeholder="Your message..."
-                                />
-                            </div>
-
-                            {submitStatus === 'success' && (
-                                <div className="rounded-xs border border-green-700 bg-green-900/30 px-4 py-3 text-green-300">
-                                    Thank you! Your message has been sent successfully.
-                                </div>
-                            )}
-
-                            {submitStatus === 'error' && (
-                                <div className="rounded-xs border border-red-700 bg-red-900/30 px-4 py-3 text-red-300">
-                                    Something went wrong. Please try again later.
-                                </div>
-                            )}
-
-                            <div className="flex justify-center">
-                                <Button
-                                    type="submit"
-                                    disabled={isSubmitting}
-                                    className="group inline-flex items-center justify-center rounded bg-blue-900 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300 hover:scale-105 hover:bg-blue-800 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100"
-                                >
-                                    {isSubmitting ? 'Sending...' : 'Send Message'}
-                                </Button>
-                            </div>
-                        </form>
+                        <div className="flex justify-center">
+                            <a
+                                href="mailto:bright.egwuogu@gmail.com"
+                                className="group inline-flex items-center justify-center gap-4 rounded-xs bg-blue-900 px-12 py-6 text-xl font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300 hover:scale-105 hover:bg-blue-800 md:px-16 md:py-8 md:text-2xl"
+                            >
+                                <FaEnvelope className="h-6 w-6 md:h-8 md:w-8" />
+                                bright.egwuogu@gmail.com
+                            </a>
+                        </div>
                     </div>
                 </div>
             </section>

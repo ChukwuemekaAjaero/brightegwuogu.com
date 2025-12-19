@@ -70,17 +70,11 @@ const DesktopHeader = () => {
     // Get navigation links based on current route
     const getDesktopNavLinks = () => {
         if (pathname?.startsWith('/music')) {
-            return [
-                { title: 'About', href: '/music/about' },
-                { title: 'Discography', href: '/music/discography' },
-                { title: 'Contact', href: '/music/contact' }
-            ];
+            return [{ title: 'Discography', href: '/music/discography' }];
         } else if (pathname?.startsWith('/ministry')) {
             return [
                 { title: 'About', href: '/ministry/about' },
-                { title: 'Sermons', href: '/ministry/sermons' },
-                { title: 'Resources', href: '/ministry/resources' },
-                { title: 'Contact', href: '/ministry/contact' }
+                { title: 'Sermons', href: '/ministry/sermons' }
             ];
         }
         // Default links for other routes
@@ -231,17 +225,11 @@ const LinksContainer = () => {
     // Get navigation links based on current route
     const getMobileNavLinks = () => {
         if (pathname?.startsWith('/music')) {
-            return [
-                { title: 'About', href: '/music/about' },
-                { title: 'Discography', href: '/music/discography' },
-                { title: 'Contact', href: '/music/contact' }
-            ];
+            return [{ title: 'Discography', href: '/music/discography' }];
         } else if (pathname?.startsWith('/ministry')) {
             return [
                 { title: 'About', href: '/ministry/about' },
-                { title: 'Sermons', href: '/ministry/sermons' },
-                { title: 'Resources', href: '/ministry/resources' },
-                { title: 'Contact', href: '/ministry/contact' }
+                { title: 'Sermons', href: '/ministry/sermons' }
             ];
         }
         // Default links for other routes
@@ -251,7 +239,7 @@ const LinksContainer = () => {
     const navLinks = getMobileNavLinks();
 
     return (
-        <motion.div className="flex flex-1 flex-col justify-center space-y-4 p-12 pl-4 md:pl-20">
+        <motion.div className="flex flex-1 flex-col items-center justify-center space-y-4 p-12">
             {navLinks.map((l, idx) => {
                 return (
                     <NavLink key={l.href} href={l.href} idx={idx}>
@@ -281,10 +269,10 @@ const NavLink: React.FC<NavLinkProps> = ({ children, href, idx }) => {
             }}
             exit={{ opacity: 0, y: -8 }}
         >
-            <div className="flex items-center gap-4">
+            <div className="flex items-center justify-center gap-4">
                 <Link
                     href={href}
-                    className={`xs:text-5xl text-4xl font-semibold transition-colors hover:text-[#030712] md:text-7xl ${modernizFont.className} ${
+                    className={`text-2xl font-semibold transition-colors hover:text-[#030712] md:text-3xl ${modernizFont.className} ${
                         isActive ? 'text-[#030712]' : 'text-white'
                     }`}
                 >
@@ -355,7 +343,7 @@ const HamburgerButton: React.FC<HamburgerButtonProps> = ({ active, setActive }) 
 
 const FooterCTAs = () => {
     return (
-        <div className="flex justify-start p-6 pl-4 md:pl-20">
+        <div className="flex justify-center p-6">
             <div className="flex flex-col gap-4">
                 {SOCIAL_CTAS.map((l, idx) => {
                     return (

@@ -16,17 +16,16 @@ export default function RootPage() {
         <>
             <SplashScreen progress={progress} isVisible={loading} />
             <div className={`flex h-screen w-full flex-col overflow-hidden transition-opacity duration-500 ${loading ? 'opacity-0' : 'opacity-100'}`}>
-                {/* Top Section - Select a side */}
-                <div className="flex h-[15vh] w-full items-center justify-center">
-                    <h2 className={`text-2xl font-bold md:text-3xl lg:text-4xl ${modernizFont.className}`}>Select a side of Bright</h2>
-                </div>
-
                 {/* Bottom Sections Container */}
-                <div className="flex h-[85vh] w-full gap-4 px-4 pb-4">
+                <div className="flex h-full w-full flex-col md:flex-row">
                     {/* Left Section - Ministry */}
                     <div
-                        className={`flex h-full flex-col items-center justify-center rounded-xl bg-[#142557] transition-all duration-300 ease-in-out ${
-                            hoveredSection === 'ministry' ? 'w-2/3' : hoveredSection === 'music' ? 'w-1/3' : 'w-1/2'
+                        className={`flex flex-col items-center justify-center bg-[#142557] transition-all duration-300 ease-in-out ${
+                            hoveredSection === 'ministry'
+                                ? 'h-2/3 w-full md:h-full md:w-2/3'
+                                : hoveredSection === 'music'
+                                  ? 'h-1/3 w-full md:h-full md:w-1/3'
+                                  : 'h-1/2 w-full md:h-full md:w-1/2'
                         }`}
                         onMouseEnter={() => setHoveredSection('ministry')}
                         onMouseLeave={() => setHoveredSection(null)}
@@ -59,8 +58,12 @@ export default function RootPage() {
 
                     {/* Right Section - Music */}
                     <div
-                        className={`flex h-full flex-col items-center justify-center rounded-xl bg-red-900 transition-all duration-300 ease-in-out ${
-                            hoveredSection === 'music' ? 'w-2/3' : hoveredSection === 'ministry' ? 'w-1/3' : 'w-1/2'
+                        className={`flex flex-col items-center justify-center bg-red-900 transition-all duration-300 ease-in-out ${
+                            hoveredSection === 'music'
+                                ? 'h-2/3 w-full md:h-full md:w-2/3'
+                                : hoveredSection === 'ministry'
+                                  ? 'h-1/3 w-full md:h-full md:w-1/3'
+                                  : 'h-1/2 w-full md:h-full md:w-1/2'
                         }`}
                         onMouseEnter={() => setHoveredSection('music')}
                         onMouseLeave={() => setHoveredSection(null)}

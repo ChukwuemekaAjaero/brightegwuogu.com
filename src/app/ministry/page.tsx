@@ -244,7 +244,7 @@ export default function MinistryPage() {
                 <div className="container mx-auto px-4 sm:px-8">
                     <div className="mx-auto max-w-4xl">
                         <h2 className={`relative z-10 text-center text-4xl font-bold text-white md:text-5xl lg:text-8xl ${modernizFont.className}`}>
-                            About Me
+                            About
                         </h2>
 
                         {/* Image Skeleton */}

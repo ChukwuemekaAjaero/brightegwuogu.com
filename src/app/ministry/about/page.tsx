@@ -92,14 +92,14 @@ export default function MinistryAbout() {
                     {/* Lorem Ipsum Paragraphs */}
                     <div className="mt-16 max-w-3xl space-y-6 text-center">
                         <p className="text-base leading-relaxed text-gray-300 md:text-lg">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna
-                            aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-                            aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                            Pastor Bright Egwuogu serves as the Resident Pastor of the Toronto campus of Celebration Church International (CCI) a
+                            global apostolic ministry led by Apostle Emmanuel Iren, with a vision to see all men celebrating endless life in Christ
+                            Jesus.
                         </p>
                         <p className="text-base leading-relaxed text-gray-300 md:text-lg">
-                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut
-                            perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-                            quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
+                            Passionate about spiritual growth and discipleship, Pastor Bright is deeply committed to helping believers understand
+                            Christ, mature in faith, and live out the realities of the Gospel with clarity and confidence. His teaching ministry is
+                            marked by sound doctrine, practical insight, and a heart for raising believers who walk in purpose and spiritual depth.
                         </p>
                     </div>
                 </div>
@@ -147,23 +147,16 @@ export default function MinistryAbout() {
             <div className="container mx-auto px-4 py-20 sm:px-8">
                 <div className="mx-auto max-w-3xl space-y-6 text-center">
                     <p className="text-base leading-relaxed text-gray-300 md:text-lg">
-                        At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos
-                        dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt
-                        mollitia animi, id est laborum et dolorum fuga.
+                        Fondly known as PB, he is also a gifted musician with multiple contemporary Christian songs to his credit, impacting and
+                        encouraging thousands of listeners around the world through worship and sound biblical expression.
                     </p>
                     <p className="text-base leading-relaxed text-gray-300 md:text-lg">
-                        Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil
-                        impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.
+                        Beyond ministry, Pastor Bright is a cybersecurity professional, working across Canada’s financial, retail, and insurance
+                        industries. He currently resides in Toronto, Canada.
                     </p>
                     <p className="text-base leading-relaxed text-gray-300 md:text-lg">
-                        Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et
-                        molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias
-                        consequatur aut perferendis doloribus asperiores repellat.
-                    </p>
-                    <p className="text-base leading-relaxed text-gray-300 md:text-lg">
-                        Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque
-                        ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia
-                        voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
+                        He is married to his beautiful wife, Ibiye, a strong pillar of support in his life and ministry, and together they are blessed
+                        with a wonderful son.
                     </p>
                 </div>
             </div>
