@@ -1,7 +1,8 @@
 'use client';
 
 import { modernizFont } from '@/lib/utils';
-import { FaPlay, FaApple, FaDeezer, FaEnvelope } from 'react-icons/fa';
+import { FaApple, FaDeezer, FaEnvelope } from 'react-icons/fa';
+import { IoIosMusicalNotes } from 'react-icons/io';
 import { SiSpotify, SiAmazonmusic } from 'react-icons/si';
 import { useState, useEffect, useRef } from 'react';
 import { Playfair_Display } from 'next/font/google';
@@ -136,7 +137,7 @@ export default function Music() {
         <div className="relative">
             <section id="hero" className="relative bg-[#030712]">
                 {/* Hero Section */}
-                <div className="relative min-h-screen overflow-hidden rounded-lg mask-b-from-50%">
+                <div className="relative min-h-screen overflow-hidden rounded-lg mask-b-from-80%">
                     {/* Loading Screen */}
                     {isLoading && (
                         <div className="absolute inset-0 z-20 bg-black">
@@ -209,7 +210,7 @@ export default function Music() {
                                     href="/music/discography"
                                     className="group inline-flex items-center justify-center rounded bg-[#030712]/80 px-6 py-4 font-semibold text-white transition-all duration-300 hover:scale-105"
                                 >
-                                    <FaPlay className="mr-3 h-5 w-5" />
+                                    <IoIosMusicalNotes className="mr-3 h-5 w-5" />
                                     View Discography
                                 </a>
                             </div>
@@ -218,8 +219,8 @@ export default function Music() {
                 </div>
             </section>
 
-            {/* Bible Verse Section */}
-            <section className="relative bg-[#030712] py-20">
+            {/* About Section */}
+            <section className="relative bg-[#030712]">
                 <div className="container mx-auto px-4 sm:px-8">
                     <div className="flex min-h-[60vh] items-center justify-center">
                         <div className="text-center">
@@ -620,6 +621,28 @@ export default function Music() {
                                 <FaDeezer className="h-6 w-6 text-blue-400" />
                             </a>
                         </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* Discography Link Section */}
+            <section className="relative bg-[#030712] py-20">
+                <div className="container mx-auto px-4 sm:px-8">
+                    <div
+                        className={`mx-auto max-w-4xl text-center transition-all duration-200 ${
+                            noOtherGodVideoActive || joyUnspeakableVideoActive || neverLostVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100'
+                        }`}
+                    >
+                        <p className="text-md mb-8 text-gray-300 md:text-lg lg:text-xl">
+                            Want to discover more? Explore the full collection of songs and dive deeper into the music.
+                        </p>
+                        <Link
+                            href="/music/discography"
+                            className="group inline-flex items-center justify-center gap-3 rounded-xs bg-blue-900 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300 hover:scale-105 hover:bg-blue-800"
+                        >
+                            <IoIosMusicalNotes className="h-5 w-5" />
+                            View Discography
+                        </Link>
                     </div>
                 </div>
             </section>

@@ -25,39 +25,31 @@ export default function NavigationFooter() {
                         <div className="lg:col-span-1">
                             <h2 className={`text-3xl font-bold ${modernizFont.className} mb-4`}>Bright Egwuogu</h2>
                             <p className="text-sm leading-relaxed text-gray-300">
-                                Pastor, musician, and cybersecurity professional dedicated to advancing God&apos;s kingdom through faith, music, and
-                                service.
+                                Pastor and musician dedicated to advancing God&apos;s kingdom through faith, music, and service.
                             </p>
-                        </div>
-
-                        {/* Contact Information */}
-                        <div>
-                            <h3 className="mb-4 text-lg font-semibold">Contact</h3>
-                            <div className="space-y-2 text-sm text-gray-300">
-                                <p className="mt-3">
-                                    <a href="mailto:bright.egwuogu@gmail.com" className="flex items-center transition-colors duration-200">
-                                        <FaEnvelope className="mr-2 h-5 w-5" />
-                                        bright.egwuogu@gmail.com
-                                    </a>
-                                </p>
-                            </div>
                         </div>
 
                         {/* Navigation Links */}
                         <div>
                             <h3 className="mb-4 text-lg font-semibold">Navigation</h3>
                             <nav className="space-y-2">
-                                <Link href="/home" className="block text-sm text-gray-300 transition-colors duration-200">
+                                <Link href="/" className="block text-sm text-gray-300 transition-colors duration-200">
                                     Home
-                                </Link>
-                                <Link href="/music" className="block text-sm text-gray-300 transition-colors duration-200">
-                                    Music
                                 </Link>
                                 <Link href="/ministry" className="block text-sm text-gray-300 transition-colors duration-200">
                                     Ministry
                                 </Link>
-                                <Link href="/career" className="block text-sm text-gray-300 transition-colors duration-200">
-                                    Career
+                                <Link href="/ministry/about" className="block pl-4 text-sm text-gray-300 transition-colors duration-200">
+                                    • About
+                                </Link>
+                                <Link href="/ministry/sermons" className="block pl-4 text-sm text-gray-300 transition-colors duration-200">
+                                    • Sermons
+                                </Link>
+                                <Link href="/music" className="block text-sm text-gray-300 transition-colors duration-200">
+                                    Music
+                                </Link>
+                                <Link href="/music/discography" className="block pl-4 text-sm text-gray-300 transition-colors duration-200">
+                                    • Discography
                                 </Link>
                             </nav>
                         </div>
@@ -120,6 +112,19 @@ export default function NavigationFooter() {
                                     <SiAmazonmusic className="mr-2 h-5 w-5" />
                                     Amazon Music
                                 </a>
+                            </div>
+                        </div>
+
+                        {/* Contact Information */}
+                        <div>
+                            <h3 className="mb-4 text-lg font-semibold">Contact</h3>
+                            <div className="space-y-2 text-sm text-gray-300">
+                                <p className="mt-3">
+                                    <a href="mailto:bright.egwuogu@gmail.com" className="flex items-center transition-colors duration-200">
+                                        <FaEnvelope className="mr-2 h-5 w-5" />
+                                        bright.egwuogu@gmail.com
+                                    </a>
+                                </p>
                             </div>
                         </div>
                     </div>
