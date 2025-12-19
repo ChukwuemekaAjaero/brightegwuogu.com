@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { useSermons } from '@/hooks/useContentful';
 import { modernizFont } from '@/lib/utils';
@@ -188,14 +188,14 @@ export default function MinistryPage() {
                                     href={sermons[0]?.youTubeLink}
                                     target="_blank"
                                     rel="noopener   noreferrer"
-                                    className="group inline-flex items-center justify-center rounded bg-[#030712]/60 px-6 py-4 font-semibold text-white shadow-lg shadow-red-800/20 transition-all duration-300 hover:scale-105 hover:bg-red-800"
+                                    className="group inline-flex items-center justify-center rounded bg-[#030712]/80 px-6 py-4 font-semibold text-white shadow-lg shadow-red-800/20 transition-all duration-300 hover:scale-105 hover:bg-red-800/80"
                                 >
                                     <FaYoutube size={24} className="mr-3 text-red-600" />
                                     Watch on YouTube
                                 </a>
                                 <Link
                                     href="/ministry/sermons"
-                                    className="group inline-flex items-center justify-center rounded bg-[#030712]/60 px-6 py-4 font-semibold text-white shadow-lg shadow-red-800/20 transition-all duration-300 hover:scale-105 hover:bg-red-800"
+                                    className="group inline-flex items-center justify-center rounded bg-[#030712]/80 px-6 py-4 font-semibold text-white shadow-lg shadow-red-800/20 transition-all duration-300 hover:scale-105 hover:bg-red-800/80"
                                 >
                                     <FaPlay className="mr-3 h-5 w-5" />
                                     View Sermons
@@ -210,7 +210,7 @@ export default function MinistryPage() {
             <section className="relative bg-[#030712] py-20">
                 <div className="container mx-auto px-4 sm:px-8">
                     <div className="mx-auto max-w-4xl">
-                        <h2 className={`relative z-10 text-center text-4xl font-bold text-white md:text-5xl lg:text-8xl ${modernizFont.className}`}>
+                        <h2 className={`relative z-10 text-center text-6xl font-bold text-white sm:text-7xl md:text-8xl ${modernizFont.className}`}>
                             About
                         </h2>
 

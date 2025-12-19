@@ -4,11 +4,8 @@ import { modernizFont } from '@/lib/utils';
 import { FaApple, FaDeezer, FaEnvelope } from 'react-icons/fa';
 import { IoIosMusicalNotes } from 'react-icons/io';
 import { SiSpotify, SiAmazonmusic } from 'react-icons/si';
-import { useState, useEffect, useRef } from 'react';
-import { Playfair_Display } from 'next/font/google';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
 
 // Helper function to format seconds into "min s" format
 const formatSongLength = (seconds: number): string => {
@@ -198,7 +195,7 @@ export default function Music() {
                                     href="https://www.youtube.com/watch?v=_uUzAETf9TE"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="group inline-flex items-center justify-center rounded bg-[#030712]/80 px-6 py-4 font-semibold text-white transition-all duration-300 hover:scale-105"
+                                    className="group inline-flex items-center justify-center rounded bg-[#030712]/80 px-6 py-4 font-semibold text-white transition-all duration-300 hover:scale-105 hover:bg-blue-900/80"
                                 >
                                     <svg className="mr-3 h-5 w-5 text-red-600" fill="currentColor" viewBox="0 0 24 24">
                                         <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
@@ -208,7 +205,7 @@ export default function Music() {
 
                                 <a
                                     href="/music/discography"
-                                    className="group inline-flex items-center justify-center rounded bg-[#030712]/80 px-6 py-4 font-semibold text-white transition-all duration-300 hover:scale-105"
+                                    className="group inline-flex items-center justify-center rounded bg-[#030712]/80 px-6 py-4 font-semibold text-white transition-all duration-300 hover:scale-105 hover:bg-blue-900/80"
                                 >
                                     <IoIosMusicalNotes className="mr-3 h-5 w-5" />
                                     View Discography

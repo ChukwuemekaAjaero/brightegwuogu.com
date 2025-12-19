@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import { latoFont, ubisoftSansFont, oswaldFont, karlaFont, lexendFont, alegreyaSansFont } from '@/lib/utils';
+import { ubisoftSansFont } from '@/lib/utils';
 
 export const metadata: Metadata = {
     title: 'Bright Egwuogu - On a mission to know Christ deeply, make Him known, use my gifts to advance His kingdom.',

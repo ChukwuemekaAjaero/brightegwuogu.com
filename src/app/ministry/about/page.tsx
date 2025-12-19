@@ -12,6 +12,42 @@ export default function MinistryAbout() {
     const accumulatedScroll = useRef(0);
     const isInitialized = useRef(false);
     const [videoLoaded, setVideoLoaded] = useState(false);
+    const videoRef = useRef<HTMLVideoElement>(null);
+
+    // Handle video loading
+    useEffect(() => {
+        if (videoRef.current) {
+            const video = videoRef.current;
+
+            // Check if video is already loaded (cached)
+            if (video.readyState >= 3) {
+                setVideoLoaded(true);
+                return;
+            }
+
+            const handleCanPlay = () => {
+                setVideoLoaded(true);
+            };
+
+            const handleLoadedData = () => {
+                setVideoLoaded(true);
+            };
+
+            // Fallback timer in case events don't fire
+            const fallbackTimer = setTimeout(() => {
+                setVideoLoaded(true);
+            }, 2000);
+
+            video.addEventListener('canplay', handleCanPlay);
+            video.addEventListener('loadeddata', handleLoadedData);
+
+            return () => {
+                video.removeEventListener('canplay', handleCanPlay);
+                video.removeEventListener('loadeddata', handleLoadedData);
+                clearTimeout(fallbackTimer);
+            };
+        }
+    }, []);
 
     // Initialize carousel with first image off-screen to the left
     useEffect(() => {
@@ -52,7 +88,7 @@ export default function MinistryAbout() {
                 const scrollDelta = currentScrollY - lastScrollY.current;
 
                 // Scroll down -> move right (positive), Scroll up -> move left (negative)
-                accumulatedScroll.current += scrollDelta * 0.5; // Adjust speed multiplier as needed
+                accumulatedScroll.current += scrollDelta * 0.9; // Adjust speed multiplier as needed
                 setTranslateX(accumulatedScroll.current);
             }
 
@@ -79,12 +115,15 @@ export default function MinistryAbout() {
                         {!videoLoaded && <div className="absolute inset-0 animate-pulse bg-gray-700"></div>}
                         {/* Video */}
                         <video
+                            ref={videoRef}
                             className={`h-full w-full object-cover transition-opacity duration-300 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
                             src="/videos/ministry/MinistryAboutMe.mp4"
                             autoPlay
                             muted
                             loop
                             playsInline
+                            preload="auto"
+                            onCanPlay={() => setVideoLoaded(true)}
                             onLoadedData={() => setVideoLoaded(true)}
                         />
                     </div>
@@ -106,13 +145,14 @@ export default function MinistryAbout() {
             </div>
 
             {/* Scroll-Triggered Image Carousel - Full Width */}
-            <div ref={carouselRef} className="relative mt-20 w-full overflow-hidden">
+            <div ref={carouselRef} className="relative -mt-20 w-full overflow-visible py-20">
                 <motion.div
                     ref={carouselContentRef}
-                    className="flex gap-4"
+                    className="flex rotate-[-2deg] gap-4"
                     style={{
                         translateX: `${translateX}px`,
-                        width: 'fit-content'
+                        width: 'fit-content',
+                        transformOrigin: 'center center'
                     }}
                     transition={{ type: 'spring', stiffness: 100, damping: 30 }}
                 >

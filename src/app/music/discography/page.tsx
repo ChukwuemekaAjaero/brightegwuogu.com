@@ -33,9 +33,8 @@ export default function MusicDiscography() {
                         <div className="container mx-auto px-4 sm:px-8">
                             {/* Music Section Header Skeleton */}
                             <div className="mx-auto mb-16 max-w-4xl text-center">
-                                <div className="mx-auto mb-6 h-16 w-48 animate-pulse rounded-lg bg-gray-700 md:h-20"></div>
+                                <div className="mx-auto mb-4 h-16 w-48 animate-pulse rounded-lg bg-gray-700 md:h-20"></div>
                                 <div className="mx-auto mb-4 h-6 w-full max-w-3xl animate-pulse rounded-lg bg-gray-700"></div>
-                                <div className="mx-auto h-6 w-3/4 max-w-3xl animate-pulse rounded-lg bg-gray-700"></div>
                             </div>
 
                             {/* Streaming Platform Buttons Skeleton */}
@@ -81,12 +80,11 @@ export default function MusicDiscography() {
                         <div className="container mx-auto mt-16 px-4 sm:px-8">
                             {/* Music Section Header */}
                             <div className="mx-auto mb-16 text-center">
-                                <h2 className={`mb-6 text-4xl font-bold text-white sm:text-5xl md:text-7xl xl:text-8xl ${modernizFont.className}`}>
+                                <h2 className={`mb-4 text-4xl font-bold text-white sm:text-5xl md:text-7xl xl:text-8xl ${modernizFont.className}`}>
                                     Discography
                                 </h2>
-                                <p className="text-md mx-auto max-w-3xl text-center leading-relaxed text-gray-300 lg:text-lg">
-                                    Lorem ipsum dolor sit amet consectetur adipiscing elit. Dolor sit amet consectetur adipiscing elit quisque
-                                    faucibus.
+                                <p className="text-lg text-gray-300 md:text-xl">
+                                    Discover the complete collection of songs and musical expressions of faith.
                                 </p>
                             </div>
 

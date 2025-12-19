@@ -53,6 +53,25 @@ const DesktopHeader = () => {
     const logoRef = useRef<HTMLAnchorElement>(null);
     const [mounted, setMounted] = useState(false);
 
+    // Determine logo href based on current route
+    const getLogoHref = () => {
+        if (pathname?.startsWith('/ministry/') && pathname !== '/ministry') {
+            // On a ministry subpage, go to /ministry
+            return '/ministry';
+        } else if (pathname === '/ministry') {
+            // On /ministry, go to root
+            return '/';
+        } else if (pathname?.startsWith('/music/') && pathname !== '/music') {
+            // On a music subpage, go to /music
+            return '/music';
+        } else if (pathname === '/music') {
+            // On /music, go to root
+            return '/';
+        }
+        // Default to root
+        return '/';
+    };
+
     useEffect(() => {
         setMounted(true);
     }, []);
@@ -128,7 +147,7 @@ const DesktopHeader = () => {
                 <div className="relative" onMouseEnter={() => setIsLogoHovered(true)} onMouseLeave={() => setIsLogoHovered(false)}>
                     <Link
                         ref={logoRef}
-                        href="/"
+                        href={getLogoHref()}
                         className={`text-2xl font-bold text-white no-underline transition-colors hover:text-gray-300 ${modernizFont.className}`}
                     >
                         Bright Egwuogu
@@ -300,13 +319,32 @@ const HamburgerButton: React.FC<HamburgerButtonProps> = ({ active, setActive }) 
     const pathname = usePathname();
     const isMinistryRoute = pathname?.startsWith('/ministry');
 
+    // Determine logo href based on current route
+    const getLogoHref = () => {
+        if (pathname?.startsWith('/ministry/') && pathname !== '/ministry') {
+            // On a ministry subpage, go to /ministry
+            return '/ministry';
+        } else if (pathname === '/ministry') {
+            // On /ministry, go to root
+            return '/';
+        } else if (pathname?.startsWith('/music/') && pathname !== '/music') {
+            // On a music subpage, go to /music
+            return '/music';
+        } else if (pathname === '/music') {
+            // On /music, go to root
+            return '/';
+        }
+        // Default to root
+        return '/';
+    };
+
     return (
         <>
             {/* Background blur for closed state */}
             {!active && (
                 <div className="fixed top-0 right-0 left-0 z-10 h-30 mask-b-from-50% backdrop-blur-md">
                     <Link
-                        href="/"
+                        href={getLogoHref()}
                         className={`absolute top-6 left-8 z-50 text-2xl font-bold text-white transition-colors ${modernizFont.className} ${
                             isMinistryRoute ? 'hover:text-red-900' : 'hover:text-sky-700'
                         }`}

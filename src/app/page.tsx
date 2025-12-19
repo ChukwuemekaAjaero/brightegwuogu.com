@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 import { modernizFont } from '@/lib/utils';
 import { FiArrowRight } from 'react-icons/fi';

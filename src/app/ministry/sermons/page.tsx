@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { useSermons } from '@/hooks/useContentful';
@@ -90,39 +90,18 @@ export default function MinistrySermons() {
 
     return (
         <div className="relative scroll-smooth">
-            {/* HERO SECTION */}
-            <section id="hero" className="relative flex min-h-screen items-center justify-center overflow-hidden rounded bg-[#030712]">
-                {/* Background Image */}
-                <div className="absolute inset-0 mask-b-from-50%">
-                    <Image
-                        src="/images/heroImage.jpg"
-                        alt="Sermons Hero Image"
-                        fill
-                        sizes="100vw"
-                        className="z-0 object-cover object-[75%_50%]"
-                        priority
-                    />
-                </div>
-
-                {/* Dark Overlay */}
-                <div className="absolute inset-0 z-2 bg-[#030712]/30"></div>
-
-                {/* Text content */}
-                <div className="relative z-2 flex min-h-screen items-center justify-center">
-                    <div className="container mx-auto px-4 text-center text-white sm:px-8">
-                        <h1 className={`mb-6 text-5xl font-bold md:text-8xl ${modernizFont.className}`}>Sermons</h1>
-                        <p className="text-lg text-gray-300 md:text-xl">P.B.&apos;s latest sermons for your progress and joy in the faith</p>
-                    </div>
-                </div>
-            </section>
-
             {/* SERMONS LIST SECTION */}
             <section className="wmin-h-screen relative overflow-hidden bg-[#030712] pt-16">
                 <div className="py-20">
                     {/* SEARCH COMPONENT */}
                     <div className="mx-auto mb-12 max-w-4xl px-4 sm:px-8">
                         <div className="mb-8 text-center">
-                            <h2 className={`text-4xl font-bold text-white md:text-5xl lg:text-6xl ${modernizFont.className}`}>Browse Sermons</h2>
+                            <h2 className={`mb-4 text-4xl font-bold text-white sm:text-5xl md:text-7xl xl:text-8xl ${modernizFont.className}`}>
+                                Sermons
+                            </h2>
+                            <p className="text-lg text-gray-300 md:text-xl">
+                                Explore teachings and messages that will inspire, challenge, and encourage you in your faith journey.
+                            </p>
                         </div>
                         <div className="space-y-6">
                             {/* Clear Filters Button - Mobile Only */}
@@ -218,7 +197,7 @@ export default function MinistrySermons() {
                                                             container.scrollBy({ left: -200, behavior: 'smooth' });
                                                         }
                                                     }}
-                                                    className="flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-full bg-gray-800 text-white transition-all duration-200 hover:bg-red-600"
+                                                    className="flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-full bg-red-900 text-white shadow-lg shadow-red-800/20 transition-all duration-200 hover:bg-red-800"
                                                 >
                                                     <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -290,7 +269,7 @@ export default function MinistrySermons() {
                                                             container.scrollBy({ left: 200, behavior: 'smooth' });
                                                         }
                                                     }}
-                                                    className="flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-full bg-gray-800 text-white transition-all duration-200 hover:bg-red-600"
+                                                    className="flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-full bg-red-900 text-white shadow-lg shadow-red-800/20 transition-all duration-200 hover:bg-red-800"
                                                 >
                                                     <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
