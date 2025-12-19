@@ -272,7 +272,7 @@ const NavLink: React.FC<NavLinkProps> = ({ children, href, idx }) => {
             <div className="flex items-center justify-center gap-4">
                 <Link
                     href={href}
-                    className={`text-2xl font-semibold transition-colors hover:text-[#030712] md:text-3xl ${modernizFont.className} ${
+                    className={`cursor-pointer text-2xl font-semibold transition-colors hover:text-[#030712] md:text-3xl ${modernizFont.className} ${
                         isActive ? 'text-[#030712]' : 'text-white'
                     }`}
                 >
@@ -297,6 +297,9 @@ const NavLink: React.FC<NavLinkProps> = ({ children, href, idx }) => {
 };
 
 const HamburgerButton: React.FC<HamburgerButtonProps> = ({ active, setActive }) => {
+    const pathname = usePathname();
+    const isMinistryRoute = pathname?.startsWith('/ministry');
+
     return (
         <>
             {/* Background blur for closed state */}
@@ -304,7 +307,9 @@ const HamburgerButton: React.FC<HamburgerButtonProps> = ({ active, setActive }) 
                 <div className="fixed top-0 right-0 left-0 z-10 h-30 mask-b-from-50% backdrop-blur-md">
                     <Link
                         href="/"
-                        className={`absolute top-6 left-8 z-50 text-2xl font-bold text-white transition-colors hover:text-sky-700 ${modernizFont.className}`}
+                        className={`absolute top-6 left-8 z-50 text-2xl font-bold text-white transition-colors ${modernizFont.className} ${
+                            isMinistryRoute ? 'hover:text-red-900' : 'hover:text-sky-700'
+                        }`}
                     >
                         P.B.
                     </Link>
@@ -316,14 +321,14 @@ const HamburgerButton: React.FC<HamburgerButtonProps> = ({ active, setActive }) 
                 animate={active ? 'open' : 'closed'}
                 variants={UNDERLAY_VARIANTS}
                 style={{ top: 16, right: 16 }}
-                className="fixed z-20 rounded bg-blue-900 shadow-lg shadow-blue-800/20"
+                className={`fixed z-20 rounded shadow-lg ${isMinistryRoute ? 'bg-red-900 shadow-red-800/20' : 'bg-blue-900 shadow-blue-800/20'}`}
             />
 
             <motion.button
                 initial={false}
                 animate={active ? 'open' : 'closed'}
                 onClick={() => setActive((pv) => !pv)}
-                className="group fixed top-4 right-4 z-50 h-12 w-12 bg-white/0 transition-all hover:bg-white/20"
+                className="group fixed top-4 right-4 z-50 h-12 w-12 cursor-pointer bg-white/0 transition-all hover:bg-white/20"
             >
                 <motion.span
                     variants={HAMBURGER_VARIANTS.top}
@@ -363,7 +368,7 @@ const FooterCTAs = () => {
                                 }
                             }}
                             exit={{ opacity: 0, y: -8 }}
-                            className="flex items-center gap-3 text-white transition-colors hover:text-sky-700"
+                            className="flex cursor-pointer items-center gap-3 text-white transition-colors hover:text-sky-700"
                         >
                             <l.Component className="text-3xl" />
                             <span className={`text-lg ${modernizFont.className}`}>{l.name}</span>
