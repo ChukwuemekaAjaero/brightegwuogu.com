@@ -1,13 +1,12 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
+import Image from 'next/image';
 import { useSermons } from '@/hooks/useContentful';
 import { modernizFont } from '@/lib/utils';
-import { FaYoutube, FaPlay } from 'react-icons/fa';
+import { FaYoutube, FaPlay, FaEnvelope } from 'react-icons/fa';
 import { FiArrowRight, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import Link from 'next/link';
-import { Input } from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
 import { motion } from 'framer-motion';
 
 // Convert YouTube URL to embed URL with time parameter
@@ -36,44 +35,12 @@ const getYouTubeEmbedUrl = (url: string | null | undefined): string | null => {
 export default function MinistryPage() {
     const { sermons, loading: sermonsLoading } = useSermons();
     const [isLoading, setIsLoading] = useState(true);
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        message: ''
-    });
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
     // Carousel state
     const carouselRef = useRef<HTMLDivElement>(null);
     const [canScrollLeft, setCanScrollLeft] = useState(false);
     const [canScrollRight, setCanScrollRight] = useState(true);
     const [currentPage, setCurrentPage] = useState(0);
-
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { name, value } = e.target;
-        setFormData((prev) => ({
-            ...prev,
-            [name]: value
-        }));
-    };
-
-    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-        setIsSubmitting(true);
-        setSubmitStatus('idle');
-
-        try {
-            // TODO: Replace with actual API call
-            await new Promise((resolve) => setTimeout(resolve, 1000));
-            setSubmitStatus('success');
-            setFormData({ name: '', email: '', message: '' });
-        } catch (error) {
-            setSubmitStatus('error');
-        } finally {
-            setIsSubmitting(false);
-        }
-    };
 
     // Handle loading logic
     useEffect(() => {
@@ -221,14 +188,14 @@ export default function MinistryPage() {
                                     href={sermons[0]?.youTubeLink}
                                     target="_blank"
                                     rel="noopener   noreferrer"
-                                    className="group inline-flex items-center justify-center rounded bg-[#030712]/60 px-6 py-4 font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:scale-105"
+                                    className="group inline-flex items-center justify-center rounded bg-[#030712]/60 px-6 py-4 font-semibold text-white shadow-lg shadow-red-800/20 transition-all duration-300 hover:scale-105 hover:bg-red-800"
                                 >
                                     <FaYoutube size={24} className="mr-3 text-red-600" />
                                     Watch on YouTube
                                 </a>
                                 <Link
                                     href="/ministry/sermons"
-                                    className="group inline-flex items-center justify-center rounded bg-[#030712]/60 px-6 py-4 font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:scale-105"
+                                    className="group inline-flex items-center justify-center rounded bg-[#030712]/60 px-6 py-4 font-semibold text-white shadow-lg shadow-red-800/20 transition-all duration-300 hover:scale-105 hover:bg-red-800"
                                 >
                                     <FaPlay className="mr-3 h-5 w-5" />
                                     View Sermons
@@ -247,10 +214,16 @@ export default function MinistryPage() {
                             About
                         </h2>
 
-                        {/* Image Skeleton */}
+                        {/* Image */}
                         <div className="-mt-8 mb-12 flex justify-center">
-                            <div className="relative z-0 aspect-[3/4] w-64 overflow-hidden rounded-xs bg-gray-800 shadow-lg md:w-80 lg:w-96">
-                                <div className="absolute inset-0 animate-pulse bg-gray-700"></div>
+                            <div className="relative z-0 aspect-[3/4] w-64 overflow-hidden rounded-xs shadow-lg md:w-80 lg:w-96">
+                                <Image
+                                    src="/images/ministry/MinistryAboutImage.jpg"
+                                    alt="Pastor Bright Egwuogu"
+                                    fill
+                                    sizes="(max-width: 768px) 256px, (max-width: 1024px) 320px, 384px"
+                                    className="object-cover"
+                                />
                             </div>
                         </div>
 
@@ -271,7 +244,7 @@ export default function MinistryPage() {
                         <div className="mt-12 flex justify-center">
                             <Link
                                 href="/ministry/about"
-                                className="group inline-flex items-center justify-center rounded bg-blue-900 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300 hover:scale-105 hover:bg-blue-800"
+                                className="group inline-flex items-center justify-center rounded bg-red-900 px-8 py-4 font-semibold text-white shadow-lg shadow-red-800/20 transition-all duration-300 hover:scale-105 hover:bg-red-800"
                             >
                                 Learn More
                             </Link>
@@ -298,7 +271,7 @@ export default function MinistryPage() {
                     <button
                         onClick={() => scrollCarousel('left')}
                         disabled={!canScrollLeft}
-                        className="rounded-full bg-gray-800/80 p-3 text-white transition-all hover:bg-gray-700 disabled:cursor-not-allowed disabled:opacity-50"
+                        className="rounded-full bg-red-900 p-3 text-white shadow-lg shadow-red-800/20 transition-all hover:bg-red-800 disabled:cursor-not-allowed disabled:opacity-50"
                         aria-label="Scroll left"
                     >
                         <FiChevronLeft className="h-6 w-6" />
@@ -306,7 +279,7 @@ export default function MinistryPage() {
                     <button
                         onClick={() => scrollCarousel('right')}
                         disabled={!canScrollRight}
-                        className="rounded-full bg-gray-800/80 p-3 text-white transition-all hover:bg-gray-700 disabled:cursor-not-allowed disabled:opacity-50"
+                        className="rounded-full bg-red-900 p-3 text-white shadow-lg shadow-red-800/20 transition-all hover:bg-red-800 disabled:cursor-not-allowed disabled:opacity-50"
                         aria-label="Scroll right"
                     >
                         <FiChevronRight className="h-6 w-6" />
@@ -447,7 +420,7 @@ export default function MinistryPage() {
                         <div className="mt-32 flex justify-center md:mt-40">
                             <Link
                                 href="/ministry/sermons"
-                                className="group inline-flex items-center justify-center rounded bg-blue-900 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300 hover:scale-105 hover:bg-blue-800"
+                                className="group inline-flex items-center justify-center rounded bg-red-900 px-8 py-4 font-semibold text-white shadow-lg shadow-red-800/20 transition-all duration-300 hover:scale-105 hover:bg-red-800"
                             >
                                 View All Sermons
                                 <FiArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
@@ -502,84 +475,19 @@ export default function MinistryPage() {
             <section className="relative bg-[#030712] py-20">
                 <div className="container mx-auto px-4 sm:px-8">
                     <div className="mx-auto max-w-2xl">
-                        <h2 className={`mb-8 text-center text-4xl font-bold text-white md:text-5xl lg:text-6xl ${modernizFont.className}`}>
+                        <h2 className={`mb-12 text-center text-4xl font-bold text-white md:text-5xl lg:text-6xl ${modernizFont.className}`}>
                             Get In Touch
                         </h2>
-                        <p className="mb-12 text-center text-lg text-gray-300 md:text-xl">
-                            Have a question or want to connect? Send me a message and I'll get back to you as soon as possible.
-                        </p>
 
-                        <form onSubmit={handleSubmit} className="space-y-6">
-                            <div>
-                                <label htmlFor="name" className="mb-2 block text-sm font-medium text-gray-300">
-                                    Name
-                                </label>
-                                <Input
-                                    type="text"
-                                    id="name"
-                                    name="name"
-                                    value={formData.name}
-                                    onChange={handleInputChange}
-                                    required
-                                    className="w-full rounded-xs border-gray-700 bg-gray-900/50 text-white placeholder:text-gray-500 focus:border-blue-500 focus:ring-blue-500"
-                                    placeholder="Your name"
-                                />
-                            </div>
-
-                            <div>
-                                <label htmlFor="email" className="mb-2 block text-sm font-medium text-gray-300">
-                                    Email
-                                </label>
-                                <Input
-                                    type="email"
-                                    id="email"
-                                    name="email"
-                                    value={formData.email}
-                                    onChange={handleInputChange}
-                                    required
-                                    className="w-full rounded-xs border-gray-700 bg-gray-900/50 text-white placeholder:text-gray-500 focus:border-blue-500 focus:ring-blue-500"
-                                    placeholder="your.email@example.com"
-                                />
-                            </div>
-
-                            <div>
-                                <label htmlFor="message" className="mb-2 block text-sm font-medium text-gray-300">
-                                    Message
-                                </label>
-                                <textarea
-                                    id="message"
-                                    name="message"
-                                    value={formData.message}
-                                    onChange={handleInputChange}
-                                    required
-                                    rows={6}
-                                    className="flex w-full min-w-0 rounded-xs border border-gray-700 bg-gray-900/50 px-3 py-2 text-base text-white shadow-xs transition-[color,box-shadow] outline-none placeholder:text-gray-500 focus-visible:border-blue-500 focus-visible:ring-[3px] focus-visible:ring-blue-500/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50 md:text-sm"
-                                    placeholder="Your message..."
-                                />
-                            </div>
-
-                            {submitStatus === 'success' && (
-                                <div className="rounded-xs border border-green-700 bg-green-900/30 px-4 py-3 text-green-300">
-                                    Thank you! Your message has been sent successfully.
-                                </div>
-                            )}
-
-                            {submitStatus === 'error' && (
-                                <div className="rounded-xs border border-red-700 bg-red-900/30 px-4 py-3 text-red-300">
-                                    Something went wrong. Please try again later.
-                                </div>
-                            )}
-
-                            <div className="flex justify-center">
-                                <Button
-                                    type="submit"
-                                    disabled={isSubmitting}
-                                    className="group inline-flex items-center justify-center rounded bg-blue-900 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300 hover:scale-105 hover:bg-blue-800 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:scale-100"
-                                >
-                                    {isSubmitting ? 'Sending...' : 'Send Message'}
-                                </Button>
-                            </div>
-                        </form>
+                        <div className="flex justify-center">
+                            <a
+                                href="mailto:bright.egwuogu@gmail.com"
+                                className="group inline-flex items-center justify-center gap-4 rounded-xs bg-red-900 px-12 py-6 text-xl font-semibold text-white shadow-lg shadow-red-800/20 transition-all duration-300 hover:scale-105 hover:bg-red-800 md:px-16 md:py-8 md:text-2xl"
+                            >
+                                <FaEnvelope className="h-6 w-6 md:h-8 md:w-8" />
+                                bright.egwuogu@gmail.com
+                            </a>
+                        </div>
                     </div>
                 </div>
             </section>

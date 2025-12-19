@@ -134,7 +134,7 @@ export default function MinistrySermons() {
                                             setDateRange(undefined);
                                             setSelectedTags([]);
                                         }}
-                                        className="group inline-flex items-center rounded bg-blue-900 px-8 py-4 font-semibold text-white transition-all duration-300 hover:bg-blue-800 hover:text-white"
+                                        className="group inline-flex items-center rounded bg-red-900 px-8 py-4 font-semibold text-white shadow-lg shadow-red-800/20 transition-all duration-300 hover:bg-red-800 hover:text-white"
                                     >
                                         <svg
                                             className="mr-2 h-5 w-5 transition-transform group-hover:translate-x-1"
@@ -266,8 +266,8 @@ export default function MinistrySermons() {
                                                         }}
                                                         className={`cursor-pointer rounded-full px-3 py-1 text-sm whitespace-nowrap transition-all duration-200 ${
                                                             isSelected
-                                                                ? 'bg-sky-800 text-white'
-                                                                : 'bg-gray-800 text-gray-300 hover:bg-sky-800 hover:text-white'
+                                                                ? 'bg-red-900 text-white'
+                                                                : 'bg-gray-800 text-gray-300 hover:bg-red-900 hover:text-white'
                                                         }`}
                                                     >
                                                         {tag}
@@ -445,7 +445,7 @@ export default function MinistrySermons() {
                                 <div className="mt-12 text-center">
                                     <button
                                         onClick={loadMoreSermons}
-                                        className="group inline-flex cursor-pointer items-center rounded bg-blue-900 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300"
+                                        className="group inline-flex cursor-pointer items-center rounded bg-red-900 px-8 py-4 font-semibold text-white shadow-lg shadow-red-800/20 transition-all duration-300 hover:bg-red-800"
                                     >
                                         More
                                         <FiArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-2" />

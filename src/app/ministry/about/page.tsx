@@ -64,17 +64,17 @@ export default function MinistryAbout() {
     }, []);
     return (
         <div className="min-h-screen bg-[#030712]">
-            <div className="container mx-auto px-4 py-20 pt-62 sm:px-8">
+            <div className="container mx-auto px-4 py-20 pt-32 sm:px-8 sm:pt-48 md:pt-56 lg:pt-[15.5rem] xl:pt-[18rem]">
                 <div className="flex flex-col items-center justify-center">
                     {/* Large Header */}
-                    <h1 className={`z-2 text-center text-3xl font-bold text-white md:text-5xl lg:text-7xl xl:text-9xl ${modernizFont.className}`}>
-                        <span className="text-blue-900">P</span>astor
+                    <h1 className={`z-2 text-center text-7xl font-bold text-white lg:text-8xl xl:text-9xl ${modernizFont.className}`}>
+                        <span className="text-red-900">P</span>astor
                         <br />
-                        <span className="text-blue-900">B</span>right
+                        <span className="text-red-900">B</span>right
                     </h1>
 
                     {/* Profile Video */}
-                    <div className="relative -mt-16 aspect-[3/4] w-80 overflow-hidden rounded-xs bg-gray-800 shadow-lg md:w-96 lg:w-[28rem] xl:w-[32rem]">
+                    <div className="relative -mt-8 aspect-[3/4] w-80 overflow-hidden rounded-xs bg-gray-800 shadow-lg sm:-mt-8 md:w-96 lg:-mt-14 lg:w-[28rem] xl:-mt-16 xl:w-[32rem]">
                         {/* Skeleton - shown until video loads */}
                         {!videoLoaded && <div className="absolute inset-0 animate-pulse bg-gray-700"></div>}
                         {/* Video */}
