@@ -9,6 +9,17 @@ import { FiArrowRight, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 
+// Format date to "Month Day, Year" format for sermons
+const formatSermonDate = (dateString: string) => {
+    // Handle date string parsing to avoid timezone issues
+    const date = new Date(dateString + 'T00:00:00');
+    return date.toLocaleDateString('en-US', {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric'
+    });
+};
+
 // Convert YouTube URL to embed URL with time parameter
 const getYouTubeEmbedUrl = (url: string | null | undefined): string | null => {
     if (!url) return null;
@@ -54,9 +65,9 @@ export default function MinistryPage() {
         if (!carouselRef.current) return;
 
         const container = carouselRef.current;
-        const scrollAmount = container.clientWidth * 0.8; // Scroll 80% of container width
+        const cardWidth = 374; // 350px card + 24px gap
         const currentScroll = container.scrollLeft;
-        const newPosition = direction === 'left' ? currentScroll - scrollAmount : currentScroll + scrollAmount;
+        const newPosition = direction === 'left' ? currentScroll - cardWidth : currentScroll + cardWidth;
 
         container.scrollTo({ left: newPosition, behavior: 'smooth' });
     };
@@ -73,9 +84,9 @@ export default function MinistryPage() {
             // Calculate current page based on scroll position
             // Each card is approximately 350px + 24px gap = 374px
             const cardWidth = 374;
-            const centerOffset = clientWidth / 2;
-            const pageIndex = Math.round((scrollLeft + centerOffset) / cardWidth);
-            const maxPages = 7; // 8 sermons (0-7)
+            // Calculate which card is currently most visible based on scroll position
+            const pageIndex = Math.round(scrollLeft / cardWidth);
+            const maxPages = Math.min(7, (sermons.length || 8) - 1); // 8 sermons (0-7)
             setCurrentPage(Math.max(0, Math.min(pageIndex, maxPages)));
         };
 
@@ -288,11 +299,10 @@ export default function MinistryPage() {
 
                 {/* Sermon Carousel - Full Width */}
                 <div className="relative w-full overflow-visible">
-                    <p className="text-center text-red-500">NOTE: The left padding needs to match the breakpoints for the container class</p>
                     {/* Carousel Container */}
                     <div
                         ref={carouselRef}
-                        className="scrollbar-hide flex gap-6 overflow-x-auto overflow-y-visible pb-16 pl-4 sm:pl-72"
+                        className="scrollbar-hide flex gap-6 overflow-x-auto overflow-y-visible pr-4 pb-16 pl-4 sm:pr-8 sm:pl-72"
                         style={{
                             scrollBehavior: 'smooth',
                             scrollbarWidth: 'none',
@@ -302,28 +312,18 @@ export default function MinistryPage() {
                         {sermonsLoading ? (
                             <>
                                 {[...Array(8)].map((_, index) => (
-                                    <div
-                                        key={index}
-                                        className="relative h-[600px] w-[400px] flex-shrink-0 overflow-visible rounded-xs bg-gray-800 p-6 md:p-8"
-                                    >
-                                        <div className="flex h-full flex-col items-start justify-start">
+                                    <div key={index} className="w-[350px] flex-shrink-0">
+                                        <div className="relative aspect-[4/5] animate-pulse overflow-hidden rounded bg-gray-800"></div>
+                                        <div className="py-6">
                                             {/* Title Skeleton */}
-                                            <div className="mb-4 h-6 w-3/4 animate-pulse rounded bg-gray-700"></div>
+                                            <div className="mb-3 h-6 w-3/4 animate-pulse rounded bg-gray-700"></div>
                                             {/* Tags Skeleton */}
                                             <div className="mb-3 flex gap-2">
-                                                <div className="h-5 w-16 animate-pulse rounded-full bg-gray-700"></div>
-                                                <div className="h-5 w-20 animate-pulse rounded-full bg-gray-700"></div>
+                                                <div className="h-4 w-16 animate-pulse rounded bg-gray-700"></div>
+                                                <div className="h-4 w-20 animate-pulse rounded bg-gray-700"></div>
                                             </div>
                                             {/* Date Skeleton */}
-                                            <div className="mb-4 h-4 w-32 animate-pulse rounded bg-gray-700"></div>
-                                            {/* Description Skeleton */}
-                                            <div className="mb-4 space-y-2">
-                                                <div className="h-4 w-full animate-pulse rounded bg-gray-700"></div>
-                                                <div className="h-4 w-5/6 animate-pulse rounded bg-gray-700"></div>
-                                                <div className="h-4 w-4/6 animate-pulse rounded bg-gray-700"></div>
-                                            </div>
-                                            {/* Image Skeleton - Centered */}
-                                            <div className="mx-auto aspect-[3/4] w-48 rounded-xs bg-gray-700"></div>
+                                            <div className="h-4 w-32 animate-pulse rounded bg-gray-700"></div>
                                         </div>
                                     </div>
                                 ))}
@@ -331,61 +331,82 @@ export default function MinistryPage() {
                         ) : (
                             <>
                                 {sermons.slice(0, 8).map((sermon, index) => (
-                                    <div
-                                        key={index}
-                                        className="relative h-[550px] w-[400px] flex-shrink-0 overflow-hidden rounded-xs bg-gray-800 p-6 md:p-8"
+                                    <motion.a
+                                        key={sermon.name}
+                                        href={sermon.youTubeLink}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="group block w-[350px] flex-shrink-0 overflow-hidden rounded transition-all duration-300 hover:scale-103"
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        transition={{ delay: index * 0.1, duration: 0.8, ease: 'easeOut' }}
                                     >
-                                        <div className="flex h-full flex-col items-start justify-between">
-                                            <div className="flex flex-1 flex-col items-start justify-start">
-                                                {/* Sermon Title */}
-                                                <h3 className={`mb-4 text-xl font-semibold text-white`}>{sermon.name}</h3>
-                                                {/* Sermon Tags */}
-                                                {sermon.sermonTags && sermon.sermonTags.length > 0 && (
-                                                    <div className="mb-3 flex flex-wrap gap-2">
-                                                        {sermon.sermonTags.slice(0, 2).map((tag, tagIndex) => (
-                                                            <span key={tagIndex} className="rounded-full bg-red-600/40 px-2 py-1 text-xs text-white">
-                                                                {tag}
-                                                            </span>
-                                                        ))}
+                                        <div className="relative aspect-[4/5] overflow-hidden rounded">
+                                            {sermon.thumbnailImage?.fields?.file?.url && (
+                                                <Image
+                                                    src={`https:${sermon.thumbnailImage.fields.file.url}`}
+                                                    alt={sermon.name}
+                                                    fill
+                                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                                                    className="object-cover transition-all duration-300 group-hover:scale-105 group-hover:blur-sm"
+                                                />
+                                            )}
+                                            {/* Black Overlay */}
+                                            <div className="absolute inset-0 bg-black/80 opacity-0 transition-opacity duration-300 group-hover:scale-120 group-hover:opacity-100"></div>
+
+                                            {/* Play Icon Overlay or Description */}
+                                            <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                                                {sermon.sermonDescription ? (
+                                                    <div className="p-4 text-center text-white">
+                                                        <div className="mb-4 flex justify-center">
+                                                            <div className="rounded-full border-2 border-white p-2">
+                                                                <svg
+                                                                    className="h-8 w-8 text-white drop-shadow-lg"
+                                                                    fill="currentColor"
+                                                                    viewBox="0 0 24 24"
+                                                                >
+                                                                    <path d="M8 5v14l11-7z" />
+                                                                </svg>
+                                                            </div>
+                                                        </div>
+                                                        <p className="text-sm leading-relaxed whitespace-pre-line">{sermon.sermonDescription}</p>
+                                                    </div>
+                                                ) : (
+                                                    <div className="rounded-full border-4 border-white p-4">
+                                                        <svg className="h-20 w-20 text-white drop-shadow-lg" fill="currentColor" viewBox="0 0 24 24">
+                                                            <path d="M8 5v14l11-7z" />
+                                                        </svg>
                                                     </div>
                                                 )}
-                                                {/* Sermon Date */}
-                                                {sermon.sermonDate && (
-                                                    <p className="mb-4 text-xs text-gray-400">
-                                                        {new Date(sermon.sermonDate + 'T00:00:00').toLocaleDateString('en-US', {
-                                                            year: 'numeric',
-                                                            month: 'long',
-                                                            day: 'numeric'
-                                                        })}
-                                                    </p>
-                                                )}
-                                                {/* Sermon Description */}
-                                                {sermon.sermonDescription && (
-                                                    <p className="mb-4 line-clamp-3 text-xs leading-relaxed whitespace-pre-line text-gray-300">
-                                                        {sermon.sermonDescription}
-                                                    </p>
-                                                )}
                                             </div>
-
-                                            {/* Sermon Image */}
-                                            {sermon.thumbnailImage?.fields?.file?.url ? (
-                                                <div className="relative ml-auto w-full pt-4">
-                                                    <img
-                                                        src={`https:${sermon.thumbnailImage.fields.file.url}`}
-                                                        alt={sermon.name}
-                                                        className="ml-auto h-auto w-[80%] rounded-xs object-contain transition-transform duration-300"
-                                                        style={{
-                                                            transform:
-                                                                'perspective(1000px) rotateY(-10deg) rotateX(2deg) skewY(1deg) translateY(1rem)',
-                                                            transformStyle: 'preserve-3d'
-                                                        }}
-                                                    />
-                                                </div>
-                                            ) : (
-                                                <div className="ml-auto aspect-[3/4] w-48 rounded-xs bg-gray-700"></div>
-                                            )}
                                         </div>
-                                    </div>
+
+                                        {/* Sermon Info Below Thumbnail */}
+                                        <div className="py-6">
+                                            <h3 className="mb-3 line-clamp-2 text-lg font-bold text-white transition-colors duration-300 lg:text-xl">
+                                                {sermon.name}
+                                            </h3>
+
+                                            {/* Sermon Tags */}
+                                            {sermon.sermonTags && sermon.sermonTags.length > 0 && (
+                                                <div className="mb-3 flex flex-wrap items-center gap-2 text-xs text-gray-400">
+                                                    {sermon.sermonTags.slice(0, 3).map((tag, tagIndex) => (
+                                                        <span key={tagIndex} className="flex items-center text-sm">
+                                                            {tagIndex > 0 && <span className="mr-1 text-sm text-gray-500">•</span>}
+                                                            {tag}
+                                                        </span>
+                                                    ))}
+                                                    {sermon.sermonTags.length > 3 && (
+                                                        <span className="text-gray-500">+{sermon.sermonTags.length - 3} more</span>
+                                                    )}
+                                                </div>
+                                            )}
+
+                                            <p className="text-sm text-gray-300 transition-colors duration-300 lg:text-base">
+                                                {sermon.sermonDate ? formatSermonDate(sermon.sermonDate) : ''}
+                                            </p>
+                                        </div>
+                                    </motion.a>
                                 ))}
                             </>
                         )}
