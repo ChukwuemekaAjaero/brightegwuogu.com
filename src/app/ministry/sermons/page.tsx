@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
 import { useSermons } from '@/hooks/useContentful';
 import { modernizFont } from '@/lib/utils';
-import { FiArrowRight } from 'react-icons/fi';
+import { FiArrowDown } from 'react-icons/fi';
 import { DateRangePicker } from '@/components/lib/DateRangePicker';
 
 export default function MinistrySermons() {
@@ -427,7 +427,7 @@ export default function MinistrySermons() {
                                         className="group inline-flex cursor-pointer items-center rounded bg-red-900 px-8 py-4 font-semibold text-white shadow-lg shadow-red-800/20 transition-all duration-300 hover:bg-red-800"
                                     >
                                         More
-                                        <FiArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-2" />
+                                        <FiArrowDown className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-y-2" />
                                     </button>
                                 </div>
                             )}

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { modernizFont } from '@/lib/utils';
 import { FiArrowRight } from 'react-icons/fi';
@@ -11,11 +11,72 @@ import SplashScreen from '@/components/lib/SplashScreen';
 export default function RootPage() {
     const [hoveredSection, setHoveredSection] = useState<'ministry' | 'music' | null>(null);
     const { loading, progress } = useMediaPreloader(criticalMediaAssets);
+    const [showMessage, setShowMessage] = useState(false);
+    const [showContent, setShowContent] = useState(false);
+    const [splashVisible, setSplashVisible] = useState(true);
+
+    // Handle transitions: splash -> message -> content
+    useEffect(() => {
+        if (!loading && progress >= 100) {
+            // Fade out splash screen after a brief delay
+            const splashFadeOut = setTimeout(() => {
+                setSplashVisible(false);
+            }, 500);
+
+            // Fade in message after splash fades out
+            const messageFadeIn = setTimeout(() => {
+                setShowMessage(true);
+            }, 1000); // 500ms delay + 500ms transition
+
+            // Fade out message and fade in content after 3 seconds
+            const messageFadeOut = setTimeout(() => {
+                setShowMessage(false);
+            }, 4000); // 1000ms start + 3000ms display
+
+            // Fade in content after message fades out
+            const contentFadeIn = setTimeout(() => {
+                setShowContent(true);
+            }, 4500); // 4000ms + 500ms transition
+
+            return () => {
+                clearTimeout(splashFadeOut);
+                clearTimeout(messageFadeIn);
+                clearTimeout(messageFadeOut);
+                clearTimeout(contentFadeIn);
+            };
+        }
+    }, [loading, progress]);
 
     return (
         <>
-            <SplashScreen progress={progress} isVisible={loading} />
-            <div className={`flex h-screen w-full flex-col overflow-hidden transition-opacity duration-500 ${loading ? 'opacity-0' : 'opacity-100'}`}>
+            {/* Persistent black background for splash and message */}
+            <div
+                className={`fixed inset-0 z-50 bg-black transition-opacity duration-500 ease-in-out ${
+                    showContent ? 'pointer-events-none opacity-0' : 'opacity-100'
+                }`}
+            >
+                {/* Splash screen content - fades out */}
+                <div
+                    className={`flex h-full items-center justify-center transition-opacity duration-500 ease-in-out ${
+                        splashVisible ? 'opacity-100' : 'pointer-events-none opacity-0'
+                    }`}
+                >
+                    <SplashScreen progress={progress} isVisible={true} />
+                </div>
+                {/* Message text - fades in */}
+                <div
+                    className={`absolute inset-0 flex items-center justify-center transition-opacity duration-500 ease-in-out ${
+                        showMessage ? 'opacity-100' : 'pointer-events-none opacity-0'
+                    }`}
+                >
+                    <p className={`text-4xl font-bold text-white md:text-5xl lg:text-6xl ${modernizFont.className}`}>Select a side of Bright</p>
+                </div>
+            </div>
+            <div
+                className={`flex h-screen w-full flex-col overflow-hidden transition-opacity duration-500 ease-in-out ${
+                    showContent ? 'opacity-100' : 'opacity-0'
+                }`}
+            >
                 <div className="flex h-full w-full flex-col gap-4 p-4 md:flex-row">
                     {/* Left Section - Ministry */}
                     <div

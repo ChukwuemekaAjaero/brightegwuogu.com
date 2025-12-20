@@ -333,49 +333,56 @@ export default function MinistryPage() {
                                 {sermons.slice(0, 8).map((sermon, index) => (
                                     <div
                                         key={index}
-                                        className="relative h-full w-[500px] flex-shrink-0 overflow-visible rounded-xs bg-gray-800 p-6 md:p-8"
+                                        className="relative h-[550px] w-[400px] flex-shrink-0 overflow-hidden rounded-xs bg-gray-800 p-6 md:p-8"
                                     >
-                                        <div className="flex h-full flex-col items-start justify-start">
-                                            {/* Sermon Title */}
-                                            <h3 className={`mb-4 text-xl font-semibold text-white ${modernizFont.className}`}>{sermon.name}</h3>
-                                            {/* Sermon Tags */}
-                                            {sermon.sermonTags && sermon.sermonTags.length > 0 && (
-                                                <div className="mb-3 flex flex-wrap gap-2">
-                                                    {sermon.sermonTags.slice(0, 2).map((tag, tagIndex) => (
-                                                        <span key={tagIndex} className="rounded-full bg-red-600/40 px-2 py-1 text-xs text-white">
-                                                            {tag}
-                                                        </span>
-                                                    ))}
-                                                </div>
-                                            )}
-                                            {/* Sermon Date */}
-                                            {sermon.sermonDate && (
-                                                <p className="mb-4 text-xs text-gray-400">
-                                                    {new Date(sermon.sermonDate + 'T00:00:00').toLocaleDateString('en-US', {
-                                                        year: 'numeric',
-                                                        month: 'long',
-                                                        day: 'numeric'
-                                                    })}
-                                                </p>
-                                            )}
-                                            {/* Sermon Description */}
-                                            {sermon.sermonDescription && (
-                                                <p className="mb-4 line-clamp-4 text-xs leading-relaxed whitespace-pre-line text-gray-300">
-                                                    {sermon.sermonDescription}
-                                                </p>
-                                            )}
+                                        <div className="flex h-full flex-col items-start justify-between">
+                                            <div className="flex flex-1 flex-col items-start justify-start">
+                                                {/* Sermon Title */}
+                                                <h3 className={`mb-4 text-xl font-semibold text-white`}>{sermon.name}</h3>
+                                                {/* Sermon Tags */}
+                                                {sermon.sermonTags && sermon.sermonTags.length > 0 && (
+                                                    <div className="mb-3 flex flex-wrap gap-2">
+                                                        {sermon.sermonTags.slice(0, 2).map((tag, tagIndex) => (
+                                                            <span key={tagIndex} className="rounded-full bg-red-600/40 px-2 py-1 text-xs text-white">
+                                                                {tag}
+                                                            </span>
+                                                        ))}
+                                                    </div>
+                                                )}
+                                                {/* Sermon Date */}
+                                                {sermon.sermonDate && (
+                                                    <p className="mb-4 text-xs text-gray-400">
+                                                        {new Date(sermon.sermonDate + 'T00:00:00').toLocaleDateString('en-US', {
+                                                            year: 'numeric',
+                                                            month: 'long',
+                                                            day: 'numeric'
+                                                        })}
+                                                    </p>
+                                                )}
+                                                {/* Sermon Description */}
+                                                {sermon.sermonDescription && (
+                                                    <p className="mb-4 line-clamp-3 text-xs leading-relaxed whitespace-pre-line text-gray-300">
+                                                        {sermon.sermonDescription}
+                                                    </p>
+                                                )}
+                                            </div>
 
                                             {/* Sermon Image */}
                                             {sermon.thumbnailImage?.fields?.file?.url ? (
-                                                <div className="relative mx-auto w-full">
+                                                <div className="relative ml-auto w-full pt-4">
                                                     <img
                                                         src={`https:${sermon.thumbnailImage.fields.file.url}`}
                                                         alt={sermon.name}
-                                                        className="h-auto w-[80%] rounded-xs object-contain"
+                                                        className="ml-auto h-auto w-[80%] rounded-xs object-contain transition-transform duration-300"
+                                                        style={{
+                                                            transform:
+                                                                'perspective(1000px) rotateY(-10deg) rotateX(2deg) skewY(1deg) translateY(1rem)',
+                                                            transformStyle: 'preserve-3d'
+                                                        }}
                                                     />
                                                 </div>
                                             ) : (
-                                                <div className="mx-auto aspect-[3/4] w-48 rounded-xs bg-gray-700"></div>
+                                                <div className="ml-auto aspect-[3/4] w-48 rounded-xs bg-gray-700"></div>
                                             )}
                                         </div>
                                     </div>
