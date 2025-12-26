@@ -173,3 +173,11 @@ html {
 .scrollbar-hide::-webkit-scrollbar {
     display: none;
 }
+
+/* Ensure all links and anchors show pointer cursor */
+a,
+[role="link"],
+button[type="button"],
+button[type="submit"] {
+    cursor: pointer !important;
+}

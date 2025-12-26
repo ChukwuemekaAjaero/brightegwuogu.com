@@ -199,14 +199,14 @@ export default function MinistryPage() {
                                     href={sermons[0]?.youTubeLink}
                                     target="_blank"
                                     rel="noopener   noreferrer"
-                                    className="group inline-flex items-center justify-center rounded bg-[#030712]/80 px-6 py-4 font-semibold text-white shadow-lg shadow-red-800/20 transition-all duration-300 hover:scale-105 hover:bg-red-800/80"
+                                    className="group inline-flex cursor-pointer items-center justify-center rounded bg-[#030712]/80 px-6 py-4 font-semibold text-white shadow-lg shadow-red-800/20 transition-all duration-300 hover:scale-105 hover:bg-red-800/80"
                                 >
                                     <FaYoutube size={24} className="mr-3 text-red-600" />
                                     Watch on YouTube
                                 </a>
                                 <Link
                                     href="/ministry/sermons"
-                                    className="group inline-flex items-center justify-center rounded bg-[#030712]/80 px-6 py-4 font-semibold text-white shadow-lg shadow-red-800/20 transition-all duration-300 hover:scale-105 hover:bg-red-800/80"
+                                    className="group inline-flex cursor-pointer items-center justify-center rounded bg-[#030712]/80 px-6 py-4 font-semibold text-white shadow-lg shadow-red-800/20 transition-all duration-300 hover:scale-105 hover:bg-red-800/80"
                                 >
                                     <FaPlay className="mr-3 h-5 w-5" />
                                     View Sermons
@@ -255,7 +255,7 @@ export default function MinistryPage() {
                         <div className="mt-12 flex justify-center">
                             <Link
                                 href="/ministry/about"
-                                className="group inline-flex items-center justify-center rounded bg-red-900 px-8 py-4 font-semibold text-white shadow-lg shadow-red-800/20 transition-all duration-300 hover:scale-105 hover:bg-red-800"
+                                className="group inline-flex cursor-pointer items-center justify-center rounded bg-red-900 px-8 py-4 font-semibold text-white shadow-lg shadow-red-800/20 transition-all duration-300 hover:scale-105 hover:bg-red-800"
                             >
                                 Learn More
                             </Link>
@@ -336,7 +336,7 @@ export default function MinistryPage() {
                                         href={sermon.youTubeLink}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="group block w-[350px] flex-shrink-0 overflow-hidden rounded transition-all duration-300 hover:scale-103"
+                                        className="group block w-[350px] flex-shrink-0 cursor-pointer overflow-hidden rounded transition-all duration-300 hover:scale-103"
                                         initial={{ opacity: 0 }}
                                         animate={{ opacity: 1 }}
                                         transition={{ delay: index * 0.1, duration: 0.8, ease: 'easeOut' }}
@@ -448,7 +448,7 @@ export default function MinistryPage() {
                         <div className="mt-32 flex justify-center md:mt-40">
                             <Link
                                 href="/ministry/sermons"
-                                className="group inline-flex items-center justify-center rounded bg-red-900 px-8 py-4 font-semibold text-white shadow-lg shadow-red-800/20 transition-all duration-300 hover:scale-105 hover:bg-red-800"
+                                className="group inline-flex cursor-pointer items-center justify-center rounded bg-red-900 px-8 py-4 font-semibold text-white shadow-lg shadow-red-800/20 transition-all duration-300 hover:scale-105 hover:bg-red-800"
                             >
                                 View All Sermons
                                 <FiArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
@@ -498,13 +498,13 @@ export default function MinistryPage() {
                                     href={resource.link}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="relative block overflow-hidden rounded-xs bg-gray-800 bg-cover bg-center p-8 transition-all duration-300 hover:scale-105 md:p-10"
+                                    className="relative block cursor-pointer overflow-hidden rounded-xs bg-gray-800 bg-cover bg-center p-8 transition-all duration-300 hover:scale-105 md:p-10"
                                     style={{
                                         backgroundImage: `url(${resource.image})`
                                     }}
                                 >
                                     {/* Transparent black overlay */}
-                                    <div className="absolute inset-0 bg-black/60"></div>
+                                    <div className="absolute inset-0 bg-black/70"></div>
 
                                     {/* Content */}
                                     <div className="relative z-10">
@@ -531,9 +531,9 @@ export default function MinistryPage() {
                         <div className="flex justify-center">
                             <a
                                 href="mailto:bright.egwuogu@gmail.com"
-                                className="group inline-flex items-center justify-center gap-4 rounded-xs bg-red-900 px-12 py-6 text-xl font-semibold text-white shadow-lg shadow-red-800/20 transition-all duration-300 hover:scale-105 hover:bg-red-800 md:px-16 md:py-8 md:text-2xl"
+                                className="group inline-flex cursor-pointer items-center justify-center gap-3 rounded-xs bg-red-900 px-8 py-4 text-lg font-semibold text-white shadow-lg shadow-red-800/20 transition-all duration-300 hover:scale-105 hover:bg-red-800 md:px-12 md:py-6 md:text-xl"
                             >
-                                <FaEnvelope className="h-6 w-6 md:h-8 md:w-8" />
+                                <FaEnvelope className="h-5 w-5 md:h-6 md:w-6" />
                                 bright.egwuogu@gmail.com
                             </a>
                         </div>

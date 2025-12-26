@@ -25,7 +25,7 @@ export default function WidthIndicator() {
     };
 
     return (
-        <div className="fixed top-4 right-4 z-[100] rounded bg-black/80 px-4 py-2 font-mono text-sm text-white">
+        <div className="fixed bottom-4 right-4 z-[100] rounded bg-black/80 px-4 py-2 font-mono text-sm text-white">
             <div>Width: {width}px</div>
             <div>Breakpoint: {getBreakpoint()}</div>
         </div>

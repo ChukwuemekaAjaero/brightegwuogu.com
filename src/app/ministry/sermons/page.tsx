@@ -349,7 +349,7 @@ export default function MinistrySermons() {
                                             href={sermon.youTubeLink}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="group relative block overflow-hidden rounded transition-all duration-300 hover:scale-103"
+                                            className="group relative block cursor-pointer overflow-hidden rounded transition-all duration-300 hover:scale-103"
                                             initial={{ opacity: 0, y: 30 }}
                                             animate={sermonsInView ? { opacity: 0 } : { opacity: 1 }}
                                             transition={{ delay: batchIndex * 0.1, duration: 0.8, ease: 'easeOut' }}
