@@ -148,7 +148,7 @@ const DesktopHeader = () => {
                     <Link
                         ref={logoRef}
                         href={getLogoHref()}
-                        className={`text-2xl font-bold text-white no-underline transition-colors hover:text-gray-300 ${modernizFont.className}`}
+                        className={`cursor-pointer text-2xl font-bold text-white no-underline transition-colors hover:text-gray-300 ${modernizFont.className}`}
                     >
                         Bright Egwuogu
                     </Link>
@@ -160,7 +160,7 @@ const DesktopHeader = () => {
                 {/* Navigation Links - Center */}
                 <div className="absolute top-1/2 left-1/2 flex -translate-x-1/2 -translate-y-1/2 items-center gap-8">
                     {navLinks.map((link) => (
-                        <Link key={link.href} href={link.href} className="px-4 py-2 font-medium text-white">
+                        <Link key={link.href} href={link.href} className="cursor-pointer px-4 py-2 font-medium text-white">
                             {link.title}
                         </Link>
                     ))}
@@ -168,14 +168,14 @@ const DesktopHeader = () => {
 
                 {/* Social Media Links - Right */}
                 <div className="flex items-center gap-4">
-                    <a href="https://www.instagram.com/britegwu/" target="_blank" rel="noopener noreferrer" className="text-white transition-colors">
+                    <a href="https://www.instagram.com/britegwu/" target="_blank" rel="noopener noreferrer" className="cursor-pointer text-white transition-colors">
                         <AiFillInstagram size={24} />
                     </a>
                     <a
                         href="https://www.youtube.com/channel/UCH-O0drzAagoobTUuIT4vDg"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-white transition-colors"
+                        className="cursor-pointer text-white transition-colors"
                     >
                         <FaYoutube size={24} />
                     </a>
@@ -345,7 +345,7 @@ const HamburgerButton: React.FC<HamburgerButtonProps> = ({ active, setActive }) 
                 <div className="fixed top-0 right-0 left-0 z-10 h-30 mask-b-from-50% backdrop-blur-md">
                     <Link
                         href={getLogoHref()}
-                        className={`absolute top-6 left-8 z-50 text-2xl font-bold text-white transition-colors ${modernizFont.className} ${
+                        className={`absolute top-6 left-8 z-50 cursor-pointer text-2xl font-bold text-white transition-colors ${modernizFont.className} ${
                             isMinistryRoute ? 'hover:text-red-900' : 'hover:text-sky-700'
                         }`}
                     >

@@ -94,7 +94,7 @@ export default function MusicDiscography() {
                                     href="https://open.spotify.com/artist/2YsaAFq1fn9w2aiBcvURmn"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-center justify-center rounded-lg bg-white/10 px-6 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                    className="flex cursor-pointer items-center justify-center rounded-lg bg-white/10 px-6 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
                                 >
                                     <FaSpotify className="mr-2 h-6 w-6 text-green-400" />
                                     <span className="font-medium text-white">Spotify</span>
@@ -103,7 +103,7 @@ export default function MusicDiscography() {
                                     href="https://music.apple.com/us/artist/brite-egwuogu/1561427540"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-center justify-center rounded-lg bg-white/10 px-6 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                    className="flex cursor-pointer items-center justify-center rounded-lg bg-white/10 px-6 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
                                 >
                                     <FaApple className="mr-2 h-6 w-6 text-white" />
                                     <span className="font-medium text-white">Apple Music</span>
@@ -112,7 +112,7 @@ export default function MusicDiscography() {
                                     href="https://www.amazon.com/music/player/artists/B09RY3QB5K/brite-egwuogu"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-center justify-center rounded-lg bg-white/10 px-6 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                    className="flex cursor-pointer items-center justify-center rounded-lg bg-white/10 px-6 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
                                 >
                                     <SiAmazonmusic className="mr-2 h-6 w-6 text-orange-400" />
                                     <span className="font-medium text-white">Amazon Music</span>
@@ -121,7 +121,7 @@ export default function MusicDiscography() {
                                     href="https://www.deezer.com/en/artist/159926162"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-center justify-center rounded-lg bg-white/10 px-6 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                    className="flex cursor-pointer items-center justify-center rounded-lg bg-white/10 px-6 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
                                 >
                                     <FaDeezer className="mr-2 h-6 w-6 text-blue-400" />
                                     <span className="font-medium text-white">Deezer</span>
@@ -130,7 +130,7 @@ export default function MusicDiscography() {
                                     href="https://www.youtube.com/channel/UCH-O0drzAagoobTUuIT4vDg"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="flex items-center justify-center rounded-lg bg-white/10 px-6 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                    className="flex cursor-pointer items-center justify-center rounded-lg bg-white/10 px-6 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
                                 >
                                     <FaYoutube className="mr-2 h-6 w-6 text-red-500" />
                                     <span className="font-medium text-white">YouTube</span>
@@ -155,7 +155,7 @@ export default function MusicDiscography() {
                                             href={song.youTubeLink}
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="group hidden overflow-hidden rounded transition-all duration-300 hover:scale-102 md:block"
+                                            className="group hidden cursor-pointer overflow-hidden rounded transition-all duration-300 hover:scale-102 md:block"
                                         >
                                             <div className="relative aspect-square h-[330px] overflow-hidden rounded sm:h-[500px]">
                                                 {song.musicThumbnail?.fields?.file?.url && (
@@ -223,7 +223,7 @@ export default function MusicDiscography() {
                                                     href={song.spotifyLink}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                                    className="flex cursor-pointer items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
                                                     title="Listen on Spotify"
                                                 >
                                                     <FaSpotify className="h-6 w-6 text-green-400 md:h-8 md:w-8" />
@@ -232,7 +232,7 @@ export default function MusicDiscography() {
                                                     href={song.appleMusicLink}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                                    className="flex cursor-pointer items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
                                                     title="Listen on Apple Music"
                                                 >
                                                     <FaApple className="h-6 w-6 text-white md:h-8 md:w-8" />
@@ -241,7 +241,7 @@ export default function MusicDiscography() {
                                                     href={song.amazonMusicLink}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                                    className="flex cursor-pointer items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
                                                     title="Listen on Amazon Music"
                                                 >
                                                     <SiAmazonmusic className="h-6 w-6 text-orange-400 md:h-8 md:w-8" />
@@ -250,7 +250,7 @@ export default function MusicDiscography() {
                                                     href={song.deezerLink}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                                    className="flex cursor-pointer items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
                                                     title="Listen on Deezer"
                                                 >
                                                     <FaDeezer className="h-6 w-6 text-blue-400 md:h-8 md:w-8" />
@@ -259,7 +259,7 @@ export default function MusicDiscography() {
                                                     href={song.youTubeLink}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                                    className="flex cursor-pointer items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
                                                     title="Watch on YouTube"
                                                 >
                                                     <FaYoutube className="h-6 w-6 text-red-500 md:h-8 md:w-8" />

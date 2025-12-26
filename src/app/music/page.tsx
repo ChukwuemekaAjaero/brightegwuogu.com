@@ -195,7 +195,7 @@ export default function Music() {
                                     href="https://www.youtube.com/watch?v=_uUzAETf9TE"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="group inline-flex items-center justify-center rounded bg-[#030712]/80 px-6 py-4 font-semibold text-white transition-all duration-300 hover:scale-105 hover:bg-blue-900/80"
+                                    className="group inline-flex cursor-pointer items-center justify-center rounded bg-[#030712]/80 px-6 py-4 font-semibold text-white transition-all duration-300 hover:scale-105 hover:bg-blue-900/80"
                                 >
                                     <svg className="mr-3 h-5 w-5 text-red-600" fill="currentColor" viewBox="0 0 24 24">
                                         <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
@@ -205,7 +205,7 @@ export default function Music() {
 
                                 <a
                                     href="/music/discography"
-                                    className="group inline-flex items-center justify-center rounded bg-[#030712]/80 px-6 py-4 font-semibold text-white transition-all duration-300 hover:scale-105 hover:bg-blue-900/80"
+                                    className="group inline-flex cursor-pointer items-center justify-center rounded bg-[#030712]/80 px-6 py-4 font-semibold text-white transition-all duration-300 hover:scale-105 hover:bg-blue-900/80"
                                 >
                                     <IoIosMusicalNotes className="mr-3 h-5 w-5" />
                                     View Discography
@@ -243,11 +243,11 @@ export default function Music() {
             </section>
 
             {/* No Other God Video Section */}
-            <section className="relative bg-[#030712] py-20">
+            <section className="relative bg-[#030712] pt-20">
                 <div className="container mx-auto px-4 sm:px-8">
                     <div className="relative text-center">
                         <h2
-                            className={`relative z-10 mb-0 text-5xl font-bold text-white transition-all duration-200 md:text-7xl lg:text-9xl ${modernizFont.className} ${
+                            className={`relative z-10 mb-0 text-3xl font-bold text-white transition-all duration-200 sm:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl ${modernizFont.className} ${
                                 noOtherGodVideoActive || joyUnspeakableVideoActive || neverLostVideoActive
                                     ? 'opacity-40 blur-xs'
                                     : 'blur-0 opacity-100'
@@ -258,7 +258,7 @@ export default function Music() {
 
                         {/* Video */}
                         <div
-                            className={`max-w-9xl relative z-0 mx-auto -mt-6 transition-all duration-200 ease-in-out md:-mt-12 lg:-mt-24 ${noOtherGodVideoActive ? 'z-[100] scale-[1.01]' : 'scale-100'}`}
+                            className={`relative z-0 mx-auto -mt-6 max-w-5xl transition-all duration-200 ease-in-out md:-mt-8 lg:-mt-12 ${noOtherGodVideoActive ? 'z-[100] scale-[1.01]' : 'scale-100'}`}
                             onMouseEnter={() => setNoOtherGodVideoActive(true)}
                             onMouseLeave={() => setNoOtherGodVideoActive(false)}
                         >
@@ -281,7 +281,7 @@ export default function Music() {
                             </div>
                         </div>
                         {/* Album Cover - Bottom Left */}
-                        <div className="absolute -right-8 -bottom-8 z-20 hidden aspect-square w-40 overflow-hidden rounded shadow-lg md:w-60 lg:block lg:w-80">
+                        <div className="absolute right-32 -bottom-8 z-20 hidden aspect-square w-32 overflow-hidden rounded shadow-lg md:w-40 lg:block lg:w-48">
                             {/* Skeleton - shown until image loads */}
                             {!noOtherGodImageLoaded && <div className="absolute inset-0 animate-pulse bg-gray-500"></div>}
                             {/* Image */}
@@ -332,7 +332,7 @@ export default function Music() {
                                 href="https://open.spotify.com/track/6FCgNzCMwvYqEVwlyU3uYl?si=a50ed64ea8ea46aa"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                className="flex cursor-pointer items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
                                 title="Listen on Spotify"
                             >
                                 <SiSpotify className="h-6 w-6 text-green-400" />
@@ -341,7 +341,7 @@ export default function Music() {
                                 href="https://music.apple.com/us/song/no-other-god-feat-rhema-onuoha/1823930988"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                className="flex cursor-pointer items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
                                 title="Listen on Apple Music"
                             >
                                 <FaApple className="h-6 w-6 text-white" />
@@ -350,7 +350,7 @@ export default function Music() {
                                 href="https://amazon.com/music/player/albums/B0FG7J681F?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_6dJgC1ZLuqn2jKSnYbUYlBQeN"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                className="flex cursor-pointer items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
                                 title="Listen on Amazon Music"
                             >
                                 <SiAmazonmusic className="h-6 w-6 text-orange-400" />
@@ -359,7 +359,7 @@ export default function Music() {
                                 href="https://link.deezer.com/s/31278uhdrGzCshgIS9jRN"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                className="flex cursor-pointer items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
                                 title="Listen on Deezer"
                             >
                                 <FaDeezer className="h-6 w-6 text-blue-400" />
@@ -370,7 +370,7 @@ export default function Music() {
             </section>
 
             {/* Joy Unspeakable Video Section */}
-            <section className="relative bg-[#030712] py-20">
+            <section className="relative bg-[#030712] pt-20 lg:pt-40">
                 <div className="container mx-auto px-4 sm:px-8">
                     <div className="relative text-center">
                         <h2
@@ -385,7 +385,7 @@ export default function Music() {
 
                         {/* Video */}
                         <div
-                            className={`max-w-9xl relative z-0 mx-auto -mt-6 transition-all duration-200 ease-in-out md:-mt-12 lg:-mt-16 ${joyUnspeakableVideoActive ? 'z-[100] scale-[1.01]' : 'scale-100'}`}
+                            className={`relative z-0 mx-auto -mt-6 max-w-5xl transition-all duration-200 ease-in-out md:-mt-8 lg:-mt-12 ${joyUnspeakableVideoActive ? 'z-[100] scale-[1.01]' : 'scale-100'}`}
                             onMouseEnter={() => setJoyUnspeakableVideoActive(true)}
                             onMouseLeave={() => setJoyUnspeakableVideoActive(false)}
                         >
@@ -408,7 +408,7 @@ export default function Music() {
                             </div>
                         </div>
                         {/* Album Cover - Bottom Left */}
-                        <div className="absolute -right-8 -bottom-8 z-20 hidden aspect-square w-40 overflow-hidden rounded shadow-lg md:w-60 lg:block lg:w-80">
+                        <div className="absolute right-32 -bottom-8 z-20 hidden aspect-square w-32 overflow-hidden rounded shadow-lg md:w-40 lg:block lg:w-48">
                             {/* Skeleton - shown until image loads */}
                             {!joyUnspeakableImageLoaded && <div className="absolute inset-0 animate-pulse bg-gray-500"></div>}
                             {/* Image */}
@@ -459,7 +459,7 @@ export default function Music() {
                                 href="https://open.spotify.com/track/0GbVNSPa8I6nPGxYKS5jsU?si=90f05dbd51c14034"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                className="flex cursor-pointer items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
                                 title="Listen on Spotify"
                             >
                                 <SiSpotify className="h-6 w-6 text-green-400" />
@@ -468,7 +468,7 @@ export default function Music() {
                                 href="https://music.apple.com/us/song/joy-unspeakable-feat-daniel-ike/1802768269"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                className="flex cursor-pointer items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
                                 title="Listen on Apple Music"
                             >
                                 <FaApple className="h-6 w-6 text-white" />
@@ -477,7 +477,7 @@ export default function Music() {
                                 href="https://amazon.com/music/player/tracks/B0F1QXX8NQ?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_GVHr0mQtDnmTFETZzKQ2n7CcZ"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                className="flex cursor-pointer items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
                                 title="Listen on Amazon Music"
                             >
                                 <SiAmazonmusic className="h-6 w-6 text-orange-400" />
@@ -486,7 +486,7 @@ export default function Music() {
                                 href="https://link.deezer.com/s/3127DbiZuf95BQxH7nnlR"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                className="flex cursor-pointer items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
                                 title="Listen on Deezer"
                             >
                                 <FaDeezer className="h-6 w-6 text-blue-400" />
@@ -497,11 +497,11 @@ export default function Music() {
             </section>
 
             {/* Never Lost (Live) Video Section */}
-            <section className="relative bg-[#030712] py-20">
+            <section className="relative bg-[#030712] pt-20 lg:pt-40">
                 <div className="container mx-auto px-4 sm:px-8">
                     <div className="relative text-center">
                         <h2
-                            className={`relative z-10 mb-0 text-5xl font-bold text-white transition-all duration-200 md:text-7xl lg:text-9xl ${modernizFont.className} ${
+                            className={`relative z-10 mb-0 text-3xl font-bold text-white transition-all duration-200 sm:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl ${modernizFont.className} ${
                                 noOtherGodVideoActive || joyUnspeakableVideoActive || neverLostVideoActive
                                     ? 'opacity-40 blur-xs'
                                     : 'blur-0 opacity-100'
@@ -512,7 +512,7 @@ export default function Music() {
 
                         {/* Video */}
                         <div
-                            className={`max-w-9xl relative z-0 mx-auto -mt-6 transition-all duration-200 ease-in-out md:-mt-12 lg:-mt-24 ${neverLostVideoActive ? 'z-[100] scale-[1.01]' : 'scale-100'}`}
+                            className={`relative z-0 mx-auto -mt-6 max-w-5xl transition-all duration-200 ease-in-out md:-mt-8 lg:-mt-12 ${neverLostVideoActive ? 'z-[100] scale-[1.01]' : 'scale-100'}`}
                             onMouseEnter={() => setNeverLostVideoActive(true)}
                             onMouseLeave={() => setNeverLostVideoActive(false)}
                         >
@@ -535,7 +535,7 @@ export default function Music() {
                             </div>
                         </div>
                         {/* Album Cover - Bottom Left */}
-                        <div className="absolute -right-8 -bottom-8 z-20 hidden aspect-square w-40 overflow-hidden rounded shadow-lg md:w-60 lg:block lg:w-80">
+                        <div className="absolute right-32 -bottom-8 z-20 hidden aspect-square w-32 overflow-hidden rounded shadow-lg md:w-40 lg:block lg:w-48">
                             {/* Skeleton - shown until image loads */}
                             {!neverLostImageLoaded && <div className="absolute inset-0 animate-pulse bg-gray-500"></div>}
                             {/* Image */}
@@ -585,7 +585,7 @@ export default function Music() {
                                 href="https://open.spotify.com/track/7KIFgCFh0W3aaOe2KL6J2j?si=21d0e9c4d2604c47"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                className="flex cursor-pointer items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
                                 title="Listen on Spotify"
                             >
                                 <SiSpotify className="h-6 w-6 text-green-400" />
@@ -594,7 +594,7 @@ export default function Music() {
                                 href="https://music.apple.com/us/song/never-lost-live/1687272944"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                className="flex cursor-pointer items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
                                 title="Listen on Apple Music"
                             >
                                 <FaApple className="h-6 w-6 text-white" />
@@ -603,7 +603,7 @@ export default function Music() {
                                 href="https://amazon.com/music/player/tracks/B0C5PJYTS4?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_6Ib6NCtyloUQvclBxjqZRZ27G"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                className="flex cursor-pointer items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
                                 title="Listen on Amazon Music"
                             >
                                 <SiAmazonmusic className="h-6 w-6 text-orange-400" />
@@ -612,7 +612,7 @@ export default function Music() {
                                 href="https://link.deezer.com/s/3127oFPuVWyzeTtPIwGXV"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                className="flex cursor-pointer items-center justify-center rounded-lg bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
                                 title="Listen on Deezer"
                             >
                                 <FaDeezer className="h-6 w-6 text-blue-400" />
@@ -635,7 +635,7 @@ export default function Music() {
                         </p>
                         <Link
                             href="/music/discography"
-                            className="group inline-flex items-center justify-center gap-3 rounded-xs bg-blue-900 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300 hover:scale-105 hover:bg-blue-800"
+                            className="group inline-flex cursor-pointer items-center justify-center gap-3 rounded-xs bg-blue-900 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300 hover:scale-105 hover:bg-blue-800"
                         >
                             <IoIosMusicalNotes className="h-5 w-5" />
                             View Discography
@@ -645,7 +645,7 @@ export default function Music() {
             </section>
 
             {/* Contact Form Section */}
-            <section className="relative bg-[#030712] py-20">
+            <section className="relative bg-[#030712] pb-20 lg:pt-20">
                 <div className="container mx-auto px-4 sm:px-8">
                     <div
                         className={`mx-auto max-w-2xl transition-all duration-200 ${
@@ -659,9 +659,9 @@ export default function Music() {
                         <div className="flex justify-center">
                             <a
                                 href="mailto:bright.egwuogu@gmail.com"
-                                className="group inline-flex items-center justify-center gap-4 rounded-xs bg-blue-900 px-12 py-6 text-xl font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300 hover:scale-105 hover:bg-blue-800 md:px-16 md:py-8 md:text-2xl"
+                                className="group inline-flex cursor-pointer items-center justify-center gap-3 rounded-xs bg-blue-900 px-8 py-4 text-lg font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300 hover:scale-105 hover:bg-blue-800 md:px-12 md:py-6 md:text-xl"
                             >
-                                <FaEnvelope className="h-6 w-6 md:h-8 md:w-8" />
+                                <FaEnvelope className="h-5 w-5 md:h-6 md:w-6" />
                                 bright.egwuogu@gmail.com
                             </a>
                         </div>
