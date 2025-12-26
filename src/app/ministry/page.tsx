@@ -504,7 +504,7 @@ export default function MinistryPage() {
                                     }}
                                 >
                                     {/* Transparent black overlay */}
-                                    <div className="absolute inset-0 bg-black/70"></div>
+                                    <div className="absolute inset-0 bg-black/60"></div>
 
                                     {/* Content */}
                                     <div className="relative z-10">
