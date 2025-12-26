@@ -99,60 +99,59 @@ export default function MinistryAbout() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
     return (
-        <div className="min-h-screen bg-[#030712]">
-            <div className="container mx-auto px-4 py-20 pt-32 sm:px-8 sm:pt-48 md:pt-56 lg:pt-[15.5rem] xl:pt-[18rem]">
-                <div className="flex flex-col items-center justify-center">
-                    {/* Large Header */}
-                    <h1 className={`z-2 text-center text-7xl font-bold text-white lg:text-8xl xl:text-9xl ${modernizFont.className}`}>
-                        <span className="text-red-900">P</span>astor
-                        <br />
-                        <span className="text-red-900">B</span>right
-                    </h1>
+        <div className="min-h-screen overflow-x-hidden bg-[#030712]">
+            {/* Container for Pastor Bright text and video */}
+            <div className="container mx-auto flex max-h-screen flex-col items-center justify-center px-4 pt-30 pb-20 sm:px-8">
+                {/* Large Header */}
+                <h1 className={`z-2 text-center text-6xl font-bold text-white md:text-7xl lg:text-8xl xl:text-9xl ${modernizFont.className}`}>
+                    <span className="text-red-900">P</span>astor
+                    <br />
+                    <span className="text-red-900">B</span>right
+                </h1>
 
-                    {/* Profile Video */}
-                    <div className="relative -mt-8 aspect-[3/4] w-80 overflow-hidden rounded-xs bg-gray-800 shadow-lg sm:-mt-8 md:w-96 lg:-mt-14 lg:w-[28rem] xl:-mt-16 xl:w-[32rem]">
-                        {/* Skeleton - shown until video loads */}
-                        {!videoLoaded && <div className="absolute inset-0 animate-pulse bg-gray-700"></div>}
-                        {/* Video */}
-                        <video
-                            ref={videoRef}
-                            className={`h-full w-full object-cover transition-opacity duration-300 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
-                            src="/videos/ministry/MinistryAboutMe.mp4"
-                            autoPlay
-                            muted
-                            loop
-                            playsInline
-                            preload="auto"
-                            onCanPlay={() => setVideoLoaded(true)}
-                            onLoadedData={() => setVideoLoaded(true)}
-                        />
-                    </div>
+                {/* Profile Video */}
+                <div className="relative -mt-8 aspect-[3/4] w-80 overflow-hidden rounded-xs bg-gray-800 shadow-lg sm:-mt-8 md:w-96 lg:-mt-14 lg:w-[28rem] xl:-mt-16 xl:w-[32rem]">
+                    {/* Skeleton - shown until video loads */}
+                    {!videoLoaded && <div className="absolute inset-0 animate-pulse bg-gray-700"></div>}
+                    {/* Video */}
+                    <video
+                        ref={videoRef}
+                        className={`h-full w-full object-cover transition-opacity duration-300 ${videoLoaded ? 'opacity-100' : 'opacity-0'}`}
+                        src="/videos/ministry/MinistryAboutMe.mp4"
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        preload="auto"
+                        onCanPlay={() => setVideoLoaded(true)}
+                        onLoadedData={() => setVideoLoaded(true)}
+                    />
+                </div>
+            </div>
 
-                    {/* Lorem Ipsum Paragraphs */}
-                    <div className="mt-16 max-w-3xl space-y-6 text-center">
-                        <p className="text-base leading-relaxed text-gray-300 md:text-lg">
-                            Pastor Bright Egwuogu serves as the Resident Pastor of the Toronto campus of Celebration Church International (CCI) a
-                            global apostolic ministry led by Apostle Emmanuel Iren, with a vision to see all men celebrating endless life in Christ
-                            Jesus.
-                        </p>
-                        <p className="text-base leading-relaxed text-gray-300 md:text-lg">
-                            Passionate about spiritual growth and discipleship, Pastor Bright is deeply committed to helping believers understand
-                            Christ, mature in faith, and live out the realities of the Gospel with clarity and confidence. His teaching ministry is
-                            marked by sound doctrine, practical insight, and a heart for raising believers who walk in purpose and spiritual depth.
-                        </p>
-                    </div>
+            {/* Lorem Ipsum Paragraphs */}
+            <div className="container mx-auto px-4 pb-20 sm:px-8">
+                <div className="mx-auto max-w-3xl space-y-6 text-center">
+                    <p className="text-base leading-relaxed text-gray-300 md:text-lg">
+                        Pastor Bright Egwuogu serves as the Resident Pastor of the Toronto campus of Celebration Church International (CCI) a global
+                        apostolic ministry led by Apostle Emmanuel Iren, with a vision to see all men celebrating endless life in Christ Jesus.
+                    </p>
+                    <p className="text-base leading-relaxed text-gray-300 md:text-lg">
+                        Passionate about spiritual growth and discipleship, Pastor Bright is deeply committed to helping believers understand Christ,
+                        mature in faith, and live out the realities of the Gospel with clarity and confidence. His teaching ministry is marked by
+                        sound doctrine, practical insight, and a heart for raising believers who walk in purpose and spiritual depth.
+                    </p>
                 </div>
             </div>
 
             {/* Scroll-Triggered Image Carousel - Full Width */}
-            <div ref={carouselRef} className="relative -mt-20 w-full overflow-visible py-20">
+            <div ref={carouselRef} className="relative -mt-20 w-full overflow-x-hidden py-20">
                 <motion.div
                     ref={carouselContentRef}
-                    className="flex rotate-[-2deg] gap-4"
+                    className="flex gap-4"
                     style={{
                         translateX: `${translateX}px`,
-                        width: 'fit-content',
-                        transformOrigin: 'center center'
+                        width: 'fit-content'
                     }}
                     transition={{ type: 'spring', stiffness: 100, damping: 30 }}
                 >
@@ -184,7 +183,7 @@ export default function MinistryAbout() {
             </div>
 
             {/* Additional Lorem Ipsum Paragraphs */}
-            <div className="container mx-auto px-4 py-20 sm:px-8">
+            <div className="container mx-auto px-4 pb-20 sm:px-8">
                 <div className="mx-auto max-w-3xl space-y-6 text-center">
                     <p className="text-base leading-relaxed text-gray-300 md:text-lg">
                         Fondly known as PB, he is also a gifted musician with multiple contemporary Christian songs to his credit, impacting and

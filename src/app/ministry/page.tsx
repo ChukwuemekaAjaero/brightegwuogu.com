@@ -463,36 +463,57 @@ export default function MinistryPage() {
                 <div className="container mx-auto px-4 sm:px-8">
                     <div className="mx-auto max-w-6xl">
                         <h2 className={`mb-4 text-center text-4xl font-bold text-white md:text-5xl lg:text-6xl ${modernizFont.className}`}>
-                            Resources
+                            CCI Resources
                         </h2>
                         <p className="mx-auto mb-12 max-w-2xl text-center text-lg text-gray-300 md:text-xl">
-                            Discover helpful resources to deepen your faith and grow in your walk with Christ.
+                            Discover helpful resources, provided by Celebration Church International, to deepen your faith and grow in your walk with
+                            Christ.
                         </p>
 
-                        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+                        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
                             {[
                                 {
-                                    title: 'Bible Study Guides',
+                                    title: 'Meet & Pray (MAP)',
                                     description:
-                                        "Comprehensive study guides to help you dive deeper into God's Word. Each guide includes questions, reflections, and practical applications for your daily life."
+                                        'MAP - Meet and Pray is an initiative designed to bring church members together in smaller, more intimate groups for prayer, fellowship, and meaningful connection.',
+                                    link: 'http://joincci.org/map',
+                                    image: '/images/ministry/map-connect.jpg'
                                 },
                                 {
-                                    title: 'Prayer Resources',
+                                    title: 'Membership Classes',
                                     description:
-                                        'Tools and guides to strengthen your prayer life. Learn different prayer methods, find prayer prompts, and discover how to develop a consistent prayer routine.'
+                                        'Our Membership Classes get you up to speed with accurate scripture-based teachings designed to create a strong bedrock for your spiritual growth.',
+                                    link: 'https://joincci.org/membership-class',
+                                    image: '/images/ministry/map-study.jpg'
                                 },
                                 {
-                                    title: 'Devotional Materials',
-                                    description:
-                                        'Daily devotionals and spiritual growth materials designed to encourage and inspire you. Access daily readings, reflections, and practical wisdom for your journey.'
+                                    title: 'Counseling',
+                                    description: `"In the multitude of counsellors there is safety". Don't go through life alone. Get some counsel today!`,
+                                    link: 'https://joincci.org/counselling',
+                                    image: '/images/ministry/map-pray.jpg'
                                 }
                             ].map((resource, index) => (
-                                <div key={index} className="rounded-xs bg-gray-800 p-8 md:p-10">
-                                    <h3 className={`mb-6 text-2xl font-semibold text-white md:text-3xl ${modernizFont.className}`}>
-                                        {resource.title}
-                                    </h3>
-                                    <p className="text-base leading-relaxed text-gray-300 md:text-lg">{resource.description}</p>
-                                </div>
+                                <a
+                                    key={index}
+                                    href={resource.link}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="relative block overflow-hidden rounded-xs bg-gray-800 bg-cover bg-center p-8 transition-all duration-300 hover:scale-105 md:p-10"
+                                    style={{
+                                        backgroundImage: `url(${resource.image})`
+                                    }}
+                                >
+                                    {/* Transparent black overlay */}
+                                    <div className="absolute inset-0 bg-black/80"></div>
+
+                                    {/* Content */}
+                                    <div className="relative z-10">
+                                        <h3 className={`mb-6 text-2xl font-semibold text-white md:text-2xl xl:text-3xl ${modernizFont.className}`}>
+                                            {resource.title}
+                                        </h3>
+                                        <p className="text-base leading-relaxed text-gray-300 md:text-lg">{resource.description}</p>
+                                    </div>
+                                </a>
                             ))}
                         </div>
                     </div>
