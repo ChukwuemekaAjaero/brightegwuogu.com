@@ -5,13 +5,13 @@ import { motion } from 'framer-motion';
 const DURATION = 0.25;
 const STAGGER = 0.025;
 
-export const FlipLink = ({ children, href }: { children: string; href: string }) => {
+export const FlipLink = ({ children, href, font, className }: { children: string; href: string; font?: string; className?: string }) => {
     return (
         <motion.a
             initial="initial"
             whileHover="hovered"
             href={href}
-            className="relative block cursor-pointer overflow-hidden text-4xl font-black whitespace-nowrap uppercase sm:text-7xl md:text-8xl lg:text-9xl"
+            className="relative block cursor-pointer overflow-hidden font-black whitespace-nowrap"
             style={{
                 lineHeight: 0.75
             }}
@@ -32,7 +32,7 @@ export const FlipLink = ({ children, href }: { children: string; href: string })
                             ease: 'easeInOut',
                             delay: STAGGER * i
                         }}
-                        className="inline-block"
+                        className={`inline-block ${font || ''} ${className || ''}`}
                         key={i}
                     >
                         {l}
@@ -55,7 +55,7 @@ export const FlipLink = ({ children, href }: { children: string; href: string })
                             ease: 'easeInOut',
                             delay: STAGGER * i
                         }}
-                        className="inline-block"
+                        className={`inline-block ${font || ''} ${className || ''}`}
                         key={i}
                     >
                         {l}

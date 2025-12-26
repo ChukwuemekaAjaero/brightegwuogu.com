@@ -3,12 +3,12 @@
 import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { useSermons } from '@/hooks/useContentful';
-import { modernizFont } from '@/lib/utils';
+import { modernizFont, ubisoftSansFont } from '@/lib/utils';
 import { FaYoutube, FaPlay, FaEnvelope } from 'react-icons/fa';
 import { FiArrowRight, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
-
+import { FlipLink } from '@/components/lib/FlipLink';
 // Format date to "Month Day, Year" format for sermons
 const formatSermonDate = (dateString: string) => {
     // Handle date string parsing to avoid timezone issues
@@ -520,7 +520,7 @@ export default function MinistryPage() {
                 </div>
             </section>
 
-            {/* Contact Form Section */}
+            {/* Get In Touch Section */}
             <section className="relative bg-[#030712] py-20">
                 <div className="container mx-auto px-4 sm:px-8">
                     <div className="mx-auto max-w-2xl">
