@@ -3,6 +3,7 @@
 import { modernizFont } from '@/lib/utils';
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 export default function MinistryAbout() {
     const carouselRef = useRef<HTMLDivElement>(null);
@@ -156,27 +157,33 @@ export default function MinistryAbout() {
                     transition={{ type: 'spring', stiffness: 100, damping: 30 }}
                 >
                     {/* Duplicate images for seamless loop */}
-                    {[...Array(8)].map((_, index) => (
+                    {[...Array(7)].map((_, index) => (
                         <div
-                            key={`skeleton-${index}`}
+                            key={`image-${index}`}
                             className="relative aspect-[3/4] w-64 flex-shrink-0 overflow-hidden rounded-xs bg-gray-800 md:w-80 lg:w-96"
                         >
-                            <div className="absolute inset-0 animate-pulse bg-gray-700"></div>
-                            <div className="absolute inset-0 flex items-center justify-center">
-                                <span className="text-4xl font-bold text-white md:text-5xl lg:text-6xl">{index + 1}</span>
-                            </div>
+                            <Image
+                                src={`/images/homeGallery/galleryP${index + 1}.jpg`}
+                                alt={`Gallery image ${index + 1}`}
+                                fill
+                                sizes="(max-width: 768px) 256px, (max-width: 1024px) 320px, 384px"
+                                className="object-cover"
+                            />
                         </div>
                     ))}
                     {/* Duplicate set for seamless scrolling */}
-                    {[...Array(8)].map((_, index) => (
+                    {[...Array(7)].map((_, index) => (
                         <div
-                            key={`skeleton-duplicate-${index}`}
+                            key={`image-duplicate-${index}`}
                             className="relative aspect-[3/4] w-64 flex-shrink-0 overflow-hidden rounded-xs bg-gray-800 md:w-80 lg:w-96"
                         >
-                            <div className="absolute inset-0 animate-pulse bg-gray-700"></div>
-                            <div className="absolute inset-0 flex items-center justify-center">
-                                <span className="text-4xl font-bold text-white md:text-5xl lg:text-6xl">{index + 1}</span>
-                            </div>
+                            <Image
+                                src={`/images/homeGallery/galleryP${index + 1}.jpg`}
+                                alt={`Gallery image ${index + 1}`}
+                                fill
+                                sizes="(max-width: 768px) 256px, (max-width: 1024px) 320px, 384px"
+                                className="object-cover"
+                            />
                         </div>
                     ))}
                 </motion.div>

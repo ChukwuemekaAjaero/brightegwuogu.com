@@ -65,7 +65,7 @@ export default function MinistryPage() {
         if (!carouselRef.current) return;
 
         const container = carouselRef.current;
-        const cardWidth = 374; // 350px card + 24px gap
+        const cardWidth = 274; // 250px card + 24px gap
         const currentScroll = container.scrollLeft;
         const newPosition = direction === 'left' ? currentScroll - cardWidth : currentScroll + cardWidth;
 
@@ -82,8 +82,8 @@ export default function MinistryPage() {
             setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 10);
 
             // Calculate current page based on scroll position
-            // Each card is approximately 350px + 24px gap = 374px
-            const cardWidth = 374;
+            // Each card is approximately 250px + 24px gap = 274px
+            const cardWidth = 274;
             // Calculate which card is currently most visible based on scroll position
             const pageIndex = Math.round(scrollLeft / cardWidth);
             const maxPages = Math.min(7, (sermons.length || 8) - 1); // 8 sermons (0-7)
@@ -102,7 +102,7 @@ export default function MinistryPage() {
     const goToPage = (pageIndex: number) => {
         if (!carouselRef.current) return;
         const container = carouselRef.current;
-        const cardWidth = 374; // 350px card + 24px gap
+        const cardWidth = 274; // 250px card + 24px gap
         const targetScroll = pageIndex * cardWidth;
         container.scrollTo({ left: targetScroll, behavior: 'smooth' });
         setCurrentPage(pageIndex);
@@ -302,7 +302,7 @@ export default function MinistryPage() {
                     {/* Carousel Container */}
                     <div
                         ref={carouselRef}
-                        className="scrollbar-hide flex gap-6 overflow-x-auto overflow-y-visible pr-4 pb-16 pl-4 sm:pr-8 sm:pl-72"
+                        className="scrollbar-hide flex gap-6 overflow-x-auto overflow-y-visible pr-4 pb-32 pl-4 sm:pr-8 sm:pl-72"
                         style={{
                             scrollBehavior: 'smooth',
                             scrollbarWidth: 'none',
@@ -312,7 +312,7 @@ export default function MinistryPage() {
                         {sermonsLoading ? (
                             <>
                                 {[...Array(8)].map((_, index) => (
-                                    <div key={index} className="w-[350px] flex-shrink-0">
+                                    <div key={index} className="w-[250px] flex-shrink-0">
                                         <div className="relative aspect-[4/5] animate-pulse overflow-hidden rounded bg-gray-800"></div>
                                         <div className="py-6">
                                             {/* Title Skeleton */}
@@ -336,7 +336,7 @@ export default function MinistryPage() {
                                         href={sermon.youTubeLink}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="group block w-[350px] flex-shrink-0 cursor-pointer overflow-hidden rounded transition-all duration-300 hover:scale-103"
+                                        className="group relative block w-[250px] flex-shrink-0 cursor-pointer overflow-visible rounded transition-all duration-300 hover:scale-103"
                                         initial={{ opacity: 0 }}
                                         animate={{ opacity: 1 }}
                                         transition={{ delay: index * 0.1, duration: 0.8, ease: 'easeOut' }}
@@ -348,36 +348,19 @@ export default function MinistryPage() {
                                                     alt={sermon.name}
                                                     fill
                                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                                                    className="object-cover transition-all duration-300 group-hover:scale-105 group-hover:blur-sm"
+                                                    className="object-cover transition-all duration-300 group-hover:scale-105 group-hover:blur-xs"
                                                 />
                                             )}
                                             {/* Black Overlay */}
-                                            <div className="absolute inset-0 bg-black/80 opacity-0 transition-opacity duration-300 group-hover:scale-120 group-hover:opacity-100"></div>
+                                            <div className="absolute inset-0 bg-black/80 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
 
-                                            {/* Play Icon Overlay or Description */}
+                                            {/* Play Icon Overlay */}
                                             <div className="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                                                {sermon.sermonDescription ? (
-                                                    <div className="p-4 text-center text-white">
-                                                        <div className="mb-4 flex justify-center">
-                                                            <div className="rounded-full border-2 border-white p-2">
-                                                                <svg
-                                                                    className="h-8 w-8 text-white drop-shadow-lg"
-                                                                    fill="currentColor"
-                                                                    viewBox="0 0 24 24"
-                                                                >
-                                                                    <path d="M8 5v14l11-7z" />
-                                                                </svg>
-                                                            </div>
-                                                        </div>
-                                                        <p className="text-sm leading-relaxed whitespace-pre-line">{sermon.sermonDescription}</p>
-                                                    </div>
-                                                ) : (
-                                                    <div className="rounded-full border-4 border-white p-4">
-                                                        <svg className="h-20 w-20 text-white drop-shadow-lg" fill="currentColor" viewBox="0 0 24 24">
-                                                            <path d="M8 5v14l11-7z" />
-                                                        </svg>
-                                                    </div>
-                                                )}
+                                                <div className="rounded-full border-4 border-white p-3">
+                                                    <svg className="h-12 w-12 text-white drop-shadow-lg" fill="currentColor" viewBox="0 0 24 24">
+                                                        <path d="M8 5v14l11-7z" />
+                                                    </svg>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -445,7 +428,7 @@ export default function MinistryPage() {
                 {/* View All Sermons Button */}
                 <div className="container mx-auto px-4 sm:px-8">
                     <div className="mx-auto max-w-6xl">
-                        <div className="mt-32 flex justify-center md:mt-40">
+                        <div className="mt-12 flex justify-center md:mt-24">
                             <Link
                                 href="/ministry/sermons"
                                 className="group inline-flex cursor-pointer items-center justify-center rounded bg-red-900 px-8 py-4 font-semibold text-white shadow-lg shadow-red-800/20 transition-all duration-300 hover:scale-105 hover:bg-red-800"
