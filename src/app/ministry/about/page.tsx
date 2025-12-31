@@ -108,11 +108,11 @@ export default function MinistryAbout() {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, ease: 'easeOut' }}
-                    className={`relative z-20 text-center text-6xl font-bold text-white md:text-7xl lg:text-8xl xl:text-9xl ${modernizFont.className}`}
+                    className={`relative z-[5] text-center text-6xl font-bold text-white md:text-7xl lg:text-8xl xl:text-9xl ${modernizFont.className}`}
                 >
-                    <span className="text-red-900">P</span>astor
+                    <span className="relative text-red-900">P</span>astor
                     <br />
-                    <span className="text-red-900">B</span>right
+                    <span className="relative text-red-900">B</span>right
                 </motion.h1>
 
                 {/* Profile Video */}
@@ -120,7 +120,7 @@ export default function MinistryAbout() {
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
-                    className="relative z-10 -mt-8 aspect-[3/4] w-80 overflow-hidden rounded-xs bg-gray-800 shadow-lg sm:-mt-8 md:w-96 lg:-mt-14 lg:w-[28rem] xl:-mt-16 xl:w-[32rem]"
+                    className="relative -mt-8 aspect-[3/4] w-80 overflow-hidden rounded-xs bg-gray-800 shadow-lg sm:-mt-8 md:w-96 lg:-mt-14 lg:w-[28rem] xl:-mt-16 xl:w-[32rem]"
                 >
                     {/* Skeleton - shown until video loads */}
                     {!videoLoaded && <div className="absolute inset-0 animate-pulse bg-gray-700"></div>}
