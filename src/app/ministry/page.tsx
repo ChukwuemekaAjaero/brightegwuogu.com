@@ -158,7 +158,7 @@ export default function MinistryPage() {
                         loop
                         playsInline
                     >
-                        <source src="/videos/SermonsHeroVideo.mp4" type="video/mp4" />
+                        <source src="/videos/SermonsHeroVideo.webm" type="video/mp4" />
                         Your browser does not support the video tag.
                     </video>
 
