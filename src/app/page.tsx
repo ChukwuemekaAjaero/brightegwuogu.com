@@ -10,20 +10,19 @@ import SplashScreen from '@/components/lib/SplashScreen';
 export default function RootPage() {
     const [hoveredSection, setHoveredSection] = useState<'ministry' | 'music' | null>(null);
     const { loading, progress } = useMediaPreloader(criticalMediaAssets);
-    const [showMessage, setShowMessage] = useState(false);
-    const [showContent, setShowContent] = useState(false);
-    const [splashVisible, setSplashVisible] = useState(true);
-    const [skipSplash, setSkipSplash] = useState(false);
 
-    // Check if media was already preloaded (from previous visit)
+    // Check localStorage synchronously during initial state to prevent flicker
+    const wasPreloaded = typeof window !== 'undefined' && localStorage.getItem('mediaPreloaded') === 'true';
+
+    const [showMessage, setShowMessage] = useState(wasPreloaded);
+    const [showContent, setShowContent] = useState(false);
+    const [splashVisible, setSplashVisible] = useState(!wasPreloaded);
+    const [skipSplash, setSkipSplash] = useState(wasPreloaded);
+
+    // Handle content fade-in for preloaded media
     useEffect(() => {
-        const wasPreloaded = localStorage.getItem('mediaPreloaded') === 'true';
-        if (wasPreloaded) {
-            setSkipSplash(true);
-            setSplashVisible(false);
-            // Show message immediately
-            setShowMessage(true);
-            // Then show content after 3 seconds
+        if (skipSplash && wasPreloaded) {
+            // Show content after 3 seconds
             const contentFadeIn = setTimeout(() => {
                 setShowMessage(false);
                 setShowContent(true);
@@ -31,7 +30,7 @@ export default function RootPage() {
 
             return () => clearTimeout(contentFadeIn);
         }
-    }, []);
+    }, [skipSplash, wasPreloaded]);
 
     // Handle transitions: splash -> message -> content
     useEffect(() => {
