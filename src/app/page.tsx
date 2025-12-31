@@ -13,10 +13,32 @@ export default function RootPage() {
     const [showMessage, setShowMessage] = useState(false);
     const [showContent, setShowContent] = useState(false);
     const [splashVisible, setSplashVisible] = useState(true);
+    const [skipSplash, setSkipSplash] = useState(false);
+
+    // Check if media was already preloaded (from previous visit)
+    useEffect(() => {
+        const wasPreloaded = localStorage.getItem('mediaPreloaded') === 'true';
+        if (wasPreloaded) {
+            setSkipSplash(true);
+            setSplashVisible(false);
+            // Show message immediately
+            setShowMessage(true);
+            // Then show content after 3 seconds
+            const contentFadeIn = setTimeout(() => {
+                setShowMessage(false);
+                setShowContent(true);
+            }, 3000);
+
+            return () => clearTimeout(contentFadeIn);
+        }
+    }, []);
 
     // Handle transitions: splash -> message -> content
     useEffect(() => {
-        if (!loading && progress >= 100) {
+        if (!skipSplash && !loading && progress >= 100) {
+            // Mark as preloaded in localStorage
+            localStorage.setItem('mediaPreloaded', 'true');
+
             // Fade out splash screen after a brief delay
             const splashFadeOut = setTimeout(() => {
                 setSplashVisible(false);
@@ -44,7 +66,7 @@ export default function RootPage() {
                 clearTimeout(contentFadeIn);
             };
         }
-    }, [loading, progress]);
+    }, [loading, progress, skipSplash]);
 
     return (
         <>

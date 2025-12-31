@@ -359,16 +359,12 @@ export default function MinistrySermons() {
                                     // Calculate delay based on position within current batch
                                     const batchIndex = index % 5; // Reset every 5 items (batch size)
                                     return (
-                                        <motion.a
+                                        <a
                                             key={sermon.name}
                                             href={sermon.youTubeLink}
                                             target="_blank"
                                             rel="noopener noreferrer"
                                             className="group relative block cursor-pointer overflow-hidden rounded transition-all duration-300 hover:scale-103"
-                                            initial={{ opacity: 0, y: 30 }}
-                                            whileInView={{ opacity: 1, y: 0 }}
-                                            viewport={{ once: true, margin: '-50px' }}
-                                            transition={{ delay: batchIndex * 0.1, duration: 0.6, ease: 'easeOut' }}
                                         >
                                             <div className="relative aspect-[4/5] overflow-hidden rounded">
                                                 {/* Image with scale and blur effect */}
@@ -430,7 +426,7 @@ export default function MinistrySermons() {
                                                     })}
                                                 </p>
                                             </div>
-                                        </motion.a>
+                                        </a>
                                     );
                                 })}
                             </div>

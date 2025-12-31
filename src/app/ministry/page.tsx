@@ -413,16 +413,12 @@ export default function MinistryPage() {
                         ) : (
                             <>
                                 {sermons.slice(0, 8).map((sermon, index) => (
-                                    <motion.a
+                                    <a
                                         key={sermon.name}
                                         href={sermon.youTubeLink}
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="group relative block w-[250px] flex-shrink-0 cursor-pointer overflow-visible rounded transition-all duration-300 hover:scale-103"
-                                        initial={{ opacity: 0, y: 30 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        viewport={{ once: true, margin: '-50px' }}
-                                        transition={{ delay: index * 0.1, duration: 0.6, ease: 'easeOut' }}
                                     >
                                         <div className="relative aspect-[4/5] overflow-hidden rounded">
                                             {sermon.thumbnailImage?.fields?.file?.url && (
@@ -472,7 +468,7 @@ export default function MinistryPage() {
                                                 {sermon.sermonDate ? formatSermonDate(sermon.sermonDate) : ''}
                                             </p>
                                         </div>
-                                    </motion.a>
+                                    </a>
                                 ))}
                             </>
                         )}
