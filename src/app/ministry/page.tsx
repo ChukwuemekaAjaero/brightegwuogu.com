@@ -168,33 +168,61 @@ export default function MinistryPage() {
                     {/* Content */}
                     <div className="relative z-10 flex min-h-screen items-center justify-center">
                         <div className="container mx-auto px-4 text-center text-white sm:px-8">
-                            <h1 className={`mb-6 text-5xl font-bold md:text-8xl ${modernizFont.className}`}>{sermons[0]?.name || 'Sermons'}</h1>
+                            <motion.h1
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.8, ease: 'easeOut' }}
+                                className={`mb-6 text-5xl font-bold md:text-8xl ${modernizFont.className}`}
+                            >
+                                {sermons[0]?.name || 'Sermons'}
+                            </motion.h1>
 
                             {/* Sermon Tags */}
                             {sermons[0]?.sermonTags && sermons[0].sermonTags.length > 0 && (
-                                <div className="mb-4 flex flex-wrap justify-center gap-2">
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
+                                    className="mb-4 flex flex-wrap justify-center gap-2"
+                                >
                                     {sermons[0].sermonTags.map((tag, index) => (
-                                        <span key={index} className="rounded-full bg-red-600/40 px-3 py-1 text-sm text-white backdrop-blur-sm">
+                                        <motion.span
+                                            key={index}
+                                            initial={{ opacity: 0, scale: 0.8 }}
+                                            animate={{ opacity: 1, scale: 1 }}
+                                            transition={{ duration: 0.4, delay: 0.3 + index * 0.1, ease: 'easeOut' }}
+                                            className="rounded-full bg-red-600/40 px-3 py-1 text-sm text-white backdrop-blur-sm"
+                                        >
                                             {tag}
-                                        </span>
+                                        </motion.span>
                                     ))}
-                                </div>
+                                </motion.div>
                             )}
 
                             {/* Sermon Date */}
                             {sermons[0]?.sermonDate && (
-                                <p className="mb-6 text-lg text-gray-300">
+                                <motion.p
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.6, delay: 0.4, ease: 'easeOut' }}
+                                    className="mb-6 text-lg text-gray-300"
+                                >
                                     {new Date(sermons[0].sermonDate + 'T00:00:00').toLocaleDateString('en-US', {
                                         weekday: 'long',
                                         year: 'numeric',
                                         month: 'long',
                                         day: 'numeric'
                                     })}
-                                </p>
+                                </motion.p>
                             )}
 
                             {/* Buttons */}
-                            <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.6, delay: 0.6, ease: 'easeOut' }}
+                                className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
+                            >
                                 <a
                                     href={sermons[0]?.youTubeLink}
                                     target="_blank"
@@ -211,7 +239,7 @@ export default function MinistryPage() {
                                     <FaPlay className="mr-3 h-5 w-5" />
                                     View Sermons
                                 </Link>
-                            </div>
+                            </motion.div>
                         </div>
                     </div>
                 </div>
@@ -221,12 +249,24 @@ export default function MinistryPage() {
             <section className="relative bg-[#030712] py-20">
                 <div className="container mx-auto px-4 sm:px-8">
                     <div className="mx-auto max-w-4xl">
-                        <h2 className={`relative z-10 text-center text-6xl font-bold text-white sm:text-7xl md:text-8xl ${modernizFont.className}`}>
+                        <motion.h2
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: '-100px' }}
+                            transition={{ duration: 0.6, ease: 'easeOut' }}
+                            className={`relative z-10 text-center text-6xl font-bold text-white sm:text-7xl md:text-8xl ${modernizFont.className}`}
+                        >
                             About
-                        </h2>
+                        </motion.h2>
 
                         {/* Image */}
-                        <div className="-mt-8 mb-12 flex justify-center">
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true, margin: '-100px' }}
+                            transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
+                            className="-mt-8 mb-12 flex justify-center"
+                        >
                             <div className="relative z-0 aspect-[3/4] w-64 overflow-hidden rounded-xs shadow-lg md:w-80 lg:w-96">
                                 <Image
                                     src="/images/ministry/MinistryAboutImage.jpg"
@@ -236,30 +276,54 @@ export default function MinistryPage() {
                                     className="object-cover"
                                 />
                             </div>
-                        </div>
+                        </motion.div>
 
                         <div className="space-y-4 text-center">
-                            <p className="mx-auto max-w-3xl text-base leading-relaxed text-gray-300 md:text-lg">
+                            <motion.p
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, margin: '-100px' }}
+                                transition={{ duration: 0.6, delay: 0.4, ease: 'easeOut' }}
+                                className="mx-auto max-w-3xl text-base leading-relaxed text-gray-300 md:text-lg"
+                            >
                                 Pastor Bright Egwuogu is the resident pastor of Celebration Church International's Toronto campus, serving with a
                                 heart for God's people and a passion for spreading the Gospel.
-                            </p>
-                            <p className="mx-auto max-w-3xl text-base leading-relaxed text-gray-300 md:text-lg">
+                            </motion.p>
+                            <motion.p
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, margin: '-100px' }}
+                                transition={{ duration: 0.6, delay: 0.5, ease: 'easeOut' }}
+                                className="mx-auto max-w-3xl text-base leading-relaxed text-gray-300 md:text-lg"
+                            >
                                 His ministry is characterized by a deep commitment to teaching God's Word with clarity and authenticity, helping
                                 believers grow in their relationship with Christ.
-                            </p>
-                            <p className="mx-auto max-w-3xl text-base leading-relaxed text-gray-300 md:text-lg">
+                            </motion.p>
+                            <motion.p
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, margin: '-100px' }}
+                                transition={{ duration: 0.6, delay: 0.6, ease: 'easeOut' }}
+                                className="mx-auto max-w-3xl text-base leading-relaxed text-gray-300 md:text-lg"
+                            >
                                 Based in Toronto, he combines his pastoral calling with a heart for worship and music, creating a unique blend of
                                 ministry that touches lives both locally and globally.
-                            </p>
+                            </motion.p>
                         </div>
-                        <div className="mt-12 flex justify-center">
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: '-100px' }}
+                            transition={{ duration: 0.6, delay: 0.7, ease: 'easeOut' }}
+                            className="mt-12 flex justify-center"
+                        >
                             <Link
                                 href="/ministry/about"
                                 className="group inline-flex cursor-pointer items-center justify-center rounded bg-red-900 px-8 py-4 font-semibold text-white shadow-lg shadow-red-800/20 transition-all duration-300 hover:scale-105 hover:bg-red-800"
                             >
                                 Learn More
                             </Link>
-                        </div>
+                        </motion.div>
                     </div>
                 </div>
             </section>
@@ -268,17 +332,35 @@ export default function MinistryPage() {
             <section className="relative overflow-visible bg-[#030712] py-20">
                 <div className="container mx-auto px-4 sm:px-8">
                     <div className="mx-auto max-w-6xl overflow-visible">
-                        <h2 className={`mb-4 text-center text-4xl font-bold text-white md:text-5xl lg:text-6xl ${modernizFont.className}`}>
+                        <motion.h2
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: '-100px' }}
+                            transition={{ duration: 0.6, ease: 'easeOut' }}
+                            className={`mb-4 text-center text-4xl font-bold text-white md:text-5xl lg:text-6xl ${modernizFont.className}`}
+                        >
                             Latest Sermons
-                        </h2>
-                        <p className="mx-auto mb-12 max-w-2xl text-center text-lg text-gray-300 md:text-xl">
+                        </motion.h2>
+                        <motion.p
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: '-100px' }}
+                            transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
+                            className="mx-auto mb-12 max-w-2xl text-center text-lg text-gray-300 md:text-xl"
+                        >
                             Explore recent teachings and messages that will inspire, challenge, and encourage you in your faith journey.
-                        </p>
+                        </motion.p>
                     </div>
                 </div>
 
                 {/* Navigation Buttons */}
-                <div className="container mx-auto flex w-full justify-end gap-4 px-4 pb-4">
+                <motion.div
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: '-100px' }}
+                    transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
+                    className="container mx-auto flex w-full justify-end gap-4 px-4 pb-4"
+                >
                     <button
                         onClick={() => scrollCarousel('left')}
                         disabled={!canScrollLeft}
@@ -295,7 +377,7 @@ export default function MinistryPage() {
                     >
                         <FiChevronRight className="h-6 w-6" />
                     </button>
-                </div>
+                </motion.div>
 
                 {/* Sermon Carousel - Full Width */}
                 <div className="relative w-full overflow-visible">
@@ -337,9 +419,10 @@ export default function MinistryPage() {
                                         target="_blank"
                                         rel="noopener noreferrer"
                                         className="group relative block w-[250px] flex-shrink-0 cursor-pointer overflow-visible rounded transition-all duration-300 hover:scale-103"
-                                        initial={{ opacity: 0 }}
-                                        animate={{ opacity: 1 }}
-                                        transition={{ delay: index * 0.1, duration: 0.8, ease: 'easeOut' }}
+                                        initial={{ opacity: 0, y: 30 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true, margin: '-50px' }}
+                                        transition={{ delay: index * 0.1, duration: 0.6, ease: 'easeOut' }}
                                     >
                                         <div className="relative aspect-[4/5] overflow-hidden rounded">
                                             {sermon.thumbnailImage?.fields?.file?.url && (
@@ -428,7 +511,13 @@ export default function MinistryPage() {
                 {/* View All Sermons Button */}
                 <div className="container mx-auto px-4 sm:px-8">
                     <div className="mx-auto max-w-6xl">
-                        <div className="mt-12 flex justify-center md:mt-24">
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: '-100px' }}
+                            transition={{ duration: 0.6, delay: 0.4, ease: 'easeOut' }}
+                            className="mt-12 flex justify-center md:mt-24"
+                        >
                             <Link
                                 href="/ministry/sermons"
                                 className="group inline-flex cursor-pointer items-center justify-center rounded bg-red-900 px-8 py-4 font-semibold text-white shadow-lg shadow-red-800/20 transition-all duration-300 hover:scale-105 hover:bg-red-800"
@@ -436,7 +525,7 @@ export default function MinistryPage() {
                                 View All Sermons
                                 <FiArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                             </Link>
-                        </div>
+                        </motion.div>
                     </div>
                 </div>
             </section>
@@ -445,13 +534,25 @@ export default function MinistryPage() {
             <section className="relative bg-[#030712] py-20">
                 <div className="container mx-auto px-4 sm:px-8">
                     <div className="mx-auto max-w-6xl">
-                        <h2 className={`mb-4 text-center text-4xl font-bold text-white md:text-5xl lg:text-6xl ${modernizFont.className}`}>
+                        <motion.h2
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: '-100px' }}
+                            transition={{ duration: 0.6, ease: 'easeOut' }}
+                            className={`mb-4 text-center text-4xl font-bold text-white md:text-5xl lg:text-6xl ${modernizFont.className}`}
+                        >
                             CCI Resources
-                        </h2>
-                        <p className="mx-auto mb-12 max-w-2xl text-center text-lg text-gray-300 md:text-xl">
+                        </motion.h2>
+                        <motion.p
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: '-100px' }}
+                            transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
+                            className="mx-auto mb-12 max-w-2xl text-center text-lg text-gray-300 md:text-xl"
+                        >
                             Discover helpful resources, provided by Celebration Church International, to deepen your faith and grow in your walk with
                             Christ.
-                        </p>
+                        </motion.p>
 
                         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
                             {[
@@ -476,11 +577,15 @@ export default function MinistryPage() {
                                     image: '/images/ministry/map-pray.jpg'
                                 }
                             ].map((resource, index) => (
-                                <a
+                                <motion.a
                                     key={index}
                                     href={resource.link}
                                     target="_blank"
                                     rel="noopener noreferrer"
+                                    initial={{ opacity: 0, y: 30 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true, margin: '-50px' }}
+                                    transition={{ duration: 0.6, delay: 0.3 + index * 0.1, ease: 'easeOut' }}
                                     className="relative block cursor-pointer overflow-hidden rounded-xs bg-gray-800 bg-cover bg-center p-8 transition-all duration-300 hover:scale-105 md:p-10"
                                     style={{
                                         backgroundImage: `url(${resource.image})`
@@ -496,7 +601,7 @@ export default function MinistryPage() {
                                         </h3>
                                         <p className="text-base leading-relaxed text-gray-300 md:text-lg">{resource.description}</p>
                                     </div>
-                                </a>
+                                </motion.a>
                             ))}
                         </div>
                     </div>
@@ -507,11 +612,23 @@ export default function MinistryPage() {
             <section className="relative bg-[#030712] py-20">
                 <div className="container mx-auto px-4 sm:px-8">
                     <div className="mx-auto max-w-2xl">
-                        <h2 className={`mb-12 text-center text-4xl font-bold text-white md:text-5xl lg:text-6xl ${modernizFont.className}`}>
+                        <motion.h2
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: '-100px' }}
+                            transition={{ duration: 0.6, ease: 'easeOut' }}
+                            className={`mb-12 text-center text-4xl font-bold text-white md:text-5xl lg:text-6xl ${modernizFont.className}`}
+                        >
                             Get In Touch
-                        </h2>
+                        </motion.h2>
 
-                        <div className="flex justify-center">
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: '-100px' }}
+                            transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
+                            className="flex justify-center"
+                        >
                             <a
                                 href="mailto:bright.egwuogu@gmail.com"
                                 className="group inline-flex cursor-pointer items-center justify-center gap-3 rounded-xs bg-red-900 px-8 py-4 text-lg font-semibold text-white shadow-lg shadow-red-800/20 transition-all duration-300 hover:scale-105 hover:bg-red-800 md:px-12 md:py-6 md:text-xl"
@@ -519,7 +636,7 @@ export default function MinistryPage() {
                                 <FaEnvelope className="h-5 w-5 md:h-6 md:w-6" />
                                 bright.egwuogu@gmail.com
                             </a>
-                        </div>
+                        </motion.div>
                     </div>
                 </div>
             </section>

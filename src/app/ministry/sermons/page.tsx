@@ -96,14 +96,29 @@ export default function MinistrySermons() {
                     {/* SEARCH COMPONENT */}
                     <div className="mx-auto mb-12 max-w-4xl px-4 sm:px-8">
                         <div className="mb-8 text-center">
-                            <h2 className={`mb-4 text-4xl font-bold text-white sm:text-5xl md:text-7xl xl:text-8xl ${modernizFont.className}`}>
+                            <motion.h2
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.6, ease: 'easeOut' }}
+                                className={`mb-4 text-4xl font-bold text-white sm:text-5xl md:text-7xl xl:text-8xl ${modernizFont.className}`}
+                            >
                                 Sermons
-                            </h2>
-                            <p className="text-lg text-gray-300 md:text-xl">
+                            </motion.h2>
+                            <motion.p
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
+                                className="text-lg text-gray-300 md:text-xl"
+                            >
                                 Explore teachings and messages that will inspire, challenge, and encourage you in your faith journey.
-                            </p>
+                            </motion.p>
                         </div>
-                        <div className="space-y-6">
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
+                            className="space-y-6"
+                        >
                             {/* Clear Filters Button - Mobile Only */}
                             {(searchQuery || dateRange?.from || dateRange?.to || selectedTags.length > 0) && (
                                 <div className="text-center sm:hidden">
@@ -280,7 +295,7 @@ export default function MinistrySermons() {
                                     </div>
                                 </div>
                             )}
-                        </div>
+                        </motion.div>
                     </div>
 
                     {sermonsLoading ? (
@@ -351,8 +366,9 @@ export default function MinistrySermons() {
                                             rel="noopener noreferrer"
                                             className="group relative block cursor-pointer overflow-hidden rounded transition-all duration-300 hover:scale-103"
                                             initial={{ opacity: 0, y: 30 }}
-                                            animate={sermonsInView ? { opacity: 0 } : { opacity: 1 }}
-                                            transition={{ delay: batchIndex * 0.1, duration: 0.8, ease: 'easeOut' }}
+                                            whileInView={{ opacity: 1, y: 0 }}
+                                            viewport={{ once: true, margin: '-50px' }}
+                                            transition={{ delay: batchIndex * 0.1, duration: 0.6, ease: 'easeOut' }}
                                         >
                                             <div className="relative aspect-[4/5] overflow-hidden rounded">
                                                 {/* Image with scale and blur effect */}
@@ -421,7 +437,13 @@ export default function MinistrySermons() {
 
                             {/* More Button */}
                             {filteredSermons.length > visibleSermons && (
-                                <div className="mt-12 text-center">
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true, margin: '-100px' }}
+                                    transition={{ duration: 0.6, ease: 'easeOut' }}
+                                    className="mt-12 text-center"
+                                >
                                     <button
                                         onClick={loadMoreSermons}
                                         className="group inline-flex cursor-pointer items-center rounded bg-red-900 px-8 py-4 font-semibold text-white shadow-lg shadow-red-800/20 transition-all duration-300 hover:bg-red-800"
@@ -429,7 +451,7 @@ export default function MinistrySermons() {
                                         More
                                         <FiArrowDown className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-y-2" />
                                     </button>
-                                </div>
+                                </motion.div>
                             )}
                         </div>
                     )}

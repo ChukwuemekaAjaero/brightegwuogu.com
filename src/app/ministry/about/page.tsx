@@ -104,14 +104,24 @@ export default function MinistryAbout() {
             {/* Container for Pastor Bright text and video */}
             <div className="container mx-auto flex max-h-screen flex-col items-center justify-center px-4 pt-30 pb-20 sm:px-8">
                 {/* Large Header */}
-                <h1 className={`z-2 text-center text-6xl font-bold text-white md:text-7xl lg:text-8xl xl:text-9xl ${modernizFont.className}`}>
+                <motion.h1
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, ease: 'easeOut' }}
+                    className={`relative z-20 text-center text-6xl font-bold text-white md:text-7xl lg:text-8xl xl:text-9xl ${modernizFont.className}`}
+                >
                     <span className="text-red-900">P</span>astor
                     <br />
                     <span className="text-red-900">B</span>right
-                </h1>
+                </motion.h1>
 
                 {/* Profile Video */}
-                <div className="relative -mt-8 aspect-[3/4] w-80 overflow-hidden rounded-xs bg-gray-800 shadow-lg sm:-mt-8 md:w-96 lg:-mt-14 lg:w-[28rem] xl:-mt-16 xl:w-[32rem]">
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
+                    className="relative z-10 -mt-8 aspect-[3/4] w-80 overflow-hidden rounded-xs bg-gray-800 shadow-lg sm:-mt-8 md:w-96 lg:-mt-14 lg:w-[28rem] xl:-mt-16 xl:w-[32rem]"
+                >
                     {/* Skeleton - shown until video loads */}
                     {!videoLoaded && <div className="absolute inset-0 animate-pulse bg-gray-700"></div>}
                     {/* Video */}
@@ -127,21 +137,33 @@ export default function MinistryAbout() {
                         onCanPlay={() => setVideoLoaded(true)}
                         onLoadedData={() => setVideoLoaded(true)}
                     />
-                </div>
+                </motion.div>
             </div>
 
             {/* Lorem Ipsum Paragraphs */}
             <div className="container mx-auto px-4 pb-20 sm:px-8">
                 <div className="mx-auto max-w-3xl space-y-6 text-center">
-                    <p className="text-base leading-relaxed text-gray-300 md:text-lg">
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: '-100px' }}
+                        transition={{ duration: 0.6, ease: 'easeOut' }}
+                        className="text-base leading-relaxed text-gray-300 md:text-lg"
+                    >
                         Pastor Bright Egwuogu serves as the Resident Pastor of the Toronto campus of Celebration Church International (CCI) a global
                         apostolic ministry led by Apostle Emmanuel Iren, with a vision to see all men celebrating endless life in Christ Jesus.
-                    </p>
-                    <p className="text-base leading-relaxed text-gray-300 md:text-lg">
+                    </motion.p>
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: '-100px' }}
+                        transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
+                        className="text-base leading-relaxed text-gray-300 md:text-lg"
+                    >
                         Passionate about spiritual growth and discipleship, Pastor Bright is deeply committed to helping believers understand Christ,
                         mature in faith, and live out the realities of the Gospel with clarity and confidence. His teaching ministry is marked by
                         sound doctrine, practical insight, and a heart for raising believers who walk in purpose and spiritual depth.
-                    </p>
+                    </motion.p>
                 </div>
             </div>
 
@@ -192,18 +214,36 @@ export default function MinistryAbout() {
             {/* Additional Lorem Ipsum Paragraphs */}
             <div className="container mx-auto px-4 pb-20 sm:px-8">
                 <div className="mx-auto max-w-3xl space-y-6 text-center">
-                    <p className="text-base leading-relaxed text-gray-300 md:text-lg">
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: '-100px' }}
+                        transition={{ duration: 0.6, ease: 'easeOut' }}
+                        className="text-base leading-relaxed text-gray-300 md:text-lg"
+                    >
                         Fondly known as PB, he is also a gifted musician with multiple contemporary Christian songs to his credit, impacting and
                         encouraging thousands of listeners around the world through worship and sound biblical expression.
-                    </p>
-                    <p className="text-base leading-relaxed text-gray-300 md:text-lg">
-                        Beyond ministry, Pastor Bright is a cybersecurity professional, working across Canada’s financial, retail, and insurance
+                    </motion.p>
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: '-100px' }}
+                        transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
+                        className="text-base leading-relaxed text-gray-300 md:text-lg"
+                    >
+                        Beyond ministry, Pastor Bright is a cybersecurity professional, working across Canada's financial, retail, and insurance
                         industries. He currently resides in Toronto, Canada.
-                    </p>
-                    <p className="text-base leading-relaxed text-gray-300 md:text-lg">
+                    </motion.p>
+                    <motion.p
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: '-100px' }}
+                        transition={{ duration: 0.6, delay: 0.4, ease: 'easeOut' }}
+                        className="text-base leading-relaxed text-gray-300 md:text-lg"
+                    >
                         He is married to his beautiful wife, Ibiye, a strong pillar of support in his life and ministry, and together they are blessed
                         with a wonderful son.
-                    </p>
+                    </motion.p>
                 </div>
             </div>
         </div>

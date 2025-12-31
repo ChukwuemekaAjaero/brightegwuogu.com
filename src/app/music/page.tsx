@@ -6,6 +6,7 @@ import { IoIosMusicalNotes } from 'react-icons/io';
 import { SiSpotify, SiAmazonmusic } from 'react-icons/si';
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 
 // Helper function to format seconds into "min s" format
 const formatSongLength = (seconds: number): string => {
@@ -186,11 +187,30 @@ export default function Music() {
                     {/* Content */}
                     <div className="relative z-10 flex min-h-screen items-center justify-center">
                         <div className="text-center">
-                            <h1 className={`text-6xl font-bold text-white md:text-8xl ${modernizFont.className}`}>No Other God</h1>
-                            <p className="mt-4 text-xl text-white">featuring Rhema Onuoha</p>
+                            <motion.h1
+                                initial={{ opacity: 0, y: 30 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.8, ease: 'easeOut' }}
+                                className={`text-6xl font-bold text-white md:text-8xl ${modernizFont.className}`}
+                            >
+                                No Other God
+                            </motion.h1>
+                            <motion.p
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
+                                className="mt-4 text-xl text-white"
+                            >
+                                featuring Rhema Onuoha
+                            </motion.p>
 
                             {/* Buttons */}
-                            <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ duration: 0.6, delay: 0.4, ease: 'easeOut' }}
+                                className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
+                            >
                                 <a
                                     href="https://www.youtube.com/watch?v=_uUzAETf9TE"
                                     target="_blank"
@@ -210,7 +230,7 @@ export default function Music() {
                                     <IoIosMusicalNotes className="mr-3 h-5 w-5" />
                                     View Discography
                                 </a>
-                            </div>
+                            </motion.div>
                         </div>
                     </div>
                 </div>
@@ -223,20 +243,32 @@ export default function Music() {
                         <div className="text-center">
                             {/* About Text */}
 
-                            <p className="mx-auto my-8 max-w-5xl text-base leading-relaxed text-gray-300 md:text-xl">
+                            <motion.p
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, margin: '-100px' }}
+                                transition={{ duration: 0.6, ease: 'easeOut' }}
+                                className="mx-auto my-8 max-w-5xl text-base leading-relaxed text-gray-300 md:text-xl"
+                            >
                                 Bright Egwuogu (fondly called PB) serves as the Resident Pastor of the Toronto campus of Celebration Church
                                 International, a global apostolic ministry led by Apostle Emmanuel Iren with a vision to see all men celebrating
                                 endless life in Christ Jesus. He is passionate about spiritual growth and discipleship, committed to helping believers
                                 understand Christ, mature in faith, and live out the realities of the Gospel with clarity and confidence. His teaching
                                 ministry is marked by sound doctrine, practical insight, and a heart for raising believers who walk in purpose and
                                 spiritual depth.
-                            </p>
-                            <p className="mx-auto my-8 max-w-5xl text-base leading-relaxed text-gray-300 md:text-xl">
+                            </motion.p>
+                            <motion.p
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, margin: '-100px' }}
+                                transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
+                                className="mx-auto my-8 max-w-5xl text-base leading-relaxed text-gray-300 md:text-xl"
+                            >
                                 A gifted musician, PB has released multiple contemporary Christian songs that inspire and encourage listeners around
                                 the world through worship and sound biblical expression. Beyond ministry, he is a cybersecurity professional serving
-                                Canada’s financial, retail, and insurance industries, and he currently resides in Toronto, Canada, with his wife,
+                                Canada's financial, retail, and insurance industries, and he currently resides in Toronto, Canada, with his wife,
                                 Ibiye, and their son.
-                            </p>
+                            </motion.p>
                         </div>
                     </div>
                 </div>
@@ -246,7 +278,11 @@ export default function Music() {
             <section className="relative bg-[#030712] pt-20">
                 <div className="container mx-auto px-4 sm:px-8">
                     <div className="relative text-center">
-                        <h2
+                        <motion.h2
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: '-100px' }}
+                            transition={{ duration: 0.6, ease: 'easeOut' }}
                             className={`relative z-10 mb-0 text-3xl font-bold text-white transition-all duration-200 sm:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl ${modernizFont.className} ${
                                 noOtherGodVideoActive || joyUnspeakableVideoActive || neverLostVideoActive
                                     ? 'opacity-40 blur-xs'
@@ -254,10 +290,14 @@ export default function Music() {
                             }`}
                         >
                             No Other God
-                        </h2>
+                        </motion.h2>
 
                         {/* Video */}
-                        <div
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true, margin: '-100px' }}
+                            transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
                             className={`relative z-0 mx-auto -mt-6 max-w-5xl transition-all duration-200 ease-in-out md:-mt-8 lg:-mt-12 ${noOtherGodVideoActive ? 'z-[100] scale-[1.01]' : 'scale-100'}`}
                             onMouseEnter={() => setNoOtherGodVideoActive(true)}
                             onMouseLeave={() => setNoOtherGodVideoActive(false)}
@@ -279,9 +319,15 @@ export default function Music() {
                                     onBlur={() => setNoOtherGodVideoActive(false)}
                                 ></iframe>
                             </div>
-                        </div>
+                        </motion.div>
                         {/* Album Cover - Bottom Left */}
-                        <div className="absolute right-32 -bottom-8 z-20 hidden aspect-square w-32 overflow-hidden rounded shadow-lg md:w-40 lg:block lg:w-48">
+                        <motion.div
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: '-100px' }}
+                            transition={{ duration: 0.6, delay: 0.4, ease: 'easeOut' }}
+                            className="absolute right-32 -bottom-8 z-20 hidden aspect-square w-32 overflow-hidden rounded shadow-lg md:w-40 lg:block lg:w-48"
+                        >
                             {/* Skeleton - shown until image loads */}
                             {!noOtherGodImageLoaded && <div className="absolute inset-0 animate-pulse bg-gray-500"></div>}
                             {/* Image */}
@@ -299,12 +345,16 @@ export default function Music() {
                                 onLoad={() => setNoOtherGodImageLoaded(true)}
                                 onError={() => setNoOtherGodImageLoaded(true)}
                             />
-                        </div>
+                        </motion.div>
                     </div>
 
                     {/* Song Information */}
                     <div className="mt-12 text-center">
-                        <p
+                        <motion.p
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: '-100px' }}
+                            transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
                             className={`mb-2 text-lg text-white transition-all duration-200 md:text-xl ${
                                 noOtherGodVideoActive || joyUnspeakableVideoActive || neverLostVideoActive
                                     ? 'opacity-40 blur-xs'
@@ -312,16 +362,24 @@ export default function Music() {
                             }`}
                         >
                             Brite Egwuogu, Rhema Onuoha
-                        </p>
-                        <div
+                        </motion.p>
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: '-100px' }}
+                            transition={{ duration: 0.6, delay: 0.4, ease: 'easeOut' }}
                             className={`mb-8 transition-all duration-200 ${noOtherGodVideoActive || joyUnspeakableVideoActive || neverLostVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100'}`}
                         >
                             <p className="mb-1 text-lg text-gray-300 md:text-xl">2025</p>
                             <p className="text-sm text-gray-500 md:text-base">{formatSongLength(480)}</p>
-                        </div>
+                        </motion.div>
 
                         {/* Streaming Service Links */}
-                        <div
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: '-100px' }}
+                            transition={{ duration: 0.6, delay: 0.5, ease: 'easeOut' }}
                             className={`flex flex-wrap items-center justify-center gap-4 transition-all duration-200 ${
                                 noOtherGodVideoActive || joyUnspeakableVideoActive || neverLostVideoActive
                                     ? 'opacity-40 blur-xs'
@@ -364,7 +422,7 @@ export default function Music() {
                             >
                                 <FaDeezer className="h-6 w-6 text-blue-400" />
                             </a>
-                        </div>
+                        </motion.div>
                     </div>
                 </div>
             </section>
@@ -373,7 +431,11 @@ export default function Music() {
             <section className="relative bg-[#030712] pt-20 lg:pt-40">
                 <div className="container mx-auto px-4 sm:px-8">
                     <div className="relative text-center">
-                        <h2
+                        <motion.h2
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: '-100px' }}
+                            transition={{ duration: 0.6, ease: 'easeOut' }}
                             className={`relative z-10 mb-0 text-3xl font-bold text-white transition-all duration-200 sm:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl ${modernizFont.className} ${
                                 noOtherGodVideoActive || joyUnspeakableVideoActive || neverLostVideoActive
                                     ? 'opacity-40 blur-xs'
@@ -381,10 +443,14 @@ export default function Music() {
                             }`}
                         >
                             Joy Unspeakable
-                        </h2>
+                        </motion.h2>
 
                         {/* Video */}
-                        <div
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true, margin: '-100px' }}
+                            transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
                             className={`relative z-0 mx-auto -mt-6 max-w-5xl transition-all duration-200 ease-in-out md:-mt-8 lg:-mt-12 ${joyUnspeakableVideoActive ? 'z-[100] scale-[1.01]' : 'scale-100'}`}
                             onMouseEnter={() => setJoyUnspeakableVideoActive(true)}
                             onMouseLeave={() => setJoyUnspeakableVideoActive(false)}
@@ -406,9 +472,15 @@ export default function Music() {
                                     onBlur={() => setJoyUnspeakableVideoActive(false)}
                                 ></iframe>
                             </div>
-                        </div>
+                        </motion.div>
                         {/* Album Cover - Bottom Left */}
-                        <div className="absolute right-32 -bottom-8 z-20 hidden aspect-square w-32 overflow-hidden rounded shadow-lg md:w-40 lg:block lg:w-48">
+                        <motion.div
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: '-100px' }}
+                            transition={{ duration: 0.6, delay: 0.4, ease: 'easeOut' }}
+                            className="absolute right-32 -bottom-8 z-20 hidden aspect-square w-32 overflow-hidden rounded shadow-lg md:w-40 lg:block lg:w-48"
+                        >
                             {/* Skeleton - shown until image loads */}
                             {!joyUnspeakableImageLoaded && <div className="absolute inset-0 animate-pulse bg-gray-500"></div>}
                             {/* Image */}
@@ -426,12 +498,16 @@ export default function Music() {
                                 onLoad={() => setJoyUnspeakableImageLoaded(true)}
                                 onError={() => setJoyUnspeakableImageLoaded(true)}
                             />
-                        </div>
+                        </motion.div>
                     </div>
 
                     {/* Song Information */}
                     <div className="mt-12 text-center">
-                        <p
+                        <motion.p
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: '-100px' }}
+                            transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
                             className={`mb-2 text-lg text-white transition-all duration-200 md:text-xl ${
                                 noOtherGodVideoActive || joyUnspeakableVideoActive || neverLostVideoActive
                                     ? 'opacity-40 blur-xs'
@@ -439,16 +515,24 @@ export default function Music() {
                             }`}
                         >
                             Brite Egwuogu, Daniel Ike
-                        </p>
-                        <div
+                        </motion.p>
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: '-100px' }}
+                            transition={{ duration: 0.6, delay: 0.4, ease: 'easeOut' }}
                             className={`mb-8 transition-all duration-200 ${noOtherGodVideoActive || joyUnspeakableVideoActive || neverLostVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100'}`}
                         >
                             <p className="mb-1 text-lg text-gray-300 md:text-xl">2025</p>
                             <p className="text-sm text-gray-500 md:text-base">{formatSongLength(363)}</p>
-                        </div>
+                        </motion.div>
 
                         {/* Streaming Service Links */}
-                        <div
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: '-100px' }}
+                            transition={{ duration: 0.6, delay: 0.5, ease: 'easeOut' }}
                             className={`flex flex-wrap items-center justify-center gap-4 transition-all duration-200 ${
                                 noOtherGodVideoActive || joyUnspeakableVideoActive || neverLostVideoActive
                                     ? 'opacity-40 blur-xs'
@@ -491,7 +575,7 @@ export default function Music() {
                             >
                                 <FaDeezer className="h-6 w-6 text-blue-400" />
                             </a>
-                        </div>
+                        </motion.div>
                     </div>
                 </div>
             </section>
@@ -500,7 +584,11 @@ export default function Music() {
             <section className="relative bg-[#030712] pt-20 lg:pt-40">
                 <div className="container mx-auto px-4 sm:px-8">
                     <div className="relative text-center">
-                        <h2
+                        <motion.h2
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: '-100px' }}
+                            transition={{ duration: 0.6, ease: 'easeOut' }}
                             className={`relative z-10 mb-0 text-3xl font-bold text-white transition-all duration-200 sm:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl ${modernizFont.className} ${
                                 noOtherGodVideoActive || joyUnspeakableVideoActive || neverLostVideoActive
                                     ? 'opacity-40 blur-xs'
@@ -508,10 +596,14 @@ export default function Music() {
                             }`}
                         >
                             Never Lost (Live)
-                        </h2>
+                        </motion.h2>
 
                         {/* Video */}
-                        <div
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true, margin: '-100px' }}
+                            transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
                             className={`relative z-0 mx-auto -mt-6 max-w-5xl transition-all duration-200 ease-in-out md:-mt-8 lg:-mt-12 ${neverLostVideoActive ? 'z-[100] scale-[1.01]' : 'scale-100'}`}
                             onMouseEnter={() => setNeverLostVideoActive(true)}
                             onMouseLeave={() => setNeverLostVideoActive(false)}
@@ -533,9 +625,15 @@ export default function Music() {
                                     onBlur={() => setNeverLostVideoActive(false)}
                                 ></iframe>
                             </div>
-                        </div>
+                        </motion.div>
                         {/* Album Cover - Bottom Left */}
-                        <div className="absolute right-32 -bottom-8 z-20 hidden aspect-square w-32 overflow-hidden rounded shadow-lg md:w-40 lg:block lg:w-48">
+                        <motion.div
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: '-100px' }}
+                            transition={{ duration: 0.6, delay: 0.4, ease: 'easeOut' }}
+                            className="absolute right-32 -bottom-8 z-20 hidden aspect-square w-32 overflow-hidden rounded shadow-lg md:w-40 lg:block lg:w-48"
+                        >
                             {/* Skeleton - shown until image loads */}
                             {!neverLostImageLoaded && <div className="absolute inset-0 animate-pulse bg-gray-500"></div>}
                             {/* Image */}
@@ -553,12 +651,16 @@ export default function Music() {
                                 onLoad={() => setNeverLostImageLoaded(true)}
                                 onError={() => setNeverLostImageLoaded(true)}
                             />
-                        </div>
+                        </motion.div>
                     </div>
 
                     {/* Song Information */}
                     <div className="mt-12 text-center">
-                        <p
+                        <motion.p
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: '-100px' }}
+                            transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
                             className={`mb-2 text-lg text-white transition-all duration-200 md:text-xl ${
                                 noOtherGodVideoActive || joyUnspeakableVideoActive || neverLostVideoActive
                                     ? 'opacity-40 blur-xs'
@@ -566,15 +668,23 @@ export default function Music() {
                             }`}
                         >
                             Brite Egwuogu
-                        </p>
-                        <div
+                        </motion.p>
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: '-100px' }}
+                            transition={{ duration: 0.6, delay: 0.4, ease: 'easeOut' }}
                             className={`mb-8 transition-all duration-200 ${noOtherGodVideoActive || joyUnspeakableVideoActive || neverLostVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100'}`}
                         >
                             <p className="mb-1 text-lg text-gray-300 md:text-xl">2023</p>
                             <p className="text-sm text-gray-500 md:text-base">{formatSongLength(436)}</p>
-                        </div>
+                        </motion.div>
                         {/* Streaming Service Links */}
-                        <div
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: '-100px' }}
+                            transition={{ duration: 0.6, delay: 0.5, ease: 'easeOut' }}
                             className={`flex flex-wrap items-center justify-center gap-4 transition-all duration-200 ${
                                 noOtherGodVideoActive || joyUnspeakableVideoActive || neverLostVideoActive
                                     ? 'opacity-40 blur-xs'
@@ -617,7 +727,7 @@ export default function Music() {
                             >
                                 <FaDeezer className="h-6 w-6 text-blue-400" />
                             </a>
-                        </div>
+                        </motion.div>
                     </div>
                 </div>
             </section>
@@ -625,38 +735,71 @@ export default function Music() {
             {/* Discography Link Section */}
             <section className="relative bg-[#030712] py-20">
                 <div className="container mx-auto px-4 sm:px-8">
-                    <div
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: '-100px' }}
+                        transition={{ duration: 0.6, ease: 'easeOut' }}
                         className={`mx-auto max-w-4xl text-center transition-all duration-200 ${
                             noOtherGodVideoActive || joyUnspeakableVideoActive || neverLostVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100'
                         }`}
                     >
-                        <p className="text-md mb-8 text-gray-300 md:text-lg lg:text-xl">
+                        <motion.p
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: '-100px' }}
+                            transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
+                            className="text-md mb-8 text-gray-300 md:text-lg lg:text-xl"
+                        >
                             Want to discover more? Explore the full collection of songs and dive deeper into the music.
-                        </p>
-                        <Link
+                        </motion.p>
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: '-100px' }}
+                            transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
+                        >
+                            <Link
                             href="/music/discography"
                             className="group inline-flex cursor-pointer items-center justify-center gap-3 rounded-xs bg-blue-900 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300 hover:scale-105 hover:bg-blue-800"
                         >
                             <IoIosMusicalNotes className="h-5 w-5" />
                             View Discography
                         </Link>
-                    </div>
+                        </motion.div>
+                    </motion.div>
                 </div>
             </section>
 
             {/* Contact Form Section */}
             <section className="relative bg-[#030712] pb-20 lg:pt-20">
                 <div className="container mx-auto px-4 sm:px-8">
-                    <div
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: '-100px' }}
+                        transition={{ duration: 0.6, ease: 'easeOut' }}
                         className={`mx-auto max-w-2xl transition-all duration-200 ${
                             noOtherGodVideoActive || joyUnspeakableVideoActive || neverLostVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100'
                         }`}
                     >
-                        <h2 className={`mb-12 text-center text-4xl font-bold text-white md:text-5xl lg:text-6xl ${modernizFont.className}`}>
+                        <motion.h2
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: '-100px' }}
+                            transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
+                            className={`mb-12 text-center text-4xl font-bold text-white md:text-5xl lg:text-6xl ${modernizFont.className}`}
+                        >
                             Get In Touch
-                        </h2>
+                        </motion.h2>
 
-                        <div className="flex justify-center">
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: '-100px' }}
+                            transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
+                            className="flex justify-center"
+                        >
                             <a
                                 href="mailto:bright.egwuogu@gmail.com"
                                 className="group inline-flex cursor-pointer items-center justify-center gap-3 rounded-xs bg-blue-900 px-8 py-4 text-lg font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300 hover:scale-105 hover:bg-blue-800 md:px-12 md:py-6 md:text-xl"
@@ -664,8 +807,8 @@ export default function Music() {
                                 <FaEnvelope className="h-5 w-5 md:h-6 md:w-6" />
                                 bright.egwuogu@gmail.com
                             </a>
-                        </div>
-                    </div>
+                        </motion.div>
+                    </motion.div>
                 </div>
             </section>
         </div>

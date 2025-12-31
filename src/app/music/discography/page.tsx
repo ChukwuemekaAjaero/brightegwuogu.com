@@ -80,16 +80,32 @@ export default function MusicDiscography() {
                         <div className="container mx-auto mt-16 px-4 sm:px-8">
                             {/* Music Section Header */}
                             <div className="mx-auto mb-16 text-center">
-                                <h2 className={`mb-4 text-4xl font-bold text-white sm:text-5xl md:text-7xl xl:text-8xl ${modernizFont.className}`}>
+                                <motion.h2
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.6, ease: 'easeOut' }}
+                                    className={`mb-4 text-4xl font-bold text-white sm:text-5xl md:text-7xl xl:text-8xl ${modernizFont.className}`}
+                                >
                                     Discography
-                                </h2>
-                                <p className="text-lg text-gray-300 md:text-xl">
+                                </motion.h2>
+                                <motion.p
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
+                                    className="text-lg text-gray-300 md:text-xl"
+                                >
                                     Discover the complete collection of songs and musical expressions of faith.
-                                </p>
+                                </motion.p>
                             </div>
 
                             {/* Streaming Platform Buttons */}
-                            <div className="mx-auto mb-12 flex max-w-[1000px] flex-wrap justify-center gap-4">
+                            <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, margin: '-100px' }}
+                                transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
+                                className="mx-auto mb-12 flex max-w-[1000px] flex-wrap justify-center gap-4"
+                            >
                                 <a
                                     href="https://open.spotify.com/artist/2YsaAFq1fn9w2aiBcvURmn"
                                     target="_blank"
@@ -135,7 +151,7 @@ export default function MusicDiscography() {
                                     <FaYoutube className="mr-2 h-6 w-6 text-red-500" />
                                     <span className="font-medium text-white">YouTube</span>
                                 </a>
-                            </div>
+                            </motion.div>
 
                             <div
                                 ref={musicRef}
@@ -146,9 +162,10 @@ export default function MusicDiscography() {
                                     <motion.div
                                         key={song.name}
                                         className="group"
-                                        initial={{ opacity: 0 }}
-                                        animate={musicInView ? { opacity: 0 } : { opacity: 1 }}
-                                        transition={{ delay: index * 0.1, duration: 0.8, ease: 'easeOut' }}
+                                        initial={{ opacity: 0, y: 30 }}
+                                        whileInView={{ opacity: 1, y: 0 }}
+                                        viewport={{ once: true, margin: '-50px' }}
+                                        transition={{ delay: index * 0.1, duration: 0.6, ease: 'easeOut' }}
                                     >
                                         {/* Music Thumbnail */}
                                         <a
