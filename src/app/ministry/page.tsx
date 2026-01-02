@@ -582,13 +582,18 @@ export default function MinistryPage() {
                                     whileInView={{ opacity: 1, y: 0 }}
                                     viewport={{ once: true, margin: '-50px' }}
                                     transition={{ duration: 0.6, delay: 0.3 + index * 0.1, ease: 'easeOut' }}
-                                    className="relative block cursor-pointer overflow-hidden rounded-xs bg-gray-800 bg-cover bg-center p-8 transition-all duration-300 hover:scale-105 md:p-10"
-                                    style={{
-                                        backgroundImage: `url(${resource.image})`
-                                    }}
+                                    className="relative block cursor-pointer overflow-hidden rounded-xs bg-gray-800 p-8 transition-all duration-300 hover:scale-105 md:p-10"
                                 >
+                                    {/* Blurred background image */}
+                                    <div
+                                        className="absolute inset-0 bg-cover bg-center blur-[2px]"
+                                        style={{
+                                            backgroundImage: `url(${resource.image})`
+                                        }}
+                                    ></div>
+
                                     {/* Transparent black overlay */}
-                                    <div className="absolute inset-0 bg-black/70"></div>
+                                    <div className="absolute inset-0 bg-[#010308]/70"></div>
 
                                     {/* Content */}
                                     <div className="relative z-10">
