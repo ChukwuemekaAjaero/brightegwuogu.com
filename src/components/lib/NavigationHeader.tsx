@@ -305,7 +305,7 @@ const NavLink: React.FC<NavLinkProps> = ({ children, href, idx }) => {
                 </Link>
                 {isActive && (
                     <motion.div
-                        className="h-3 w-3 rounded-full bg-[#030712]"
+                        className="h-3 w-3 rounded-full bg-[#010308]"
                         animate={{
                             y: [0, -8, 0]
                         }}

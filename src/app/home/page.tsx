@@ -234,7 +234,7 @@ export default function HomePage() {
             </div> */}
 
             {/* HERO SECTION */}
-            <section id="hero" className="relative flex min-h-screen items-center justify-center overflow-hidden rounded bg-[#030712]">
+            <section id="hero" className="relative flex min-h-screen items-center justify-center overflow-hidden rounded bg-[#010308]">
                 {/* Background Image */}
                 <div className="absolute inset-0 mask-b-from-50%">
                     <Image
@@ -248,7 +248,7 @@ export default function HomePage() {
                 </div>
 
                 {/* Dark Overlay */}
-                <div className="absolute inset-0 z-2 bg-[#030712]/30"></div>
+                <div className="absolute inset-0 z-2 bg-[#010308]/30"></div>
 
                 {/* Text content */}
                 <div className="relative z-2 flex min-h-screen items-center justify-center">
@@ -297,7 +297,7 @@ export default function HomePage() {
             </section>
 
             {/* ABOUT ME SECTION */}
-            <section id="about-me" ref={aboutMeRef} className="bg-[#030712]">
+            <section id="about-me" ref={aboutMeRef} className="bg-[#010308]">
                 <div className="relative">
                     <div id="about-me-text" className="sticky top-0 z-3 flex h-[100vh] items-center justify-center px-4 text-center sm:px-8">
                         <div style={{ opacity: aboutTextOpacity, transition: 'opacity 0.3s ease-in-out' }}>
@@ -664,7 +664,7 @@ export default function HomePage() {
                             </div>
                         )}
                     </div>
-                    <div className="flex h-[100vh] justify-center bg-[#030712]"></div>
+                    <div className="flex h-[100vh] justify-center bg-[#010308]"></div>
                 </div>
             </section>
 
@@ -672,7 +672,7 @@ export default function HomePage() {
             <div className="h-px bg-gradient-to-r from-transparent via-gray-600 to-transparent"></div>
 
             {/* MUSIC PREVIEW SECTION */}
-            <section id="music" ref={musicRef} className="bg-[#030712] px-4 sm:px-8">
+            <section id="music" ref={musicRef} className="bg-[#010308] px-4 sm:px-8">
                 <div className="container mx-auto sm:px-8">
                     <div className="h-max py-20">
                         <div className="mb-12 text-center">
@@ -1141,7 +1141,7 @@ export default function HomePage() {
             <div className="h-px bg-gradient-to-r from-transparent via-gray-600 to-transparent"></div>
 
             {/* SERMONS PREVIEW SECTION */}
-            <section id="sermons" ref={sermonsRef} className="bg-[#030712] px-4 sm:px-8">
+            <section id="sermons" ref={sermonsRef} className="bg-[#010308] px-4 sm:px-8">
                 <div className="container mx-auto sm:px-8">
                     <div className="h-max py-20">
                         <div className="mb-12 text-center">

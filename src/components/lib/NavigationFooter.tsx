@@ -18,7 +18,7 @@ export default function NavigationFooter() {
             {/* Divider */}
             <div className="h-px bg-gradient-to-r from-transparent via-gray-600 to-transparent"></div>
 
-            <footer className="bg-[#030712] py-16 text-white">
+            <footer className="bg-[#010308] py-16 text-white">
                 <div className="container mx-auto px-4 sm:px-8">
                     <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-4">
                         {/* Brand Section */}

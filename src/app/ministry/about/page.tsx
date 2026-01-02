@@ -100,7 +100,7 @@ export default function MinistryAbout() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
     return (
-        <div className="min-h-screen overflow-x-hidden bg-[#030712]">
+        <div className="min-h-screen overflow-x-hidden bg-[#010308]">
             {/* Container for Pastor Bright text and video */}
             <div className="container mx-auto flex max-h-screen flex-col items-center justify-center px-4 pt-30 pb-20 sm:px-8">
                 {/* Large Header */}

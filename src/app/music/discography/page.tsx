@@ -26,7 +26,7 @@ export default function MusicDiscography() {
     return (
         <div className="relative">
             {/* Music List Section */}
-            <section id="music-section" className="relative min-h-screen overflow-hidden rounded-lg bg-[#030712]">
+            <section id="music-section" className="relative min-h-screen overflow-hidden rounded-lg bg-[#010308]">
                 <div className="py-20">
                     {musicLoading ? (
                         // Loading state

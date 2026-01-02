@@ -133,7 +133,7 @@ export default function Music() {
 
     return (
         <div className="relative">
-            <section id="hero" className="relative bg-[#030712]">
+            <section id="hero" className="relative bg-[#010308]">
                 {/* Hero Section */}
                 <div className="relative min-h-screen overflow-hidden rounded-lg mask-b-from-80%">
                     {/* Loading Screen */}
@@ -215,7 +215,7 @@ export default function Music() {
                                     href="https://www.youtube.com/watch?v=_uUzAETf9TE"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="group inline-flex cursor-pointer items-center justify-center rounded bg-[#030712]/80 px-6 py-4 font-semibold text-white transition-all duration-300 hover:scale-105 hover:bg-blue-900/80"
+                                    className="group inline-flex cursor-pointer items-center justify-center rounded bg-[#010308]/80 px-6 py-4 font-semibold text-white transition-all duration-300 hover:scale-105 hover:bg-blue-900/80"
                                 >
                                     <svg className="mr-3 h-5 w-5 text-red-600" fill="currentColor" viewBox="0 0 24 24">
                                         <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
@@ -225,7 +225,7 @@ export default function Music() {
 
                                 <a
                                     href="/music/discography"
-                                    className="group inline-flex cursor-pointer items-center justify-center rounded bg-[#030712]/80 px-6 py-4 font-semibold text-white transition-all duration-300 hover:scale-105 hover:bg-blue-900/80"
+                                    className="group inline-flex cursor-pointer items-center justify-center rounded bg-[#010308]/80 px-6 py-4 font-semibold text-white transition-all duration-300 hover:scale-105 hover:bg-blue-900/80"
                                 >
                                     <IoIosMusicalNotes className="mr-3 h-5 w-5" />
                                     View Discography
@@ -237,7 +237,7 @@ export default function Music() {
             </section>
 
             {/* About Section */}
-            <section className="relative bg-[#030712]">
+            <section className="relative bg-[#010308]">
                 <div className="container mx-auto px-4 sm:px-8">
                     <div className="flex min-h-[60vh] items-center justify-center">
                         <div className="text-center">
@@ -275,7 +275,7 @@ export default function Music() {
             </section>
 
             {/* No Other God Video Section */}
-            <section className="relative bg-[#030712] pt-20">
+            <section className="relative bg-[#010308] pt-20">
                 <div className="container mx-auto px-4 sm:px-8">
                     <div className="relative text-center">
                         <motion.h2
@@ -428,7 +428,7 @@ export default function Music() {
             </section>
 
             {/* Joy Unspeakable Video Section */}
-            <section className="relative bg-[#030712] pt-20 lg:pt-40">
+            <section className="relative bg-[#010308] pt-20 lg:pt-40">
                 <div className="container mx-auto px-4 sm:px-8">
                     <div className="relative text-center">
                         <motion.h2
@@ -581,7 +581,7 @@ export default function Music() {
             </section>
 
             {/* Never Lost (Live) Video Section */}
-            <section className="relative bg-[#030712] pt-20 lg:pt-40">
+            <section className="relative bg-[#010308] pt-20 lg:pt-40">
                 <div className="container mx-auto px-4 sm:px-8">
                     <div className="relative text-center">
                         <motion.h2
@@ -733,7 +733,7 @@ export default function Music() {
             </section>
 
             {/* Discography Link Section */}
-            <section className="relative bg-[#030712] py-20">
+            <section className="relative bg-[#010308] py-20">
                 <div className="container mx-auto px-4 sm:px-8">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -772,7 +772,7 @@ export default function Music() {
             </section>
 
             {/* Contact Form Section */}
-            <section className="relative bg-[#030712] pb-20 lg:pt-20">
+            <section className="relative bg-[#010308] pb-20 lg:pt-20">
                 <div className="container mx-auto px-4 sm:px-8">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}

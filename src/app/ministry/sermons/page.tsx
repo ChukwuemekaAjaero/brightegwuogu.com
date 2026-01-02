@@ -91,7 +91,7 @@ export default function MinistrySermons() {
     return (
         <div className="relative scroll-smooth">
             {/* SERMONS LIST SECTION */}
-            <section className="wmin-h-screen relative overflow-hidden bg-[#030712] pt-16">
+            <section className="wmin-h-screen relative overflow-hidden bg-[#010308] pt-16">
                 <div className="py-20">
                     {/* SEARCH COMPONENT */}
                     <div className="mx-auto mb-12 max-w-4xl px-4 sm:px-8">

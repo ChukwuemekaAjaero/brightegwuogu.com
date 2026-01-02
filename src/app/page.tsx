@@ -71,7 +71,7 @@ export default function RootPage() {
         <>
             {/* Persistent black background for splash and message */}
             <div
-                className={`fixed inset-0 z-50 bg-[#030712] transition-opacity duration-500 ease-in-out ${
+                className={`fixed inset-0 z-50 bg-[#010308] transition-opacity duration-500 ease-in-out ${
                     showContent ? 'pointer-events-none opacity-0' : 'opacity-100'
                 }`}
             >
@@ -95,7 +95,7 @@ export default function RootPage() {
                 </div>
             </div>
             <div
-                className={`flex h-screen w-full flex-col overflow-hidden bg-[#030712] transition-opacity duration-500 ease-in-out ${
+                className={`flex h-screen w-full flex-col overflow-hidden bg-[#010308] transition-opacity duration-500 ease-in-out ${
                     showContent ? 'opacity-100' : 'opacity-0'
                 }`}
             >

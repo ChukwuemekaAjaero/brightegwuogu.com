@@ -110,7 +110,7 @@ export default function MinistryPage() {
     return (
         <div className="relative scroll-smooth">
             {/* HERO SECTION */}
-            <section id="hero" className="relative bg-[#030712]">
+            <section id="hero" className="relative bg-[#010308]">
                 <div className="relative min-h-screen overflow-hidden rounded mask-b-from-50%">
                     {/* Loading Screen */}
                     {isLoading && (
@@ -227,14 +227,14 @@ export default function MinistryPage() {
                                     href={sermons[0]?.youTubeLink}
                                     target="_blank"
                                     rel="noopener   noreferrer"
-                                    className="group inline-flex cursor-pointer items-center justify-center rounded bg-[#030712]/80 px-6 py-4 font-semibold text-white shadow-lg shadow-red-800/20 transition-all duration-300 hover:scale-105 hover:bg-red-800/80"
+                                    className="group inline-flex cursor-pointer items-center justify-center rounded bg-[#010308]/80 px-6 py-4 font-semibold text-white shadow-lg shadow-red-800/20 transition-all duration-300 hover:scale-105 hover:bg-red-800/80"
                                 >
                                     <FaYoutube size={24} className="mr-3 text-red-600" />
                                     Watch on YouTube
                                 </a>
                                 <Link
                                     href="/ministry/sermons"
-                                    className="group inline-flex cursor-pointer items-center justify-center rounded bg-[#030712]/80 px-6 py-4 font-semibold text-white shadow-lg shadow-red-800/20 transition-all duration-300 hover:scale-105 hover:bg-red-800/80"
+                                    className="group inline-flex cursor-pointer items-center justify-center rounded bg-[#010308]/80 px-6 py-4 font-semibold text-white shadow-lg shadow-red-800/20 transition-all duration-300 hover:scale-105 hover:bg-red-800/80"
                                 >
                                     <FaPlay className="mr-3 h-5 w-5" />
                                     View Sermons
@@ -246,7 +246,7 @@ export default function MinistryPage() {
             </section>
 
             {/* About Section */}
-            <section className="relative bg-[#030712] py-20">
+            <section className="relative bg-[#010308] py-20">
                 <div className="container mx-auto px-4 sm:px-8">
                     <div className="mx-auto max-w-4xl">
                         <motion.h2
@@ -329,7 +329,7 @@ export default function MinistryPage() {
             </section>
 
             {/* Latest Sermons Section */}
-            <section className="relative overflow-visible bg-[#030712] py-20">
+            <section className="relative overflow-visible bg-[#010308] py-20">
                 <div className="container mx-auto px-4 sm:px-8">
                     <div className="mx-auto max-w-6xl overflow-visible">
                         <motion.h2
@@ -527,7 +527,7 @@ export default function MinistryPage() {
             </section>
 
             {/* Resources Section */}
-            <section className="relative bg-[#030712] py-20">
+            <section className="relative bg-[#010308] py-20">
                 <div className="container mx-auto px-4 sm:px-8">
                     <div className="mx-auto max-w-6xl">
                         <motion.h2
@@ -605,7 +605,7 @@ export default function MinistryPage() {
             </section>
 
             {/* Get In Touch Section */}
-            <section className="relative bg-[#030712] py-20">
+            <section className="relative bg-[#010308] py-20">
                 <div className="container mx-auto px-4 sm:px-8">
                     <div className="mx-auto max-w-2xl">
                         <motion.h2
