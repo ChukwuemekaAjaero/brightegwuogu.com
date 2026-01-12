@@ -103,7 +103,7 @@ export default function RootPage() {
                     {/* Left Section - Ministry */}
                     <Link
                         href="/ministry"
-                        className={`durration-750 relative flex cursor-pointer flex-col items-center justify-center rounded-sm bg-[#142557] bg-cover bg-position-[50%_30%] bg-no-repeat transition-all ease-in-out ${
+                        className={`relative flex cursor-pointer flex-col items-center justify-center rounded-sm bg-[#142557] bg-cover bg-position-[50%_30%] bg-no-repeat transition-all duration-[750ms] ease-in-out ${
                             hoveredSection === 'ministry'
                                 ? 'h-2/3 w-full md:h-full md:w-2/3'
                                 : hoveredSection === 'music'
@@ -118,13 +118,13 @@ export default function RootPage() {
                     >
                         {/* Overlay for text readability */}
                         <div
-                            className={`durration-750 absolute inset-0 rounded-sm transition-all ${
+                            className={`absolute inset-0 rounded-sm transition-all duration-[750ms] ${
                                 hoveredSection === 'music' ? 'bg-black/80' : 'bg-black/50'
                             }`}
                         ></div>
                         <div className="relative z-10">
                             <h1
-                                className={`durration-750 mb-8 font-bold text-white transition-all ${modernizFont.className} ${
+                                className={`mb-8 font-bold text-white transition-all duration-[750ms] ${modernizFont.className} ${
                                     hoveredSection === 'music'
                                         ? 'text-2xl md:text-3xl lg:text-4xl'
                                         : hoveredSection === 'ministry'
@@ -140,7 +140,7 @@ export default function RootPage() {
                     {/* Right Section - Music */}
                     <Link
                         href="/music"
-                        className={`durration-750 relative flex cursor-pointer flex-col items-center justify-center rounded-sm bg-red-900 bg-cover bg-position-[50%_30%] bg-no-repeat transition-all ease-in-out ${
+                        className={`relative flex cursor-pointer flex-col items-center justify-center rounded-sm bg-red-900 bg-cover bg-position-[50%_30%] bg-no-repeat transition-all duration-[750ms] ease-in-out ${
                             hoveredSection === 'music'
                                 ? 'h-2/3 w-full md:h-full md:w-2/3'
                                 : hoveredSection === 'ministry'
@@ -155,13 +155,13 @@ export default function RootPage() {
                     >
                         {/* Overlay for text readability */}
                         <div
-                            className={`durration-750 absolute inset-0 rounded-sm transition-all ${
+                            className={`absolute inset-0 rounded-sm transition-all duration-[750ms] ${
                                 hoveredSection === 'ministry' ? 'bg-black/80' : 'bg-black/30'
                             }`}
                         ></div>
                         <div className="relative z-10">
                             <h1
-                                className={`durration-750 mb-8 font-bold text-white transition-all ${modernizFont.className} ${
+                                className={`mb-8 font-bold text-white transition-all duration-[750ms] ${modernizFont.className} ${
                                     hoveredSection === 'ministry'
                                         ? 'text-2xl md:text-3xl lg:text-4xl'
                                         : hoveredSection === 'music'
