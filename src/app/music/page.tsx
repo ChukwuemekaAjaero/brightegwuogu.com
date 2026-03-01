@@ -19,7 +19,7 @@ export default function Music() {
     const heroVideoRef = useRef<HTMLVideoElement>(null);
     const noOtherGodImageRef = useRef<HTMLImageElement>(null);
     const joyUnspeakableImageRef = useRef<HTMLImageElement>(null);
-    const neverLostImageRef = useRef<HTMLImageElement>(null);
+    const ebenezerImageRef = useRef<HTMLImageElement>(null);
     const [isLoading, setIsLoading] = useState(true);
     const [noOtherGodVideoLoaded, setNoOtherGodVideoLoaded] = useState(false);
     const [noOtherGodVideoActive, setNoOtherGodVideoActive] = useState(false);
@@ -27,9 +27,9 @@ export default function Music() {
     const [joyUnspeakableVideoLoaded, setJoyUnspeakableVideoLoaded] = useState(false);
     const [joyUnspeakableVideoActive, setJoyUnspeakableVideoActive] = useState(false);
     const [joyUnspeakableImageLoaded, setJoyUnspeakableImageLoaded] = useState(false);
-    const [neverLostVideoLoaded, setNeverLostVideoLoaded] = useState(false);
-    const [neverLostVideoActive, setNeverLostVideoActive] = useState(false);
-    const [neverLostImageLoaded, setNeverLostImageLoaded] = useState(false);
+    const [ebenezerVideoLoaded, setEbenezerVideoLoaded] = useState(false);
+    const [ebenezerVideoActive, setEbenezerVideoActive] = useState(false);
+    const [ebenezerImageLoaded, setEbenezerImageLoaded] = useState(false);
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -124,7 +124,7 @@ export default function Music() {
 
         checkImageLoaded(noOtherGodImageRef, setNoOtherGodImageLoaded);
         checkImageLoaded(joyUnspeakableImageRef, setJoyUnspeakableImageLoaded);
-        checkImageLoaded(neverLostImageRef, setNeverLostImageLoaded);
+        checkImageLoaded(ebenezerImageRef, setEbenezerImageLoaded);
 
         return () => {
             cleanupFunctions.forEach((cleanup) => cleanup());
@@ -274,7 +274,7 @@ export default function Music() {
                 </div>
             </section>
 
-            {/* No Other God Video Section */}
+            {/* Ebenezer Video Section */}
             <section className="relative bg-[#010308] pt-20">
                 <div className="container mx-auto px-4 sm:px-8">
                     <div className="relative text-center">
@@ -284,7 +284,160 @@ export default function Music() {
                             viewport={{ once: true, margin: '-100px' }}
                             transition={{ duration: 0.6, ease: 'easeOut' }}
                             className={`relative z-10 mb-0 text-3xl font-bold text-white transition-all duration-200 sm:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl ${modernizFont.className} ${
-                                noOtherGodVideoActive || joyUnspeakableVideoActive || neverLostVideoActive
+                                noOtherGodVideoActive || joyUnspeakableVideoActive || ebenezerVideoActive
+                                    ? 'opacity-40 blur-xs'
+                                    : 'blur-0 opacity-100'
+                            }`}
+                        >
+                            Ebenezer
+                        </motion.h2>
+
+                        {/* Video */}
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.9 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            viewport={{ once: true, margin: '-100px' }}
+                            transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
+                            className={`relative z-0 mx-auto -mt-6 max-w-5xl transition-all duration-200 ease-in-out md:-mt-8 lg:-mt-12 ${ebenezerVideoActive ? 'z-[100] scale-[1.01]' : 'scale-100'}`}
+                            onMouseEnter={() => setEbenezerVideoActive(true)}
+                            onMouseLeave={() => setEbenezerVideoActive(false)}
+                        >
+                            <div
+                                className={`relative aspect-video w-full overflow-visible rounded-xs bg-gray-800 transition-all duration-200 ease-in-out ${ebenezerVideoActive ? 'shadow-2xl shadow-black/50' : 'shadow-none'}`}
+                            >
+                                {/* Skeleton - shown until video loads */}
+                                {!ebenezerVideoLoaded && <div className="absolute inset-0 animate-pulse bg-gray-700"></div>}
+                                {/* YouTube iframe */}
+                                <iframe
+                                    src="https://www.youtube.com/embed/uw2t2Vjfyvw"
+                                    title="Ebenezer - YouTube Video"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                    allowFullScreen
+                                    className={`h-full w-full transition-all duration-300 ${ebenezerVideoLoaded ? 'opacity-100' : 'opacity-0'} ${ebenezerVideoActive ? 'blur-0' : noOtherGodVideoActive || joyUnspeakableVideoActive ? 'blur-sm' : 'blur-0'}`}
+                                    onLoad={() => setEbenezerVideoLoaded(true)}
+                                    onFocus={() => setEbenezerVideoActive(true)}
+                                    onBlur={() => setEbenezerVideoActive(false)}
+                                ></iframe>
+                            </div>
+                        </motion.div>
+                        {/* Album Cover - Bottom Left */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: '-100px' }}
+                            transition={{ duration: 0.6, delay: 0.4, ease: 'easeOut' }}
+                            className="absolute right-32 -bottom-8 z-20 hidden aspect-square w-32 overflow-hidden rounded shadow-lg md:w-40 lg:block lg:w-48"
+                        >
+                            {/* Skeleton - shown until image loads */}
+                            {!ebenezerImageLoaded && <div className="absolute inset-0 animate-pulse bg-gray-500"></div>}
+                            {/* Image */}
+                            <img
+                                ref={ebenezerImageRef}
+                                src="/images/music/Ebenezer.png"
+                                alt="Ebenezer Album Cover"
+                                className={`h-full w-full object-cover transition-all duration-200 ${
+                                    ebenezerImageLoaded
+                                        ? noOtherGodVideoActive || joyUnspeakableVideoActive || ebenezerVideoActive
+                                            ? 'opacity-40 blur-xs'
+                                            : 'blur-0 opacity-100'
+                                        : 'blur-0 opacity-0'
+                                }`}
+                                onLoad={() => setEbenezerImageLoaded(true)}
+                                onError={() => setEbenezerImageLoaded(true)}
+                            />
+                        </motion.div>
+                    </div>
+
+                    {/* Song Information */}
+                    <div className="mt-12 text-center">
+                        <motion.p
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: '-100px' }}
+                            transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
+                            className={`mb-2 text-lg text-white transition-all duration-200 md:text-xl ${
+                                noOtherGodVideoActive || joyUnspeakableVideoActive || ebenezerVideoActive
+                                    ? 'opacity-40 blur-xs'
+                                    : 'blur-0 opacity-100'
+                            }`}
+                        >
+                            Brite Egwuogu
+                        </motion.p>
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: '-100px' }}
+                            transition={{ duration: 0.6, delay: 0.4, ease: 'easeOut' }}
+                            className={`mb-8 transition-all duration-200 ${noOtherGodVideoActive || joyUnspeakableVideoActive || ebenezerVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100'}`}
+                        >
+                            <p className="mb-1 text-lg text-gray-300 md:text-xl">2025</p>
+                            <p className="text-sm text-gray-500 md:text-base">{formatSongLength(244)}</p>
+                        </motion.div>
+
+                        {/* Streaming Service Links */}
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: '-100px' }}
+                            transition={{ duration: 0.6, delay: 0.5, ease: 'easeOut' }}
+                            className={`flex flex-wrap items-center justify-center gap-4 transition-all duration-200 ${
+                                noOtherGodVideoActive || joyUnspeakableVideoActive || ebenezerVideoActive
+                                    ? 'opacity-40 blur-xs'
+                                    : 'blur-0 opacity-100'
+                            }`}
+                        >
+                            <a
+                                href="https://open.spotify.com/track/3p2IjgHE6uOm0e4nmGga7Z?si=64a75b8b7e714f7e"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex cursor-pointer items-center justify-center rounded-sm bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                title="Listen on Spotify"
+                            >
+                                <SiSpotify className="h-6 w-6 text-green-400" />
+                            </a>
+                            <a
+                                href="https://music.apple.com/us/song/ebenezer/1878847463"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex cursor-pointer items-center justify-center rounded-sm bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                title="Listen on Apple Music"
+                            >
+                                <FaApple className="h-6 w-6 text-white" />
+                            </a>
+                            <a
+                                href="https://music.amazon.ca/albums/B0GNS12RZ7?marketplaceId=ART4WZ8MWBX2Y&musicTerritory=CA&ref=dm_sh_pXz3Bf1C6Ebqenz07vxKaPWSd&trackAsin=B0GNQYP89Z"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex cursor-pointer items-center justify-center rounded-sm bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                title="Listen on Amazon Music"
+                            >
+                                <SiAmazonmusic className="h-6 w-6 text-orange-400" />
+                            </a>
+                            <a
+                                href="https://link.deezer.com/s/32AsgrkIokASKyh2AXxOD"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex cursor-pointer items-center justify-center rounded-sm bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
+                                title="Listen on Deezer"
+                            >
+                                <FaDeezer className="h-6 w-6 text-blue-400" />
+                            </a>
+                        </motion.div>
+                    </div>
+                </div>
+            </section>
+
+            {/* No Other God Video Section */}
+            <section className="relative bg-[#010308] pt-20 lg:pt-40">
+                <div className="container mx-auto px-4 sm:px-8">
+                    <div className="relative text-center">
+                        <motion.h2
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true, margin: '-100px' }}
+                            transition={{ duration: 0.6, ease: 'easeOut' }}
+                            className={`relative z-10 mb-0 text-3xl font-bold text-white transition-all duration-200 sm:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl ${modernizFont.className} ${
+                                noOtherGodVideoActive || joyUnspeakableVideoActive || ebenezerVideoActive
                                     ? 'opacity-40 blur-xs'
                                     : 'blur-0 opacity-100'
                             }`}
@@ -313,7 +466,7 @@ export default function Music() {
                                     title="No Other God - YouTube Video"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                     allowFullScreen
-                                    className={`h-full w-full transition-all duration-300 ${noOtherGodVideoLoaded ? 'opacity-100' : 'opacity-0'} ${noOtherGodVideoActive ? 'blur-0' : joyUnspeakableVideoActive || neverLostVideoActive ? 'blur-sm' : 'blur-0'}`}
+                                    className={`h-full w-full transition-all duration-300 ${noOtherGodVideoLoaded ? 'opacity-100' : 'opacity-0'} ${noOtherGodVideoActive ? 'blur-0' : joyUnspeakableVideoActive || ebenezerVideoActive ? 'blur-sm' : 'blur-0'}`}
                                     onLoad={() => setNoOtherGodVideoLoaded(true)}
                                     onFocus={() => setNoOtherGodVideoActive(true)}
                                     onBlur={() => setNoOtherGodVideoActive(false)}
@@ -337,7 +490,7 @@ export default function Music() {
                                 alt="No Other God Album Cover"
                                 className={`h-full w-full object-cover transition-all duration-200 ${
                                     noOtherGodImageLoaded
-                                        ? noOtherGodVideoActive || joyUnspeakableVideoActive || neverLostVideoActive
+                                        ? noOtherGodVideoActive || joyUnspeakableVideoActive || ebenezerVideoActive
                                             ? 'opacity-40 blur-xs'
                                             : 'blur-0 opacity-100'
                                         : 'blur-0 opacity-0'
@@ -356,7 +509,7 @@ export default function Music() {
                             viewport={{ once: true, margin: '-100px' }}
                             transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
                             className={`mb-2 text-lg text-white transition-all duration-200 md:text-xl ${
-                                noOtherGodVideoActive || joyUnspeakableVideoActive || neverLostVideoActive
+                                noOtherGodVideoActive || joyUnspeakableVideoActive || ebenezerVideoActive
                                     ? 'opacity-40 blur-xs'
                                     : 'blur-0 opacity-100'
                             }`}
@@ -368,7 +521,7 @@ export default function Music() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: '-100px' }}
                             transition={{ duration: 0.6, delay: 0.4, ease: 'easeOut' }}
-                            className={`mb-8 transition-all duration-200 ${noOtherGodVideoActive || joyUnspeakableVideoActive || neverLostVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100'}`}
+                            className={`mb-8 transition-all duration-200 ${noOtherGodVideoActive || joyUnspeakableVideoActive || ebenezerVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100'}`}
                         >
                             <p className="mb-1 text-lg text-gray-300 md:text-xl">2025</p>
                             <p className="text-sm text-gray-500 md:text-base">{formatSongLength(480)}</p>
@@ -381,7 +534,7 @@ export default function Music() {
                             viewport={{ once: true, margin: '-100px' }}
                             transition={{ duration: 0.6, delay: 0.5, ease: 'easeOut' }}
                             className={`flex flex-wrap items-center justify-center gap-4 transition-all duration-200 ${
-                                noOtherGodVideoActive || joyUnspeakableVideoActive || neverLostVideoActive
+                                noOtherGodVideoActive || joyUnspeakableVideoActive || ebenezerVideoActive
                                     ? 'opacity-40 blur-xs'
                                     : 'blur-0 opacity-100'
                             }`}
@@ -437,7 +590,7 @@ export default function Music() {
                             viewport={{ once: true, margin: '-100px' }}
                             transition={{ duration: 0.6, ease: 'easeOut' }}
                             className={`relative z-10 mb-0 text-3xl font-bold text-white transition-all duration-200 sm:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl ${modernizFont.className} ${
-                                noOtherGodVideoActive || joyUnspeakableVideoActive || neverLostVideoActive
+                                noOtherGodVideoActive || joyUnspeakableVideoActive || ebenezerVideoActive
                                     ? 'opacity-40 blur-xs'
                                     : 'blur-0 opacity-100'
                             }`}
@@ -466,7 +619,7 @@ export default function Music() {
                                     title="Joy Unspeakable - YouTube Video"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                                     allowFullScreen
-                                    className={`h-full w-full transition-all duration-300 ${joyUnspeakableVideoLoaded ? 'opacity-100' : 'opacity-0'} ${joyUnspeakableVideoActive ? 'blur-0' : noOtherGodVideoActive || neverLostVideoActive ? 'blur-sm' : 'blur-0'}`}
+                                    className={`h-full w-full transition-all duration-300 ${joyUnspeakableVideoLoaded ? 'opacity-100' : 'opacity-0'} ${joyUnspeakableVideoActive ? 'blur-0' : noOtherGodVideoActive || ebenezerVideoActive ? 'blur-sm' : 'blur-0'}`}
                                     onLoad={() => setJoyUnspeakableVideoLoaded(true)}
                                     onFocus={() => setJoyUnspeakableVideoActive(true)}
                                     onBlur={() => setJoyUnspeakableVideoActive(false)}
@@ -490,7 +643,7 @@ export default function Music() {
                                 alt="Joy Unspeakable Album Cover"
                                 className={`h-full w-full object-cover transition-all duration-200 ${
                                     joyUnspeakableImageLoaded
-                                        ? noOtherGodVideoActive || joyUnspeakableVideoActive || neverLostVideoActive
+                                        ? noOtherGodVideoActive || joyUnspeakableVideoActive || ebenezerVideoActive
                                             ? 'opacity-40 blur-xs'
                                             : 'blur-0 opacity-100'
                                         : 'blur-0 opacity-0'
@@ -509,7 +662,7 @@ export default function Music() {
                             viewport={{ once: true, margin: '-100px' }}
                             transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
                             className={`mb-2 text-lg text-white transition-all duration-200 md:text-xl ${
-                                noOtherGodVideoActive || joyUnspeakableVideoActive || neverLostVideoActive
+                                noOtherGodVideoActive || joyUnspeakableVideoActive || ebenezerVideoActive
                                     ? 'opacity-40 blur-xs'
                                     : 'blur-0 opacity-100'
                             }`}
@@ -521,7 +674,7 @@ export default function Music() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: '-100px' }}
                             transition={{ duration: 0.6, delay: 0.4, ease: 'easeOut' }}
-                            className={`mb-8 transition-all duration-200 ${noOtherGodVideoActive || joyUnspeakableVideoActive || neverLostVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100'}`}
+                            className={`mb-8 transition-all duration-200 ${noOtherGodVideoActive || joyUnspeakableVideoActive || ebenezerVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100'}`}
                         >
                             <p className="mb-1 text-lg text-gray-300 md:text-xl">2025</p>
                             <p className="text-sm text-gray-500 md:text-base">{formatSongLength(363)}</p>
@@ -534,7 +687,7 @@ export default function Music() {
                             viewport={{ once: true, margin: '-100px' }}
                             transition={{ duration: 0.6, delay: 0.5, ease: 'easeOut' }}
                             className={`flex flex-wrap items-center justify-center gap-4 transition-all duration-200 ${
-                                noOtherGodVideoActive || joyUnspeakableVideoActive || neverLostVideoActive
+                                noOtherGodVideoActive || joyUnspeakableVideoActive || ebenezerVideoActive
                                     ? 'opacity-40 blur-xs'
                                     : 'blur-0 opacity-100'
                             }`}
@@ -580,158 +733,6 @@ export default function Music() {
                 </div>
             </section>
 
-            {/* Never Lost (Live) Video Section */}
-            <section className="relative bg-[#010308] pt-20 lg:pt-40">
-                <div className="container mx-auto px-4 sm:px-8">
-                    <div className="relative text-center">
-                        <motion.h2
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: '-100px' }}
-                            transition={{ duration: 0.6, ease: 'easeOut' }}
-                            className={`relative z-10 mb-0 text-3xl font-bold text-white transition-all duration-200 sm:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl ${modernizFont.className} ${
-                                noOtherGodVideoActive || joyUnspeakableVideoActive || neverLostVideoActive
-                                    ? 'opacity-40 blur-xs'
-                                    : 'blur-0 opacity-100'
-                            }`}
-                        >
-                            Never Lost (Live)
-                        </motion.h2>
-
-                        {/* Video */}
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.9 }}
-                            whileInView={{ opacity: 1, scale: 1 }}
-                            viewport={{ once: true, margin: '-100px' }}
-                            transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
-                            className={`relative z-0 mx-auto -mt-6 max-w-5xl transition-all duration-200 ease-in-out md:-mt-8 lg:-mt-12 ${neverLostVideoActive ? 'z-[100] scale-[1.01]' : 'scale-100'}`}
-                            onMouseEnter={() => setNeverLostVideoActive(true)}
-                            onMouseLeave={() => setNeverLostVideoActive(false)}
-                        >
-                            <div
-                                className={`relative aspect-video w-full overflow-visible rounded-xs bg-gray-800 transition-all duration-200 ease-in-out ${neverLostVideoActive ? 'shadow-2xl shadow-black/50' : 'shadow-none'}`}
-                            >
-                                {/* Skeleton - shown until video loads */}
-                                {!neverLostVideoLoaded && <div className="absolute inset-0 animate-pulse bg-gray-700"></div>}
-                                {/* YouTube iframe */}
-                                <iframe
-                                    src="https://www.youtube.com/embed/4Se2Tt_FuVM"
-                                    title="Never Lost (Live) - YouTube Video"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                    allowFullScreen
-                                    className={`h-full w-full transition-all duration-300 ${neverLostVideoLoaded ? 'opacity-100' : 'opacity-0'} ${neverLostVideoActive ? 'blur-0' : noOtherGodVideoActive || joyUnspeakableVideoActive ? 'blur-sm' : 'blur-0'}`}
-                                    onLoad={() => setNeverLostVideoLoaded(true)}
-                                    onFocus={() => setNeverLostVideoActive(true)}
-                                    onBlur={() => setNeverLostVideoActive(false)}
-                                ></iframe>
-                            </div>
-                        </motion.div>
-                        {/* Album Cover - Bottom Left */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: '-100px' }}
-                            transition={{ duration: 0.6, delay: 0.4, ease: 'easeOut' }}
-                            className="absolute right-32 -bottom-8 z-20 hidden aspect-square w-32 overflow-hidden rounded shadow-lg md:w-40 lg:block lg:w-48"
-                        >
-                            {/* Skeleton - shown until image loads */}
-                            {!neverLostImageLoaded && <div className="absolute inset-0 animate-pulse bg-gray-500"></div>}
-                            {/* Image */}
-                            <img
-                                ref={neverLostImageRef}
-                                src="/images/music/NeverLost.jpg"
-                                alt="Never Lost (Live) Album Cover"
-                                className={`h-full w-full object-cover transition-all duration-200 ${
-                                    neverLostImageLoaded
-                                        ? noOtherGodVideoActive || joyUnspeakableVideoActive || neverLostVideoActive
-                                            ? 'opacity-40 blur-xs'
-                                            : 'blur-0 opacity-100'
-                                        : 'blur-0 opacity-0'
-                                }`}
-                                onLoad={() => setNeverLostImageLoaded(true)}
-                                onError={() => setNeverLostImageLoaded(true)}
-                            />
-                        </motion.div>
-                    </div>
-
-                    {/* Song Information */}
-                    <div className="mt-12 text-center">
-                        <motion.p
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: '-100px' }}
-                            transition={{ duration: 0.6, delay: 0.3, ease: 'easeOut' }}
-                            className={`mb-2 text-lg text-white transition-all duration-200 md:text-xl ${
-                                noOtherGodVideoActive || joyUnspeakableVideoActive || neverLostVideoActive
-                                    ? 'opacity-40 blur-xs'
-                                    : 'blur-0 opacity-100'
-                            }`}
-                        >
-                            Brite Egwuogu
-                        </motion.p>
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: '-100px' }}
-                            transition={{ duration: 0.6, delay: 0.4, ease: 'easeOut' }}
-                            className={`mb-8 transition-all duration-200 ${noOtherGodVideoActive || joyUnspeakableVideoActive || neverLostVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100'}`}
-                        >
-                            <p className="mb-1 text-lg text-gray-300 md:text-xl">2023</p>
-                            <p className="text-sm text-gray-500 md:text-base">{formatSongLength(436)}</p>
-                        </motion.div>
-                        {/* Streaming Service Links */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: '-100px' }}
-                            transition={{ duration: 0.6, delay: 0.5, ease: 'easeOut' }}
-                            className={`flex flex-wrap items-center justify-center gap-4 transition-all duration-200 ${
-                                noOtherGodVideoActive || joyUnspeakableVideoActive || neverLostVideoActive
-                                    ? 'opacity-40 blur-xs'
-                                    : 'blur-0 opacity-100'
-                            }`}
-                        >
-                            <a
-                                href="https://open.spotify.com/track/7KIFgCFh0W3aaOe2KL6J2j?si=21d0e9c4d2604c47"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex cursor-pointer items-center justify-center rounded-sm bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
-                                title="Listen on Spotify"
-                            >
-                                <SiSpotify className="h-6 w-6 text-green-400" />
-                            </a>
-                            <a
-                                href="https://music.apple.com/us/song/never-lost-live/1687272944"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex cursor-pointer items-center justify-center rounded-sm bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
-                                title="Listen on Apple Music"
-                            >
-                                <FaApple className="h-6 w-6 text-white" />
-                            </a>
-                            <a
-                                href="https://amazon.com/music/player/tracks/B0C5PJYTS4?marketplaceId=ATVPDKIKX0DER&musicTerritory=US&ref=dm_sh_6Ib6NCtyloUQvclBxjqZRZ27G"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex cursor-pointer items-center justify-center rounded-sm bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
-                                title="Listen on Amazon Music"
-                            >
-                                <SiAmazonmusic className="h-6 w-6 text-orange-400" />
-                            </a>
-                            <a
-                                href="https://link.deezer.com/s/3127oFPuVWyzeTtPIwGXV"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="flex cursor-pointer items-center justify-center rounded-sm bg-white/10 px-4 py-3 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white/20"
-                                title="Listen on Deezer"
-                            >
-                                <FaDeezer className="h-6 w-6 text-blue-400" />
-                            </a>
-                        </motion.div>
-                    </div>
-                </div>
-            </section>
-
             {/* Discography Link Section */}
             <section className="relative bg-[#010308] py-20">
                 <div className="container mx-auto px-4 sm:px-8">
@@ -741,7 +742,7 @@ export default function Music() {
                         viewport={{ once: true, margin: '-100px' }}
                         transition={{ duration: 0.6, ease: 'easeOut' }}
                         className={`mx-auto max-w-4xl text-center transition-all duration-200 ${
-                            noOtherGodVideoActive || joyUnspeakableVideoActive || neverLostVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100'
+                            noOtherGodVideoActive || joyUnspeakableVideoActive || ebenezerVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100'
                         }`}
                     >
                         <motion.p
@@ -780,7 +781,7 @@ export default function Music() {
                         viewport={{ once: true, margin: '-100px' }}
                         transition={{ duration: 0.6, ease: 'easeOut' }}
                         className={`mx-auto max-w-2xl transition-all duration-200 ${
-                            noOtherGodVideoActive || joyUnspeakableVideoActive || neverLostVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100'
+                            noOtherGodVideoActive || joyUnspeakableVideoActive || ebenezerVideoActive ? 'opacity-40 blur-xs' : 'blur-0 opacity-100'
                         }`}
                     >
                         <motion.h2
