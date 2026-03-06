@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
-import { modernizFont } from '@/lib/utils';
+import { antonFont } from '@/lib/utils';
 import { useMusic, useSermons } from '@/hooks/useContentful';
 import { Music } from '@/lib/contentful';
 import { FaApple, FaYoutube, FaSpotify, FaDeezer } from 'react-icons/fa';
@@ -259,7 +259,7 @@ export default function HomePage() {
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             transition={{ duration: 0.5, ease: 'easeInOut' }}
-                            className={`mb-6 ${modernizFont.className}`}
+                            className={`mb-6 ${antonFont.className} uppercase`}
                         >
                             <TypingEffectText text={carouselTexts[currentTextIndex]} />
                         </motion.div>
@@ -305,7 +305,7 @@ export default function HomePage() {
                                 initial={{ opacity: 0 }}
                                 animate={aboutMeInView ? { opacity: 1 } : { opacity: 0 }}
                                 transition={{ delay: 0.25, duration: 0.8, ease: 'easeOut' }}
-                                className={`text-6xl font-bold text-white ${modernizFont.className}`}
+                                className={`text-6xl font-bold text-white ${antonFont.className} uppercase`}
                             >
                                 About
                             </motion.h1>
@@ -689,7 +689,7 @@ export default function HomePage() {
                                         initial={{ opacity: 0 }}
                                         animate={musicInView ? { opacity: 1 } : { opacity: 0 }}
                                         transition={{ delay: 0.25, duration: 0.8, ease: 'easeOut' }}
-                                        className={`text-6xl font-bold text-white ${modernizFont.className}`}
+                                        className={`text-6xl font-bold text-white ${antonFont.className} uppercase`}
                                     >
                                         Music
                                     </motion.h1>
@@ -768,7 +768,7 @@ export default function HomePage() {
                                 <div className="flex flex-col justify-center text-white">
                                     <div className="text-center lg:text-left">
                                         {/* Song Name */}
-                                        <h3 className={`mb-6 text-center text-2xl font-bold lg:text-3xl xl:text-4xl ${modernizFont.className}`}>
+                                        <h3 className={`mb-6 text-center text-2xl font-bold lg:text-3xl xl:text-4xl ${antonFont.className} uppercase`}>
                                             No Other God
                                         </h3>
 
@@ -1127,7 +1127,7 @@ export default function HomePage() {
                         >
                             <Link
                                 href="/music"
-                                className="group inline-flex cursor-pointer items-center rounded bg-blue-900 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300"
+                                className="group inline-flex cursor-pointer items-center rounded-xs bg-blue-900 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300"
                             >
                                 More
                                 <FiArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-2" />
@@ -1158,7 +1158,7 @@ export default function HomePage() {
                                         initial={{ opacity: 0 }}
                                         animate={sermonsInView ? { opacity: 1 } : { opacity: 0 }}
                                         transition={{ delay: 0.25, duration: 0.8, ease: 'easeOut' }}
-                                        className={`text-5xl font-bold text-white lg:text-6xl ${modernizFont.className}`}
+                                        className={`text-5xl font-bold text-white lg:text-6xl ${antonFont.className} uppercase`}
                                     >
                                         Sermons
                                     </motion.h1>
@@ -1251,7 +1251,7 @@ export default function HomePage() {
                                 <div className="flex flex-col justify-center text-white">
                                     <div className="text-center lg:text-left">
                                         {/* Sermon Name */}
-                                        <h3 className={`mb-6 text-center text-2xl lg:text-3xl xl:text-4xl ${modernizFont.className}`}>
+                                        <h3 className={`mb-6 text-center text-2xl lg:text-3xl xl:text-4xl ${antonFont.className} uppercase`}>
                                             {sermons.length > 0 ? sermons[0].name : 'Latest Sermon'}
                                         </h3>
 
@@ -1480,7 +1480,7 @@ export default function HomePage() {
                         >
                             <Link
                                 href="/ministry"
-                                className="group inline-flex cursor-pointer items-center rounded bg-blue-900 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300"
+                                className="group inline-flex cursor-pointer items-center rounded-xs bg-blue-900 px-8 py-4 font-semibold text-white shadow-lg shadow-blue-800/20 transition-all duration-300"
                             >
                                 More
                                 <FiArrowRight className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-2" />
@@ -1524,12 +1524,12 @@ export default function HomePage() {
                                 damping: 20,
                                 mass: 0.8
                             }}
-                            className="m-8 flex h-[calc(100vh-4rem)] w-[calc(100vw-4rem)] max-w-2xl flex-col justify-center rounded bg-blue-900 p-8 shadow-lg shadow-blue-800/20"
+                            className="m-8 flex h-[calc(100vh-4rem)] w-[calc(100vw-4rem)] max-w-2xl flex-col justify-center rounded-xs bg-blue-900 p-8 shadow-lg shadow-blue-800/20"
                         >
                             {/* Song Info */}
                             <div className="mb-8 text-center text-white">
                                 <motion.h3
-                                    className={`mb-4 text-xl font-bold sm:text-2xl md:text-3xl ${modernizFont.className} break-words`}
+                                    className={`mb-4 text-xl font-bold sm:text-2xl md:text-3xl ${antonFont.className} uppercase break-words`}
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     transition={{ delay: 0.2, duration: 0.4 }}
@@ -1577,7 +1577,7 @@ export default function HomePage() {
                                     exit={{ opacity: 0 }}
                                 >
                                     <FaSpotify className="h-6 w-6 text-white" />
-                                    <span className={`font-medium ${modernizFont.className}`}>Spotify</span>
+                                    <span className={`font-medium ${antonFont.className} uppercase`}>Spotify</span>
                                 </motion.a>
                                 <motion.a
                                     href={selectedSong.appleMusicLink}
@@ -1597,7 +1597,7 @@ export default function HomePage() {
                                     exit={{ opacity: 0 }}
                                 >
                                     <FaApple className="h-6 w-6 text-white" />
-                                    <span className={`font-medium ${modernizFont.className}`}>Apple Music</span>
+                                    <span className={`font-medium ${antonFont.className} uppercase`}>Apple Music</span>
                                 </motion.a>
                                 <motion.a
                                     href={selectedSong.amazonMusicLink}
@@ -1617,7 +1617,7 @@ export default function HomePage() {
                                     exit={{ opacity: 0 }}
                                 >
                                     <SiAmazonmusic className="h-6 w-6 text-white" />
-                                    <span className={`font-medium ${modernizFont.className}`}>Amazon Music</span>
+                                    <span className={`font-medium ${antonFont.className} uppercase`}>Amazon Music</span>
                                 </motion.a>
                                 <motion.a
                                     href={selectedSong.deezerLink}
@@ -1637,7 +1637,7 @@ export default function HomePage() {
                                     exit={{ opacity: 0 }}
                                 >
                                     <FaDeezer className="h-6 w-6 text-white" />
-                                    <span className={`font-medium ${modernizFont.className}`}>Deezer</span>
+                                    <span className={`font-medium ${antonFont.className} uppercase`}>Deezer</span>
                                 </motion.a>
                                 <motion.a
                                     href={selectedSong.youTubeLink}
@@ -1657,7 +1657,7 @@ export default function HomePage() {
                                     exit={{ opacity: 0 }}
                                 >
                                     <FaYoutube className="h-6 w-6 text-white" />
-                                    <span className={`font-medium ${modernizFont.className}`}>YouTube</span>
+                                    <span className={`font-medium ${antonFont.className} uppercase`}>YouTube</span>
                                 </motion.a>
                             </motion.div>
 

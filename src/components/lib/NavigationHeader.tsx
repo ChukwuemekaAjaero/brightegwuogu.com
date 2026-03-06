@@ -8,7 +8,7 @@ import { AnimatePresence, motion, Variants } from 'framer-motion';
 import { AiFillInstagram } from 'react-icons/ai';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { modernizFont } from '@/lib/utils';
+import { antonFont } from '@/lib/utils';
 
 // Type definitions
 interface Link {
@@ -118,7 +118,7 @@ const DesktopHeader = () => {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.2 }}
-                    className="fixed z-[100] min-w-[180px] overflow-hidden rounded-sm border border-gray-700 bg-gray-800/20 shadow-lg backdrop-blur-sm"
+                    className="fixed z-[100] min-w-[180px] overflow-hidden rounded-xs border border-gray-700 bg-gray-800/20 shadow-lg backdrop-blur-sm"
                     style={{
                         top: `${dropdownPosition.top}px`,
                         left: `${dropdownPosition.left}px`
@@ -130,7 +130,7 @@ const DesktopHeader = () => {
                         <Link
                             key={item.href}
                             href={item.href}
-                            className={`block px-4 py-3 text-white transition-colors hover:bg-gray-700/50 ${modernizFont.className}`}
+                            className={`block px-4 py-3 text-white transition-colors hover:bg-gray-700/50 ${antonFont.className} uppercase`}
                         >
                             {item.title}
                         </Link>
@@ -148,7 +148,7 @@ const DesktopHeader = () => {
                     <Link
                         ref={logoRef}
                         href={getLogoHref()}
-                        className={`cursor-pointer text-2xl font-bold text-white no-underline transition-colors hover:text-gray-300 ${modernizFont.className}`}
+                        className={`cursor-pointer text-2xl font-bold text-white no-underline transition-colors hover:text-gray-300 ${antonFont.className} uppercase`}
                     >
                         Bright Egwuogu
                     </Link>
@@ -297,7 +297,7 @@ const NavLink: React.FC<NavLinkProps> = ({ children, href, idx }) => {
             <div className="flex items-center justify-center gap-4">
                 <Link
                     href={href}
-                    className={`cursor-pointer text-2xl font-semibold transition-colors hover:text-[#030712] md:text-3xl ${modernizFont.className} ${
+                    className={`cursor-pointer text-2xl font-semibold transition-colors hover:text-[#030712] md:text-3xl ${antonFont.className} uppercase ${
                         isActive ? 'text-[#030712]' : 'text-white'
                     }`}
                 >
@@ -324,6 +324,7 @@ const NavLink: React.FC<NavLinkProps> = ({ children, href, idx }) => {
 const HamburgerButton: React.FC<HamburgerButtonProps> = ({ active, setActive }) => {
     const pathname = usePathname();
     const isMinistryRoute = pathname?.startsWith('/ministry');
+    const isMusicRoute = pathname?.startsWith('/music');
 
     // Determine logo href based on current route
     const getLogoHref = () => {
@@ -348,11 +349,11 @@ const HamburgerButton: React.FC<HamburgerButtonProps> = ({ active, setActive }) 
         <>
             {/* Background blur for closed state */}
             {!active && (
-                <div className="fixed top-0 right-0 left-0 z-10 h-30 mask-b-from-50% backdrop-blur-md">
+                <div className="fixed top-0 right-0 left-0 z-10 h-30 bg-black/10 mask-b-from-50% backdrop-blur-md">
                     <Link
                         href={getLogoHref()}
-                        className={`absolute top-6 left-8 z-50 cursor-pointer text-2xl font-bold text-white transition-colors ${modernizFont.className} ${
-                            isMinistryRoute ? 'hover:text-red-900' : 'hover:text-sky-700'
+                        className={`absolute top-6 left-8 z-50 cursor-pointer text-2xl font-bold text-white transition-colors ${antonFont.className} uppercase ${
+                            isMinistryRoute ? 'hover:text-red-900' : isMusicRoute ? 'hover:text-[#a46a39]' : 'hover:text-sky-700'
                         }`}
                     >
                         P.B.
@@ -365,14 +366,14 @@ const HamburgerButton: React.FC<HamburgerButtonProps> = ({ active, setActive }) 
                 animate={active ? 'open' : 'closed'}
                 variants={UNDERLAY_VARIANTS}
                 style={{ top: 16, right: 16 }}
-                className={`fixed z-20 rounded shadow-lg ${isMinistryRoute ? 'bg-red-900 shadow-red-800/20' : 'bg-blue-900 shadow-blue-800/20'}`}
+                className={`fixed z-20 rounded-xs shadow-lg ${isMinistryRoute ? 'bg-red-900/95' : isMusicRoute ? 'bg-[#a46a39]/95' : 'bg-blue-900/10 shadow-blue-800/20'}`}
             />
 
             <motion.button
                 initial={false}
                 animate={active ? 'open' : 'closed'}
                 onClick={() => setActive((pv) => !pv)}
-                className="group fixed top-4 right-4 z-50 h-12 w-12 cursor-pointer bg-white/0 transition-all hover:bg-white/20"
+                className="group fixed top-4 right-4 z-50 h-12 w-12 cursor-pointer rounded-xs bg-white/0 transition-all hover:bg-white/20"
             >
                 <motion.span
                     variants={HAMBURGER_VARIANTS.top}
@@ -415,7 +416,7 @@ const FooterCTAs = () => {
                             className="flex cursor-pointer items-center gap-3 text-white transition-colors hover:text-sky-700"
                         >
                             <l.Component className="text-3xl" />
-                            <span className={`text-lg ${modernizFont.className}`}>{l.name}</span>
+                            <span className={`text-lg ${antonFont.className} uppercase`}>{l.name}</span>
                         </motion.a>
                     );
                 })}

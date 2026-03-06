@@ -1,15 +1,24 @@
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import localFont from 'next/font/local';
-import { Lato, Oswald, Karla, Lexend, Alegreya_Sans } from 'next/font/google';
+import { Lato, Oswald, Karla, Lexend, Alegreya_Sans, Outfit, Anton } from 'next/font/google';
 
 export function cn(...inputs: ClassValue[]) {
     return twMerge(clsx(inputs));
 }
 
+// modernizFont for backward compatibility with existing imports
 export const modernizFont = localFont({
     src: '../../public/fonts/Moderniz.otf',
     variable: '--font-moderniz',
+    display: 'swap'
+});
+
+// Export antonFont - all headings will use Anton font
+export const antonFont = Anton({
+    weight: ['400'],
+    subsets: ['latin'],
+    variable: '--font-anton',
     display: 'swap'
 });
 
@@ -51,6 +60,13 @@ export const alegreyaSansFont = Alegreya_Sans({
 export const ubisoftSansFont = localFont({
     src: '../../public/fonts/UbisoftSansRegular.otf',
     variable: '--font-ubisoft-sans',
+    display: 'swap'
+});
+
+export const firaSansFont = Outfit({
+    weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+    subsets: ['latin'],
+    variable: '--font-fira-sans',
     display: 'swap'
 });
 

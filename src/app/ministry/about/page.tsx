@@ -1,6 +1,6 @@
 'use client';
 
-import { modernizFont } from '@/lib/utils';
+import { antonFont } from '@/lib/utils';
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
@@ -100,15 +100,15 @@ export default function MinistryAbout() {
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
     return (
-        <div className="min-h-screen overflow-x-hidden bg-[#010308]">
+        <div className="relative min-h-screen overflow-x-hidden">
             {/* Container for Pastor Bright text and video */}
-            <div className="container mx-auto flex max-h-screen flex-col items-center justify-center px-4 pt-30 pb-20 sm:px-8">
+            <div className="relative z-10 container mx-auto flex max-h-screen flex-col items-center justify-center px-4 pt-30 pb-20 sm:px-8">
                 {/* Large Header */}
                 <motion.h1
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, ease: 'easeOut' }}
-                    className={`relative z-[5] text-center text-6xl font-bold text-white md:text-7xl lg:text-8xl xl:text-9xl ${modernizFont.className}`}
+                    className={`relative z-[5] mb-8 text-center text-6xl font-bold text-white md:text-7xl lg:text-8xl xl:text-9xl ${antonFont.className} uppercase`}
                 >
                     <span className="relative text-red-900">P</span>astor
                     <br />
@@ -120,7 +120,7 @@ export default function MinistryAbout() {
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
-                    className="relative -mt-8 aspect-[3/4] w-80 overflow-hidden rounded-xs bg-gray-800 shadow-lg sm:-mt-8 md:w-96 lg:-mt-14 lg:w-[28rem] xl:-mt-16 xl:w-[32rem]"
+                    className="relative aspect-[3/4] w-80 overflow-hidden rounded-xs bg-gray-800 shadow-lg md:w-96 lg:w-[28rem] xl:w-[32rem]"
                 >
                     {/* Skeleton - shown until video loads */}
                     {!videoLoaded && <div className="absolute inset-0 animate-pulse bg-gray-700"></div>}
@@ -141,7 +141,7 @@ export default function MinistryAbout() {
             </div>
 
             {/* Lorem Ipsum Paragraphs */}
-            <div className="container mx-auto px-4 pb-20 sm:px-8">
+            <div className="relative z-10 container mx-auto px-4 pb-20 sm:px-8">
                 <div className="mx-auto max-w-3xl space-y-6 text-center">
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
@@ -168,7 +168,7 @@ export default function MinistryAbout() {
             </div>
 
             {/* Scroll-Triggered Image Carousel - Full Width */}
-            <div ref={carouselRef} className="relative -mt-20 w-full overflow-x-hidden py-20">
+            <div ref={carouselRef} className="relative z-10 -mt-20 w-full overflow-x-hidden py-20">
                 <motion.div
                     ref={carouselContentRef}
                     className="flex gap-4"
@@ -212,7 +212,7 @@ export default function MinistryAbout() {
             </div>
 
             {/* Additional Lorem Ipsum Paragraphs */}
-            <div className="container mx-auto px-4 pb-20 sm:px-8">
+            <div className="relative z-10 container mx-auto px-4 pb-20 sm:px-8">
                 <div className="mx-auto max-w-3xl space-y-6 text-center">
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}

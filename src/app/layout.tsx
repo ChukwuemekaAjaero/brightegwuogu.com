@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import { ubisoftSansFont } from '@/lib/utils';
+import { firaSansFont } from '@/lib/utils';
 import WidthIndicator from '@/components/lib/WidthIndicator';
 
 export const metadata: Metadata = {
@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body className={`${ubisoftSansFont.className}`} suppressHydrationWarning={true}>
+            <body className={`${firaSansFont.className} bg-[#010308]`} suppressHydrationWarning={true}>
                 {/* <WidthIndicator /> */}
                 {children}
             </body>

@@ -174,6 +174,16 @@ html {
     display: none;
 }
 
+/* Light beam border: show rotating gradient only on the outline (thin frame) */
+.beam-border-mask {
+    mask-image: linear-gradient(#fff, #fff), linear-gradient(#fff, #fff);
+    mask-size: 100% 100%, calc(100% - 4px) calc(100% - 4px);
+    mask-position: 0 0, 2px 2px;
+    mask-repeat: no-repeat;
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+}
+
 /* Ensure all links and anchors show pointer cursor */
 a,
 [role="link"],

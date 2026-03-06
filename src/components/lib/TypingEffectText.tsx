@@ -3,11 +3,14 @@
 import * as React from 'react';
 import { motion, useInView } from 'framer-motion';
 
-export function TypingEffectText({ text = 'Typing Effect' }: { text: string }) {
+export function TypingEffectText({ text = 'Typing Effect', className }: { text: string; className?: string }) {
     const ref = React.useRef(null);
     const isInView = useInView(ref, { once: true });
     return (
-        <h1 ref={ref} className="text-center text-5xl font-bold tracking-tighter md:text-8xl md:leading-[6rem]">
+        <h1
+            ref={ref}
+            className={className ?? 'text-center text-5xl font-bold tracking-tighter md:text-8xl md:leading-[6rem]'}
+        >
             {text.split('').map((letter, index) => (
                 <motion.span
                     key={index}

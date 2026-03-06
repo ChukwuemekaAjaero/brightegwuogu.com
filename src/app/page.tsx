@@ -2,10 +2,11 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { modernizFont } from '@/lib/utils';
+import { antonFont } from '@/lib/utils';
 import { useMediaPreloader } from '@/hooks/useMediaPreloader';
 import { criticalMediaAssets } from '@/lib/mediaAssets';
 import SplashScreen from '@/components/lib/SplashScreen';
+import { TypewriterText } from '@/components/lib/TypewriterText';
 
 export default function RootPage() {
     const [hoveredSection, setHoveredSection] = useState<'ministry' | 'music' | null>(null);
@@ -89,17 +90,17 @@ export default function RootPage() {
                         showMessage ? 'opacity-100' : 'pointer-events-none opacity-0'
                     }`}
                 >
-                    <p className={`text-center text-4xl font-bold text-white md:text-5xl lg:text-6xl ${modernizFont.className}`}>
+                    <p className={`text-center text-4xl font-bold text-white md:text-5xl lg:text-6xl ${antonFont.className} uppercase`}>
                         Select a side of Bright
                     </p>
                 </div>
             </div>
             <div
-                className={`flex h-screen w-full flex-col overflow-hidden bg-[#010308] transition-opacity duration-500 ease-in-out ${
+                className={`relative flex h-screen w-full flex-col overflow-hidden bg-[#010308] transition-opacity duration-500 ease-in-out ${
                     showContent ? 'opacity-100' : 'opacity-0'
                 }`}
             >
-                <div className="flex h-full w-full flex-col gap-4 p-4 md:flex-row">
+                <div className="relative z-10 flex h-full w-full flex-col gap-4 p-4 md:flex-row">
                     {/* Left Section - Ministry */}
                     <Link
                         href="/ministry"
@@ -123,17 +124,12 @@ export default function RootPage() {
                             }`}
                         ></div>
                         <div className="relative z-10">
-                            <h1
-                                className={`mb-8 font-bold text-white transition-all duration-[750ms] ${modernizFont.className} ${
-                                    hoveredSection === 'music'
-                                        ? 'text-2xl md:text-3xl lg:text-4xl'
-                                        : hoveredSection === 'ministry'
-                                          ? 'text-5xl md:text-6xl lg:text-7xl xl:text-8xl'
-                                          : 'text-5xl md:text-6xl lg:text-7xl xl:text-8xl'
+                            <TypewriterText
+                                text="Ministry"
+                                className={`mb-8 font-bold transition-all duration-[750ms] ${antonFont.className} text-5xl uppercase md:text-6xl lg:text-7xl xl:text-8xl ${
+                                    hoveredSection === 'music' ? 'text-white/40' : 'text-white'
                                 }`}
-                            >
-                                Ministry
-                            </h1>
+                            />
                         </div>
                     </Link>
 
@@ -160,17 +156,12 @@ export default function RootPage() {
                             }`}
                         ></div>
                         <div className="relative z-10">
-                            <h1
-                                className={`mb-8 font-bold text-white transition-all duration-[750ms] ${modernizFont.className} ${
-                                    hoveredSection === 'ministry'
-                                        ? 'text-2xl md:text-3xl lg:text-4xl'
-                                        : hoveredSection === 'music'
-                                          ? 'text-5xl md:text-6xl lg:text-7xl xl:text-8xl'
-                                          : 'text-5xl md:text-6xl lg:text-7xl xl:text-8xl'
+                            <TypewriterText
+                                text="Music"
+                                className={`mb-8 font-bold transition-all duration-[750ms] ${antonFont.className} text-5xl uppercase md:text-6xl lg:text-7xl xl:text-8xl ${
+                                    hoveredSection === 'ministry' ? 'text-white/40' : 'text-white'
                                 }`}
-                            >
-                                Music
-                            </h1>
+                            />
                         </div>
                     </Link>
                 </div>
