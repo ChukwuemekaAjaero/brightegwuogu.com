@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { cn } from '@/lib/utils';
 
 export interface SpotlightBackgroundProps {
@@ -26,9 +26,12 @@ interface SpotlightPosition {
     targetY: number;
 }
 
+const lerp = (start: number, end: number, factor: number) =>
+    start + (end - start) * factor;
+
 /**
  * Renders only the cursor-following spotlight gradient(s) as a fixed, pointer-events-none layer.
- * Does not wrap or contain children – place it as a sibling so the page can scroll normally.
+ * Uses ref-based transform updates (no React state in the animation loop) for better performance.
  */
 export function SpotlightBackground({
     className,
@@ -39,50 +42,48 @@ export function SpotlightBackground({
     ambient = true,
     opacity = 1
 }: SpotlightBackgroundProps) {
+    const colorArray = Array.isArray(colors) ? colors : [colors];
     const spotlightsRef = useRef<SpotlightPosition[]>([]);
+    const layerRef = useRef<HTMLDivElement>(null);
     const animationRef = useRef<number | undefined>(undefined);
     const lastMouseMoveRef = useRef<number>(0);
-    const [positions, setPositions] = useState<{ x: number; y: number }[]>([]);
-    const [viewport, setViewport] = useState({ width: 0, height: 0 });
+    const viewportRef = useRef({ width: 0, height: 0 });
 
-    const colorArray = Array.isArray(colors) ? colors : [colors];
+    // Size of each spotlight div (gradient + room for blur)
+    const blobSize = size * 2 + blur * 2;
+    const halfBlob = blobSize / 2;
 
-    // Use viewport for dimensions (no container ref)
+    // Viewport and init
     useEffect(() => {
         const updateViewport = () => {
-            setViewport({ width: window.innerWidth, height: window.innerHeight });
+            viewportRef.current = { width: window.innerWidth, height: window.innerHeight };
         };
         updateViewport();
         window.addEventListener('resize', updateViewport);
+
+        const { width, height } = viewportRef.current;
+        if (width > 0 && height > 0) {
+            const centerX = width / 2;
+            const centerY = height / 2;
+            spotlightsRef.current = colorArray.map((_, i) => ({
+                x: centerX + (i - (colorArray.length - 1) / 2) * 50,
+                y: centerY,
+                targetX: centerX + (i - (colorArray.length - 1) / 2) * 50,
+                targetY: centerY
+            }));
+        }
+
         return () => window.removeEventListener('resize', updateViewport);
-    }, []);
+    }, [colorArray.length]);
 
-    // Initialize spotlight positions when viewport is known
+    // Animation loop: update refs and DOM transform only (no setState)
     useEffect(() => {
-        if (viewport.width === 0 || viewport.height === 0) return;
-
-        const centerX = viewport.width / 2;
-        const centerY = viewport.height / 2;
-
-        spotlightsRef.current = colorArray.map((_, i) => ({
-            x: centerX + (i - (colorArray.length - 1) / 2) * 50,
-            y: centerY,
-            targetX: centerX + (i - (colorArray.length - 1) / 2) * 50,
-            targetY: centerY
-        }));
-
-        setPositions(spotlightsRef.current.map((s) => ({ x: s.x, y: s.y })));
-    }, [colorArray.length, viewport.width, viewport.height]);
-
-    const lerp = useCallback((start: number, end: number, factor: number) => {
-        return start + (end - start) * factor;
-    }, []);
-
-    // Animation loop
-    useEffect(() => {
-        const width = viewport.width;
-        const height = viewport.height;
+        const width = viewportRef.current.width;
+        const height = viewportRef.current.height;
         if (width === 0 || height === 0) return;
+
+        const container = layerRef.current;
+        if (!container) return;
 
         let tick = 0;
 
@@ -92,8 +93,9 @@ export function SpotlightBackground({
             const timeSinceMouseMove = now - lastMouseMoveRef.current;
             const isAmbient = ambient && timeSinceMouseMove > 2000;
 
-            spotlightsRef.current = spotlightsRef.current.map((spotlight, i) => {
-                let { x, y, targetX, targetY } = spotlight;
+            const spots = spotlightsRef.current;
+            for (let i = 0; i < spots.length; i++) {
+                let { x, y, targetX, targetY } = spots[i];
 
                 if (isAmbient) {
                     const offset = i * 0.5;
@@ -104,31 +106,46 @@ export function SpotlightBackground({
                 x = lerp(x, targetX, smoothing);
                 y = lerp(y, targetY, smoothing);
 
-                return { x, y, targetX, targetY };
-            });
+                spots[i] = { x, y, targetX, targetY };
 
-            setPositions(spotlightsRef.current.map((s) => ({ x: s.x, y: s.y })));
+                const el = container.children[i] as HTMLElement;
+                if (el?.style) {
+                    el.style.transform = `translate(${x - halfBlob}px, ${y - halfBlob}px)`;
+                }
+            }
+
             animationRef.current = requestAnimationFrame(animate);
         };
+
+        // Initial position update
+        const spots = spotlightsRef.current;
+        for (let i = 0; i < spots.length; i++) {
+            const el = container.children[i] as HTMLElement;
+            if (el?.style) {
+                el.style.transform = `translate(${spots[i].x - halfBlob}px, ${spots[i].y - halfBlob}px)`;
+            }
+        }
 
         animationRef.current = requestAnimationFrame(animate);
 
         return () => {
             if (animationRef.current) cancelAnimationFrame(animationRef.current);
         };
-    }, [ambient, smoothing, lerp, viewport.width, viewport.height]);
+    }, [ambient, smoothing, colorArray.length, halfBlob]);
 
-    // Track mouse/touch on document so the layer can stay pointer-events-none (doesn't block scroll or clicks)
+    // Mouse/touch: update targets only (no React state)
     useEffect(() => {
         const handleMouseMove = (e: MouseEvent) => {
             const x = e.clientX;
             const y = e.clientY;
             lastMouseMoveRef.current = Date.now();
-            spotlightsRef.current = spotlightsRef.current.map((spotlight, i) => ({
-                ...spotlight,
-                targetX: x + (i - (colorArray.length - 1) / 2) * 30,
-                targetY: y + (i - (colorArray.length - 1) / 2) * 20
-            }));
+            const spots = spotlightsRef.current;
+            const n = colorArray.length;
+            const half = (n - 1) / 2;
+            for (let i = 0; i < n; i++) {
+                spots[i].targetX = x + (i - half) * 30;
+                spots[i].targetY = y + (i - half) * 20;
+            }
         };
 
         const handleTouchMove = (e: TouchEvent) => {
@@ -136,11 +153,13 @@ export function SpotlightBackground({
             const x = e.touches[0].clientX;
             const y = e.touches[0].clientY;
             lastMouseMoveRef.current = Date.now();
-            spotlightsRef.current = spotlightsRef.current.map((spotlight, i) => ({
-                ...spotlight,
-                targetX: x + (i - (colorArray.length - 1) / 2) * 30,
-                targetY: y + (i - (colorArray.length - 1) / 2) * 20
-            }));
+            const spots = spotlightsRef.current;
+            const n = colorArray.length;
+            const half = (n - 1) / 2;
+            for (let i = 0; i < n; i++) {
+                spots[i].targetX = x + (i - half) * 30;
+                spots[i].targetY = y + (i - half) * 20;
+            }
         };
 
         document.addEventListener('mousemove', handleMouseMove, { passive: true });
@@ -153,6 +172,7 @@ export function SpotlightBackground({
 
     return (
         <div
+            ref={layerRef}
             className={cn(
                 'pointer-events-none fixed inset-0 z-0',
                 className
@@ -162,13 +182,13 @@ export function SpotlightBackground({
             {colorArray.map((color, i) => (
                 <div
                     key={i}
-                    className="absolute inset-0 transition-opacity duration-300"
+                    className="absolute left-0 top-0 will-change-transform"
                     style={{
+                        width: blobSize,
+                        height: blobSize,
                         opacity,
-                        background: positions[i]
-                            ? `radial-gradient(${size}px circle at ${positions[i].x}px ${positions[i].y}px, ${color}, transparent 70%)`
-                            : 'transparent',
-                        filter: `blur(${blur}px)`
+                        background: `radial-gradient(${size}px circle at ${halfBlob}px ${halfBlob}px, ${color}, transparent 70%)`,
+                        filter: `blur(${blur}px)`,
                     }}
                 />
             ))}
