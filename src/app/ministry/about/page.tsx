@@ -120,7 +120,7 @@ export default function MinistryAbout() {
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.8, delay: 0.3, ease: 'easeOut' }}
-                    className="relative aspect-[3/4] w-80 overflow-hidden rounded-xs bg-gray-800 shadow-lg md:w-96 lg:w-[28rem] xl:w-[32rem]"
+                    className="relative aspect-[3/4] w-80 overflow-hidden rounded-xs border border-gray-500/40 bg-gray-800 shadow-lg md:w-96 lg:w-[28rem] xl:w-[32rem]"
                 >
                     {/* Skeleton - shown until video loads */}
                     {!videoLoaded && <div className="absolute inset-0 animate-pulse bg-gray-700"></div>}
@@ -182,7 +182,7 @@ export default function MinistryAbout() {
                     {[...Array(7)].map((_, index) => (
                         <div
                             key={`image-${index}`}
-                            className="relative aspect-[3/4] w-64 flex-shrink-0 overflow-hidden rounded-xs bg-gray-800 md:w-80 lg:w-96"
+                            className="relative aspect-[3/4] w-64 flex-shrink-0 overflow-hidden rounded-xs border border-gray-500/40 bg-gray-800 md:w-80 lg:w-96"
                         >
                             <Image
                                 src={`/images/homeGallery/galleryP${index + 1}.jpg`}
@@ -197,7 +197,7 @@ export default function MinistryAbout() {
                     {[...Array(7)].map((_, index) => (
                         <div
                             key={`image-duplicate-${index}`}
-                            className="relative aspect-[3/4] w-64 flex-shrink-0 overflow-hidden rounded-xs bg-gray-800 md:w-80 lg:w-96"
+                            className="relative aspect-[3/4] w-64 flex-shrink-0 overflow-hidden rounded-xs border border-gray-500/40 bg-gray-800 md:w-80 lg:w-96"
                         >
                             <Image
                                 src={`/images/homeGallery/galleryP${index + 1}.jpg`}

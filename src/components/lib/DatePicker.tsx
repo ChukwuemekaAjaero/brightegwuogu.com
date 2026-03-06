@@ -51,7 +51,7 @@ export function DatePicker({ value, onChange, placeholder = 'Select date', label
                     <button
                         type="button"
                         id={id}
-                        className="flex w-full items-center justify-between border border-gray-600 bg-gray-800 py-3 pr-10 pl-4 text-left text-white placeholder-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                        className="flex w-full items-center justify-between border border-gray-500/40 bg-gray-800 py-3 pr-10 pl-4 text-left text-white placeholder-gray-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                     >
                         <span className={date ? 'text-white' : 'text-gray-400'}>
                             {date
@@ -90,7 +90,7 @@ export function DatePicker({ value, onChange, placeholder = 'Select date', label
                                     }
                                 }
                             }}
-                            className="w-full rounded-none border border-gray-600 bg-gray-700 px-2 py-1 text-xs text-white hover:bg-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                            className="w-full rounded-none border border-gray-500/40 bg-gray-700 px-2 py-1 text-xs text-white hover:bg-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none"
                         >
                             Today
                         </button>

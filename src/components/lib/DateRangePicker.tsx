@@ -198,21 +198,21 @@ export function DateRangePicker({ value, onChange, placeholder = 'Select date ra
                                         handleSelect({ from: fromDate, to: todayOnly <= maxDateOnly ? today : maxDate });
                                     }
                                 }}
-                                className="flex-1 rounded-xs bg-gray-700 px-3 py-2 text-base text-white hover:bg-gray-600 focus:outline-none"
+                                className="flex-1 rounded-xs border border-gray-500/40 bg-gray-700 px-3 py-2 text-base text-white hover:bg-gray-600 focus:outline-none"
                             >
                                 Last 30 days
                             </button>
                             <button
                                 type="button"
                                 onClick={clearRange}
-                                className="flex-1 rounded-xs bg-gray-700 px-3 py-2 text-base text-white hover:bg-gray-600 focus:outline-none"
+                                className="flex-1 rounded-xs border border-gray-500/40 bg-gray-700 px-3 py-2 text-base text-white hover:bg-gray-600 focus:outline-none"
                             >
                                 Clear
                             </button>
                             <button
                                 type="button"
                                 onClick={() => setOpen(false)}
-                                className="flex-1 rounded-xs bg-red-700 px-3 py-2 text-base text-white hover:bg-red-600 focus:outline-none"
+                                className="flex-1 rounded-xs border border-gray-500/40 bg-red-700 px-3 py-2 text-base text-white hover:bg-red-600 focus:outline-none"
                             >
                                 Done
                             </button>
@@ -238,7 +238,7 @@ export function DateRangePicker({ value, onChange, placeholder = 'Select date ra
                         ref={triggerRef}
                         type="button"
                         id={id}
-                        className="flex w-full items-center justify-between rounded-xs bg-gray-800 py-3 pr-10 pl-4 text-left text-white placeholder-gray-400 focus:outline-none"
+                        className="flex w-full items-center justify-between rounded-xs border border-gray-500/40 bg-gray-800 py-3 pr-10 pl-4 text-left text-white placeholder-gray-400 focus:outline-none"
                     >
                         <div className="flex items-center gap-3">
                             <CalendarIcon className="h-5 w-5 text-gray-400" />
@@ -283,21 +283,21 @@ export function DateRangePicker({ value, onChange, placeholder = 'Select date ra
                                     handleSelect({ from: fromDate, to: todayOnly <= maxDateOnly ? today : maxDate });
                                 }
                             }}
-                            className="flex-1 rounded-xs bg-gray-700 px-2 py-1 text-sm text-white hover:bg-gray-600 focus:outline-none"
+                            className="flex-1 rounded-xs border border-gray-500/40 bg-gray-700 px-2 py-1 text-sm text-white hover:bg-gray-600 focus:outline-none"
                         >
                             Last 30 days
                         </button>
                         <button
                             type="button"
                             onClick={clearRange}
-                            className="flex-1 rounded-xs bg-gray-700 px-2 py-1 text-sm text-white hover:bg-gray-600 focus:outline-none"
+                            className="flex-1 rounded-xs border border-gray-500/40 bg-gray-700 px-2 py-1 text-sm text-white hover:bg-gray-600 focus:outline-none"
                         >
                             Clear
                         </button>
                         <button
                             type="button"
                             onClick={() => setOpen(false)}
-                            className="flex-1 rounded-xs bg-red-700 px-2 py-1 text-sm text-white hover:bg-red-600 focus:outline-none"
+                            className="flex-1 rounded-xs border border-gray-500/40 bg-red-700 px-2 py-1 text-sm text-white hover:bg-red-600 focus:outline-none"
                         >
                             Done
                         </button>

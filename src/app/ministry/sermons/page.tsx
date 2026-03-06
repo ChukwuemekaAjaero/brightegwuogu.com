@@ -129,7 +129,7 @@ export default function MinistrySermons() {
                                                 setDateRange(undefined);
                                                 setSelectedTags([]);
                                             }}
-                                            className="group inline-flex items-center rounded-xs bg-red-900 px-8 py-4 font-semibold text-white shadow-lg shadow-red-800/20 transition-all duration-300 hover:bg-red-800 hover:text-white"
+                                            className="group inline-flex items-center rounded-xs border border-gray-500/40 bg-red-900 px-8 py-4 font-semibold text-white shadow-lg shadow-red-800/20 transition-all duration-300 hover:bg-red-800 hover:text-white"
                                         >
                                             <svg
                                                 className="mr-2 h-5 w-5 transition-transform group-hover:translate-x-1"
@@ -168,7 +168,7 @@ export default function MinistrySermons() {
                                             placeholder="Search sermons by name..."
                                             value={searchQuery}
                                             onChange={(e) => setSearchQuery(e.target.value)}
-                                            className="w-full rounded-xs bg-gray-800 py-3 pr-10 pl-10 text-white placeholder-gray-400 focus:outline-none"
+                                            className="w-full rounded-xs border border-gray-500/40 bg-gray-800 py-3 pr-10 pl-10 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500"
                                         />
                                         {searchQuery && (
                                             <button
@@ -213,7 +213,7 @@ export default function MinistrySermons() {
                                                                 container.scrollBy({ left: -200, behavior: 'smooth' });
                                                             }
                                                         }}
-                                                        className="flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-full bg-red-900 text-white shadow-lg shadow-red-800/20 transition-all duration-200 hover:bg-red-800"
+                                                        className="flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-full border border-gray-500/40 bg-red-900 text-white shadow-lg shadow-red-800/20 transition-all duration-200 hover:bg-red-800"
                                                     >
                                                         <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -285,7 +285,7 @@ export default function MinistrySermons() {
                                                                 container.scrollBy({ left: 200, behavior: 'smooth' });
                                                             }
                                                         }}
-                                                        className="flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-full bg-red-900 text-white shadow-lg shadow-red-800/20 transition-all duration-200 hover:bg-red-800"
+                                                        className="flex h-8 w-8 shrink-0 cursor-pointer items-center justify-center rounded-full border border-gray-500/40 bg-red-900 text-white shadow-lg shadow-red-800/20 transition-all duration-200 hover:bg-red-800"
                                                     >
                                                         <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -306,7 +306,7 @@ export default function MinistrySermons() {
                                     {Array.from({ length: 10 }, (_, index) => (
                                         <div key={index} className="group relative block overflow-hidden rounded">
                                             {/* Image skeleton */}
-                                            <div className="relative aspect-[4/5] overflow-hidden rounded bg-gray-700">
+                                            <div className="relative aspect-[4/5] overflow-hidden rounded border border-gray-500/40 bg-gray-700">
                                                 <div className="absolute inset-0 animate-pulse bg-gray-600"></div>
                                             </div>
 
@@ -367,7 +367,7 @@ export default function MinistrySermons() {
                                                 rel="noopener noreferrer"
                                                 className="group relative block cursor-pointer overflow-hidden rounded transition-all duration-300 hover:scale-103"
                                             >
-                                                <div className="relative aspect-[4/5] overflow-hidden rounded">
+                                                <div className="relative aspect-[4/5] overflow-hidden rounded border border-gray-500/40">
                                                     {/* Image with scale and blur effect */}
                                                     {sermon.thumbnailImage?.fields?.file?.url && (
                                                         <Image
@@ -443,7 +443,7 @@ export default function MinistrySermons() {
                                     >
                                         <button
                                             onClick={loadMoreSermons}
-                                            className="group inline-flex cursor-pointer items-center rounded-xs bg-red-900 px-8 py-4 font-semibold text-white shadow-lg shadow-red-800/20 transition-all duration-300 hover:bg-red-800"
+                                            className="group inline-flex cursor-pointer items-center rounded-xs border border-gray-500/40 bg-red-900 px-8 py-4 font-semibold text-white shadow-lg shadow-red-800/20 transition-all duration-300 hover:bg-red-800"
                                         >
                                             More
                                             <FiArrowDown className="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-y-2" />

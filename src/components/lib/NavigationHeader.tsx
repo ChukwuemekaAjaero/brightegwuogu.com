@@ -349,7 +349,7 @@ const HamburgerButton: React.FC<HamburgerButtonProps> = ({ active, setActive }) 
         <>
             {/* Background blur for closed state */}
             {!active && (
-                <div className="fixed top-0 right-0 left-0 z-10 h-30 bg-black/10 mask-b-from-50% backdrop-blur-md">
+                <div className="fixed top-0 right-0 left-0 z-30 h-30 bg-black/10 mask-b-from-50% backdrop-blur-md">
                     <Link
                         href={getLogoHref()}
                         className={`absolute top-6 left-8 z-50 cursor-pointer text-2xl font-bold text-white transition-colors ${antonFont.className} uppercase ${
@@ -366,7 +366,7 @@ const HamburgerButton: React.FC<HamburgerButtonProps> = ({ active, setActive }) 
                 animate={active ? 'open' : 'closed'}
                 variants={UNDERLAY_VARIANTS}
                 style={{ top: 16, right: 16 }}
-                className={`fixed z-20 rounded-xs shadow-lg ${isMinistryRoute ? 'bg-red-900/95' : isMusicRoute ? 'bg-[#a46a39]/95' : 'bg-blue-900/10 shadow-blue-800/20'}`}
+                className={`fixed z-40 rounded-xs shadow-lg ${isMinistryRoute ? 'bg-red-900/95' : isMusicRoute ? 'bg-[#a46a39]/95' : 'bg-blue-900/10 shadow-blue-800/20'}`}
             />
 
             <motion.button

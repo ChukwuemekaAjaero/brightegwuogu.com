@@ -299,7 +299,7 @@ export default function MinistryPage() {
                                     <TypewriterText
                                         key={sermons[0]?.name ?? 'sermons'}
                                         text={sermons[0]?.name || 'Sermons'}
-                                        className={`mb-6 text-5xl font-bold md:text-8xl ${antonFont.className} uppercase`}
+                                        className={`mb-6 text-6xl font-bold md:text-7xl lg:text-8xl ${antonFont.className} uppercase`}
                                     />
                                 </motion.div>
 
@@ -365,14 +365,14 @@ export default function MinistryPage() {
                                         href={sermons[0]?.youTubeLink}
                                         target="_blank"
                                         rel="noopener   noreferrer"
-                                        className="group inline-flex cursor-pointer items-center justify-center rounded-xs bg-[#010308]/80 px-6 py-4 font-semibold text-white uppercase transition-all duration-300 hover:scale-105 hover:bg-red-800/80"
+                                        className="group inline-flex cursor-pointer items-center justify-center rounded-xs border border-gray-500/40 bg-[#010308]/80 px-6 py-4 font-semibold text-white uppercase transition-all duration-300 hover:scale-105 hover:bg-red-800/80"
                                     >
                                         Watch on YouTube
                                         <FaYoutube size={24} className="ml-3 text-red-600" />
                                     </a>
                                     <Link
                                         href="/ministry/sermons"
-                                        className="group inline-flex cursor-pointer items-center justify-center rounded-xs bg-[#010308]/80 px-6 py-4 font-semibold text-white uppercase transition-all duration-300 hover:scale-105 hover:bg-red-800/80"
+                                        className="group inline-flex cursor-pointer items-center justify-center rounded-xs border border-gray-500/40 bg-[#010308]/80 px-6 py-4 font-semibold text-white uppercase transition-all duration-300 hover:scale-105 hover:bg-red-800/80"
                                     >
                                         View Sermons
                                         <LiaBibleSolid className="ml-3 h-6 w-6" />
@@ -384,7 +384,7 @@ export default function MinistryPage() {
                 </section>
 
                 {/* About Section */}
-                <section className="relative py-20">
+                <section className="relative py-16 sm:py-20 lg:py-24">
                     <div className="container mx-auto flex items-center justify-center px-4 sm:px-8">
                         <div className="mx-auto w-full max-w-6xl">
                             <motion.h2
@@ -392,12 +392,12 @@ export default function MinistryPage() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, margin: '-100px' }}
                                 transition={{ duration: 0.6, ease: 'easeOut' }}
-                                className={`relative z-10 mb-12 text-center text-6xl font-bold text-white sm:text-7xl md:text-8xl ${antonFont.className} uppercase`}
+                                className={`relative z-10 mb-10 text-center text-5xl font-bold text-white md:text-6xl lg:text-7xl ${antonFont.className} uppercase`}
                             >
                                 About
                             </motion.h2>
 
-                            <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
+                            <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-20">
                                 {/* Left Column - Image */}
                                 <div className="flex flex-col">
                                     {/* Image */}
@@ -408,7 +408,7 @@ export default function MinistryPage() {
                                         transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
                                         className="flex justify-start"
                                     >
-                                        <div className="relative z-0 aspect-[3/4] w-full max-w-lg overflow-hidden rounded-xs shadow-lg md:max-w-xl">
+                                        <div className="relative z-0 aspect-[3/4] w-full max-w-sm overflow-hidden rounded-xs border border-gray-500/40 shadow-lg md:max-w-md">
                                             <Image
                                                 src="/images/ministry/MinistryAboutImage.jpg"
                                                 alt="Pastor Bright Egwuogu"
@@ -422,7 +422,7 @@ export default function MinistryPage() {
 
                                 {/* Right Column - Description and Learn More Button */}
                                 <div className="flex flex-col justify-center">
-                                    <div className="space-y-4">
+                                    <div className="space-y-6">
                                         <motion.p
                                             initial={{ opacity: 0, y: 20 }}
                                             whileInView={{ opacity: 1, y: 0 }}
@@ -459,11 +459,11 @@ export default function MinistryPage() {
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true, margin: '-100px' }}
                                         transition={{ duration: 0.6, delay: 0.7, ease: 'easeOut' }}
-                                        className="mt-8 flex justify-center"
+                                        className="mt-10 flex justify-center"
                                     >
                                         <Link
                                             href="/ministry/about"
-                                            className="group inline-flex cursor-pointer items-center justify-center rounded-xs bg-gray-700 px-8 py-4 font-semibold text-white uppercase shadow-lg transition-all duration-300 hover:bg-gray-600"
+                                            className="group inline-flex cursor-pointer items-center justify-center rounded-xs border border-gray-500/40 bg-gray-700 px-8 py-4 font-semibold text-white uppercase shadow-lg transition-all duration-300 hover:bg-gray-600"
                                         >
                                             Learn More
                                         </Link>
@@ -475,7 +475,7 @@ export default function MinistryPage() {
                 </section>
 
                 {/* Latest Sermons Section */}
-                <section className="relative overflow-visible py-20">
+                <section className="relative overflow-visible py-16 sm:py-20 lg:py-24">
                     <div className="container mx-auto px-4 sm:px-8">
                         <div className="mx-auto max-w-6xl overflow-visible">
                             <motion.h2
@@ -483,7 +483,7 @@ export default function MinistryPage() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, margin: '-100px' }}
                                 transition={{ duration: 0.6, ease: 'easeOut' }}
-                                className={`mb-4 text-center text-4xl font-bold text-white md:text-5xl lg:text-6xl ${antonFont.className} uppercase`}
+                                className={`mb-6 text-center text-5xl font-bold text-white md:text-6xl lg:text-7xl ${antonFont.className} uppercase`}
                             >
                                 Latest Sermons
                             </motion.h2>
@@ -492,7 +492,7 @@ export default function MinistryPage() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, margin: '-100px' }}
                                 transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
-                                className="mx-auto mb-8 max-w-2xl text-center text-lg text-gray-300 md:text-xl"
+                                className="mx-auto mb-10 max-w-2xl text-center text-lg text-gray-300 md:text-xl"
                             >
                                 Explore recent teachings and messages that will inspire, challenge, and encourage you in your faith journey.
                             </motion.p>
@@ -510,7 +510,7 @@ export default function MinistryPage() {
                         <button
                             onClick={() => scrollCarousel('left')}
                             disabled={!canScrollLeft}
-                            className="cursor-pointer rounded-full bg-gray-700 p-3 text-white shadow-lg transition-all hover:bg-gray-600 disabled:cursor-not-allowed disabled:opacity-50"
+                            className="cursor-pointer rounded-full border border-gray-500/40 bg-gray-700 p-3 text-white shadow-lg transition-all hover:bg-gray-600 disabled:cursor-not-allowed disabled:opacity-50"
                             aria-label="Scroll left"
                         >
                             <FiChevronLeft className="h-6 w-6" />
@@ -518,7 +518,7 @@ export default function MinistryPage() {
                         <button
                             onClick={() => scrollCarousel('right')}
                             disabled={!canScrollRight}
-                            className="cursor-pointer rounded-full bg-gray-700 p-3 text-white shadow-lg transition-all hover:bg-gray-600 disabled:cursor-not-allowed disabled:opacity-50"
+                            className="cursor-pointer rounded-full border border-gray-500/40 bg-gray-700 p-3 text-white shadow-lg transition-all hover:bg-gray-600 disabled:cursor-not-allowed disabled:opacity-50"
                             aria-label="Scroll right"
                         >
                             <FiChevronRight className="h-6 w-6" />
@@ -531,7 +531,7 @@ export default function MinistryPage() {
                         <div className="px-4 sm:px-8">
                             <div
                                 ref={carouselRef}
-                                className="scrollbar-hide flex gap-6 overflow-x-auto overflow-y-visible pb-16"
+                                className="scrollbar-hide flex gap-6 overflow-x-auto overflow-y-visible pb-12"
                                 style={{
                                     scrollBehavior: 'smooth',
                                     scrollbarWidth: 'none',
@@ -544,7 +544,7 @@ export default function MinistryPage() {
                                     <>
                                         {[...Array(8)].map((_, index) => (
                                             <div key={index} className="w-[250px] flex-shrink-0">
-                                                <div className="relative aspect-[4/5] animate-pulse overflow-hidden rounded-sm bg-gray-800"></div>
+                                                <div className="relative aspect-[4/5] animate-pulse overflow-hidden rounded-sm border border-gray-500/40 bg-gray-800"></div>
                                                 <div className="py-6">
                                                     {/* Title Skeleton */}
                                                     <div className="mb-3 h-6 w-3/4 animate-pulse rounded bg-gray-700"></div>
@@ -569,7 +569,7 @@ export default function MinistryPage() {
                                                 rel="noopener noreferrer"
                                                 className="group relative block w-[250px] flex-shrink-0 cursor-pointer overflow-visible transition-all duration-300 hover:scale-103"
                                             >
-                                                <div className="relative aspect-[4/5] overflow-hidden rounded-sm">
+                                                <div className="relative aspect-[4/5] overflow-hidden rounded-sm border border-gray-500/40">
                                                     {sermon.thumbnailImage?.fields?.file?.url && (
                                                         <Image
                                                             src={`https:${sermon.thumbnailImage.fields.file.url}`}
@@ -666,11 +666,11 @@ export default function MinistryPage() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, margin: '-100px' }}
                                 transition={{ duration: 0.6, delay: 0.4, ease: 'easeOut' }}
-                                className="mt-16 flex justify-center"
+                                className="mt-12 flex justify-center"
                             >
                                 <Link
                                     href="/ministry/sermons"
-                                    className="group inline-flex cursor-pointer items-center justify-center rounded-xs bg-gray-700 px-8 py-4 font-semibold text-white uppercase shadow-lg transition-all duration-300 hover:bg-gray-600"
+                                    className="group inline-flex cursor-pointer items-center justify-center rounded-xs border border-gray-500/40 bg-gray-700 px-8 py-4 font-semibold text-white uppercase shadow-lg transition-all duration-300 hover:bg-gray-600"
                                 >
                                     View All Sermons
                                     <FiArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
@@ -681,7 +681,7 @@ export default function MinistryPage() {
                 </section>
 
                 {/* Resources Section */}
-                <section className="relative py-20">
+                <section className="relative py-16 sm:py-20 lg:py-24">
                     <div className="container mx-auto px-4 sm:px-8">
                         <div className="mx-auto max-w-6xl">
                             <motion.h2
@@ -689,7 +689,7 @@ export default function MinistryPage() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, margin: '-100px' }}
                                 transition={{ duration: 0.6, ease: 'easeOut' }}
-                                className={`mb-4 text-center text-4xl font-bold text-white md:text-5xl lg:text-6xl ${antonFont.className} uppercase`}
+                                className={`mb-6 text-center text-5xl font-bold text-white md:text-6xl lg:text-7xl ${antonFont.className} uppercase`}
                             >
                                 CCI Resources
                             </motion.h2>
@@ -736,12 +736,12 @@ export default function MinistryPage() {
                                         whileInView={{ opacity: 1, y: 0 }}
                                         viewport={{ once: true, margin: '-50px' }}
                                         transition={{ duration: 0.6, delay: 0.3 + index * 0.1, ease: 'easeOut' }}
-                                        className={`group flex cursor-pointer gap-6 border-b border-gray-600 py-8 transition-all duration-300 md:gap-8 md:py-10 ${
+                                        className={`group flex cursor-pointer gap-8 border-b border-gray-600 py-6 transition-all duration-300 md:gap-10 md:py-8 ${
                                             index === 0 ? 'border-t border-gray-600' : ''
                                         }`}
                                     >
                                         {/* Image on the left */}
-                                        <div className="relative h-48 w-48 flex-shrink-0 overflow-hidden md:h-56 md:w-56 lg:h-64 lg:w-64">
+                                        <div className="relative h-48 w-48 flex-shrink-0 overflow-hidden rounded-xs border border-gray-500/40 md:h-56 md:w-56 lg:h-64 lg:w-64">
                                             <Image
                                                 src={resource.image}
                                                 alt={resource.title}
@@ -752,7 +752,7 @@ export default function MinistryPage() {
                                         </div>
 
                                         {/* Content on the right */}
-                                        <div className="flex flex-1 flex-col justify-center pr-8 md:pr-10">
+                                        <div className="flex flex-1 flex-col justify-center pr-4 md:pr-10">
                                             <h3
                                                 className={`mb-4 text-2xl font-semibold text-white transition-colors duration-300 group-hover:text-gray-300 md:text-2xl xl:text-3xl ${antonFont.className} uppercase`}
                                             >
@@ -770,7 +770,7 @@ export default function MinistryPage() {
                 </section>
 
                 {/* Get In Touch Section */}
-                <section className="relative py-20">
+                <section className="relative py-16 sm:py-20 lg:py-24">
                     <div className="container mx-auto px-4 sm:px-8">
                         <div className="mx-auto max-w-6xl">
                             <motion.h2
@@ -778,7 +778,7 @@ export default function MinistryPage() {
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true, margin: '-100px' }}
                                 transition={{ duration: 0.6, ease: 'easeOut' }}
-                                className={`mb-12 text-center text-4xl font-bold text-white md:text-5xl lg:text-6xl ${antonFont.className} uppercase`}
+                                className={`mb-10 text-center text-5xl font-bold text-white md:text-6xl lg:text-7xl ${antonFont.className} uppercase`}
                             >
                                 Get In Touch
                             </motion.h2>
@@ -801,7 +801,7 @@ export default function MinistryPage() {
                                         name="title"
                                         value={formData.title}
                                         onChange={handleInputChange}
-                                        className="w-full rounded-xs border border-gray-600 bg-gray-800 px-4 py-3 text-white placeholder-gray-400 focus:border-gray-500 focus:outline-none"
+                                        className="w-full rounded-xs border border-gray-500/40 bg-gray-800 px-4 py-3 text-white placeholder-gray-400 focus:border-gray-500 focus:outline-none"
                                         placeholder="Subject or title"
                                     />
                                 </div>
@@ -817,7 +817,7 @@ export default function MinistryPage() {
                                         value={formData.name}
                                         onChange={handleInputChange}
                                         required
-                                        className="w-full rounded-xs border border-gray-600 bg-gray-800 px-4 py-3 text-white placeholder-gray-400 focus:border-gray-500 focus:outline-none"
+                                        className="w-full rounded-xs border border-gray-500/40 bg-gray-800 px-4 py-3 text-white placeholder-gray-400 focus:border-gray-500 focus:outline-none"
                                         placeholder="Your name"
                                     />
                                 </div>
@@ -833,7 +833,7 @@ export default function MinistryPage() {
                                         value={formData.email}
                                         onChange={handleInputChange}
                                         required
-                                        className="w-full rounded-xs border border-gray-600 bg-gray-800 px-4 py-3 text-white placeholder-gray-400 focus:border-gray-500 focus:outline-none"
+                                        className="w-full rounded-xs border border-gray-500/40 bg-gray-800 px-4 py-3 text-white placeholder-gray-400 focus:border-gray-500 focus:outline-none"
                                         placeholder="your.email@example.com"
                                     />
                                 </div>
@@ -849,7 +849,7 @@ export default function MinistryPage() {
                                         onChange={handleInputChange}
                                         required
                                         rows={6}
-                                        className="w-full resize-none rounded-xs border border-gray-600 bg-gray-800 px-4 py-3 text-white placeholder-gray-400 focus:border-gray-500 focus:outline-none"
+                                        className="w-full resize-none rounded-xs border border-gray-500/40 bg-gray-800 px-4 py-3 text-white placeholder-gray-400 focus:border-gray-500 focus:outline-none"
                                         placeholder="Your message"
                                     />
                                 </div>
@@ -858,7 +858,7 @@ export default function MinistryPage() {
                                     <button
                                         type="submit"
                                         disabled={isSubmitting}
-                                        className="inline-flex cursor-pointer items-center justify-center gap-3 rounded-xs bg-gray-700 px-8 py-4 font-semibold text-white uppercase shadow-lg transition-all duration-300 hover:bg-gray-600 disabled:cursor-not-allowed disabled:opacity-50 group"
+                                        className="inline-flex cursor-pointer items-center justify-center gap-3 rounded-xs border border-gray-500/40 bg-gray-700 px-8 py-4 font-semibold text-white uppercase shadow-lg transition-all duration-300 hover:bg-gray-600 disabled:cursor-not-allowed disabled:opacity-50 group"
                                     >
                                         {isSubmitting ? (
                                             <>
