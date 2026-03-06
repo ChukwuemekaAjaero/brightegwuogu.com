@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { antonFont } from '@/lib/utils';
 import { useMediaPreloader } from '@/hooks/useMediaPreloader';
@@ -8,65 +8,47 @@ import { criticalMediaAssets } from '@/lib/mediaAssets';
 import SplashScreen from '@/components/lib/SplashScreen';
 import { TypewriterText } from '@/components/lib/TypewriterText';
 
+const MESSAGE_DURATION_MS = 3000;
+const SPLASH_FADE_OUT_MS = 500;
+
 export default function RootPage() {
     const [hoveredSection, setHoveredSection] = useState<'ministry' | 'music' | null>(null);
     const { loading, progress } = useMediaPreloader(criticalMediaAssets);
 
-    // Check localStorage synchronously during initial state to prevent flicker
     const wasPreloaded = typeof window !== 'undefined' && localStorage.getItem('mediaPreloaded') === 'true';
 
-    const [showMessage, setShowMessage] = useState(wasPreloaded);
+    const [showMessage, setShowMessage] = useState(false);
     const [showContent, setShowContent] = useState(false);
     const [splashVisible, setSplashVisible] = useState(!wasPreloaded);
-    const [skipSplash, setSkipSplash] = useState(wasPreloaded);
+    const [splashMounted, setSplashMounted] = useState(!wasPreloaded);
+    const messageTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+    const preloaderDoneRef = useRef(false);
 
-    // Handle content fade-in for preloaded media
+    // 1) Preloader finishes → hide splash (fade out) → unmount splash → show "Select a side of Bright" → after 3s show Ministry/Music
     useEffect(() => {
-        if (skipSplash && wasPreloaded) {
-            // Show content after 3 seconds
-            const contentFadeIn = setTimeout(() => {
+        if (loading || progress < 100 || preloaderDoneRef.current) return;
+        preloaderDoneRef.current = true;
+        localStorage.setItem('mediaPreloaded', 'true');
+
+        // Step 1: Start preloader fade out
+        setSplashVisible(false);
+
+        // Step 2: After splash has fully faded, unmount it and show "Select a side of Bright" (no overlap)
+        const showMsg = setTimeout(() => {
+            setSplashMounted(false);
+            setShowMessage(true);
+            messageTimerRef.current = setTimeout(() => {
+                messageTimerRef.current = null;
                 setShowMessage(false);
                 setShowContent(true);
-            }, 3000);
+            }, MESSAGE_DURATION_MS);
+        }, SPLASH_FADE_OUT_MS);
 
-            return () => clearTimeout(contentFadeIn);
-        }
-    }, [skipSplash, wasPreloaded]);
-
-    // Handle transitions: splash -> message -> content
-    useEffect(() => {
-        if (!skipSplash && !loading && progress >= 100) {
-            // Mark as preloaded in localStorage
-            localStorage.setItem('mediaPreloaded', 'true');
-
-            // Fade out splash screen after a brief delay
-            const splashFadeOut = setTimeout(() => {
-                setSplashVisible(false);
-            }, 500);
-
-            // Fade in message after splash fades out
-            const messageFadeIn = setTimeout(() => {
-                setShowMessage(true);
-            }, 1000); // 500ms delay + 500ms transition
-
-            // Fade out message and fade in content after 3 seconds
-            const messageFadeOut = setTimeout(() => {
-                setShowMessage(false);
-            }, 4000); // 1000ms start + 3000ms display
-
-            // Fade in content after message fades out
-            const contentFadeIn = setTimeout(() => {
-                setShowContent(true);
-            }, 4500); // 4000ms + 500ms transition
-
-            return () => {
-                clearTimeout(splashFadeOut);
-                clearTimeout(messageFadeIn);
-                clearTimeout(messageFadeOut);
-                clearTimeout(contentFadeIn);
-            };
-        }
-    }, [loading, progress, skipSplash]);
+        return () => {
+            clearTimeout(showMsg);
+            if (messageTimerRef.current) clearTimeout(messageTimerRef.current);
+        };
+    }, [loading, progress]);
 
     return (
         <>
@@ -76,15 +58,17 @@ export default function RootPage() {
                     showContent ? 'pointer-events-none opacity-0' : 'opacity-100'
                 }`}
             >
-                {/* Splash screen content - fades out */}
-                <div
-                    className={`flex h-full items-center justify-center transition-opacity duration-500 ease-in-out ${
-                        splashVisible ? 'opacity-100' : 'pointer-events-none opacity-0'
-                    }`}
-                >
-                    <SplashScreen progress={progress} isVisible={true} />
-                </div>
-                {/* Message text - fades in */}
+                {/* Splash: mounted until fade completes, then unmounted so message can show without overlap */}
+                {splashMounted && (
+                    <div
+                        className={`flex h-full items-center justify-center transition-opacity duration-500 ease-in-out ${
+                            splashVisible ? 'opacity-100' : 'pointer-events-none opacity-0'
+                        }`}
+                    >
+                        <SplashScreen progress={progress} isVisible={true} />
+                    </div>
+                )}
+                {/* Message text - only shown after splash is unmounted */}
                 <div
                     className={`absolute inset-0 flex items-center justify-center transition-opacity duration-500 ease-in-out ${
                         showMessage ? 'opacity-100' : 'pointer-events-none opacity-0'
