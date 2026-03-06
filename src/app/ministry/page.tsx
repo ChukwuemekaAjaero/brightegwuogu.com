@@ -204,18 +204,17 @@ export default function MinistryPage() {
         }
     };
     return (
-        <div className="relative scroll-smooth">
+        <div className="relative overflow-x-hidden scroll-smooth">
             <div className="relative z-10">
                 {/* HERO SECTION */}
                 <section id="hero" ref={heroSectionRef} className="relative z-20">
-                    <div className="relative h-screen min-h-screen w-screen overflow-hidden rounded mask-b-from-90%">
+                    <div className="relative h-screen min-h-screen w-full overflow-hidden rounded mask-b-from-90%">
                         {/* Loading Screen */}
                         {isLoading && (
                             <div className="absolute inset-0 z-20 bg-black">
                                 {/* Video Background Skeleton */}
                                 <div
-                                    className="absolute top-0 left-1/2 h-full w-[177.78vh] -translate-x-1/2 animate-pulse bg-gray-800"
-                                    style={{ minWidth: '100vw' }}
+                                    className="absolute top-0 left-1/2 h-full w-[177.78vh] min-w-full -translate-x-1/2 animate-pulse bg-gray-800"
                                 ></div>
 
                                 {/* Dark Overlay Skeleton */}
@@ -256,8 +255,7 @@ export default function MinistryPage() {
                         {/* Video Background - explicit z-index so it stays above any fixed background layers */}
                         <video
                             ref={heroVideoRef}
-                            className="absolute top-0 left-1/2 z-[1] h-full w-[177.78vh] -translate-x-1/2 object-cover"
-                            style={{ minWidth: '100vw' }}
+                            className="absolute top-0 left-1/2 z-[1] h-full w-[177.78vh] min-w-full -translate-x-1/2 object-cover"
                             autoPlay
                             muted
                             loop
@@ -389,19 +387,19 @@ export default function MinistryPage() {
                 <section className="relative py-20">
                     <div className="container mx-auto flex items-center justify-center px-4 sm:px-8">
                         <div className="mx-auto w-full max-w-6xl">
-                            <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
-                                {/* Left Column - About Title and Image */}
-                                <div className="flex flex-col">
-                                    <motion.h2
-                                        initial={{ opacity: 0, y: 20 }}
-                                        whileInView={{ opacity: 1, y: 0 }}
-                                        viewport={{ once: true, margin: '-100px' }}
-                                        transition={{ duration: 0.6, ease: 'easeOut' }}
-                                        className={`relative z-10 mb-8 text-center text-6xl font-bold text-white sm:text-7xl md:text-8xl ${antonFont.className} uppercase`}
-                                    >
-                                        About
-                                    </motion.h2>
+                            <motion.h2
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true, margin: '-100px' }}
+                                transition={{ duration: 0.6, ease: 'easeOut' }}
+                                className={`relative z-10 mb-12 text-center text-6xl font-bold text-white sm:text-7xl md:text-8xl ${antonFont.className} uppercase`}
+                            >
+                                About
+                            </motion.h2>
 
+                            <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
+                                {/* Left Column - Image */}
+                                <div className="flex flex-col">
                                     {/* Image */}
                                     <motion.div
                                         initial={{ opacity: 0, scale: 0.9 }}
