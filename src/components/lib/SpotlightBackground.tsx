@@ -40,7 +40,7 @@ export function SpotlightBackground({
     opacity = 1
 }: SpotlightBackgroundProps) {
     const spotlightsRef = useRef<SpotlightPosition[]>([]);
-    const animationRef = useRef<number>();
+    const animationRef = useRef<number | undefined>(undefined);
     const lastMouseMoveRef = useRef<number>(0);
     const [positions, setPositions] = useState<{ x: number; y: number }[]>([]);
     const [viewport, setViewport] = useState({ width: 0, height: 0 });
