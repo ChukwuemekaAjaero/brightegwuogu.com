@@ -134,7 +134,7 @@ export default function Music() {
                                         href="https://www.youtube.com/watch?v=_uUzAETf9TE"
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="group inline-flex cursor-pointer items-center justify-center rounded-xs border border-gray-500/40 bg-[#010308]/80 px-6 py-4 font-semibold text-white uppercase transition-all duration-300 hover:scale-105 hover:bg-[#a46a39]"
+                                        className="group inline-flex cursor-pointer items-center justify-center rounded-xs border border-gray-500/40 bg-[#010308]/80 px-6 py-4 font-semibold text-white uppercase transition-all duration-300 hover:scale-105 hover:bg-[#a46a39]/80"
                                     >
                                         Watch on YouTube
                                         <svg className="ml-3 h-5 w-5 text-red-600" fill="currentColor" viewBox="0 0 24 24">
@@ -144,7 +144,7 @@ export default function Music() {
 
                                     <a
                                         href="/music/discography"
-                                        className="group inline-flex cursor-pointer items-center justify-center rounded-xs border border-gray-500/40 bg-[#010308]/80 px-6 py-4 font-semibold text-white uppercase transition-all duration-300 hover:scale-105 hover:bg-[#a46a39]"
+                                        className="group inline-flex cursor-pointer items-center justify-center rounded-xs border border-gray-500/40 bg-[#010308]/80 px-6 py-4 font-semibold text-white uppercase transition-all duration-300 hover:scale-105 hover:bg-[#a46a39]/80"
                                     >
                                         View Discography
                                         <TbDisc className="ml-3 h-5 w-5 transition-transform duration-500 group-hover:rotate-[360deg]" />

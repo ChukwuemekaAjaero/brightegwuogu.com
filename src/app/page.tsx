@@ -104,7 +104,7 @@ export default function RootPage() {
                     {/* Left Section - Ministry */}
                     <Link
                         href="/ministry"
-                        className={`relative flex cursor-pointer flex-col items-center justify-center rounded-sm border border-gray-500/40 bg-[#142557] bg-cover bg-position-[50%_30%] bg-no-repeat transition-all duration-[750ms] ease-in-out ${
+                        className={`relative flex cursor-pointer flex-col items-center justify-center rounded-sm bg-[#142557] bg-cover bg-position-[50%_30%] bg-no-repeat transition-all duration-[750ms] ease-in-out ${
                             hoveredSection === 'ministry'
                                 ? 'h-2/3 w-full md:h-full md:w-2/3'
                                 : hoveredSection === 'music'
@@ -136,7 +136,7 @@ export default function RootPage() {
                     {/* Right Section - Music */}
                     <Link
                         href="/music"
-                        className={`relative flex cursor-pointer flex-col items-center justify-center rounded-sm border border-gray-500/40 bg-red-900 bg-cover bg-position-[50%_30%] bg-no-repeat transition-all duration-[750ms] ease-in-out ${
+                        className={`relative flex cursor-pointer flex-col items-center justify-center rounded-sm bg-red-900 bg-cover bg-position-[50%_30%] bg-no-repeat transition-all duration-[750ms] ease-in-out ${
                             hoveredSection === 'music'
                                 ? 'h-2/3 w-full md:h-full md:w-2/3'
                                 : hoveredSection === 'ministry'
